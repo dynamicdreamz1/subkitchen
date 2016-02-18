@@ -1,0 +1,189 @@
+@font-face {
+    font-family: 'sub';
+    src:    url('fonts/sub.eot?u945u7');
+    src:    url('fonts/sub.eot?u945u7#iefix') format('embedded-opentype'),
+            url('fonts/sub.ttf?u945u7') format('truetype'),
+            url('fonts/sub.woff?u945u7') format('woff'),
+            url('fonts/sub.svg?u945u7#sub') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@mixin icon {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'sub' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-sub-"], [class*=" icon-sub-"] {
+    @include icon
+}
+
+[class^="icon-sub-"] span, [class*=" icon-sub-"] span{
+    @include icon
+}
+
+.icon-sub-logo .path1:before {
+    content: "\e900";
+    color: rgb(255, 255, 255);
+}
+.icon-sub-logo .path2:before {
+    content: "\e901";
+    margin-left: -1em;
+    color: rgb(41, 171, 226);
+}
+.icon-sub-logo .path3:before {
+    content: "\e902";
+    margin-left: -1em;
+    color: rgb(233, 14, 139);
+}
+.icon-sub-logo .path4:before {
+    content: "\e903";
+    margin-left: -1em;
+    color: rgb(252, 238, 33);
+}
+.icon-sub-logo .path5:before {
+    content: "\e904";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+}
+.icon-sub-thumbnail .path1:before {
+    content: "\e905";
+    color: rgb(210, 211, 212);
+}
+.icon-sub-thumbnail .path2:before {
+    content: "\e906";
+    margin-left: -1em;
+    color: rgb(132, 132, 132);
+}
+.icon-sub-thumbnail .path3:before {
+    content: "\e907";
+    margin-left: -1em;
+    color: rgb(132, 132, 132);
+}
+.icon-sub-thumbnail .path4:before {
+    content: "\e908";
+    margin-left: -1em;
+    color: rgb(132, 132, 132);
+}
+.icon-sub-thumbnail .path5:before {
+    content: "\e909";
+    margin-left: -1em;
+    color: rgb(132, 132, 132);
+}
+.icon-sub-thumbnail .path6:before {
+    content: "\e90a";
+    margin-left: -1em;
+    color: rgb(132, 132, 132);
+}
+.icon-sub-thumbnail .path7:before {
+    content: "\e90b";
+    margin-left: -1em;
+    color: rgb(132, 132, 132);
+}
+.icon-sub-thumbnail .path8:before {
+    content: "\e90c";
+    margin-left: -1em;
+    color: rgb(132, 132, 132);
+}
+.icon-sub-thumbnail .path9:before {
+    content: "\e90d";
+    margin-left: -1em;
+    color: rgb(132, 132, 132);
+}
+.icon-sub-f .path1:before {
+    content: "\e90e";
+    color: rgb(1, 1, 1);
+}
+.icon-sub-f .path2:before {
+    content: "\e90f";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+}
+.icon-sub-i .path1:before {
+    content: "\e910";
+    color: rgb(1, 1, 1);
+}
+.icon-sub-i .path2:before {
+    content: "\e911";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+}
+.icon-sub-t .path1:before {
+    content: "\e912";
+    color: rgb(1, 1, 1);
+}
+.icon-sub-t .path2:before {
+    content: "\e913";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+}
+.icon-sub-t .path3:before {
+    content: "\e914";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+}
+.icon-sub-search:before {
+    content: "\e915";
+}
+.icon-sub-heart:before {
+    content: "\e916";
+}
+.icon-sub-basket:before {
+    content: "\e917";
+}
+.icon-sub-liked .path1:before {
+    content: "\e918";
+    color: rgb(236, 29, 37);
+}
+.icon-sub-liked .path2:before {
+    content: "\e919";
+    margin-left: -1.1337890625em;
+    color: rgb(238, 106, 116);
+}
+.icon-sub-unliked .path1:before {
+    content: "\e91a";
+    color: rgb(125, 125, 125);
+}
+.icon-sub-unliked .path2:before {
+    content: "\e91b";
+    margin-left: -1.1337890625em;
+    color: rgb(204, 204, 204);
+}
+.icon-sub-published:before {
+    content: "\e91c";
+}
+.icon-sub-unpublished:before {
+    content: "\e91d";
+}
+.icon-sub-zoom:before {
+    content: "\e91e";
+}
+.icon-sub-rotate .path1:before {
+    content: "\e91f";
+    color: rgb(1, 1, 1);
+}
+.icon-sub-rotate .path2:before {
+    content: "\e920";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+}
+.icon-sub-drag .path1:before {
+    content: "\e921";
+    color: rgb(1, 1, 1);
+}
+.icon-sub-drag .path2:before {
+    content: "\e922";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+}
+
