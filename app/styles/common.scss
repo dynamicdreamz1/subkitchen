@@ -1,3 +1,11 @@
 * {
   font-family: 'montserrat', sans-serif;
 }
+
+.button.dark{
+  background: $dark-color;
+  color: $light-color;
+  &:hover{
+    background: $gray-color;
+  }
+}

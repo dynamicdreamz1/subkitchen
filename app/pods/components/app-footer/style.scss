@@ -1,0 +1,25 @@
+footer{
+  font-weight: 300;
+
+  h4{
+    font-weight: 700;
+    strong{
+      font-weight: 900;
+    }
+  }
+
+  ul{
+    list-style-type: none;
+    margin-left: 0;
+  }
+
+  .icon{
+    font-size: 2rem;
+  }
+
+  .hollow.secondary.button.pf{
+    font-size: 3rem;
+    color: black;
+    padding: 1rem;
+  }
+}
