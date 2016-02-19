@@ -6,7 +6,8 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     // Add options here
     'ember-cli-foundation-6-sass': { 'foundationJs': 'all' },
-    'sassOptions': { 'includePaths': ['app'] }
+    'sassOptions': { 'includePaths': ['app'] },
+    'autoprefixer': { 'browsers': ['last 2 ios version'], 'cascade': false }
   });
 
   // Use `app.import` to add additional libraries to the generated
