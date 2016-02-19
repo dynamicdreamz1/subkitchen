@@ -16,6 +16,31 @@ $become-a-cook-color: #a6a6a6;
     font-weight: 700;
   }
 
+  .number{
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    background-color: $white;
+    border: 0.3rem solid $white;
+    border-radius: 50%;
+    font-weight: 700;
+
+    &.one{
+      background: #e619da;
+      border-color: #e619da;
+    }
+
+    &.two{
+      background: #19b3e6;
+      border-color: #19b3e6;
+    }
+
+    &.three{
+      background: #dcde17;
+      border-color: #dcde17;
+    }
+  }
+
   .steps{
     margin-top: 2rem;
   }
