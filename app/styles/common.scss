@@ -17,3 +17,16 @@
 .uppercase{
   text-transform: uppercase;
 }
+
+a.link-to-all{
+  font-weight: 300;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+.center{
+  text-align: center;
+  img{
+    margin: 0 auto;
+  }
+}
