@@ -2,11 +2,17 @@
 
 module.exports = function(environment) {
   var ENV = {
+    host: 'http://subkitchen-api.herokuapp.com',
     modulePrefix: 'subkitchen-front',
     podModulePrefix: 'subkitchen-front/pods',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+    date: {
+      defaultFormat: 'DD/MM/YYYY h:mm a',
+      defaultDay: 'DD/MM/YYYY',
+      defaultHour: 'h:mm a'
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -21,6 +27,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    ENV.host = 'http://localhost:3000';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
