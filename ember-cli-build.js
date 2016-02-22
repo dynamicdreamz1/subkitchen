@@ -4,6 +4,9 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
+    fingerprint: {
+      exclude: ['images/kinds']
+    },
     // Add options here
     'ember-cli-foundation-6-sass': { 'foundationJs': 'all' },
     'sassOptions': { 'includePaths': ['app'] },
