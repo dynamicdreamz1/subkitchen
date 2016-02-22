@@ -43,6 +43,12 @@ $become-a-cook-color: #a6a6a6;
 
   .steps{
     margin-top: 2rem;
+    @include breakpoint(small only) {
+      margin-top: 0rem;
+      & > .columns{
+        margin-top: 2rem;
+      }
+    }
   }
 
   .signup{
