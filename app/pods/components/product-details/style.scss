@@ -1,5 +1,7 @@
 .product{
   margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #918f8f;
   img.main{
     width: 100%;
   }
@@ -10,7 +12,6 @@
     font-weight: 300;
   }
   .sizes{
-    font-weight: 700;
     ul{
       width: 100%;
       margin: 0.2rem;
@@ -57,6 +58,28 @@
       a{
         background: transparent;
       }
+    }
+  }
+  .quantity{
+    font-weight: 900;
+    max-width: 10rem;
+    .minus{
+      border: 2px solid $black;
+      border-bottom-left-radius: 50%;
+      border-top-left-radius: 50%;
+      font-size: 1.5rem;
+      line-height: 1rem;
+    }
+    input{
+      border-top: 2px solid $black;
+      border-bottom: 2px solid $black;
+    }
+    .plus{
+      border: 2px solid $black;
+      border-bottom-right-radius: 50%;
+      border-top-right-radius: 50%;
+      font-size: 1.5rem;
+      line-height: 1rem;
     }
   }
 }
