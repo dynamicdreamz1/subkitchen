@@ -1,7 +1,38 @@
-<div class="small-12 medium-3 columns">
+<div class="small-12 medium-3 columns product-info">
   <div class="row">
-    <div class="small-12 columns center">
-      <img src="assets/images/t-shirt.png" alt="">
+    <div class="small-12 columns center image">
+      <div class="row">
+        <div class="small-12 columns">
+          <img src="assets/images/t-shirt.png" alt="">
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns product-actions">
+          <div class="row">
+            <div class="small-12 columns sizes">
+              SIZES:
+              <form>
+              <ul class="sizes">
+                <li> <input type="radio" name="size" id="SM_{{id}}"/> <label for="SM_{{id}}"> SM </label> </li>
+                <li> <input type="radio" name="size" id="MD_{{id}}"/> <label for="MD_{{id}}"> MD </label> </li>
+                <li> <input type="radio" name="size" id="LG_{{id}}"/> <label for="LG_{{id}}"> LG </label> </li>
+                <li> <input type="radio" name="size" id="XL_{{id}}"/> <label for="XL_{{id}}"> XL </label> </li>
+                <li> <input type="radio" name="size" id="2X_{{id}}"/> <label for="2X_{{id}}"> 2X </label> </li>
+                <li> <input type="radio" name="size" id="3X_{{id}}"/> <label for="3X_{{id}}"> 3X </label> </li>
+              </ul>
+              </form>
+            </div>
+          </div>
+          <div class="column row small-collapse buttons">
+            <div class="small-6 columns">
+              <a href="/products/{{id}}" class="black button">VIEW PRODUCT</a>
+            </div>
+            <div class="small-6 columns">
+              <a href="" class="primary button">ADD TO CART</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">
