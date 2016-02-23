@@ -1,0 +1,62 @@
+.product{
+  margin-top: 2rem;
+  img.main{
+    width: 100%;
+  }
+  h4{
+    font-weight: 700;
+  }
+  .price{
+    font-weight: 300;
+  }
+  .sizes{
+    font-weight: 700;
+    ul{
+      width: 100%;
+      margin: 0.2rem;
+      li{
+        display: table-cell;
+        padding: 0.2rem;
+        input{
+          display: none;
+        }
+        label{
+          display: inline-block;
+          border: 2px solid black;
+          border-radius: 50%;
+          margin: 0;
+          padding: 0.1rem;
+          cursor: pointer;
+          width: 2rem;
+          height: 2rem;
+        }
+        input:checked + label{
+          border: 2px solid $gray-color;
+          background: $gray-color;
+          color: $light-color;
+          font-weight: 900;
+        }
+      }
+    }
+  }
+  .tabs{
+    border: none;
+    border-top: 1px solid $black;
+    box-shadow: 0 -1px 0 0 $light-gray;
+  }
+  .tabs-content{
+    border: none;
+  }
+  .tabs-title{
+    font-weight: 300;
+    a{
+      font-size: 1rem;
+    }
+    &.is-active{
+      font-weight: 700;
+      a{
+        background: transparent;
+      }
+    }
+  }
+}

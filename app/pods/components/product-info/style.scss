@@ -32,6 +32,8 @@
           }
           input:checked + label{
             border: 2px solid $gray-color;
+            background: $gray-color;
+            color: $light-color;
             font-weight: 900;
           }
         }

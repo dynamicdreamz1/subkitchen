@@ -3,18 +3,17 @@
     <div class="small-12 columns uppercase">
       <h4>
         <strong>
-          trending
+          {{title}}
         </strong>
         //
-        <a class="link-to-all" href="">view all</a>
+        <a class="link-to-all" href="/products">view all</a>
       </h4>
     </div>
   </div>
 
   <div class="row">
-    {{product-info title='product title' likes=100 price=40.00 artist-name='artist name' }}
-    {{product-info title='product title' likes=101 price=50.00 artist-name='artist name' }}
-    {{product-info title='product title' likes=103 price=60.00 artist-name='artist name' }}
-    {{product-info title='product title' likes=102 price=70.00 artist-name='artist name' }}
+    {{#each products as |product|}}
+      {{product-info id=product.id title=product.name likes=100 price=product.price artist-name=product.author }}
+    {{/each}}
   </div>
 </section>
