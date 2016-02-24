@@ -8,9 +8,10 @@ module.exports = function(defaults) {
       exclude: ['images/kinds']
     },
     // Add options here
-    'ember-cli-foundation-6-sass': { 'foundationJs': 'all' },
-    'sassOptions': { 'includePaths': ['app'] },
-    'autoprefixer': { 'browsers': ['last 2 ios version'], 'cascade': false }
+    'ember-cli-foundation-6-sass': { foundationJs: 'all' },
+    sassOptions: { includePaths: ['app'] },
+    autoprefixer: { browsers: ['last 2 ios version'], cascade: false },
+    emberCliFontAwesome: { useScss: true }
   });
 
   // Use `app.import` to add additional libraries to the generated

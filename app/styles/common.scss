@@ -24,9 +24,16 @@ a.link-to-all{
     text-decoration: underline;
   }
 }
+
 .center{
   text-align: center;
   img{
     margin: 0 auto;
   }
+}
+
+.ellipsis{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

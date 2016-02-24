@@ -1,0 +1,58 @@
+.pagination{
+  margin-top: 2rem;
+  a, button{
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  .active a{
+    font-weight: 900;
+  }
+  .prev a{
+    border: 1px solid $black;
+    color: rgba(0,0,0,0);
+    &:before{
+      color: $black;
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: inherit;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      content: "\f0d9";
+    }
+    &:after{
+      color: $black;
+      content: 'PREV'
+    }
+  }
+  .next a{
+    border: 1px solid $black;
+    color: rgba(0,0,0,0);
+    &:before{
+      color: $black;
+      content: 'NEXT'
+    }
+    &:after{
+      color: $black;
+      display: inline-block;
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: inherit;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      content: "\f0da";
+    }
+  }
+  .arrow.disabled{
+    padding: 0;
+    a{
+      border-color: $secondary-color;
+      &:before{
+        color: $secondary-color;
+      }
+      &:after{
+        color: $secondary-color;
+      }
+    }
+  }
+}
