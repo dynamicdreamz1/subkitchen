@@ -13,12 +13,9 @@
               SIZES:
               <form>
               <ul class="sizes">
-                <li> <input type="radio" name="size" id="SM_{{id}}"/> <label for="SM_{{id}}"> SM </label> </li>
-                <li> <input type="radio" name="size" id="MD_{{id}}"/> <label for="MD_{{id}}"> MD </label> </li>
-                <li> <input type="radio" name="size" id="LG_{{id}}"/> <label for="LG_{{id}}"> LG </label> </li>
-                <li> <input type="radio" name="size" id="XL_{{id}}"/> <label for="XL_{{id}}"> XL </label> </li>
-                <li> <input type="radio" name="size" id="2X_{{id}}"/> <label for="2X_{{id}}"> 2X </label> </li>
-                <li> <input type="radio" name="size" id="3X_{{id}}"/> <label for="3X_{{id}}"> 3X </label> </li>
+                {{#each sizes as |s|}}
+                  <li>{{radio-button value=s model_id=model.id text=s execute=setSize chosen=size}}</li>
+                {{/each}}
               </ul>
               </form>
             </div>
@@ -28,7 +25,7 @@
               <a href="/products/{{id}}" class="black button">VIEW PRODUCT</a>
             </div>
             <div class="small-6 columns">
-              <a href="" class="primary button">ADD TO CART</a>
+              <a onclick={{action "addToCart"}} class="primary button">ADD TO CART</a>
             </div>
           </div>
         </div>
