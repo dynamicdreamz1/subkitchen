@@ -14,7 +14,11 @@ export default Ember.Component.extend({
     authenticate(){
       console.log(this.get('identification'), this.get('password'))
       var credentials = this.getProperties('identification', 'password');
-      this.get('session').authenticate('authenticator:custom', credentials).catch((message) => {
+      this.get('session').authenticate('authenticator:custom', credentials)
+      .then(()=>{
+        this.$('#loginModal').foundation('close')
+      })
+      .catch((message) => {
         this.set('errorMessage', message);
       });
     },
@@ -24,8 +28,6 @@ export default Ember.Component.extend({
     },
 
     showLogin(){
-      console.log(this.session)
-      console.log(this.session.isAuthenticated)
       this.set('errorMessage', null)
       this.set('password', null)
       this.$('#loginModal').foundation('open')
