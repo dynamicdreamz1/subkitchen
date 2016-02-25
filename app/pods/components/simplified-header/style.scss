@@ -1,0 +1,24 @@
+#nav-menu.top-bar.simplified-top-bar{
+  h1{
+    font-size: 3rem;
+    vertical-align: middle;
+  }
+  span.logo{
+    .icon-sub-logo{
+      font-size: 4rem;
+    }
+    span.name{
+      padding-left: 5rem;
+      font-size: 3rem;
+      display: inline-block;
+      vertical-align: middle;
+      height: 3rem;
+    }
+  }
+  ul{
+    a{
+      font-size: 1rem;
+      font-weight: 700;
+    }
+  }
+}

@@ -2,9 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   session: Ember.inject.service('session'),
+  routing: Ember.inject.service('-routing'),
   identification: null,
   password: null,
-  errors: {},
 
   didInsertElement() {
     this.$().foundation();
@@ -24,7 +24,9 @@ export default Ember.Component.extend({
     },
 
     createAccount(){
-      console.log('createAccount')
+      this.$('#loginModal').foundation('close');
+      this.get("routing").transitionTo("register");
+      return false
     },
 
     showLogin(){
