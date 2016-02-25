@@ -26,6 +26,13 @@ module.exports = function(environment) {
     }
   };
 
+  ENV['simple-auth'] = {
+    store: 'simple-auth-session-store:local-storage',
+    authorizer: 'authorizer:custom',
+    crossOriginWhitelist: ['http://subkitchen-api.herokuapp.com'],
+    routeAfterAuthentication: '/home'
+  };
+
   if (environment === 'development') {
     ENV.host = 'http://localhost:3000';
     // ENV.APP.LOG_RESOLVER = true;

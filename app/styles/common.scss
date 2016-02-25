@@ -37,3 +37,8 @@ a.link-to-all{
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+:focus {
+  outline: -webkit-focus-ring-color auto 5px;
+  outline-color: $white;
+}

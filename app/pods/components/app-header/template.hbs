@@ -15,31 +15,81 @@
 
 <!-- Medium-Up Navigation -->
 <nav class="top-bar" id="nav-menu">
-    <ul class="vertical medium-horizontal menu">
-      <li>
-        <a href="#">
-          <span class="logo">
-            <span class="icon-sub-logo"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></span>
-            <span class="name"><strong>sub</strong>kitchen</span>
-          </span>
-        </a>
-      </li>
-      <li><a class="menu-item" href="/products">shop</a></li>
-      <li><a class="menu-item" href="#">create</a></li>
-      <li><a class="menu-item" href="#">sell</a></li>
-      <li><a class="menu-item" href="#">artists</a></li>
-      <li class="divider"></li>
-      <li class="search-form">
-        <input class="search" type="text" placeholder="SEARCH">
-        <span class="icon-sub-search"></span>
-      </li>
-      <li class="divider"></li>
-      <li>
-        <a class="join">
-          <span> <small> join/login </small> </span>
-        </a>
-      </li>
-      <li> <a class="action-item"> <span class="icon-sub-heart"></span> </a> </li>
-      <li> <a class="action-item"> <span class="icon-sub-basket"></span> </a> </li>
-    </ul>
+  <ul class="vertical medium-horizontal menu">
+    <li>
+      <a href="#">
+        <span class="logo">
+          <span class="icon-sub-logo"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></span>
+          <span class="name"><strong>sub</strong>kitchen</span>
+        </span>
+      </a>
+    </li>
+    <li><a class="menu-item" href="/products">shop</a></li>
+    <li><a class="menu-item" href="#">create</a></li>
+    <li><a class="menu-item" href="#">sell</a></li>
+    <li><a class="menu-item" href="#">artists</a></li>
+    <li class="divider"></li>
+    <li class="search-form">
+      <input class="search" type="text" placeholder="SEARCH">
+      <span class="icon-sub-search"></span>
+    </li>
+    <li class="divider"></li>
+    <li>
+      {{#if session.isAuthenticated}}
+      <a class="join" onclick={{action 'invalidateSession'}}>
+        <span> <small> logout </small> </span>
+      </a>
+      {{else}}
+      <a class="join" onclick={{action 'showLogin'}}>
+        <span> <small> join/login </small> </span>
+      </a>
+      {{/if}}
+    </li>
+    <li> <a class="action-item"> <span class="icon-sub-heart"></span> </a> </li>
+    <li> <a class="action-item"> <span class="icon-sub-basket"></span> </a> </li>
+  </ul>
 </nav>
+<div class="reveal" id="loginModal" data-reveal data-close-on-click="true">
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="row white">
+    <div class="small-12 columns">
+      <div class="row">
+        <div class="small-12 columns centered">
+          <img src="assets/images/account-login.svg" alt="">
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns">
+          {{#if errorMessage}}
+          <div class="callout alert center">
+            <h5 class="font-bold">LOGIN FAILED</h5>
+          </div>
+          {{/if}}
+          <form novalidate {{action "authenticate" on="submit"}}>
+            <div class="row">
+              <div class="small-12 columns">
+                <label>E-mail
+                  {{input  type="email" name="email" value=identification placeholder="Your e-mail address" aria-describedby="Your e-mail address" required=true pattern="email"}}
+                </label>
+              </div>
+              <div class="small-12 columns">
+                <label>Password
+                  {{input  type="password" name="password" value=password placeholder="Your password" aria-describedby="Your password" required=true}}
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 columns">
+                <button class="button dark" type="submit" value="login">LOGIN</button>
+                <span class="font-light middle" data-equalizer-watch>or</span>
+                <a onclick={{action 'createAccount'}} class="font-bold middle" data-equalizer-watch>CREATE ACCOUNT</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
