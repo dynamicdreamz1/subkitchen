@@ -3,6 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     host: 'http://subkitchen-api.herokuapp.com',
+    apiEndpoint: '/api/v1',
     modulePrefix: 'subkitchen-front',
     podModulePrefix: 'subkitchen-front/pods',
     environment: environment,

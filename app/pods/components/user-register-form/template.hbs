@@ -1,1 +1,41 @@
-yo register
+<div class="row user-register-form">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-12 columns center">
+        <h4 class="font-bold">CREATE ACCOUNT</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 small-centered columns">
+        <form novalidate {{action "register" on="submit"}}>
+          <div class="row">
+            <div class="small-12 columns">
+              <label>Profile name
+                {{input type="text" placeholder="eg, John Doe" value=user.name}}
+              </label>
+            </div>
+            <div class="small-12 columns">
+              <label>Email
+                {{input type="email" placeholder="Email Address" value=user.email}}
+              </label>
+            </div>
+            <div class="small-12 columns">
+              <label>Password
+                {{input type="password" placeholder="Your Password" value=user.password}}
+              </label>
+            </div>
+            <div class="small-12 columns center">
+              <label>
+                {{input type="checkbox" checked=user.terms}}
+                I agree to the <a target="_blank" href="/assets/docs/terms-and-conditions.pdf"> Terms and Conditions </a>
+              </label>
+            </div>
+            <div class="small-12 columns center">
+              <button type="submit" class="button dark font-bold">CREATE ACCOUNT</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

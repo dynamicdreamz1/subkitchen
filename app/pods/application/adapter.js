@@ -3,5 +3,5 @@ import ActiveModelAdapter from 'active-model-adapter';
 
 
 export default ActiveModelAdapter.extend({
-  host: config.host + '/api/v1'
+  host: config.host + config.apiEndpoint
 });
