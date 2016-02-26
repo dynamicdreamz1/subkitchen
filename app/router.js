@@ -9,6 +9,7 @@ Router.map(function() {
   this.route('products');
   this.route('product', { path: '/products/:product_id' });
   this.route('register');
+  this.route('new-password', { path: '/new_password/:token' });
 });
 
 export default Router;

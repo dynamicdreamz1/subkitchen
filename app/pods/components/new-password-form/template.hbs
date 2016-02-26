@@ -1,0 +1,33 @@
+<div class="row new-password-form">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-12 columns center">
+        <h4 class="font-bold">SET NEW PASSWORD</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 small-centered columns">
+        {{input-errors errors=errors.base}}
+        <form novalidate {{action "setPassword" on="submit"}}>
+          <div class="row">
+            <div class="small-12 columns">
+              <label class={{if errors.password "is-invalid-label" ""}}>Password
+                {{input type="password" placeholder="Your Password" value=user.password}}
+                {{input-errors errors=errors.password}}
+              </label>
+            </div>
+            <div class="small-12 columns">
+              <label class={{if errors.password_confirmation "is-invalid-label" ""}}>Password Confirmation
+                {{input type="password" placeholder="Your Password" value=user.password_confirmation}}
+                {{input-errors errors=errors.password_confirmation}}
+              </label>
+            </div>
+            <div class="small-12 columns center">
+              <button type="submit" class="button dark font-bold">SET PASSWORD</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
