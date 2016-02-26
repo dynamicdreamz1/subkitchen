@@ -27,11 +27,11 @@ module.exports = function(environment) {
     }
   };
 
-  ENV['simple-auth'] = {
-    store: 'simple-auth-session-store:local-storage',
+  ENV['ember-simple-auth'] = {
     authorizer: 'authorizer:custom',
     crossOriginWhitelist: ['http://subkitchen-api.herokuapp.com'],
-    routeAfterAuthentication: '/home'
+    authenticationRoute: 'signin',
+    routeAfterAuthentication: 'index'
   };
 
   if (environment === 'development') {

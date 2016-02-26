@@ -8,8 +8,10 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('products');
   this.route('product', { path: '/products/:product_id' });
+  this.route('signin');
   this.route('register');
   this.route('new-password', { path: '/new_password/:token' });
+  this.route('profile');
 });
 
 export default Router;
