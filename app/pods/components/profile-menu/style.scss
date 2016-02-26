@@ -1,0 +1,11 @@
+.profile-menu{
+  li + li{
+    border-top: 2px solid white;
+  }
+  a.button{
+    text-align: left;
+    &.active{
+      background-color: #00adf1;
+    }
+  }
+}
