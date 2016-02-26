@@ -7,31 +7,36 @@
     </div>
     <div class="row">
       <div class="small-12 small-centered columns">
+        {{input-errors errors=errors.l}}
         <form novalidate {{action "register" on="submit"}}>
           <div class="row">
             <div class="small-12 columns">
-              <label>Profile name
+              <label class={{if errors.name "is-invalid-label" ""}}>Profile name
                 {{input type="text" placeholder="eg, John Doe" value=user.name}}
+                {{input-errors errors=errors.name}}
               </label>
             </div>
             <div class="small-12 columns">
-              <label>Email
+              <label class={{if errors.email "is-invalid-label" ""}}>Email
                 {{input type="email" placeholder="Email Address" value=user.email}}
+                {{input-errors errors=errors.email}}
               </label>
             </div>
             <div class="small-12 columns">
-              <label>Password
+              <label class={{if errors.password "is-invalid-label" ""}}>Password
                 {{input type="password" placeholder="Your Password" value=user.password}}
+                {{input-errors errors=errors.password}}
               </label>
             </div>
             <div class="small-12 columns center">
               <label>
                 {{input type="checkbox" checked=user.terms}}
                 I agree to the <a target="_blank" href="/assets/docs/terms-and-conditions.pdf"> Terms and Conditions </a>
+                {{input-errors errors=errors.terms}}
               </label>
             </div>
             <div class="small-12 columns center">
-              <button type="submit" class="button dark font-bold">CREATE ACCOUNT</button>
+              <button type="submit" class="button dark font-bold {{if user.terms "" "disabled"}}">CREATE ACCOUNT</button>
             </div>
           </div>
         </form>
