@@ -29,7 +29,7 @@ export default Ember.Component.extend({
             this.get("routing").transitionTo("index");
           })
           .catch((message) => {
-            this.set('errors.global', ['signed up but could not sign in automatically']);
+            this.set('errors.base', ['signed up but could not sign in automatically']);
           });
         }, (error) => {
           this.set('errors', error.responseJSON.errors)
