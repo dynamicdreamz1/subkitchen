@@ -10,6 +10,18 @@ export default Ember.Component.extend({
   errors: {},
   typingDelays: {},
 
+  observeEmail: function () {
+    this.saveAttribute('email', this.get('user.email'))
+  }.observes('user.email'),
+
+  observeName: function () {
+    this.saveAttribute('name', this.get('user.name'))
+  }.observes('user.name'),
+
+  observeHandle: function () {
+    this.saveAttribute('handle', this.get('user.handle'))
+  }.observes('user.handle'),
+
   saveAttribute: function(name, value){
     if (this.typingDelays[name]){
       clearTimeout(this.typingDelays[name])
@@ -32,24 +44,15 @@ export default Ember.Component.extend({
           this.$('#user-'+name).removeClass('loading')
           this.typingDelays[name] = null;
         }, (error) => {
-          this.set('errors', error.responseJSON.errors)
+          if (error.responseJSON){
+            this.set('errors', error.responseJSON.errors)
+          } else {
+            this.set('errors', {base: ['Connection error. Please try again later.']})
+          }
           this.$('#user-'+name).removeClass('loading')
           this.typingDelays[name] = null;
         });
       })
     }, 500)
-  },
-
-  observeEmail: function () {
-    this.saveAttribute('email', this.get('user.email'))
-  }.observes('user.email'),
-
-  observeName: function () {
-    this.saveAttribute('name', this.get('user.name'))
-  }.observes('user.name'),
-
-  observeHandle: function () {
-    this.saveAttribute('handle', this.get('user.handle'))
-  }.observes('user.handle')
-
+  }
 });
