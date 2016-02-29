@@ -2,6 +2,12 @@
   font-family: 'montserrat', sans-serif;
 }
 
+body{
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'montserrat', sans-serif;
+  }
+}
+
 .button.dark{
   background: $dark-color;
   color: $light-color;
