@@ -4,6 +4,8 @@ import config from 'subkitchen-front/config/environment';
 
 export default Base.extend({
   tokenEndpoint: config.host + '/api/v1/sessions/login',
+  session: Ember.inject.service('session'),
+
   restore: function(data) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
       if (!Ember.isEmpty(data.token)) {
@@ -15,6 +17,7 @@ export default Base.extend({
   },
 
   authenticate: function(options) {
+    let that = this;
     return new Ember.RSVP.Promise((resolve, reject) => {
       Ember.$.ajax({
         url: this.tokenEndpoint,
@@ -27,6 +30,7 @@ export default Base.extend({
         dataType: 'json'
       }).then(function(response) {
         Ember.run(function() {
+          that.get('session').set('data.user', response)
           resolve({
             token: response.auth_token
           });
