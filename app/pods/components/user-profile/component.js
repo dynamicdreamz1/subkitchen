@@ -3,6 +3,7 @@ import config from 'subkitchen-front/config/environment';
 
 export default Ember.Component.extend({
   session: Ember.inject.service('session'),
+  routing: Ember.inject.service('-routing'),
 
   user: Ember.computed('session', function(){
     return this.get('session').get('data.user')
@@ -21,6 +22,13 @@ export default Ember.Component.extend({
   observeHandle: function () {
     this.saveAttribute('handle', this.get('user.handle'))
   }.observes('user.handle'),
+
+  actions: {
+    becomeCook(){
+      this.get("routing").transitionTo("become-cook");
+    }
+  },
+
 
   saveAttribute: function(name, value){
     if (this.typingDelays[name]){

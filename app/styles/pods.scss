@@ -1,3 +1,5 @@
+@import "app/pods/products/style";
+
 @import "app/pods/components/app-header/style";
 @import "app/pods/components/app-footer/style";
 @import "app/pods/components/home-banner/style";
@@ -7,7 +9,6 @@
 @import "app/pods/components/artist-info/style";
 @import "app/pods/components/trending-artists/style";
 @import "app/pods/components/become-a-cook/style";
-@import "app/pods/products/style";
 @import "app/pods/components/product-info/style";
 @import "app/pods/components/product-details/style";
 @import "app/pods/components/loading-mask/style";
@@ -17,3 +18,4 @@
 @import "app/pods/components/new-password-form/style";
 @import "app/pods/components/profile-menu/style";
 @import "app/pods/components/user-profile/style";
+@import "app/pods/components/becoming-a-cook/style";
