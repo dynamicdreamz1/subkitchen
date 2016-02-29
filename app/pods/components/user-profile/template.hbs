@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row profile">
   <div class="small-12 columns">
 
     <div class="row">
@@ -19,6 +19,7 @@
 
     <div class="row">
       <div class="small-12 medium-7 columns">
+        {{input-errors errors=errors.base}}
         <form novalidate>
           <div class="row">
             <div class="small-12 columns">
@@ -35,7 +36,10 @@
             </div>
             <div class="small-12 columns">
               <label class={{if errors.handle "is-invalid-label" ""}}>Handle
-                {{input type="text" placeholder="johndoea" value=user.handle id="user-handle"}}
+                <div class="input-group">
+                  <span class="input-group-label">http://sublimation.kitchen/artists/</span>
+                  {{input class="input-group-field" type="text" placeholder="johndoe" value=user.handle id="user-handle"}}
+                </div>
                 {{input-errors errors=errors.handle}}
               </label>
             </div>
@@ -43,7 +47,13 @@
         </form>
       </div>
       <div class="small-12 medium-5 columns">
-        <h5 class="font-black uppercase">Deafault Address</h5>
+        <span class="font-bold">Deafault Address</span>
+        <p>
+          <small>
+            Add your default address, so you will not have to type it everytime you place an order.
+          </small>
+        </p>
+        <button class="button dark uppercase">add address</button>
       </div>
     </div>
   </div>
