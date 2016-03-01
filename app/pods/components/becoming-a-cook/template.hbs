@@ -12,7 +12,7 @@
         <div class="row">
           <div class="small-12 columns center">
             <label>
-              {{input type="checkbox" checked=user.terms}}
+              {{input type="checkbox" checked=company.terms}}
               I agree to the <a target="_blank" href="/assets/docs/terms-and-conditions.pdf"> Terms and Conditions </a>
               {{input-errors errors=errors.terms}}
             </label>
@@ -22,9 +22,9 @@
         <div class="row">
           <div class="small-12 columns center">
             <label>
-              {{input type="checkbox" checked=user.ownBusiness}}
+              {{input type="checkbox" checked=company.has_company}}
               I run my own business
-              {{input-errors errors=errors.ownBusiness}}
+              {{input-errors errors=errors.has_company}}
             </label>
           </div>
         </div>
@@ -33,20 +33,21 @@
     </div>
     <div class="row">
       <div class="small-12 columns">
+        {{input-errors errors=errors.base}}
         <form novalidate {{action "becomeCook" on="submit"}}>
           <div class="row">
             <div class="small-12 columns">
               <label class={{if errors.comapny_name "is-invalid-label" ""}}>Company Name
-                {{input type="text" placeholder="Company Name" value=user.company_name disabled=private }}
+                {{input type="text" placeholder="Company Name" value=company.company_name disabled=private }}
                 {{input-errors errors=errors.company_name}}
               </label>
             </div>
           </div>
           <div class="row">
             <div class="small-12 columns">
-              <label class={{if errors.street "is-invalid-label" ""}}>Address
-                {{input type="text" placeholder="Address" value=user.street disabled=private}}
-                {{input-errors errors=errors.street}}
+              <label class={{if errors.address "is-invalid-label" ""}}>Address
+                {{input type="text" placeholder="Address" value=company.address disabled=private}}
+                {{input-errors errors=errors.address}}
               </label>
             </div>
           </div>
@@ -54,13 +55,13 @@
           <div class="row">
             <div class="small-12 medium-6 columns">
               <label class={{if errors.city "is-invalid-label" ""}}>City
-                {{input type="text" placeholder="City" value=user.city disabled=private}}
+                {{input type="text" placeholder="City" value=company.city disabled=private}}
                 {{input-errors errors=errors.city}}
               </label>
             </div>
             <div class="small-12 medium-6 columns">
               <label class={{if errors.zip "is-invalid-label" ""}}>Postal/Zip Code
-                {{input type="text" placeholder="Postal/Zip Code" value=user.zip disabled=private}}
+                {{input type="text" placeholder="Postal/Zip Code" value=company.zip disabled=private}}
                 {{input-errors errors=errors.zip}}
               </label>
             </div>
@@ -68,21 +69,21 @@
 
           <div class="row">
             <div class="small-12 medium-6 columns">
-              <label class={{if errors.state "is-invalid-label" ""}}>State/Providence
-                {{input type="text" placeholder="State/Providence" value=user.state disabled=private}}
-                {{input-errors errors=errors.state}}
+              <label class={{if errors.region "is-invalid-label" ""}}>region/Providence
+                {{input type="text" placeholder="State/Providence" value=company.region disabled=private}}
+                {{input-errors errors=errors.region}}
               </label>
             </div>
             <div class="small-12 medium-6 columns">
               <label class={{if errors.country "is-invalid-label" ""}}>Country
-                {{input type="text" placeholder="Country" value=user.country disabled=private}}
+                {{input type="text" placeholder="Country" value=company.country disabled=private}}
                 {{input-errors errors=errors.country}}
               </label>
             </div>
           </div>
           <div class="row">
             <div class="small-12 columns center">
-              <button class="button dark uppercase {{if user.terms "" "disabled"}}" type="submit">lets start cooking</button>
+              <button class="button dark uppercase {{if company.terms "" "disabled"}}" type="submit">lets start cooking</button>
             </div>
           </div>
         </form>
