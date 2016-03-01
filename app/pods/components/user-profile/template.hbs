@@ -57,16 +57,29 @@
       </div>
     </div>
 
-    <div class="row font-bold become-a-cook">
-      <div class="small-12 columns center">
-        <h2 class="font-black uppercase">become a cook!</h2>
-        <p class="font-bold">Create your own Artist Profile and start cooking today!</p>
-        <p>
-          <button class="button dark uppercase" onclick={{action 'becomeCook'}}>start here</button>
-          <span class="uppercase or"> or </span>
-          <button class="button dark uppercase">read more</button>
-        </p>
+    {{#if user.artist}}
+      {{#if (eq user.status 'unverified')}}
+        <div class="row font-bold become-a-cook">
+          <div class="small-12 columns center">
+            <h2 class="font-black uppercase">We are waiting for payment confirmation!</h2>
+            <p>
+              <button class="button dark uppercase" onclick={{action 'becomeCook'}}>Confirm one more time</button>
+            </p>
+          </div>
+        </div>
+      {{/if}}
+    {{else}}
+      <div class="row font-bold become-a-cook">
+        <div class="small-12 columns center">
+          <h2 class="font-black uppercase">become a cook!</h2>
+          <p class="font-bold">Create your own Artist Profile and start cooking today!</p>
+          <p>
+            <button class="button dark uppercase" onclick={{action 'becomeCook'}}>start here</button>
+            <span class="uppercase or"> or </span>
+            <button class="button dark uppercase">read more</button>
+          </p>
+        </div>
       </div>
-    </div>
+    {{/if}}
   </div>
 </div>
