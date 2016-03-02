@@ -52,13 +52,14 @@
 
   span.logo{
     position: relative;
-    .icon-sub-logo{
-      font-size: 2.6rem;
-      position: absolute;
-      top: -0.4rem;
+    img{
+      padding: 0;
+      margin: 0;
+      position: relative;
+      bottom: 2px;
+      height: 2.6rem;
     }
     span.name{
-      padding-left: 3rem;
       font-size: 120%;
       strong{
         font-weight: 900;
