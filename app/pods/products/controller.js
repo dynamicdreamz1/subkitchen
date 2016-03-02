@@ -9,6 +9,11 @@ export default Ember.Controller.extend({
   actions: {
     pageClicked(page) {
       this.set('page', page);
+      setTimeout(function(){
+        $('html, body').animate({
+          scrollTop: $("#products").offset().top
+        }, 500);
+      }, 1000);
     }
   }
 });
