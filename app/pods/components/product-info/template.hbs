@@ -16,7 +16,7 @@
               <form>
                 <ul class="sizes">
                   {{#each sizes as |s|}}
-                  <li>{{radio-button value=s model_id=model.id text=s execute=setSize chosen=size}}</li>
+                  <li>{{radio-button value=s model_id=id text=s execute=setSize chosen=size}}</li>
                   {{/each}}
                 </ul>
               </form>
