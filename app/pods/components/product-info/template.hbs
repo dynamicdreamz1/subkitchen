@@ -14,11 +14,11 @@
             <div class="small-12 columns sizes">
               SIZES:
               <form>
-              <ul class="sizes">
-                {{#each sizes as |s|}}
+                <ul class="sizes">
+                  {{#each sizes as |s|}}
                   <li>{{radio-button value=s model_id=model.id text=s execute=setSize chosen=size}}</li>
-                {{/each}}
-              </ul>
+                  {{/each}}
+                </ul>
               </form>
             </div>
           </div>
@@ -34,23 +34,27 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="small-8 columns uppercase font-bold ellipsis">
-      {{title}}
-    </div>
-    <div class="small-4 columns text-right nowrap font-light">
-      {{likes}}
-      <span class="icon-sub-unliked">
-        <span class="path1"></span><span class="path2"></span>
-      </span>
-    </div>
-  </div>
-  <div class="row">
-    <div class="small-8 columns uppercase">
-      by {{artist-name}}
-    </div>
-    <div class="small-4 columns text-right nowrap font-bold">
-      ${{price}}
+  <div class="row product-details">
+    <div class="small-12 columns">
+      <div class="row ">
+        <div class="small-9 columns uppercase font-bold ellipsis">
+          <a href="/products/{{id}}">{{title}}</a>
+        </div>
+        <div class="small-3 columns text-right nowrap font-light">
+          {{likes}}
+          <span class="icon-sub-unliked">
+            <span class="path1"></span><span class="path2"></span>
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-9 columns uppercase">
+          by {{artist-name}}
+        </div>
+        <div class="small-3 columns text-right nowrap font-bold">
+          ${{price}}
+        </div>
+      </div>
     </div>
   </div>
 </div>
