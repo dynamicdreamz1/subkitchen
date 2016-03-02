@@ -16,6 +16,15 @@ body{
   }
 }
 
+.button.blue{
+  background: $blue;
+  color: $light-color;
+  &:hover{
+    background: $light-gray;
+    color: $dark-color;
+  }
+}
+
 .nowrap{
   white-space: nowrap;
 }

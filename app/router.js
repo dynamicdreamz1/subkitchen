@@ -13,6 +13,7 @@ Router.map(function() {
   this.route('new-password', { path: '/new_password/:token' });
   this.route('profile');
   this.route('become-cook');
+  this.route('cooking');
 });
 
 export default Router;
