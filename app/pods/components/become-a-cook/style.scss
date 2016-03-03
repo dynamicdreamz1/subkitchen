@@ -1,11 +1,18 @@
-$become-a-cook-color: #a6a6a6;
-
 .become-a-cook{
-  background: $become-a-cook-color;
+  background-color: $grey;
+  background: url(images/becom-a-cook.png) center no-repeat;
+  background-size: cover;
   color: $white;
   margin-top: 3rem;
   padding-top: 3rem;
   padding-bottom: 3rem;
+
+  &.clickable{
+    cursor: pointer;
+    input:hover{
+      cursor: pointer;
+    }
+  }
 
   h4{
     font-weight: 700;
@@ -65,7 +72,7 @@ $become-a-cook-color: #a6a6a6;
     .input-group-field{
       &::placeholder{
         text-align: center;
-        color: $become-a-cook-color;
+        color: $grey;
       }
     }
 
