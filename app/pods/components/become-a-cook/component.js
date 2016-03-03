@@ -28,10 +28,14 @@ export default Ember.Component.extend({
       }
     },
     join(){
-      if (!this.get('session').get('isAuthenticated')){
-        $('#loginModal').foundation('open');
+      if (this.get('session').get('isAuthenticated')){
+        if (this.get('handle')){
+          this.get('routing').transitionTo('become-cook-with-handle', [this.get('handle') || '']);
+        } else {
+          this.get('routing').transitionTo('become-cook');
+        }
       } else {
-        this.get('routing').transferTo('become-cook');
+        $('#loginModal').foundation('open');
       }
     }
   }

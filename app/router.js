@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('register');
   this.route('new-password', { path: '/new_password/:token' });
   this.route('profile');
+  this.route('become-cook-with-handle', {path: '/become-cook/:handle' });
   this.route('become-cook');
   this.route('cooking');
 });

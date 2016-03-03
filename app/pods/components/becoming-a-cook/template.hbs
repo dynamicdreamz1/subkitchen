@@ -37,6 +37,17 @@
         <form novalidate {{action "becomeCook" on="submit"}}>
           <div class="row">
             <div class="small-12 columns">
+              <label class={{if errors.handle "is-invalid-label" ""}}>Handle
+                <div class="input-group">
+                  <span class="input-group-label">http://sublimation.kitchen/artists/</span>
+                  {{input class="input-group-field" type="text" placeholder="johndoe" value=company.handle id="user-handle"}}
+                </div>
+                {{input-errors errors=errors.handle}}
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
               <label class={{if errors.comapny_name "is-invalid-label" ""}}>Company Name
                 {{input type="text" placeholder="Company Name" value=company.company_name disabled=private }}
                 {{input-errors errors=errors.company_name}}

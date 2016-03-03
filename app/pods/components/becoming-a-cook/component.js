@@ -3,9 +3,18 @@ import config from 'subkitchen-front/config/environment';
 
 export default Ember.Component.extend({
   session: Ember.inject.service('session'),
-  company: Ember.computed('session', function(){
-    return new Ember.Object(this.get('session').get('data.user.company'))
+  routing: Ember.inject.service('-routing'),
+
+  handle: null, // from component params or null
+
+  company: Ember.computed(['session', 'handle'], function(){
+    let user = new Ember.Object(this.get('session').get('data.user'));
+    let company = new Ember.Object(user.get('company'));
+    let handle = this.get('handle') || user.get('handle');
+    company.set('handle', handle);
+    return company;
   }),
+
   errors: {},
 
   private: Ember.computed('company.has_company', function(){
@@ -14,8 +23,9 @@ export default Ember.Component.extend({
 
   actions: {
     becomeCook(){
-      var params = this.get('company').getProperties('has_company', 'company_name', 'address', 'city', 'zip', 'region', 'country')
-      params['return_path'] = '/profile'
+      var params = this.get('company').getProperties('handle', 'has_company', 'company_name', 'address', 'city', 'zip', 'region', 'country')
+      params.return_path = '/profile';
+      params.handle = params.handle || '';
       this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
         var headers = {}
         headers[headerName] = headerValue
