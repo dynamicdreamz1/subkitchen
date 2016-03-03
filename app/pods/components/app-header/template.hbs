@@ -17,11 +17,9 @@
 <nav class="top-bar" id="nav-menu">
   <ul class="vertical medium-horizontal menu">
     <li>
-      <a href="#">
-        <span class="logo">
-          <img src="assets/images/logo.png" alt="">
-          <span class="name"><strong>sub</strong>kitchen</span>
-        </span>
+      <a href="#" class="logo">
+        <img src="assets/images/logo.png" alt="">
+        <span class="name"><strong>sub</strong>kitchen</span>
       </a>
     </li>
     <li><a class="menu-item" href="/products">shop</a></li>
@@ -37,11 +35,11 @@
     <li>
       {{#if session.isAuthenticated}}
       <a class="join" onclick={{action 'invalidateSession'}}>
-        <span> <small> logout </small> </span>
+        <span>logout</span>
       </a>
       {{else}}
       <a class="join" onclick={{action 'showLogin'}}>
-        <span> <small> join/login </small> </span>
+        <span>join/login</span>
       </a>
       {{/if}}
     </li>
