@@ -17,13 +17,13 @@
 <nav class="top-bar" id="nav-menu">
   <ul class="vertical medium-horizontal menu">
     <li>
-      <a href="#" class="logo">
+      {{#link-to 'index' class="logo"}}
         <img src="assets/images/logo.png" alt="">
         <span class="name"><strong>sub</strong>kitchen</span>
-      </a>
+      {{/link-to}}
     </li>
-    <li><a class="menu-item" href="/products">shop</a></li>
-    <li><a class="menu-item" href="#">create</a></li>
+    <li> {{#link-to 'products' class="menu-item uppercase"}} shop {{/link-to}} </li>
+    <li> {{#link-to 'cooking' class="menu-item uppercase"}} create {{/link-to}} </li>
     <li><a class="menu-item" href="#">sell</a></li>
     <li><a class="menu-item" href="#">artists</a></li>
     <li class="divider"></li>
@@ -34,9 +34,23 @@
     <li class="divider"></li>
     <li>
       {{#if session.isAuthenticated}}
-      <a class="join" onclick={{action 'invalidateSession'}}>
-        <span>logout</span>
-      </a>
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li>
+          {{#link-to 'profile' class="join uppercase"}}
+            <span class="uppercase">my kitchen</span>
+          {{/link-to}}
+          <ul class="menu">
+            <li>
+              {{#link-to 'profile' class="uppercase"}}profile{{/link-to}}
+            </li>
+            <li>
+              <a class="uppercase" onclick={{action 'invalidateSession'}}>
+                logout
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
       {{else}}
       <a class="join" onclick={{action 'showLogin'}}>
         <span>join/login</span>

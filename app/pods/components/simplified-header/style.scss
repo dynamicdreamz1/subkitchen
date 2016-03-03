@@ -1,24 +1,41 @@
 #nav-menu.top-bar.simplified-top-bar{
   h1{
+    padding: 1rem;
     font-size: 3rem;
     vertical-align: middle;
+    position: relative;
   }
-  span.logo{
-    .icon-sub-logo{
-      font-size: 4rem;
+  .logo{
+    img{
+      padding: 0;
+      margin: 0;
+      height: 8rem;
     }
     span.name{
-      padding-left: 5rem;
       font-size: 3rem;
       display: inline-block;
       vertical-align: middle;
       height: 3rem;
     }
   }
-  ul{
-    a{
+  .menu-wrapper{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    ul{
+      margin: 0 auto;
+      padding-left: 5rem;
+      display: table;
+      background: transparent;
       font-size: 1rem;
-      font-weight: 700;
+      li{
+        display: inline-block;
+      }
+      a{
+        font-size: 1rem;
+        font-weight: 700;
+      }
     }
   }
 }
