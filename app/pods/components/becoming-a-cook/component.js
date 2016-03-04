@@ -23,6 +23,8 @@ export default Ember.Component.extend({
 
   actions: {
     becomeCook(){
+      if (!company.terms) {
+        return false }
       var params = this.get('company').getProperties('handle', 'has_company', 'company_name', 'address', 'city', 'zip', 'region', 'country')
       params.return_path = '/profile';
       params.handle = params.handle || '';
