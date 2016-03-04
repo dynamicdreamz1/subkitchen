@@ -30,16 +30,16 @@
         <div class="small-12 columns">
           QUANTITY:
           <div class="input-group quantity">
-            <a class="input-group-label minus">&#8211;</a>
-            <input class="input-group-field center" type="number" value="1" name="quantity">
-            <a class="input-group-label plus">+</a>
+            <a class="input-group-label minus" onclick={{action "decreaseQuantity"}}>&#8211;</a>
+            {{input class="input-group-field center" type="number" value=quantity}}
+            <a class="input-group-label plus" onclick={{action "increaseQuantity"}}>+</a>
           </div>
         </div>
       </div>
 
       <div class="row">
-        <div class="small-12 columns">
-          <a class="button" onclick={{action "addToCart"}}>ADD TO CART</a>
+        <div class="small-12 medium-6 columns">
+          <a class="button" onclick={{action "addToCart"}} class="blue button addToCart uppercase">ADD TO CART</a>
         </div>
       </div>
 

@@ -1,0 +1,13 @@
+.off-canvas.shopping-cart {
+  background-color: $black;
+  color: $white;
+  height: 100%;
+  padding-top: 1rem;
+  border-left: 1px solid $white;
+  .close{
+    color: $grey;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+  }
+}

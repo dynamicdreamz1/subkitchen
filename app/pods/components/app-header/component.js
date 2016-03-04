@@ -4,6 +4,7 @@ import config from 'subkitchen-front/config/environment';
 export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
+  cart: Ember.inject.service('shopping-cart'),
   identification: null,
   password: null,
 
@@ -62,6 +63,10 @@ export default Ember.Component.extend({
 
     invalidateSession() {
       this.get('session').invalidate();
+    },
+
+    showCart(){
+      this.get('cart').open();
     }
   }
 });

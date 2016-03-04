@@ -1,0 +1,24 @@
+<div class="off-canvas-wrapper position-right">
+  <div class="off-canvas-wrapper-inner position-right" data-off-canvas-wrapper>
+    <div id="shopping-cart" class="off-canvas position-right shopping-cart" data-position="right" data-off-canvas>
+      <a onclick={{action 'close'}} class="close">X</a>
+      <div class="shopping-cart-wrapper">
+        <div class="shopping-cart-content">
+          <div class="row center">
+            <div class="small-12 columns">
+              <span class="title font-bold uppercase">basket</span>
+            </div>
+          </div>
+          <div class="row">
+            {{#each cart.items as |item|}}
+            <div class="small-12 columns">
+              {{item}}
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="off-canvas-content" data-off-canvas-content>{{yield}}</div>
+  </div>
+</div>

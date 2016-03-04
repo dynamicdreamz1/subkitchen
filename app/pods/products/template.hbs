@@ -1,14 +1,16 @@
-{{app-header}}
-<section class="products" id="products">
-  <div class="row small-up-1 medium-up-4">
-    {{#each model as |product|}}
-      {{product-info id=product.id title=product.name likes=100 price=product.price artist-name=product.author }}
-    {{/each}}
-  </div>
-  <div class="row">
-    <div class="small-12 columns text-right">
-      {{page-numbers content=model  action=(action 'pageClicked')}}
+{{#shopping-cart}}
+  {{app-header}}
+  <section class="products" id="products">
+    <div class="row small-up-1 medium-up-4">
+      {{#each model as |product|}}
+        {{product-info id=product.id title=product.name likes=100 price=product.price artist-name=product.author }}
+      {{/each}}
     </div>
-  </div>
-</section>
-{{app-footer}}
+    <div class="row">
+      <div class="small-12 columns text-right">
+        {{page-numbers content=model  action=(action 'pageClicked')}}
+      </div>
+    </div>
+  </section>
+  {{app-footer}}
+{{/shopping-cart}}
