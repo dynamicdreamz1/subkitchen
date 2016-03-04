@@ -1,0 +1,20 @@
+.new-product-info{
+  cursor: pointer;
+  .image{
+    padding-bottom: 1.5rem;
+  }
+  .artist-name{
+    color: $grey;
+  }
+  .product-details{
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 39.9375em) {
+  .new-product-info{
+    .product-details{
+      font-size: 1.4rem;
+    }
+  }
+}

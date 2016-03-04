@@ -12,7 +12,7 @@
         <div class="small-12 columns product-actions">
           <div class="row">
             <div class="small-12 columns sizes">
-              SIZES:
+              <span> SIZES: </span>
               <form>
                 <ul class="sizes">
                   {{#each sizes as |s|}}
@@ -36,7 +36,7 @@
   </div>
   <div class="row product-details">
     <div class="small-12 columns">
-      <div class="row ">
+      <div class="row collapse">
         <div class="small-9 columns uppercase font-bold ellipsis">
           <a href="/products/{{id}}">{{title}}</a>
         </div>
@@ -47,7 +47,7 @@
           </span>
         </div>
       </div>
-      <div class="row">
+      <div class="row collapse">
         <div class="small-9 columns uppercase artist-name">
           by {{artist-name}}
         </div>

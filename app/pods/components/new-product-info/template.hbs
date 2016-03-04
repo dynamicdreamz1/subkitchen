@@ -1,20 +1,24 @@
-<div class="small-12 medium-3 columns">
+<div class="small-12 medium-3 columns new-product-info" onclick={{action 'goToCooking'}}>
   <div class="row">
-    <div class="small-12 columns center">
+    <div class="small-12 columns center image">
       <img src="assets/images/kinds/{{kind}}.png" alt="" data-equalizer-watch>
     </div>
   </div>
-  <div class="row">
-    <div class="small-8 columns uppercase font-bold">
-      {{title}}
-    </div>
-    <div class="small-4 columns text-right nowrap font-bold">
-      ${{price}}
-    </div>
-  </div>
-  <div class="row">
-    <div class="small-8 columns uppercase">
-      by you!
+  <div class="row product-details">
+    <div class="small-12 columns">
+      <div class="row collapse">
+        <div class="small-8 columns uppercase font-bold">
+          {{title}}
+        </div>
+        <div class="small-4 columns text-right nowrap font-bold">
+          ${{price}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-8 columns uppercase artist-name">
+          by you!
+        </div>
+      </div>
     </div>
   </div>
 </div>

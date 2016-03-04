@@ -1,0 +1,15 @@
+.artist-info{
+  .avatar{
+    img{
+      background-color: #e4e4e4;
+      width: 100%;
+    }
+  }
+}
+@media screen and (max-width: 39.9375em) {
+  .artist-info{
+    .artist-details{
+      font-size: 1.4rem;
+    }
+  }
+}

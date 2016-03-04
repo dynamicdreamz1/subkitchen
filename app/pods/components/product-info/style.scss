@@ -1,6 +1,10 @@
 .product-info{
   .image{
     position: relative;
+    padding-bottom: 1.5rem;
+    img{
+      width: 90%;
+    }
   }
   .product-details{
     font-size: 0.9rem;
@@ -13,31 +17,31 @@
     bottom: 0;
     .sizes{
       font-weight: 700;
+      font-size: 0.8rem;
       ul{
-        display: table;
-        width: 100%;
-        margin: 0.2rem;
+        margin: 0.2rem auto;
+        margin-bottom: 0.4rem;
         li{
-          display: table-cell;
-          padding: 0.2rem;
+          display: inline-block;
+          padding: 0;
           input{
             display: none;
           }
           label{
+            font-size: 0.8rem;
             display: inline-block;
             border: 2px solid black;
             border-radius: 50%;
             margin: 0;
             padding: 0.1rem;
             cursor: pointer;
-            width: 2rem;
-            height: 2rem;
+            width: 1.9rem;
+            height: 1.9rem;
           }
           input:checked + label{
             border: 2px solid $gray-color;
             background: $gray-color;
             color: $light-color;
-            font-weight: 900;
           }
         }
       }
@@ -66,5 +70,16 @@
   }
   .artist-name{
     color: $grey;
+  }
+}
+
+@media screen and (max-width: 39.9375em) {
+  .product-info{
+    .product-details{
+      font-size: 1.4rem;
+    }
+    .product-actions{
+      display: none;
+    }
   }
 }

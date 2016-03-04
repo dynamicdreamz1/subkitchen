@@ -1,6 +1,10 @@
-.ternding-artists{
+.trending-artists{
   margin-top: 2rem;
-  img{
-    width: 100%;
+  .title{
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    strong{
+      font-weight: 900;
+    }
   }
 }
