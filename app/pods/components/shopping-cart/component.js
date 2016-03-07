@@ -10,6 +10,13 @@ export default Ember.Component.extend({
   actions: {
     close(){
       this.get('cart').close();
+    },
+
+    remove(item_id){
+      this.get('cart').remove(item_id)
+      .then(()=>{
+        this.$('#item-'+item_id).remove();
+      })
     }
   }
 });

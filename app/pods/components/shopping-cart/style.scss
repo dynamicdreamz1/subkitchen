@@ -10,4 +10,45 @@
     left: 1rem;
     top: 1rem;
   }
+  .items{
+    margin-top: 1rem;
+  }
+  .item{
+    margin-top: 1rem;
+    position: relative;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 300;
+
+    img{
+      background-color: $white;
+    }
+
+    .name{
+      font-weight: 700;
+      padding-right: 2rem;
+    }
+
+    .price{
+      font-weight: 400;
+    }
+
+    .remove{
+      font-weight: 900;
+      color: $grey;
+      position: absolute;
+      right: 1rem;
+      cursor: pointer;
+    }
+  }
+  .calculations{
+    text-transform: uppercase;
+    font-weight: 300;
+    strong{
+      font-weight: 700;
+    }
+    .total{
+      font-weight: 900;
+    }
+  }
 }

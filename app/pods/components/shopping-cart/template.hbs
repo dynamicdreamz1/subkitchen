@@ -9,12 +9,64 @@
               <span class="title font-bold uppercase">basket</span>
             </div>
           </div>
-          <div class="row">
-            {{#each cart.items as |item|}}
-            <div class="small-12 columns">
-              {{item}}
+          <div class="row items">
+            {{#each cart.order.data.items as |item|}}
+            <div class="small-12 columns item" id="item-{{item.id}}">
+              <div class="row collapse" >
+                <div class="small-4 columns">
+                  <img src={{item.image}} alt="{{item.name}}">
+                </div>
+                <div class="small-8 columns">
+                  <div class="remove" onclick={{action 'remove' item.id}}>X</div>
+                  <div class="row">
+                    <div class="small-12 columns ellipsis name">
+                      {{item.name}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="small-12 columns size">
+                      size: {{item.size}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="small-12 columns quantity">
+                      quantity: {{item.quantity}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="small-12 columns price">
+                      ${{item.price}}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             {{/each}}
+          </div>
+
+          <div class="row calculations text-right">
+            <div class="small-12 columns">
+              <div class="row">
+                <div class="small-12 columns">
+                  <strong>subtotal:</strong> ${{cart.order.data.subtotal}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns">
+                  <strong>shipping:</strong> ${{cart.order.data.shipping_cost}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns">
+                  <strong>tax ({{cart.order.data.tax}}%):</strong> ${{cart.order.data.tax_cost}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns">
+                  <strong>total:</strong> ${{cart.order.data.total}}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
