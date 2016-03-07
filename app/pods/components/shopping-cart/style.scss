@@ -33,6 +33,20 @@
       font-weight: 400;
     }
 
+    .quantity{
+      input{
+        background: transparent;
+        border: 0px solid transparent;
+        width: 3rem;
+        display: inline-block;
+        color: $white;
+        margin: 0;
+        input:focus{
+          border: 1px solid $white
+        }
+      }
+    }
+
     .remove{
       font-weight: 900;
       color: $grey;

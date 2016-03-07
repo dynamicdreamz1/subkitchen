@@ -59,7 +59,9 @@
     </li>
     <li> <a class="action-item"> <span class="icon-sub-heart"></span> </a> </li>
     <li>
-      <a class="action-item" onclick={{action 'showCart'}}> <span class="icon-sub-basket"></span> </a>
+      <a class="action-item basket-indicator" onclick={{action 'showCart'}}> <span class="icon-sub-basket"></span>
+        <span class="basket-counter">{{cartCount}}</span>
+      </a>
     </li>
   </ul>
 </nav>

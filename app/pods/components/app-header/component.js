@@ -5,6 +5,9 @@ export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
   cart: Ember.inject.service('shopping-cart'),
+  cartCount: Ember.computed('cart.order.data.items', function(){
+    return this.get('cart.order.data.items').length;
+  }),
   identification: null,
   password: null,
 

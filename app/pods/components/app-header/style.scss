@@ -149,6 +149,21 @@
       }
     }
   }
+  .basket-indicator{
+    position: relative;
+    .basket-counter{
+      border: 1px solid #00aeef;
+      background-color: #00aeef;
+      color: white;
+      border-radius: 50%;
+      width: 1rem;
+      height: 1rem;
+      font-size: 0.9rem;
+      position: absolute;
+      top: 0.25rem;
+      right: 0.2rem;
+    }
+  }
 }
 
 #loginModal,
