@@ -91,7 +91,7 @@ export default Ember.Service.extend({
   },
 
   removeItem(params){
-    Ember.$.ajax({
+    return Ember.$.ajax({
       method: "DELETE",
       url: config.host + config.apiEndpoint + '/orders/item/'+params['id'],
       data: params

@@ -9,6 +9,7 @@
               <span class="title font-bold uppercase">basket</span>
             </div>
           </div>
+          {{#if hasData}}
           <div class="row items">
             {{#each cart.order.data.items as |item|}}
             <div class="small-12 columns item" id="item-{{item.id}}">
@@ -68,6 +69,13 @@
               </div>
             </div>
           </div>
+          {{else}}
+          <div class="row items">
+            <div class="small-12 columns uppercase center">
+              is empty
+            </div>
+          </div>
+          {{/if}}
         </div>
       </div>
     </div>
