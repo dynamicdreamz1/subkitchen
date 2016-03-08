@@ -75,4 +75,19 @@
       font-size: 1.5rem;
     }
   }
+  .shipping-method{
+      margin-bottom: 1rem;
+    .pf{
+      font-size: 1.5rem;
+    }
+    .spacer{
+      margin-top: 1rem;
+    }
+    border-radius: 5px;
+    border: 2px solid #867f7f;
+    hr{
+      margin: 1rem;
+      border-bottom-width: 2px;
+    }
+  }
 }
