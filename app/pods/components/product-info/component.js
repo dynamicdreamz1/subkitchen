@@ -8,11 +8,11 @@ export default Ember.Component.extend({
   actions: {
     addToCart(){
       this.get('cart').add(this.get('id'), this.get('size'), 1);
-      let button = this.$('.addToCart')
+      let button = this.$('.addToCart');
       button.text('added');
       setTimeout(function(){
         button.text('add to cart');
-      }, 3000)
+      }, 3000);
     }
   }
 });

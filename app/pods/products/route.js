@@ -5,10 +5,4 @@ export default Ember.Route.extend(RouteMixin, {
   model: function(params) {
     return this.findPaged('product', params);
   }
-
-  // actions: {
-  //   error(reason) {
-  //     // this.transitionTo('index');
-  //   }
-  // }
 });

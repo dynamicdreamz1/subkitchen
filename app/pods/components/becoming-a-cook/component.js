@@ -18,35 +18,35 @@ export default Ember.Component.extend({
   errors: {},
 
   private: Ember.computed('company.has_company', function(){
-    return !this.get('company.has_company')
+    return !this.get('company.has_company');
   }),
 
   actions: {
     becomeCook(){
-      if (!company.terms) {
-        return false }
-      var params = this.get('company').getProperties('handle', 'has_company', 'company_name', 'address', 'city', 'zip', 'region', 'country')
+      if (!this.get('company.terms')) {
+        return false; }
+      var params = this.get('company').getProperties('handle', 'has_company', 'company_name', 'address', 'city', 'zip', 'region', 'country');
       params.return_path = '/profile';
       params.handle = params.handle || '';
       this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
-        var headers = {}
-        headers[headerName] = headerValue
+        var headers = {};
+        headers[headerName] = headerValue;
         Ember.$.ajax({
           headers: headers,
           method: "POST",
           url: config.host + config.apiEndpoint + '/account/verification',
           data: params
         }).then((result) => {
-          this.set('errors', {})
-          window.top.location.href = result.url
+          this.set('errors', {});
+          window.top.location.href = result.url;
         }, (error) => {
           if (error.responseJSON){
-            this.set('errors', error.responseJSON.errors)
+            this.set('errors', error.responseJSON.errors);
           } else {
-            this.set('errors', {base: ['Connection error. Please try again later.']})
+            this.set('errors', {base: ['Connection error. Please try again later.']});
           }
         });
-      })
+      });
     }
   }
 });

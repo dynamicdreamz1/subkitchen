@@ -5,14 +5,14 @@ export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
 
-  user: new Ember.Object,
+  user: new Ember.Object(),
   token: null,
 
   actions: {
     setPassword(){
       let user = this.get('user');
       let params = user.getProperties('password', 'password_confirmation');
-      params.token = this.get('token')
+      params.token = this.get('token');
 
       return Ember.$.ajax({
         method: "POST",
@@ -20,7 +20,7 @@ export default Ember.Component.extend({
         data: params
       }).then((result) => {
 
-        this.set('errors', {})
+        this.set('errors', {});
         this.get('session').authenticate('authenticator:custom', {
           identification: result.email,
           password: params.password
@@ -28,12 +28,12 @@ export default Ember.Component.extend({
         .then(()=>{
           this.get("routing").transitionTo("index");
         })
-        .catch((message) => {
+        .catch(() => {
           this.set('errors.base', ['changed password but could not sign in automatically']);
         });
 
       }, (error) => {
-        this.set('errors', error.responseJSON.errors)
+        this.set('errors', error.responseJSON.errors);
       });
     }
   }

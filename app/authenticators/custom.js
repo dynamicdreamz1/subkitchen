@@ -30,12 +30,12 @@ export default Base.extend({
         dataType: 'json'
       }).then(function(response) {
         Ember.run(function() {
-          that.get('session').set('data.user', response)
+          that.get('session').set('data.user', response);
           resolve({
             token: response.auth_token
           });
         });
-      }, function(xhr, status, error) {
+      }, function(xhr) {
         var response = xhr.responseText;
         Ember.run(function() {
           reject(response);

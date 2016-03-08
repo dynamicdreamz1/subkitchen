@@ -6,21 +6,21 @@ export default Ember.Component.extend({
   routing: Ember.inject.service('-routing'),
 
   user: Ember.computed('session', function(){
-    return this.get('session').get('data.user')
+    return this.get('session').get('data.user');
   }),
   errors: {},
   typingDelays: {},
 
   observeEmail: function () {
-    this.saveAttribute('email', this.get('user.email'))
+    this.saveAttribute('email', this.get('user.email'));
   }.observes('user.email'),
 
   observeName: function () {
-    this.saveAttribute('name', this.get('user.name'))
+    this.saveAttribute('name', this.get('user.name'));
   }.observes('user.name'),
 
   observeHandle: function () {
-    this.saveAttribute('handle', this.get('user.handle'))
+    this.saveAttribute('handle', this.get('user.handle'));
   }.observes('user.handle'),
 
   actions: {
@@ -32,35 +32,35 @@ export default Ember.Component.extend({
 
   saveAttribute: function(name, value){
     if (this.typingDelays[name]){
-      clearTimeout(this.typingDelays[name])
+      clearTimeout(this.typingDelays[name]);
     }
     this.typingDelays[name] = setTimeout(()=>{
-      this.$('#user-'+name).addClass('loading')
-      var params = {}
-      params[name] = value
+      this.$('#user-'+name).addClass('loading');
+      var params = {};
+      params[name] = value;
       this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
-        var headers = {}
-        headers[headerName] = headerValue
+        var headers = {};
+        headers[headerName] = headerValue;
         Ember.$.ajax({
           headers: headers,
           method: "PUT",
           url: config.host + config.apiEndpoint + '/account/' + name,
           data: params
         }).then((result) => {
-          this.set('errors', {})
-          this.get('session').set('data.user', result)
-          this.$('#user-'+name).removeClass('loading')
+          this.set('errors', {});
+          this.get('session').set('data.user', result);
+          this.$('#user-'+name).removeClass('loading');
           this.typingDelays[name] = null;
         }, (error) => {
           if (error.responseJSON){
-            this.set('errors', error.responseJSON.errors)
+            this.set('errors', error.responseJSON.errors);
           } else {
-            this.set('errors', {base: ['Connection error. Please try again later.']})
+            this.set('errors', {base: ['Connection error. Please try again later.']});
           }
-          this.$('#user-'+name).removeClass('loading')
+          this.$('#user-'+name).removeClass('loading');
           this.typingDelays[name] = null;
         });
-      })
-    }, 500)
+      });
+    }, 500);
   }
 });

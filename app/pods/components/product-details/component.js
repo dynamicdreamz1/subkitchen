@@ -13,11 +13,11 @@ export default Ember.Component.extend({
   actions: {
     addToCart(){
       this.get('cart').add(this.get('model.id'), this.get('size'), this.get('quantity'));
-      let button = this.$('.addToCart')
+      let button = this.$('.addToCart');
       button.text('added');
       setTimeout(function(){
         button.text('add to cart');
-      }, 3000)
+      }, 3000);
     },
 
     decreaseQuantity(){
@@ -25,13 +25,13 @@ export default Ember.Component.extend({
       let newValue = this.get('quantity') - 1;
       if (newValue < 1){
         newValue = 1; }
-      this.set('quantity', newValue)
+      this.set('quantity', newValue);
     },
 
     increaseQuantity(){
       console.log('increaseQuantity');
       let newValue = this.get('quantity') + 1;
-      this.set('quantity', newValue)
+      this.set('quantity', newValue);
     }
   }
 

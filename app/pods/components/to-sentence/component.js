@@ -5,8 +5,8 @@ export default Ember.Component.extend({
 
   display: Ember.computed('array', function(){
     let array = this.get('array');
-    if (array.length == 1) {
-      return array[0]
+    if (array.length === 1) {
+      return array[0];
     }
     return array.slice(0, array.length - 1).join(', ') + " and " + array.slice(-1);
   })

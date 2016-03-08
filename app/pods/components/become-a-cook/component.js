@@ -1,3 +1,4 @@
+/* globals $ */
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -9,7 +10,7 @@ export default Ember.Component.extend({
   shouldSeeMe: Ember.computed('session', function(){
     if (this.get('session').get('isAuthenticated')){
       return !(this.get('session').get('data.user').artist &&
-               this.get('session').get('data.user').status === 'verified')
+               this.get('session').get('data.user').status === 'verified');
     } else {
       return true;
     }
