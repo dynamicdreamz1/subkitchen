@@ -1,0 +1,142 @@
+<section class="check-out">
+  <div class="spacer"></div>
+  {{#if hasData}}
+  <div class="row">
+
+    <div class="small-12 medium-6 medium-push-6 columns">
+      <h4 class="uppercase font-black">order summary</h4>
+      <div class="row items">
+        {{#each cart.order.data.items as |item|}}
+        <div class="small-12 columns item" id="item-{{item.id}}">
+          <div class="row">
+            <div class="small-4 medium-3 columns image">
+              <img src={{item.image}} alt="{{item.name}}">
+              <span class="quantity">
+                {{item.quantity}}
+              </span>
+            </div>
+            <div class="small-8 medium-9 columns">
+              <div class="row collapse">
+                <div class="small-9 columns ellipsis name">
+                  {{item.name}}
+                </div>
+                <div class="small-3 columns price text-right">
+                  ${{item.price}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns size">
+                  {{item.size}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+      <div class="row calculations text-right">
+        <div class="small-12 columns">
+          <div class="row">
+            <div class="small-12 columns">
+              <strong>subtotal:</strong> ${{cart.order.data.subtotal}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <strong>shipping:</strong> ${{cart.order.data.shipping_cost}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <strong>tax ({{cart.order.data.tax}}%):</strong> ${{cart.order.data.tax_cost}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
+              <strong>total:</strong> ${{cart.order.data.total}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row info">
+        <div class="small-12 columns">
+          <strong>
+            How long will it take to get my order?
+          </strong>
+        </div>
+        <div class="small-12 columns">
+          Your order will ship within 14 business days within your order date.
+        </div>
+      </div>
+    </div>
+
+    <div class="small-12 medium-6 medium-pull-6 columns">
+      <h4 class="uppercase font-black">check out</h4>
+      <div class="row">
+        <div class="small-12 small-centered columns">
+          {{input-errors errors=errors.base}}
+          <form novalidate {{action "order" on="submit"}}>
+            <div class="row">
+              <div class="small-12 columns">
+                <label class={{if errors.email "is-invalid-label" ""}}>Contact Info
+                  {{input type="email" placeholder="Email Address" value=user.email}}
+                  {{input-errors errors=errors.email}}
+                </label>
+              </div>
+              <div class="small-12 columns">
+                <label class={{if errors.fullname "is-invalid-label" ""}}>Shipping Info
+                  {{input type="text" placeholder="Full name" value=user.fullname}}
+                  {{input-errors errors=errors.fullname}}
+                </label>
+              </div>
+              <div class="small-12 columns">
+                {{input type="text" placeholder="Street Address" value=user.street}}
+                {{input-errors errors=errors.street}}
+              </div>
+              <div class="small-12 columns">
+                {{input type="text" placeholder="Address Line 2" value=user.address}}
+                {{input-errors errors=errors.address}}
+              </div>
+              <div class="small-12 columns">
+                <div class="row">
+                  <div class="small-12 medium-6 columns">
+                    {{input type="text" placeholder="City" value=user.city}}
+                    {{input-errors errors=errors.city}}
+                  </div>
+                  <div class="small-12 medium-6 columns">
+                    {{input type="text" placeholder="State" value=user.state}}
+                    {{input-errors errors=errors.state}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="small-12 medium-6 columns">
+                    {{input type="text" placeholder="Zip code" value=user.zip}}
+                    {{input-errors errors=errors.zip}}
+                  </div>
+                  <div class="small-12 medium-6 columns">
+                    {{input type="text" placeholder="Country" value=user.country}}
+                    {{input-errors errors=errors.country}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 columns">
+                <button type="submit" class="button dark uppercase">place order</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{else}}
+  <div class="row">
+    <div class="small-12 columns uppercase center">
+      cart is empty
+    </div>
+  </div>
+  {{/if}}
+</section>

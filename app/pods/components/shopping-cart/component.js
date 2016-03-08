@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   cart: Ember.inject.service('shopping-cart'),
+  routes: Ember.inject.service('-routing'),
 
   hasData: Ember.computed('cart.order.data', function(){
     let order = this.get('cart.order.data');
@@ -13,6 +14,10 @@ export default Ember.Component.extend({
   },
 
   actions: {
+    checkout(){
+      this.get('routes').transitionTo('check-out');
+    },
+
     close(){
       this.get('cart').close();
     },

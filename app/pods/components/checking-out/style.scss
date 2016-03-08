@@ -1,0 +1,78 @@
+.check-out{
+  .items{
+    margin-top: 1rem;
+  }
+  .item{
+    margin-top: 1rem;
+    position: relative;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 300;
+
+    img{
+      background-color: #e4e4e4;
+      width: 100%;
+    }
+
+    .name{
+      font-weight: 700;
+      padding-right: 2rem;
+      font-size: 1.2rem;
+    }
+
+    .price{
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .size{
+      font-weight: 300;
+      font-size: 1.2rem;
+    }
+
+    .image{
+      position: relative;
+    }
+
+    .quantity{
+      border-radius: 50%;
+      border: 1px solid #9b9b9b;
+      background-color: #9b9b9b;
+      color: #fefefe;
+      width: 1.5rem;
+      height: 1.5rem;
+      position: absolute;
+      top: -0.5rem;
+      right: 0.5rem;;
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+
+  .info{
+    margin-top: 2rem;
+    font-size: 1.2rem;
+  }
+
+  .calculations{
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 1.2rem;
+    strong{
+      font-weight: 700;
+    }
+    .total{
+      font-weight: 900;
+    }
+  }
+
+  form{
+    input{
+      border-color: $black;
+    }
+    button{
+      width: 100%;
+      font-size: 1.5rem;
+    }
+  }
+}
