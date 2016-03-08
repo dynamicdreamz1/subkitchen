@@ -17,14 +17,17 @@ export default Ember.Service.extend({
   }),
 
   processQuantityChanged(){
-    this.get('order.data.items').forEach((item, index) =>{
-      let abs = Math.abs(Number(item.quantity));
-      if (abs !== Number(item.quantity)){
-        console.log('quantityChanged', item.quantity, abs);
-        this.set('order.data.items.' + index + '.quantity', Math.abs(Number(item.quantity)));
-      }
-      this.setQuantity(item);
-    });
+    let items = this.get('order.data.items');
+    if (items){
+      items.forEach((item, index) =>{
+        let abs = Math.abs(Number(item.quantity));
+        if (abs !== Number(item.quantity)){
+          console.log('quantityChanged', item.quantity, abs);
+          this.set('order.data.items.' + index + '.quantity', Math.abs(Number(item.quantity)));
+        }
+        this.setQuantity(item);
+      });
+    }
   },
 
   //view

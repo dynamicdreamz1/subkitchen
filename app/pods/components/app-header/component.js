@@ -7,9 +7,12 @@ export default Ember.Component.extend({
   cart: Ember.inject.service('shopping-cart'),
   cartCount: Ember.computed('cart.order.data.items.@each.quantity', function(){
     let sum = 0;
-    this.get('cart.order.data.items').forEach(function(item){
-      sum += Number(item.quantity);
-    });
+    let items = this.get('cart.order.data.items')
+    if (items){
+      items.forEach(function(item){
+        sum += Number(item.quantity);
+      });
+    }
     return sum;
   }),
   identification: null,
