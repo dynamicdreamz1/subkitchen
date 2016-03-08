@@ -51,44 +51,40 @@ export default Ember.Service.extend({
       product_id: product_id,
       size: size,
       quantity: quantity };
-    if (this.get('order.data')){
-      params['uuid'] = this.get('order.data.uuid'); }
+      if (this.get('order.data')){
+        params['uuid'] = this.get('order.data.uuid'); }
 
-    this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
-      var headers = {};
-      headers[headerName] = headerValue;
-      this.addItem(params, headers);
-    });
+        this.optionalAuthorization((headers)=>{
+          this.addItem(params, headers);
+        });
   },
 
   remove(item_id) {
     var params = { id: item_id };
     if (this.get('order.data')){
       params['uuid'] = this.get('order.data.uuid'); }
-    return this.removeItem(params);
+      return this.removeItem(params);
   },
 
   // private
   fetchOrder(){
-    this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
-      let headers = {};
-      headers[headerName] = headerValue;
+    this.optionalAuthorization((headers)=>{
       let params = {};
       if (this.get('order.data')){
         params['uuid'] = this.get('order.data.uuid'); }
-      Ember.$.ajax({
-        method: "GET",
-        url: config.host + config.apiEndpoint + '/orders',
-        data: params
-      }).then((result) => {
-        this.set('order.data', result.order);
-      }, (error) => {
-        if (error.responseJSON){
-          this.set('errors', error.responseJSON.errors);
-        } else {
-          this.set('errors', {base: ['Connection error. Please try again later.']});
-        }
-      });
+        Ember.$.ajax({
+          method: "GET",
+          url: config.host + config.apiEndpoint + '/orders',
+          data: params
+        }).then((result) => {
+          this.set('order.data', result.order);
+        }, (error) => {
+          if (error.responseJSON){
+            this.set('errors', error.responseJSON.errors);
+          } else {
+            this.set('errors', {base: ['Connection error. Please try again later.']});
+          }
+        });
     });
   },
 
@@ -143,6 +139,18 @@ export default Ember.Service.extend({
         this.set('errors', {base: ['Connection error. Please try again later.']});
       }
     });
+  },
+
+  optionalAuthorization(callback){
+    if(this.get('session').isAuthorized){
+      this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
+        var headers = {};
+        headers[headerName] = headerValue;
+        callback(headers);
+      });
+    } else {
+      callback({});
+    }
   }
 
 });
