@@ -12,11 +12,20 @@ export default Ember.Service.extend({
     this.fetchOrder();
   },
 
-  // quantityChanged: Ember.observer('order.data.items.@each.quantity', function() {
-  //   this.get('order.data.items').forEach((item, index) =>{
-  //     this.set('order.data.items.' + index + '.quantity', Math.abs(Number(item.quantity)))
-  //   });
-  // }),
+  quantityChanged: Ember.observer('order.data.items.@each.quantity', function() {
+    Ember.run.once(this, 'processQuantityChanged');
+  }),
+
+  processQuantityChanged(){
+    this.get('order.data.items').forEach((item, index) =>{
+      let abs = Math.abs(Number(item.quantity));
+      if (abs !== Number(item.quantity)){
+        console.log('quantityChanged', item.quantity, abs);
+        this.set('order.data.items.' + index + '.quantity', Math.abs(Number(item.quantity)));
+      }
+      this.setQuantity(item);
+    });
+  },
 
   //view
   close(){
@@ -88,6 +97,26 @@ export default Ember.Service.extend({
       data: params
     }).then((result) => {
       this.set('order.data', result.order);
+    }, (error) => {
+      if (error.responseJSON){
+        this.set('errors', error.responseJSON.errors);
+      } else {
+        this.set('errors', {base: ['Connection error. Please try again later.']});
+      }
+    });
+  },
+
+  setQuantity(item){
+    var params = { id: item.id, quantity: item.quantity };
+    if (this.get('order.data')){
+      params['uuid'] = this.get('order.data.uuid'); }
+
+    return Ember.$.ajax({
+      method: "PUT",
+      url: config.host + config.apiEndpoint + '/orders/item/'+params['id'],
+      data: params
+    }).then(() => {
+      // do nothing
     }, (error) => {
       if (error.responseJSON){
         this.set('errors', error.responseJSON.errors);
