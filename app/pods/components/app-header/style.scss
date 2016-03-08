@@ -133,9 +133,21 @@
       max-width: 200px;
       font-size: 1rem;
       box-shadow: none;
-      height: 1.4rem;
+      height: 1.9rem;
 
       &::placeholder{
+        color: $light-color;
+      }
+
+      &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: $light-color;
+        opacity:  1;
+      }
+      &::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: $light-color;
+        opacity:  1;
+      }
+      &:-ms-input-placeholder { /* Internet Explorer 10-11 */
         color: $light-color;
       }
 
