@@ -9,22 +9,5 @@ export default Ember.Route.extend({
       data: { confirm_token: params.token},
       dataType: 'json'
     });
-
-    // return new Ember.RSVP.Promise((resolve, reject) => {
-    //   Ember.$.ajax({
-    //     method: "POST",
-    //     url: config.host + config.apiEndpoint + '/sessions/confirm_email',
-    //     data: { confirm_token: params.token},
-    //     dataType: 'json'
-    //   }).then(function() {
-    //     Ember.run(function() {
-    //       resolve({});
-    //     });
-    //   }, function() {
-    //     Ember.run(function() {
-    //       reject({});
-    //     });
-    //   });
-    // });
   }
 });
