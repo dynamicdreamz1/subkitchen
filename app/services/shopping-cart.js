@@ -114,8 +114,12 @@ export default Ember.Service.extend({
       method: "PUT",
       url: config.host + config.apiEndpoint + '/orders/item/'+params['id'],
       data: params
-    }).then(() => {
-      // do nothing
+    }).then((result) => {
+      this.set('order.data.total', result.order.total);
+      this.set('order.data.subtotal', result.order.subtotal);
+      this.set('order.data.tax', result.order.tax);
+      this.set('order.data.tax_cost', result.order.tax_cost);
+      this.set('order.data.shipping_cost', result.order.shipping_cost);
     }, (error) => {
       if (error.responseJSON){
         this.set('errors', error.responseJSON.errors);
