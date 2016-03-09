@@ -3,7 +3,7 @@
   <section class="products" id="products">
     <div class="row small-up-1 medium-up-4">
       {{#each model as |product|}}
-        {{product-info id=product.id title=product.name likes=100 price=product.price artist-name=product.author }}
+        {{product-info id=product.id title=product.name likes=product.likes price=product.price artist-name=product.author }}
       {{/each}}
     </div>
     <div class="row">

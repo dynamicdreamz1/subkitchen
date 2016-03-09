@@ -11,7 +11,7 @@
 
   <div class="row">
     {{#each products as |product|}}
-      {{product-info id=product.id title=product.name likes=100 price=product.price artist-name=product.author }}
+      {{product-info id=product.id title=product.name likes=product.likes price=product.price artist-name=product.author }}
     {{/each}}
   </div>
 </section>

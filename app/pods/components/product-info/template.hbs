@@ -44,9 +44,15 @@
         </div>
         <div class="small-3 columns text-right nowrap font-light">
           {{likes}}
+          {{#if likes}}
+          <span class="icon-sub-liked">
+            <span class="path1"></span><span class="path2"></span>
+          </span>
+          {{else}}
           <span class="icon-sub-unliked">
             <span class="path1"></span><span class="path2"></span>
           </span>
+          {{/if}}
         </div>
       </div>
       <div class="row collapse">

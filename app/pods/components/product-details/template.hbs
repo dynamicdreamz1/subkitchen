@@ -4,9 +4,21 @@
       <img class="main" src="assets/images/t-shirt.png" alt="">
     </div>
     <div class="small-12 medium-6 columns">
-      <div class="row">
-        <div class="small-12 columns ellipsis">
+      <div class="row collapse">
+        <div class="small-11 columns ellipsis">
           <h4> {{model.name}} </h4>
+        </div>
+        <div class="small-1 columns center">
+          {{#if model.likes}}
+          <span class="icon-sub-liked">
+            <span class="path1"></span><span class="path2"></span>
+          </span>
+          {{else}}
+          <span class="icon-sub-unliked">
+            <span class="path1"></span><span class="path2"></span>
+          </span>
+          {{/if}}
+          {{model.likes}}
         </div>
       </div>
       <div class="row">
