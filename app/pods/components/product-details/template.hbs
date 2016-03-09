@@ -8,16 +8,18 @@
         <div class="small-11 columns ellipsis">
           <h4> {{model.name}} </h4>
         </div>
-        <div class="small-1 columns center">
-          {{#if model.likes}}
-          <span class="icon-sub-liked">
-            <span class="path1"></span><span class="path2"></span>
-          </span>
-          {{else}}
-          <span class="icon-sub-unliked">
-            <span class="path1"></span><span class="path2"></span>
-          </span>
-          {{/if}}
+        <div class="small-1 columns text-center">
+          <div class="icon">
+            {{#if model.likes}}
+            <span class="icon-sub-liked">
+              <span class="path1"></span><span class="path2"></span>
+            </span>
+            {{else}}
+            <span class="icon-sub-unliked">
+              <span class="path1"></span><span class="path2"></span>
+            </span>
+            {{/if}}
+          </div>
           {{model.likes}}
         </div>
       </div>
