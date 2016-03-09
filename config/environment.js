@@ -27,6 +27,12 @@ module.exports = function(environment) {
     }
   };
 
+  ENV.FB = {
+    appId: '563204810504762',
+    version: 'v2.5',
+    xfbml: true
+  };
+
   ENV['ember-simple-auth'] = {
     authorizer: 'authorizer:custom',
     crossOriginWhitelist: ['http://subkitchen-api.herokuapp.com'],
@@ -36,6 +42,7 @@ module.exports = function(environment) {
 
   if (environment === 'development') {
     ENV.host = 'http://localhost:3000';
+    ENV.FB.appId = '563205840504659';
   }
 
   if (environment === 'test') {

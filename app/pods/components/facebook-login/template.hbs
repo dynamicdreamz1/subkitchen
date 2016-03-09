@@ -1,0 +1,15 @@
+{{#if errorMessage}}
+<div class="row">
+  <div class="small-12 columns">
+    <div class="callout alert center">
+      <h6 class="font-bold uppercase">could not login, try again later</h6>
+    </div>
+  </div>
+</div>
+{{/if}}
+
+<div class="row">
+  <div class="small-12 columns">
+    <button class="button primary facebook-login uppercase" onclick={{action 'authenticate'}}>facebook login</button>
+  </div>
+</div>
