@@ -68,7 +68,7 @@ export default Ember.Service.extend({
 
   // private
   fetchOrder(){
-    this.optionalAuthorization((headers)=>{
+    this.optionalAuthorization(()=>{
       let params = {};
       if (this.get('order.data')){
         params['uuid'] = this.get('order.data.uuid'); }
@@ -79,6 +79,7 @@ export default Ember.Service.extend({
         }).then((result) => {
           this.set('order.data', result.order);
         }, (error) => {
+          this.set('order.data', {});
           if (error.responseJSON){
             this.set('errors', error.responseJSON.errors);
           } else {
