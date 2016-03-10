@@ -3,14 +3,16 @@
 
     <div class="row">
       <div class="small-12 medium-3 large-2 columns">
-        <img src="assets/images/default.png" alt="">
+        <img src="{{user.image_url}}" alt="">
       </div>
       <div class="small-12 medium-9 large-10 columns">
         <h5 class="font-black uppercase">{{user.name}}</h5>
         <p>{{user.email}}</p>
         <p>
-          <label for="avatarFileUpload" class="button hollow">UPLOAD</label>
-          <input type="file" id="avatarFileUpload" class="show-for-sr">
+          <form id="formAvatarUpload">
+            <label id="uploadButton" for="avatarFileUpload" class="button hollow upload">upload</label>
+            {{input type="file" name="image" id="avatarFileUpload" class="show-for-sr" value=user.profile_image}}
+          </form>
         </p>
       </div>
     </div>
