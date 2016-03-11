@@ -8,7 +8,7 @@
         <div class="small-11 columns ellipsis">
           <h4> {{model.name}} </h4>
         </div>
-        <div class="small-1 columns text-center">
+        <div class="small-1 columns text-center likes" onclick={{action 'toggleLike'}}>
           <div class="icon">
             {{#if model.likes}}
             <span class="icon-sub-liked">
