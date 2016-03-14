@@ -66,6 +66,38 @@
       }
     }
   }
+  .product-supporters{
+    .tabs{
+      border: none;
+      box-shadow: none;
+      border-bottom: 1px solid $black;
+      .tabs-title{
+        &.is-active{
+          background: #000000;
+          a{
+            color: #ffffff;
+            font-weight: normal;
+          }
+        }
+      }
+    }
+    .promoter{
+      padding: 0.1rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .count{
+      color: #00d2ff;
+    }
+    .followers-count{
+      color: #797979;
+    }
+    .cook{
+      background: #00d2ff;
+      color: #fff;
+      padding: 0.1rem 0.5rem;
+    }
+  }
   .quantity{
     font-weight: 900;
     max-width: 10rem;
@@ -92,5 +124,8 @@
   .icon-sub-unliked{
     font-size: 1.5rem;
     line-height: 1.4;
+  }
+  .promoter{
+    background: #e4e4e4;
   }
 }

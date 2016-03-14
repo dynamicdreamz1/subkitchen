@@ -10,7 +10,7 @@
         </div>
         <div class="small-1 columns text-center likes" onclick={{action 'toggleLike'}}>
           <div class="icon">
-            {{#if model.likes}}
+            {{#if model.likes_count}}
             <span class="icon-sub-liked">
               <span class="path1"></span><span class="path2"></span>
             </span>
@@ -20,7 +20,7 @@
             </span>
             {{/if}}
           </div>
-          {{model.likes}}
+          {{model.likes_count}}
         </div>
       </div>
       <div class="row">
@@ -34,7 +34,7 @@
           <form>
             <ul class="center">
               {{#each sizes as |s|}}
-                <li>{{radio-button value=s model_id=model.id text=s execute=setSize chosen=size}}</li>
+              <li>{{radio-button value=s model_id=model.id text=s execute=setSize chosen=size}}</li>
               {{/each}}
             </ul>
           </form>
@@ -74,6 +74,61 @@
             <div class="tabs-panel" id="panel3">
               <p> {{{model.shipping}}} </p>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 columns product-supporters">
+      <ul class="tabs" data-tabs id="product-supporters">
+        <li class="tabs-title is-active"><a href="#comments" aria-selected="true" {{action 'none'}}>COMMENTS (<span class="count">{{model.comments_count}}</span>)</a></li>
+        <li class="tabs-title"><a href="#promoters" {{action 'none'}}>PROMOTERS (<span class="count">{{model.likes_count}}</span>)</a></li>
+      </ul>
+      <div class="tabs-content" data-tabs-content="product-supporters">
+        <div class="tabs-panel is-active" id="comments">
+          <ul>
+            {{#each model.comments as |comment|}}
+            <li>{{comment.id}}</li>
+            {{/each}}
+          </ul>
+        </div>
+
+        <div class="tabs-panel" id="promoters">
+          <div class="row small-up-1 medium-up-2 large-up-4">
+            {{#each model.promoters as |promoter|}}
+            <div class="column promoter">
+              <div class="row collapse">
+                <div class="small-4 columns">
+                  {{#if promoter.image_url}}
+                  <img src="{{promoter.image_url}}" alt="">
+                  {{else}}
+                  <img src="assets/images/default.png" alt="">
+                  {{/if}}
+                </div>
+                <div class="small-8 columns">
+                  <div class="row">
+                    <div class="small-12 columns">
+                      {{promoter.name}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="small-12 columns followers-count">
+                      {{promoter.followers_count}} FOLLOWERS
+                    </div>
+                  </div>
+                  {{#if promoter.artist}}
+                  <div class="row">
+                    <div class="small-12 columns">
+                      <span class="cook">COOK</span>
+                    </div>
+                  </div>
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+            {{/each}}
           </div>
         </div>
       </div>

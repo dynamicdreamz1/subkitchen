@@ -7,5 +7,8 @@ export default DS.Model.extend({
   author:      DS.attr('string'),
   image_url:   DS.attr('string'),
   price:       DS.attr('number'),
-  likes:       DS.attr('number')
+  likes_count: DS.attr('number'),
+
+  promoters:   DS.hasMany('promoter'),
+  comments:    DS.hasMany('comment')
 });

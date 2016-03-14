@@ -38,7 +38,8 @@ export default Ember.Component.extend({
     toggleLike(){
       this.get('like').toggleLike(this.get('model.id'))
       .then((result) => {
-        this.set('model.likes', result.likes);
+        this.set('model.likes_count', result.likes_count);
+        this.get('model').reload();
       }, (error) => {
         if (error.responseJSON){
           this.set('errors', error.responseJSON.errors);
