@@ -2,7 +2,7 @@ import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('promoter', 'Unit | Model | promoter', {
   // Specify the other units that are required for this test.
-  needs: []
+  needs: ['model:product']
 });
 
 test('it exists', function(assert) {
