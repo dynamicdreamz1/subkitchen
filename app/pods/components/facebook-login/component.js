@@ -12,7 +12,7 @@ export default Ember.Component.extend({
 
   actions: {
     authenticate(){
-      this.get('fb').login()
+      this.get('fb').login(['public_profile', 'email'])
       .then((response)=>{
         this.authenticate(response.authResponse.accessToken);
       });
