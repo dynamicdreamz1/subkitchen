@@ -4,6 +4,7 @@ import config from 'subkitchen-front/config/environment';
 export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
+  current_user: Ember.inject.service('current-user'),
 
   handle: null, // from component params or null
 
@@ -38,6 +39,7 @@ export default Ember.Component.extend({
           data: params
         }).then((result) => {
           this.set('errors', {});
+          this.get('current_user').reload();
           window.top.location.href = result.url;
         }, (error) => {
           if (error.responseJSON){

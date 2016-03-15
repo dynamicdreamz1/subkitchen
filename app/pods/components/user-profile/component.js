@@ -4,27 +4,25 @@ import config from 'subkitchen-front/config/environment';
 export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
+  user: Ember.inject.service('current-user'),
 
-  user: Ember.computed('session', function(){
-    return this.get('session').get('data.user');
-  }),
   errors: {},
   typingDelays: {},
 
-  observeEmail: function () {
-    this.saveAttribute('email', this.get('user.email'));
-  }.observes('user.email'),
+  observeEmail: Ember.observer('user.data.email', function () {
+    this.saveAttribute('email', this.get('user.data.email'));
+  }),
 
-  observeName: function () {
-    this.saveAttribute('name', this.get('user.name'));
-  }.observes('user.name'),
+  observeName: Ember.observer('user.data.name', function () {
+    this.saveAttribute('name', this.get('user.data.name'));
+  }),
 
-  observeHandle: function () {
-    this.saveAttribute('handle', this.get('user.handle'));
-  }.observes('user.handle'),
+  observeHandle: Ember.observer('user.data.handle', function () {
+    this.saveAttribute('handle', this.get('user.data.handle'));
+  }),
 
   observeProfileImage: function () {
-    if (this.get('user.profile_image') && this.get('user.profile_image').length){
+    if (this.get('user.data.profile_image') && this.get('user.data.profile_image').length){
       this.$('#uploadButton').addClass('loading');
       let formData = new FormData(this.$('#formAvatarUpload')[0]);
       this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
@@ -43,13 +41,13 @@ export default Ember.Component.extend({
           let error = (result.errors || {}).profile_image;
           this.set('errors.profile_image', error);
           if (!error){
-            this.get('session').set('data.user.image_url', result.image_url);
-            this.set('user.image_url', result.image_url);
+            this.set('user.data.image_url', result.image_url);
+            this.get('user').set('data.image_url', result.image_url);
           }
-          this.set('user.profile_image', null);
+          this.set('user.data.profile_image', null);
           this.$('#uploadButton').removeClass('loading');
         }, (error) => {
-          this.set('user.profile_image', null);
+          this.set('user.data.profile_image', null);
           this.$('#uploadButton').removeClass('loading');
           if (error.responseJSON){
             this.set('errors', error.responseJSON.errors);
@@ -59,7 +57,7 @@ export default Ember.Component.extend({
         });
       });
     }
-  }.observes('user.profile_image'),
+  }.observes('user.data.profile_image'),
 
   actions: {
     becomeCook(){
@@ -86,7 +84,7 @@ export default Ember.Component.extend({
           data: params
         }).then((result) => {
           this.set('errors', {});
-          this.get('session').set('data.user', result);
+          this.get('user.data').set(name, result[name]);
           this.$('#user-'+name).removeClass('loading');
           this.typingDelays[name] = null;
         }, (error) => {
