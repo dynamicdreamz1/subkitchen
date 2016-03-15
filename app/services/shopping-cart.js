@@ -147,7 +147,7 @@ export default Ember.Service.extend({
   },
 
   optionalAuthorization(callback){
-    if(this.get('session').isAuthorized){
+    if(this.get('session.isAuthenticated')){
       this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
         var headers = {};
         headers[headerName] = headerValue;

@@ -127,5 +127,13 @@
   }
   .promoter{
     background: #e4e4e4;
+    img{
+      padding: 0.2rem;
+      border-radius: 50%;
+    }
+    .column.promoter-details{
+      padding-left: 0.5rem;
+      padding-top: 0.5rem;
+    }
   }
 }
