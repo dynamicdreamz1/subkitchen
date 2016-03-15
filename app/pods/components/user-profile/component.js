@@ -5,9 +5,22 @@ export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
   user: Ember.inject.service('current-user'),
+  address: null,
 
   errors: {},
   typingDelays: {},
+
+  showAddress: Ember.computed('address', function(){
+    let address = this.get('address');
+    return address && (
+      address.get('firstName') ||
+      address.get('lastName') ||
+      address.get('address') ||
+      address.get('zip') ||
+      address.get('regiono') ||
+      address.get('city') ||
+      address.get('country'));
+  }),
 
   observeEmail: Ember.observer('user.data.email', function () {
     this.saveAttribute('email', this.get('user.data.email'));
@@ -98,5 +111,5 @@ export default Ember.Component.extend({
         });
       });
     }, 500);
-  }
+  },
 });

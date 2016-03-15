@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  routing: Ember.inject.service('-routing'),
   address: null,
 
   actions: {
@@ -11,10 +12,7 @@ export default Ember.Component.extend({
       .save()
       .then(()=>{
         cta.removeClass('loading-white');
-        cta.text('saved');
-        setTimeout(function(){
-          cta.text('save address');
-        }, 3000);
+        this.get("routing").transitionTo("profile");
       }, ()=>{
         cta.removeClass('loading-white');
       });

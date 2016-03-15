@@ -58,10 +58,34 @@
         <span class="font-bold">Deafault Address</span>
         <p>
           <small>
-            Add your default address, so you will not have to type it everytime you place an order.
+            {{#if showAddress}}
+              {{address.firstName}} {{address.lastName}}
+              {{#if address.address}}
+                <br>
+                {{address.address}}
+              {{/if}}
+              {{#if (or address.zip address.region)}}
+                <br>
+                {{address.zip}} {{address.region}}
+              {{/if}}
+              {{#if address.city}}
+                <br>
+                {{address.city}}
+              {{/if}}
+              {{#if address.country}}
+                <br>
+                {{address.country}}
+              {{/if}}
+            {{else}}
+              Add your default address, so you will not have to type it everytime you place an order.
+            {{/if}}
           </small>
         </p>
-        {{#link-to 'profile-address' class="button dark uppercase"}}add address{{/link-to}}
+            {{#if showAddress}}
+              {{#link-to 'profile-address' class="button dark uppercase"}}edit address{{/link-to}}
+            {{else}}
+              {{#link-to 'profile-address' class="button dark uppercase"}}add address{{/link-to}}
+            {{/if}}
       </div>
     </div>
 
