@@ -40,11 +40,16 @@ export default Ember.Component.extend({
           processData: false,
           dataType : 'json',
         }).then((result) => {
-          this.set('errors', {});
-          this.get('session').set('data.user', result);
-          this.set('user', result);
+          let error = (result.errors || {}).profile_image;
+          this.set('errors.profile_image', error);
+          if (!error){
+            this.get('session').set('data.user.image_url', result.image_url);
+            this.set('user.image_url', result.image_url);
+          }
+          this.set('user.profile_image', null);
           this.$('#uploadButton').removeClass('loading');
         }, (error) => {
+          this.set('user.profile_image', null);
           this.$('#uploadButton').removeClass('loading');
           if (error.responseJSON){
             this.set('errors', error.responseJSON.errors);

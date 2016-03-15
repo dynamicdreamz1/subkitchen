@@ -16,6 +16,8 @@
           <form id="formAvatarUpload">
             <label id="uploadButton" for="avatarFileUpload" class="button hollow upload">upload</label>
             {{input type="file" name="image" id="avatarFileUpload" class="show-for-sr" value=user.profile_image}}
+
+            {{input-errors errors=errors.profile_image}}
           </form>
         </p>
       </div>
