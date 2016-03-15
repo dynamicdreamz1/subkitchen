@@ -22,7 +22,9 @@ export default Ember.Component.extend({
   authenticate(access_token){
     this.get('session').authenticate('authenticator:facebook', {access_token: access_token})
     .then(()=>{
-      $('#loginModal').foundation('close');
+      if ($('#loginModal').length){
+        $('#loginModal').foundation('close');
+      }
       this.get("routing").transitionTo("profile");
     })
     .catch((message) => {
