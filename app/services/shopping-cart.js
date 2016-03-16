@@ -12,6 +12,10 @@ export default Ember.Service.extend({
     this.fetchOrder();
   },
 
+  reload(){
+    this.fetchOrder();
+  },
+
   quantityChanged: Ember.observer('order.data.items.@each.quantity', function() {
     Ember.run.once(this, 'processQuantityChanged');
   }),

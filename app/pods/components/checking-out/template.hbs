@@ -5,8 +5,9 @@
 
     <div class="small-12 medium-6 medium-push-6 columns">
       <h4 class="uppercase font-black">order summary</h4>
+      {{#if hasItems}}
       <div class="row items">
-        {{#each cart.order.data.items as |item|}}
+        {{#each payment.order.items as |item|}}
         <div class="small-12 columns item" id="item-{{item.id}}">
           <div class="row">
             <div class="small-4 medium-3 columns image">
@@ -39,26 +40,65 @@
         <div class="small-12 columns">
           <div class="row">
             <div class="small-12 columns">
-              <strong>subtotal:</strong> ${{cart.order.data.subtotal}}
+              <strong>subtotal:</strong> ${{payment.order.subtotal}}
             </div>
           </div>
           <div class="row">
             <div class="small-12 columns">
-              <strong>shipping:</strong> ${{cart.order.data.shipping_cost}}
+              <strong>shipping:</strong> ${{payment.order.shipping_cost}}
             </div>
           </div>
           <div class="row">
             <div class="small-12 columns">
-              <strong>tax ({{cart.order.data.tax}}%):</strong> ${{cart.order.data.tax_cost}}
+              <strong>tax ({{payment.order.tax}}%):</strong> ${{payment.order.tax_cost}}
             </div>
           </div>
           <div class="row">
             <div class="small-12 columns">
-              <strong>total:</strong> ${{cart.order.data.total}}
+              <strong>total:</strong> ${{payment.order.total_cost}}
             </div>
           </div>
         </div>
       </div>
+      {{/if}}
+
+      {{#if payment.deleted_items}}
+      <div class="row items">
+        <div class="small-12 columns">
+          <div class="callout alert">
+            <h5>Some items are unavailable. Sorry.</h5>
+          </div>
+        </div>
+        {{#each payment.deleted_items as |item|}}
+        <div class="small-12 columns item removed-item" id="item-{{item.id}}">
+          <div class="row">
+            <div class="small-4 medium-3 columns image">
+              <img src={{item.image}} alt="{{item.name}}">
+              <span class="quantity">
+                {{item.quantity}}
+              </span>
+            </div>
+            <div class="small-8 medium-9 columns">
+              <div class="row collapse">
+                <div class="small-9 columns ellipsis name">
+                  {{item.name}}
+                </div>
+                <div class="small-3 columns price text-right">
+                  ${{item.price}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns size">
+                  {{item.size}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{/if}}
+
 
       <div class="row info">
         <div class="small-12 columns">
@@ -81,42 +121,38 @@
             <div class="row">
               <div class="small-12 columns">
                 <label class={{if errors.email "is-invalid-label" ""}}>Contact Info
-                  {{input type="email" placeholder="Email Address" value=order.email}}
+                  {{input type="email" placeholder="Email Address" value=order.email disabled=(not hasItems)}}
                   {{input-errors errors=errors.email}}
                 </label>
               </div>
               <div class="small-12 columns">
-                <label class={{if errors.fullname "is-invalid-label" ""}}>Shipping Info
-                  {{input type="text" placeholder="Full name" value=order.fullname}}
-                  {{input-errors errors=errors.fullname}}
+                <label class={{if errors.full_name "is-invalid-label" ""}}>Shipping Info
+                  {{input type="text" placeholder="Full name" value=order.full_name disabled=(not hasItems)}}
+                  {{input-errors errors=errors.full_name}}
                 </label>
               </div>
               <div class="small-12 columns">
-                {{input type="text" placeholder="Street Address" value=order.street}}
-                {{input-errors errors=errors.street}}
-              </div>
-              <div class="small-12 columns">
-                {{input type="text" placeholder="Address Line 2" value=order.address}}
+                {{input type="text" placeholder="Street Address" value=order.address disabled=(not hasItems)}}
                 {{input-errors errors=errors.address}}
               </div>
               <div class="small-12 columns">
                 <div class="row">
                   <div class="small-12 medium-6 columns">
-                    {{input type="text" placeholder="City" value=order.city}}
+                    {{input type="text" placeholder="City" value=order.city disabled=(not hasItems)}}
                     {{input-errors errors=errors.city}}
                   </div>
                   <div class="small-12 medium-6 columns">
-                    {{input type="text" placeholder="State" value=order.state}}
-                    {{input-errors errors=errors.state}}
+                    {{input type="text" placeholder="State" value=order.region disabled=(not hasItems)}}
+                    {{input-errors errors=errors.region}}
                   </div>
                 </div>
                 <div class="row">
                   <div class="small-12 medium-6 columns">
-                    {{input type="text" placeholder="Zip code" value=order.zip}}
+                    {{input type="text" placeholder="Zip code" value=order.zip disabled=(not hasItems)}}
                     {{input-errors errors=errors.zip}}
                   </div>
                   <div class="small-12 medium-6 columns">
-                    {{input type="text" placeholder="Country" value=order.country}}
+                    {{input type="text" placeholder="Country" value=order.country disabled=(not hasItems)}}
                     {{input-errors errors=errors.country}}
                   </div>
                 </div>
@@ -128,7 +164,7 @@
               <div class="small-12 columns">
                 <div class="row">
                   <div class="small-6 columns">
-                    {{radio-button value='stripe' model_id='' text='Credit Card' chosen=order.shipping_method}}
+                    {{radio-button value='stripe' model_id='' text='Credit Card' chosen=order.payment_type disabled=(not hasItems)}}
                   </div>
                   <div class="small-6 columns text-right">
                     <span class="pf pf-mastercard"></span>
@@ -137,29 +173,29 @@
                     <span class="pf pf-discover"></span>
                   </div>
                 </div>
-                {{#if (eq order.shipping_method 'stripe')}}
+                {{#if (eq order.payment_type 'stripe')}}
                 <div class="row">
                   <div class="small-12 columns">
                     <label class={{if errors.credit_card_number "is-invalid-label" ""}}>
-                      {{input type="text" placeholder="Credit Card Number" value=order.credit_card_number}}
+                      {{input type="text" placeholder="Credit Card Number" value=order.credit_card_number disabled=(not hasItems)}}
                       {{input-errors errors=errors.credit_card_number}}
                     </label>
                   </div>
                   <div class="small-12 medium-4 columns">
                     <label class={{if errors.month "is-invalid-label" ""}}>
-                      {{input type="text" placeholder="MM" value=order.month}}
+                      {{input type="text" placeholder="MM" value=order.month disabled=(not hasItems)}}
                       {{input-errors errors=errors.month}}
                     </label>
                   </div>
                   <div class="small-12 medium-4 columns">
                     <label class={{if errors.year "is-invalid-label" ""}}>
-                      {{input type="text" placeholder="YYYY" value=order.year}}
+                      {{input type="text" placeholder="YYYY" value=order.year disabled=(not hasItems)}}
                       {{input-errors errors=errors.year}}
                     </label>
                   </div>
                   <div class="small-12 medium-4 columns">
                     <label class={{if errors.cvc "is-invalid-label" ""}}>
-                      {{input type="text" placeholder="CVC" value=order.cvc}}
+                      {{input type="text" placeholder="CVC" value=order.cvc disabled=(not hasItems)}}
                       {{input-errors errors=errors.cvc}}
                     </label>
                   </div>
@@ -170,7 +206,7 @@
               <div class="small-12 columns">
                 <div class="row">
                   <div class="small-6 columns">
-                    {{radio-button value='paypal' model_id='' text='Paypal' chosen=order.shipping_method}}
+                    {{radio-button value='paypal' model_id='' text='Paypal' chosen=order.payment_type disabled=(not hasItems)}}
                   </div>
                   <div class="small-6 columns text-right">
                     <span class="pf pf-paypal"></span>
@@ -180,7 +216,7 @@
             </div>
             <div class="row">
               <div class="small-12 columns">
-                <button type="submit" class="button dark uppercase">place order</button>
+                <button type="submit" class="button dark uppercase {{if hasItems "" "disabled"}}">place order</button>
               </div>
             </div>
           </form>

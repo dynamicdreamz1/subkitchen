@@ -2,6 +2,11 @@
   .items{
     margin-top: 1rem;
   }
+  .removed-item{
+    img{
+      border-left: 5px solid $alert-color;
+    }
+  }
   .item{
     margin-top: 1rem;
     position: relative;
