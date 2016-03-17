@@ -52,7 +52,8 @@
     "phantomjs-prebuilt": "^2.1"
   },
   "dependencies": {
-    "phantomjs-prebuilt": "2.1.5",
-    "loader.js": "^4.0.0"
+    "ember-stripe-service": "4.1.0",
+    "loader.js": "^4.0.0",
+    "phantomjs-prebuilt": "2.1.5"
   }
 }

@@ -2,6 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
+    LOG_STRIPE_SERVICE: true,
     host: 'https://subkitchen-api.herokuapp.com',
     apiEndpoint: '/api/v1',
     modulePrefix: 'subkitchen-front',
@@ -33,6 +34,10 @@ module.exports = function(environment) {
     xfbml: true
   };
 
+  ENV.stripe = {
+    publishableKey: 'pk_test_h5Aqwd3kEZvC3496unFZclWC'
+  };
+
   ENV['ember-simple-auth'] = {
     authorizer: 'authorizer:custom',
     crossOriginWhitelist: ['http://subkitchen-api.herokuapp.com'],
@@ -43,6 +48,7 @@ module.exports = function(environment) {
   if (environment === 'development') {
     ENV.host = 'http://localhost:3000';
     ENV.FB.appId = '563205840504659';
+    ENV.stripe.publishableKey = 'pk_test_h5Aqwd3kEZvC3496unFZclWC';
   }
 
   if (environment === 'test') {

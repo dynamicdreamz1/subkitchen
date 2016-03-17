@@ -177,25 +177,25 @@
                 <div class="row">
                   <div class="small-12 columns">
                     <label class={{if errors.credit_card_number "is-invalid-label" ""}}>
-                      {{input type="text" placeholder="Credit Card Number" value=order.credit_card_number disabled=(not hasItems)}}
+                      {{input type="text" placeholder="Credit Card Number" value=card.number disabled=(not hasItems)}}
                       {{input-errors errors=errors.credit_card_number}}
                     </label>
                   </div>
                   <div class="small-12 medium-4 columns">
                     <label class={{if errors.month "is-invalid-label" ""}}>
-                      {{input type="text" placeholder="MM" value=order.month disabled=(not hasItems)}}
+                      {{input type="text" placeholder="MM" value=card.exp-month disabled=(not hasItems)}}
                       {{input-errors errors=errors.month}}
                     </label>
                   </div>
                   <div class="small-12 medium-4 columns">
                     <label class={{if errors.year "is-invalid-label" ""}}>
-                      {{input type="text" placeholder="YYYY" value=order.year disabled=(not hasItems)}}
+                      {{input type="text" placeholder="YYYY" value=card.exp-year disabled=(not hasItems)}}
                       {{input-errors errors=errors.year}}
                     </label>
                   </div>
                   <div class="small-12 medium-4 columns">
                     <label class={{if errors.cvc "is-invalid-label" ""}}>
-                      {{input type="text" placeholder="CVC" value=order.cvc disabled=(not hasItems)}}
+                      {{input type="text" placeholder="CVC" value=card.cvc disabled=(not hasItems)}}
                       {{input-errors errors=errors.cvc}}
                     </label>
                   </div>
