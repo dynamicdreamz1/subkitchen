@@ -66,6 +66,8 @@ a.link-to-all{
   background:url('images/ajax-loader.gif') no-repeat right center;
 }
 .loading-white {
-  background:url('images/ajax-loader-white.gif') no-repeat right center;
+  background-image: url('images/ajax-loader-white.gif') !important;
+  background-repeat: no-repeat !important;
+  background-position: right center !important;
 }
 

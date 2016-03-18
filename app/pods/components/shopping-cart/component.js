@@ -9,6 +9,10 @@ export default Ember.Component.extend({
     return order && order.items && order.items.length;
   }),
 
+  quantity: Ember.computed('cart.order.data.items.@each.quantity', function(){
+    return this.get('cart').quantity();
+  }),
+
   didInsertElement() {
     this.$().foundation();
   },

@@ -36,7 +36,7 @@
                   </div>
                   <div class="row">
                     <div class="small-12 columns price">
-                      ${{item.price}}
+                      {{format-number item.price style="currency" currency="USD"}}
                     </div>
                   </div>
                 </div>
@@ -49,27 +49,27 @@
             <div class="small-12 columns">
               <div class="row">
                 <div class="small-12 columns">
-                  <strong>subtotal:</strong> ${{cart.order.data.subtotal}}
+                  <strong>subtotal:</strong> {{format-number cart.order.data.subtotal style="currency" currency="USD"}}
                 </div>
               </div>
               <div class="row">
                 <div class="small-12 columns">
-                  <strong>shipping:</strong> ${{cart.order.data.shipping_cost}}
+                  <strong>shipping:</strong> {{format-number cart.order.data.shipping_cost style="currency" currency="USD"}}
                 </div>
               </div>
               <div class="row">
                 <div class="small-12 columns">
-                  <strong>tax ({{cart.order.data.tax}}%):</strong> ${{cart.order.data.tax_cost}}
+                  <strong>tax ({{cart.order.data.tax}}%):</strong> {{format-number cart.order.data.tax_cost style="currency" currency="USD"}}
                 </div>
               </div>
               <div class="row">
                 <div class="small-12 columns">
-                  <strong>total:</strong> ${{cart.order.data.total}}
+                  <strong>total:</strong> {{format-number cart.order.data.total_cost style="currency" currency="USD"}}
                 </div>
               </div>
               <div class="row">
                 <div class="small-12 columns">
-                  <button class="button checkout" onclick={{action 'checkout'}}>check out</button>
+                  <button class="button checkout {{if (gt quantity 0) "" "disabled"}}" onclick={{action 'checkout'}}>check out</button>
                 </div>
               </div>
             </div>

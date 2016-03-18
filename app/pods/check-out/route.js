@@ -16,6 +16,11 @@ export default Ember.Route.extend({
     });
   },
 
-  getPayment(){
+  actions: {
+    error(error) {
+      if (error) {
+        return this.transitionTo('profile');
+      }
+    }
   }
 });

@@ -34,6 +34,17 @@ export default Ember.Service.extend({
     }
   },
 
+  quantity(){
+    let sum = 0;
+    let items = this.get('order.data.items');
+    if (items){
+      items.forEach(function(item){
+        sum += Number(item.quantity);
+      });
+    }
+    return sum;
+  },
+
   //view
   close(){
     $('#shopping-cart').foundation('close');
@@ -120,7 +131,7 @@ export default Ember.Service.extend({
       url: config.host + config.apiEndpoint + '/orders/item/'+params['id'],
       data: params
     }).then((result) => {
-      this.set('order.data.total', result.order.total);
+      this.set('order.data.total_cost', result.order.total_cost);
       this.set('order.data.subtotal', result.order.subtotal);
       this.set('order.data.tax', result.order.tax);
       this.set('order.data.tax_cost', result.order.tax_cost);

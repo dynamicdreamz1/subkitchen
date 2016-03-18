@@ -4,10 +4,16 @@ import config from 'subkitchen-front/config/environment';
 export default Ember.Component.extend({
   cart: Ember.inject.service('shopping-cart'),
   stripe: Ember.inject.service(),
+  routing: Ember.inject.service('-routing'),
   payment: null,
   address: null,
   user: null,
-  card: new Ember.Object(),
+  card: new Ember.Object({
+    number: '',
+    exp_month: '',
+    exp_year: '',
+    cvc: ''
+  }),
   errors: {},
 
   order: Ember.computed(['address', 'user'], function(){
@@ -17,7 +23,6 @@ export default Ember.Component.extend({
         return !i.length;
       }).compact().join(' ');
 
-      console.log('user', this.get('user.data.email'));
       let order = new Ember.Object({
         payment_type: 'paypal',
         email: this.get('user').get('data.email'),
@@ -32,12 +37,17 @@ export default Ember.Component.extend({
       return order;
   }),
 
-  hasItems: Ember.computed('payment.order.items', function(){
-    let order = this.get('payment.order');
-    return order && order.items && order.items.length;
+  observeCart: Ember.observer('cart.order.data.items.@each', function () {
+    this.set("payment.order", this.get('cart').get('order.data'));
   }),
 
-  hasData: Ember.computed(['hasItems', 'payment.deleted_items'], function(){
+  hasItems: Ember.computed('payment.order.items.@each.quantity', function(){
+    let order = this.get('payment.order');
+    let quantity = this.get('cart').quantity();
+    return order && order.items && order.items.length && quantity > 0;
+  }),
+
+  hasData: Ember.computed(['hasItems', 'payment.deleted_items.@each'], function(){
     let deleted_items = this.get('payment.deleted_items');
     return this.get('hasItems') || (deleted_items && deleted_items.length);
   }),
@@ -49,6 +59,7 @@ export default Ember.Component.extend({
 
   actions: {
     order(){
+      this.showSpinner();
       let payment_type = this.get('order.payment_type');
       if (payment_type === 'stripe'){
         this.payWithStripe();
@@ -64,21 +75,18 @@ export default Ember.Component.extend({
 
   payWithStripe(){
     let stripe = this.get('stripe');
-    let card = this.get('card').getProperties();
+    let card = this.get('card').getProperties('number', 'exp_month', 'exp_year', 'cvc');
 
-    console.log('card', card);
-
-    stripe.card.createToken(card).then(function(response) {
-      // you get access to your newly created token here
+    stripe.card.createToken(card).then((response)=>{
       this.set('order.stripe_token', response.id);
-      // this.saveOrder();
+      this.saveOrder();
     })
-    .catch(function(response) {
-      // if there was an error retrieving the token you could get it here
-      console.log(response);
-
+    .catch((response) => {
+      this.hideSpinner();
       if (response.error.type === 'card_error') {
-        // show the error in the form or something
+        let errors = {card: {}};
+        errors.card[response.error.param] = [response.error.message];
+        this.set('errors', errors);
       }
     });
   },
@@ -98,18 +106,28 @@ export default Ember.Component.extend({
       dataType: 'json'
     })
     .then((result)=>{
-      console.log(result);
+      this.get('cart').reload();
       if (result.url){
-        console.log('yay url', result);
-        // window.top.location.href = result.url;
+        window.top.location.href = result.url;
+      } else {
+        this.get("routing").transitionTo("profile");
       }
     }, (error)=>{
+      this.hideSpinner();
       if (error.responseJSON){
         this.set('errors', error.responseJSON.errors);
       } else {
         this.set('errors', {base: ['Connection error. Please try again later.']});
       }
     });
+  },
+
+  showSpinner(){
+    this.$('.place-order').addClass('loading-white');
+  },
+
+  hideSpinner(){
+    this.$('.place-order').removeClass('loading-white');
   }
 
 });

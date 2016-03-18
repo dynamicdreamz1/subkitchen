@@ -10,6 +10,10 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+    intl: {
+      baseLocale: 'en-us',
+      locales: ['en-us']
+    },
     date: {
       defaultFormat: 'DD/MM/YYYY h:mm a',
       defaultDay: 'DD/MM/YYYY',

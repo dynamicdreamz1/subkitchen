@@ -8,6 +8,7 @@
       {{#if hasItems}}
       <div class="row items">
         {{#each payment.order.items as |item|}}
+        {{#if (gt item.quantity 0)}}
         <div class="small-12 columns item" id="item-{{item.id}}">
           <div class="row">
             <div class="small-4 medium-3 columns image">
@@ -22,7 +23,7 @@
                   {{item.name}}
                 </div>
                 <div class="small-3 columns price text-right">
-                  ${{item.price}}
+                  {{format-number item.price style="currency" currency="USD"}}
                 </div>
               </div>
               <div class="row">
@@ -33,6 +34,7 @@
             </div>
           </div>
         </div>
+        {{/if}}
         {{/each}}
       </div>
 
@@ -40,24 +42,30 @@
         <div class="small-12 columns">
           <div class="row">
             <div class="small-12 columns">
-              <strong>subtotal:</strong> ${{payment.order.subtotal}}
+              <strong>subtotal:</strong> {{format-number payment.order.subtotal style="currency" currency="USD"}}
             </div>
           </div>
           <div class="row">
             <div class="small-12 columns">
-              <strong>shipping:</strong> ${{payment.order.shipping_cost}}
+              <strong>shipping:</strong> {{format-number payment.order.shipping_cost style="currency" currency="USD"}}
             </div>
           </div>
           <div class="row">
             <div class="small-12 columns">
-              <strong>tax ({{payment.order.tax}}%):</strong> ${{payment.order.tax_cost}}
+              <strong>tax ({{payment.order.tax}}%):</strong> {{format-number payment.order.tax_cost style="currency" currency="USD"}}
             </div>
           </div>
           <div class="row">
             <div class="small-12 columns">
-              <strong>total:</strong> ${{payment.order.total_cost}}
+              <strong>total:</strong> {{format-number payment.order.total_cost style="currency" currency="USD"}}
             </div>
           </div>
+        </div>
+      </div>
+      {{else}}
+      <div class="row">
+        <div class="small-12 columns uppercase center">
+          cart is empty
         </div>
       </div>
       {{/if}}
@@ -84,7 +92,7 @@
                   {{item.name}}
                 </div>
                 <div class="small-3 columns price text-right">
-                  ${{item.price}}
+                  {{format-number item.price style="currency" currency="USD"}}
                 </div>
               </div>
               <div class="row">
@@ -176,27 +184,27 @@
                 {{#if (eq order.payment_type 'stripe')}}
                 <div class="row">
                   <div class="small-12 columns">
-                    <label class={{if errors.credit_card_number "is-invalid-label" ""}}>
+                    <label class={{if errors.card._number "is-invalid-label" ""}}>
                       {{input type="text" placeholder="Credit Card Number" value=card.number disabled=(not hasItems)}}
-                      {{input-errors errors=errors.credit_card_number}}
+                      {{input-errors errors=errors.card.number}}
                     </label>
                   </div>
                   <div class="small-12 medium-4 columns">
-                    <label class={{if errors.month "is-invalid-label" ""}}>
-                      {{input type="text" placeholder="MM" value=card.exp-month disabled=(not hasItems)}}
-                      {{input-errors errors=errors.month}}
+                    <label class={{if errors.card.exp_month "is-invalid-label" ""}}>
+                      {{input type="text" placeholder="MM" value=card.exp_month disabled=(not hasItems)}}
+                      {{input-errors errors=errors.card.exp_month}}
                     </label>
                   </div>
                   <div class="small-12 medium-4 columns">
-                    <label class={{if errors.year "is-invalid-label" ""}}>
-                      {{input type="text" placeholder="YYYY" value=card.exp-year disabled=(not hasItems)}}
-                      {{input-errors errors=errors.year}}
+                    <label class={{if errors.card.exp_year "is-invalid-label" ""}}>
+                      {{input type="text" placeholder="YYYY" value=card.exp_year disabled=(not hasItems)}}
+                      {{input-errors errors=errors.card.exp_year}}
                     </label>
                   </div>
                   <div class="small-12 medium-4 columns">
-                    <label class={{if errors.cvc "is-invalid-label" ""}}>
+                    <label class={{if errors.card.cvc "is-invalid-label" ""}}>
                       {{input type="text" placeholder="CVC" value=card.cvc disabled=(not hasItems)}}
-                      {{input-errors errors=errors.cvc}}
+                      {{input-errors errors=errors.card.cvc}}
                     </label>
                   </div>
                 </div>
@@ -216,7 +224,7 @@
             </div>
             <div class="row">
               <div class="small-12 columns">
-                <button type="submit" class="button dark uppercase {{if hasItems "" "disabled"}}">place order</button>
+                <button type="submit" class="button dark uppercase {{if hasItems "" "disabled"}} place-order">place order</button>
               </div>
             </div>
           </form>
