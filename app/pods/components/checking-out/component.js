@@ -25,6 +25,7 @@ export default Ember.Component.extend({
 
       let order = new Ember.Object({
         payment_type: 'paypal',
+        return_path: '/profile',
         email: this.get('user').get('data.email'),
         full_name: fullname,
         address: address.get('address'),
