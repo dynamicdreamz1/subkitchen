@@ -37,7 +37,7 @@
       <ul class="dropdown menu" data-dropdown-menu>
         <li>
           {{#link-to 'profile' class="join uppercase"}}
-            <span class="uppercase">my kitchen</span>
+            <span class="uppercase">my&nbsp;kitchen</span>
           {{/link-to}}
           <ul class="menu">
             <li>
@@ -58,13 +58,68 @@
       {{/if}}
     </li>
     <li> <a class="action-item"> <span class="icon-sub-heart"></span> </a> </li>
-    <li>
+
+    <li data-toggle="cart-dropdown" id="cart-dropdown-trigger">
       <a class="action-item basket-indicator" onclick={{action 'showCart'}}> <span class="icon-sub-basket"></span>
         <span class="basket-counter">{{cartCount}}</span>
       </a>
+
+      <div class="dropdown-pane bottom" id="cart-dropdown" data-dropdown data-hover="true" data-auto-focus="true" data-close-on-click="true">
+        <h5 class="uppercase font-bold text-center">your cart</h5>
+
+        {{#if hasData}}
+        <ul class="vertical menu">
+          {{#each cart.order.data.items as |item|}}
+          <li>
+            <div class="row collapse" >
+              <div class="small-8 columns text-left">
+                <div class="row collapse">
+                  <div class="small-12 columns ellipsis name">
+                    <small>{{item.name}}</small>
+                  </div>
+                </div>
+                <div class="row collapse">
+                  <div class="small-12 columns size">
+                    <small>QTY: {{item.quantity}} {{item.size}}</small>
+                  </div>
+                </div>
+              </div>
+              <div class="small-4 columns text-right">
+                <div class="row collapse">
+                  <div class="small-12 columns price">
+                    <small>{{format-number item.price style="currency" currency="USD"}}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          {{/each}}
+        </ul>
+        {{else}}
+        <div class="row items">
+          <div class="small-12 columns uppercase center">
+            is empty
+          </div>
+        </div>
+        {{/if}}
+
+        <div class="row total">
+          <div class="small-12 columns text-center">
+            <small><strong>Total:</strong> {{format-number cart.order.data.total_cost style="currency" currency="USD"}}</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 columns">
+            <div class="button blue" onclick={{action 'showCart'}}>Edit cart/Checkout</div>
+          </div>
+        </div>
+      </div>
     </li>
+
   </ul>
 </nav>
+
+
 <div class="reveal" id="loginModal" data-reveal data-close-on-click="true">
   <button class="close-button" data-close aria-label="Close modal" type="button">
     <span aria-hidden="true">&times;</span>

@@ -112,6 +112,8 @@ export default Ember.Service.extend({
       data: params
     }).then((result) => {
       this.set('order.data', result.order);
+      $('#cart-dropdown').foundation('close');
+      $('#cart-dropdown').foundation('open');
     }, (error) => {
       if (error.responseJSON){
         this.set('errors', error.responseJSON.errors);

@@ -11,6 +11,11 @@ export default Ember.Component.extend({
   identification: null,
   password: null,
 
+  hasData: Ember.computed('cart.order.data', function(){
+    let order = this.get('cart.order.data');
+    return order && order.items && order.items.length;
+  }),
+
   didInsertElement() {
     this.$().foundation();
   },
