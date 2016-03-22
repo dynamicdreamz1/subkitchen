@@ -136,4 +136,38 @@
       padding-top: 0.5rem;
     }
   }
+  .comments{
+    .comment{
+      img{
+        padding: 1em;
+        padding-top: 0;
+      }
+      .comment-content{
+        padding: 1em;
+        background: $light-gray;
+        font-size: 0.8em;
+        color: #000000;
+        position: relative;
+        .info{
+          color: #646464;
+          .username{
+            color: #000000;
+            font-weight: bold;
+          }
+        }
+
+        &:before{
+          content: '';
+          position: absolute;
+          left: -12px;
+          top: 12px;
+          width: 0;
+          height: 0;
+          border-top: 12px solid transparent;
+          border-bottom: 12px solid transparent;
+          border-right: 12px solid $light-gray;
+        }
+      }
+    }
+  }
 }

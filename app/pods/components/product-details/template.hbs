@@ -87,12 +87,39 @@
         <li class="tabs-title"><a href="#promoters" {{action 'none'}}>PROMOTERS (<span class="count">{{model.likes_count}}</span>)</a></li>
       </ul>
       <div class="tabs-content" data-tabs-content="product-supporters">
-        <div class="tabs-panel is-active" id="comments">
-          <ul>
-            {{#each model.comments as |comment|}}
-            <li>{{comment.id}}</li>
-            {{/each}}
-          </ul>
+        <div class="tabs-panel is-active comments" id="comments">
+          {{#each comments as |comment|}}
+          <div class="row comment">
+            <div class="small-2 columns">
+              {{#if comment.user.image_url}}
+              <img src="{{comment.user.image_url}}" alt="{{comment.user.name}}">
+              {{else}}
+              <img src="assets/images/default-2.png" alt="{{comment.user.name}}">
+              {{/if}}
+            </div>
+            <div class="small-10 columns comment-content">
+              <div class="row">
+                <div class="small-12 columns info">
+                  <span class="username">{{comment.user.name}}</span> commented on {{format-date comment.createdAt  hour='numeric' minute='numeric' hour12=true month='long' day='numeric' year ='numeric'}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns">
+                  {{comment.content}}
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+
+          <!-- {{#if (gt comments.meta.total_pages comments.meta.current_page)}} -->
+          <!-- <div class="row"> -->
+          <!--   <div class="small-12 columns text-center"> -->
+          <!--     <button class="button uppercase">load more</button> -->
+          <!--   </div> -->
+          <!-- </div> -->
+          <!-- {{/if}} -->
+
         </div>
 
         <div class="tabs-panel" id="promoters">
