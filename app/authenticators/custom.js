@@ -30,9 +30,9 @@ export default Base.extend({
         dataType: 'json'
       }).then(function(response) {
         Ember.run(function() {
-          that.get('session').set('data.user', response);
+          that.get('session').set('data.user', response.user);
           resolve({
-            token: response.auth_token
+            token: response.user.auth_token
           });
         });
       }, function(xhr) {

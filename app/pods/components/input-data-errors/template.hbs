@@ -1,0 +1,7 @@
+{{#if errors}}
+  {{#each errors as |error|}}
+    <span class="form-error is-visible">
+      {{error.message}}
+    </span>
+  {{/each}}
+{{/if}}

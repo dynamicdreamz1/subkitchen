@@ -1,0 +1,14 @@
+<section class="flash-messages">
+  <div class="row">
+    <div class="small-12 columns">
+      {{#each flashMessages.arrangedQueue as |flash|}}
+        {{#flash-message flash=flash as |component flash|}}
+          <div class="callout {{flash.type}}">
+            <p>{{flash.message}}</p>
+          </div>
+        {{/flash-message}}
+      {{/each}}
+    </div>
+  </div>
+</section>
+

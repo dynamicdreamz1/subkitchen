@@ -4,9 +4,10 @@ import config from 'subkitchen-front/config/environment';
 export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
-  user: Ember.inject.service('current-user'),
-  address: null,
+  flashMessages: Ember.inject.service(),
 
+  user: null,
+  address: null,
   errors: {},
   typingDelays: {},
 
@@ -22,20 +23,9 @@ export default Ember.Component.extend({
       address.get('country'));
   }),
 
-  observeEmail: Ember.observer('user.data.email', function () {
-    this.saveAttribute('email', this.get('user.data.email'));
-  }),
-
-  observeName: Ember.observer('user.data.name', function () {
-    this.saveAttribute('name', this.get('user.data.name'));
-  }),
-
-  observeHandle: Ember.observer('user.data.handle', function () {
-    this.saveAttribute('handle', this.get('user.data.handle'));
-  }),
-
   observeProfileImage: function () {
-    if (this.get('user.data.profile_image') && this.get('user.data.profile_image').length){
+    const flashMessages = this.get('flashMessages');
+    if (this.get('user.profileImage') && this.get('user.profileImage').length){
       this.$('#uploadButton').addClass('loading');
       let formData = new FormData(this.$('#formAvatarUpload')[0]);
       this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
@@ -51,65 +41,41 @@ export default Ember.Component.extend({
           processData: false,
           dataType : 'json',
         }).then((result) => {
-          let error = (result.errors || {}).profile_image;
-          this.set('errors.profile_image', error);
-          if (!error){
-            this.set('user.data.image_url', result.image_url);
-            this.get('user').set('data.image_url', result.image_url);
-          }
-          this.set('user.data.profile_image', null);
+          flashMessages.success('Profile image updated');
+          this.set('errors', {});
+          this.set('user.imageUrl', result.user.image_url);
+          this.set('user.profileImage', null);
           this.$('#uploadButton').removeClass('loading');
         }, (error) => {
-          this.set('user.data.profile_image', null);
-          this.$('#uploadButton').removeClass('loading');
+          this.set('user.profileImage', null);
           if (error.responseJSON){
             this.set('errors', error.responseJSON.errors);
           } else {
             this.set('errors', {base: ['Connection error. Please try again later.']});
           }
+          this.$('#uploadButton').removeClass('loading');
         });
       });
     }
-  }.observes('user.data.profile_image'),
+  }.observes('user.profileImage'),
 
   actions: {
     becomeCook(){
       this.get("routing").transitionTo("become-cook");
-    }
-  },
+    },
 
+    save(){
+      const flashMessages = this.get('flashMessages');
 
-  saveAttribute: function(name, value){
-    if (this.typingDelays[name]){
-      clearTimeout(this.typingDelays[name]);
-    }
-    this.typingDelays[name] = setTimeout(()=>{
-      this.$('#user-'+name).addClass('loading');
-      var params = {};
-      params[name] = value;
-      this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
-        var headers = {};
-        headers[headerName] = headerValue;
-        Ember.$.ajax({
-          headers: headers,
-          method: "PUT",
-          url: config.host + config.apiEndpoint + '/account/' + name,
-          data: params
-        }).then((result) => {
-          this.set('errors', {});
-          this.get('user.data').set(name, result[name]);
-          this.$('#user-'+name).removeClass('loading');
-          this.typingDelays[name] = null;
-        }, (error) => {
-          if (error.responseJSON){
-            this.set('errors', error.responseJSON.errors);
-          } else {
-            this.set('errors', {base: ['Connection error. Please try again later.']});
-          }
-          this.$('#user-'+name).removeClass('loading');
-          this.typingDelays[name] = null;
-        });
+      this.$('#save-button').addClass('loading-white');
+      this.get('user').save()
+      .then(()=>{
+        flashMessages.success('Profile updated');
+        this.$('#save-button').removeClass('loading-white');
+      }, ()=>{
+        flashMessages.alert('Could not update profile. Try again later.');
+        this.$('#save-button').removeClass('loading-white');
       });
-    }, 500);
+    }
   },
 });

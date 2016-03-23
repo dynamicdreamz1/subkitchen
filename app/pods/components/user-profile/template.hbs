@@ -3,19 +3,19 @@
 
     <div class="row">
       <div class="small-12 medium-3 large-2 columns">
-        {{#if user.data.image_url}}
-        <img src="{{user.data.image_url}}" alt="">
+        {{#if user.imageUrl}}
+        <img src="{{user.imageUrl}}" alt="">
         {{else}}
         <img src="assets/images/default.png" alt="">
         {{/if}}
       </div>
       <div class="small-12 medium-9 large-10 columns">
-        <h5 class="font-black uppercase">{{user.data.name}}</h5>
-        <p>{{user.data.email}}</p>
+        <h5 class="font-black uppercase">{{user.name}}</h5>
+        <p>{{user.email}}</p>
         <p>
           <form id="formAvatarUpload">
             <label id="uploadButton" for="avatarFileUpload" class="button hollow upload">upload</label>
-            {{input type="file" name="image" id="avatarFileUpload" class="show-for-sr" value=user.data.profile_image}}
+            {{input type="file" name="image" id="avatarFileUpload" class="show-for-sr" value=user.profileImage}}
 
             {{input-errors errors=errors.profile_image}}
           </form>
@@ -27,29 +27,34 @@
 
     <div class="row">
       <div class="small-12 medium-7 columns">
-        {{input-errors errors=errors.base}}
-        <form novalidate>
+        {{input-data-errors errors=user.errors.base}}
+        <form novalidate  {{action "save" on="submit"}}>
           <div class="row">
             <div class="small-12 columns">
-              <label class={{if errors.name "is-invalid-label" ""}}>Profile name
-                {{input type="text" placeholder="eg, John Doe" value=user.data.name id="user-name"}}
-                {{input-errors errors=errors.name}}
+              <label class={{if user.errors.name "is-invalid-label" ""}}>Profile name
+                {{input type="text" placeholder="eg, John Doe" value=user.name id="user-name"}}
+                {{input-data-errors errors=user.errors.name}}
               </label>
             </div>
             <div class="small-12 columns">
-              <label class={{if errors.email "is-invalid-label" ""}}>Email Address
-                {{input type="email" placeholder="Email Address" value=user.data.email id="user-email"}}
-                {{input-errors errors=errors.email}}
+              <label class={{if user.errors.email "is-invalid-label" ""}}>Email Address
+                {{input type="email" placeholder="Email Address" value=user.email id="user-email"}}
+                {{input-data-errors errors=user.errors.email}}
               </label>
             </div>
             <div class="small-12 columns">
-              <label class={{if errors.handle "is-invalid-label" ""}}>Handle
+              <label class={{if user.errors.handle "is-invalid-label" ""}}>Handle
                 <div class="input-group">
                   <span class="input-group-label">http://sublimation.kitchen/profile/</span>
-                  {{input class="input-group-field" type="text" placeholder="johndoe" value=user.data.handle id="user-handle"}}
+                  {{input class="input-group-field" type="text" placeholder="johndoe" value=user.handle id="user-handle"}}
                 </div>
-                {{input-errors errors=errors.handle}}
+                {{input-data-errors errors=user.errors.handle}}
               </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns text-right">
+              <button class="button uppercase" id="save-button">save</button>
             </div>
           </div>
         </form>
@@ -89,8 +94,8 @@
       </div>
     </div>
 
-    {{#if user.data.artist}}
-      {{#if (eq user.data.status 'unverified')}}
+    {{#if user.artist}}
+      {{#if (eq user.status 'unverified')}}
         <div class="row font-bold become-a-cook">
           <div class="small-12 columns center">
             <h2 class="font-black uppercase">We are waiting for payment confirmation!</h2>
