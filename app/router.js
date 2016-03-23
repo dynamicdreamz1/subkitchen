@@ -19,6 +19,7 @@ Router.map(function() {
   this.route('become-cook');
   this.route('cooking');
   this.route('check-out');
+  this.route('public-profile', {path: '/:handle'});
 });
 
 export default Router;
