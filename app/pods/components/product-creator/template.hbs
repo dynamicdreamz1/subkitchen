@@ -1,0 +1,22 @@
+<section class="template-selector">
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="row float-left">
+        {{#each productTemplates as |template|}}
+          <div class="small-2 medium-1 column template float-left">
+            <div class="row">
+              <div class="small-12 columns">
+                <img src="{{template.template_image}}" alt="">
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 columns text-center uppercase">
+                <small>{{template.product_type}}</small>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>
