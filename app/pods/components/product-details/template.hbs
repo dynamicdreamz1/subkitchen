@@ -112,13 +112,13 @@
           </div>
           {{/each}}
 
-          <!-- {{#if (gt comments.meta.total_pages comments.meta.current_page)}} -->
-          <!-- <div class="row"> -->
-          <!--   <div class="small-12 columns text-center"> -->
-          <!--     <button class="button uppercase">load more</button> -->
-          <!--   </div> -->
-          <!-- </div> -->
-          <!-- {{/if}} -->
+          {{#if (gt comments.meta.total_pages comments.meta.current_page)}}
+          <div class="row">
+            <div class="small-12 columns text-center">
+              <button class="button uppercase" onclick={{action 'loadMoreComments'}}>load more</button>
+            </div>
+          </div>
+          {{/if}}
 
         </div>
 

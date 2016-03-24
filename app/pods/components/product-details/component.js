@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  store: Ember.inject.service(),
   cart: Ember.inject.service('shopping-cart'),
   like: Ember.inject.service('product-like'),
   size: 'MD',
@@ -46,6 +47,17 @@ export default Ember.Component.extend({
         } else {
           this.set('errors', {base: ['Connection error. Please try again later.']});
         }
+      });
+    },
+
+    loadMoreComments(){
+      let newPage = this.get('comments.meta.current_page') + 1;
+      this.get('store')
+      .query('comment', {product_id: this.get('model.id'), page: newPage})
+      .then((results)=>{
+        let comments = this.get('comments');
+        comments.pushObjects(results.content);
+        comments.set('meta.current_page', results.get('meta.current_page'));
       });
     }
   }
