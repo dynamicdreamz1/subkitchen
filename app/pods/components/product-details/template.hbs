@@ -25,7 +25,7 @@
       </div>
       <div class="row">
         <div class="small-12 columns">
-          <h4 class="price"> {{model.price}} </h4>
+          <h4 class="price"> {{format-number model.price style="currency" currency="USD"}} </h4>
         </div>
       </div>
       <div class="row">
@@ -60,9 +60,9 @@
       <div class="row">
         <div class="small-12 columns">
           <ul class="tabs" data-tabs id="example-tabs">
-            <li class="tabs-title is-active"><a href="#panel1" aria-selected="true" {{action "none"}}>DESCRIPTION</a></li>
-            <li class="tabs-title"><a href="#panel2" {{action "none"}}>SIZE CHART</a></li>
-            <li class="tabs-title"><a href="#panel3" {{action "none"}}>SHIPPING</a></li>
+            <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">DESCRIPTION</a></li>
+            <li class="tabs-title"><a href="#panel2">SIZE CHART</a></li>
+            <li class="tabs-title"><a href="#panel3">SHIPPING</a></li>
           </ul>
           <div class="tabs-content" data-tabs-content="example-tabs">
             <div class="tabs-panel is-active" id="panel1">

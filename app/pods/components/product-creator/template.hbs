@@ -1,21 +1,89 @@
 <section class="template-selector">
   <div class="row">
     <div class="small-12 columns">
-      <div class="row float-left">
+      <div class="row float-left collapse">
         {{#each productTemplates as |template|}}
-          <div class="small-2 medium-1 column template float-left">
+        <div class="small-2 medium-1 column template float-left {{if (eq selectedTemplate template) 'active' ''}}" onclick={{action 'selectTemplate' template}}>
             <div class="row">
               <div class="small-12 columns">
-                <img src="{{template.template_image}}" alt="">
+                <img src="{{template.templateImage}}" alt="">
               </div>
             </div>
-            <div class="row">
+            <div class="row collapse">
               <div class="small-12 columns text-center uppercase">
                 <small>{{template.product_type}}</small>
               </div>
             </div>
           </div>
         {{/each}}
+      </div>
+    </div>
+  </div>
+</section>
+<section class="product-editor">
+  <div class="row">
+    <div class="small-6 columns editor">
+      <img src="{{selectedTemplate.templateImageLarge}}" alt="">
+    </div>
+    <div class="small-6 columns editor">
+      <div class="row collapse">
+        <div class="small-12 columns ellipsis uppercase">
+          <h4> {{selectedTemplate.product_type}} </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns">
+          <h4 class="price"> {{format-number selectedTemplate.price style="currency" currency="USD"}} </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns sizes">
+          SIZE:
+          <form>
+            <ul class="center uppercase">
+              {{#each selectedTemplate.size as |s|}}
+              <li>{{radio-button value=s model_id=selectedTemplate.id text=s execute=setSize chosen=size}}</li>
+              {{/each}}
+            </ul>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns">
+          QUANTITY:
+          <div class="input-group quantity">
+            <a class="input-group-label minus" onclick={{action "decreaseQuantity"}}>&#8211;</a>
+            {{input class="input-group-field center" type="number" value=quantity}}
+            <a class="input-group-label plus" onclick={{action "increaseQuantity"}}>+</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-12 medium-6 columns">
+          <a class="button" onclick={{action "addToCart"}} class="blue button addToCart uppercase">ADD TO CART</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-12 columns">
+          <ul class="tabs" data-tabs id="example-tabs">
+            <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">DESCRIPTION</a></li>
+            <li class="tabs-title"><a href="#panel2">SIZE CHART</a></li>
+            <li class="tabs-title"><a href="#panel3">SHIPPING</a></li>
+          </ul>
+          <div class="tabs-content" data-tabs-content="example-tabs">
+            <div class="tabs-panel is-active" id="panel1">
+              <p> {{{selectedTemplate.id}}} </p>
+            </div>
+            <div class="tabs-panel" id="panel2">
+              <p>Suspendisse dictum feugiat nisl ut dapibus.  Vivamus hendrerit arcu sed erat molestie vehicula. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.  Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
+            </div>
+            <div class="tabs-panel" id="panel3">
+              <p> {{{selectedTemplate.id}}} </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
