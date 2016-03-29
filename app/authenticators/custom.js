@@ -45,7 +45,6 @@ export default Base.extend({
   },
 
   invalidate: function() {
-    console.log('invalidate...');
     return Ember.RSVP.resolve();
   }
 });

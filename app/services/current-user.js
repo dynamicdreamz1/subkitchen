@@ -23,7 +23,7 @@ export default Ember.Service.extend({
         method: "GET",
         url: config.host + config.apiEndpoint + '/account'
       }).then((result) => {
-        this.set('data', new Ember.Object(result));
+        this.set('data', result.user);
       }, () => {
         this.set('data', null);
       });

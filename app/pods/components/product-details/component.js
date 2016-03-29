@@ -23,7 +23,6 @@ export default Ember.Component.extend({
     },
 
     decreaseQuantity(){
-      console.log('decreaseQuantity');
       let newValue = this.get('quantity') - 1;
       if (newValue < 1){
         newValue = 1; }
@@ -31,7 +30,6 @@ export default Ember.Component.extend({
     },
 
     increaseQuantity(){
-      console.log('increaseQuantity');
       let newValue = this.get('quantity') + 1;
       this.set('quantity', newValue);
     },

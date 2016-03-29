@@ -62,7 +62,6 @@ export default Ember.Component.extend({
         }).then(() => {
           this.set('errorMessage', null);
           this.set('mailSent', true);
-          console.log('success');
         }, () => {
           this.set('errorMessage', true);
           this.set('mailSent', null);

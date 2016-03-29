@@ -26,7 +26,6 @@ export default Ember.Service.extend({
       items.forEach((item, index) =>{
         let abs = Math.abs(Number(item.quantity));
         if (abs !== Number(item.quantity)){
-          console.log('quantityChanged', item.quantity, abs);
           this.set('order.data.items.' + index + '.quantity', Math.abs(Number(item.quantity)));
         }
         this.setQuantity(item);
@@ -60,8 +59,6 @@ export default Ember.Service.extend({
 
   // behavior
   add(product_id, size, quantity) {
-    console.log('add', product_id, size, quantity);
-
     var params = {
       product_id: product_id,
       size: size,

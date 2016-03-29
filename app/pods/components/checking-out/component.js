@@ -16,26 +16,26 @@ export default Ember.Component.extend({
   }),
   errors: {},
 
-  order: Ember.computed(['address', 'user'], function(){
+  order: Ember.computed(['address', 'user.data.email'], function(){
     let address = this.get('address');
     let fullname = [address.get('firstName'), address.get('lastName')].
       reject(function(i){
-        return !i.length;
+        return !(i && i.length);
       }).compact().join(' ');
 
-      let order = new Ember.Object({
-        payment_type: 'paypal',
-        return_path: '/profile',
-        email: this.get('user').get('data.email'),
-        full_name: fullname,
-        address: address.get('address'),
-        city: address.get('city'),
-        country: address.get('country'),
-        region: address.get('region'),
-        zip: address.get('zip')
-      });
+    let order = new Ember.Object({
+      payment_type: 'paypal',
+      return_path: '/profile',
+      email: this.get('user').get('data.email'),
+      full_name: fullname,
+      address: address.get('address'),
+      city: address.get('city'),
+      country: address.get('country'),
+      region: address.get('region'),
+      zip: address.get('zip')
+    });
 
-      return order;
+    return order;
   }),
 
   observeCart: Ember.observer('cart.order.data.items.@each', function () {
