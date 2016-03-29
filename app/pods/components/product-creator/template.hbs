@@ -23,6 +23,15 @@
 <section class="product-editor">
   <div class="row">
     <div class="small-6 columns editor">
+      <form id="formImageUpload">
+        <label id="uploadButton" for="imageFileUpload" class="button upload uppercase">upload artwork</label>
+        {{input type="file" name="image" id="imageFileUpload" class="show-for-sr" value=product.image}}
+
+        {{input-errors errors=errors.image}}
+      </form>
+
+      <img class="upload-preview" src="" alt="">
+
       <img src="{{selectedTemplate.templateImageLarge}}" alt="">
     </div>
     <div class="small-6 columns editor">

@@ -18,6 +18,18 @@ section.template-selector{
 .product-editor{
   margin-top: 1rem;
 
+  .editor{
+    position: relative;
+
+    .upload-preview{
+      width: 50%;
+      position: absolute;
+      top: 25%;
+      left: 25%;
+      display: none;
+    }
+  }
+
   img.main{
     width: 100%;
   }
