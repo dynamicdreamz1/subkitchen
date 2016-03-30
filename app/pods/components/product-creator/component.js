@@ -55,7 +55,7 @@ export default Ember.Component.extend({
 
   observeSelectedTemplate: function () {
     let canvasActions = this.get('canvasActions');
-    canvasActions.setBackground.call(this);
+    canvasActions.init.call(this);
   }.observes('selectedTemplate'),
 
   observeImage: function () {
