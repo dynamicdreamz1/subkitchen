@@ -19,6 +19,11 @@ module.exports = function(environment) {
       defaultDay: 'DD/MM/YYYY',
       defaultHour: 'h:mm a'
     },
+    resizeServiceDefaults: {
+      debounceTimeout    : 200,
+      heightSensitive    : false,
+      widthSensitive     : true
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

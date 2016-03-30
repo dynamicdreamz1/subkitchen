@@ -8,5 +8,6 @@ export default DS.Model.extend({
   size:               DS.attr(),
   size_chart:         DS.attr('string'),
   templateImage:      DS.attr('string'),
-  templateImageLarge: DS.attr('string')
+  templateImageLarge: DS.attr('string'),
+  templateMaskLarge:  DS.attr('string')
 });
