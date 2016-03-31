@@ -73,7 +73,6 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    this.$().foundation();
 
     let canvasActions = this.get('canvasActions');
     canvasActions.init.call(this);
@@ -81,6 +80,8 @@ export default Ember.Component.extend({
     this.get('resize').on('debouncedDidResize', ()=>{
       canvasActions.init.call(this);
     });
+
+    this.$().foundation();
   },
 
   canvasActions: {
@@ -139,16 +140,15 @@ export default Ember.Component.extend({
       });
 
       let width = this.$('.editor').width();
-      let options = this.get('imageOptions');
-      options['width'] = width * 0.99;
-      options['height'] = width * 0.99;
 
       fabric.Image.fromURL(imgBase64, function(oImg){
-        oImg.scale( 0.8 );
+        let ratio = oImg.height / oImg.width;
+        let imgWidth = width * 0.9;
+        oImg.set({width:imgWidth, height:imgWidth * ratio});
         canvas.add(oImg).centerObject(oImg);
         oImg.setCoords();
         canvas.renderAll().setActiveObject(oImg);
-      }, options);
+      }, this.get('imageOptions'));
     }
   }
 });

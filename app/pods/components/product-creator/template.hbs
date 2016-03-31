@@ -22,7 +22,7 @@
 </section>
 <section class="product-editor">
   <div class="row">
-    <div class="small-6 columns editor">
+    <div class="small-6 columns">
       <form id="formImageUpload">
         <label id="uploadButton" for="imageFileUpload" class="button upload uppercase">upload artwork</label>
         {{input type="file" name="image" id="imageFileUpload" class="show-for-sr" value=product.image}}
@@ -30,7 +30,31 @@
         {{input-errors errors=errors.image}}
       </form>
 
-      <canvas id="js-custom-product"></canvas>
+      <div class="row collapse" data-equalizer>
+        <div class="small-11 columns editor" data-equalizer-watch>
+          <canvas id="js-custom-product"></canvas>
+        </div>
+        <div class="small-1 columns controlls-wrapper" data-equalizer-watch>
+
+          {{#if product.image}}
+            <div class="controlls">
+              <div class="rotate">
+              </div>
+              <div class="move">
+              </div>
+              <div class="zoom">
+                <div class="plus">
+                </div>
+                <div class="size">
+                  <div class="size-indicator"></div>
+                </div>
+                <div class="minus">
+                </div>
+              </div>
+            </div>
+          {{/if}}
+        </div>
+      </div>
     </div>
     <div class="small-6 columns editor">
       <div class="row collapse">
