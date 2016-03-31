@@ -44,9 +44,10 @@ export default Ember.Component.extend({
     lockUniScaling: true,
     centeredScaling: true,
     centeredRotation: true,
-    transparentCorners: true,
-    borderColor: 'transparent',
-    cornerSize: 0
+    transparentCorners: false,
+    cornerColor: 'rgba(0,0,0,1)',
+    borderColor: 'rgba(0,0,0,1)',
+    borderOpacityWhenMoving: 1
   },
 
   canvas: Ember.computed(function(){
@@ -85,9 +86,15 @@ export default Ember.Component.extend({
   canvasActions: {
     init(){
       let canvasActions = this.get('canvasActions');
+      canvasActions.customizeCanvas.call(this);
       canvasActions.setSize.call(this);
       canvasActions.setBackground.call(this);
       canvasActions.setMask.call(this);
+    },
+
+    customizeCanvas(){
+      let canvas = this.get('canvas');
+      canvas.hoverCursor = 'pointer';
     },
 
     setSize(){
@@ -124,21 +131,24 @@ export default Ember.Component.extend({
     },
 
     setUploadedImage(imgBase64){
-      console.log('setUploadedImage', imgBase64);
       let canvas = this.get('canvas');
 
       let currentObjects = canvas.getObjects() || [];
-      console.log(currentObjects);
       currentObjects.forEach(function(object){
         canvas.remove(object);
       });
+
+      let width = this.$('.editor').width();
+      let options = this.get('imageOptions');
+      options['width'] = width * 0.99;
+      options['height'] = width * 0.99;
 
       fabric.Image.fromURL(imgBase64, function(oImg){
         oImg.scale( 0.8 );
         canvas.add(oImg).centerObject(oImg);
         oImg.setCoords();
         canvas.renderAll().setActiveObject(oImg);
-      }, this.get('imageOptions'));
+      }, options);
     }
   }
 });
