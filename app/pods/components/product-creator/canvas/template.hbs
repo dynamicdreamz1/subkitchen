@@ -1,0 +1,32 @@
+<form id="formImageUpload">
+  <label id="uploadButton" for="imageFileUpload" class="button upload uppercase">upload artwork</label>
+  {{input type="file" name="image" id="imageFileUpload" class="show-for-sr" value=product.image}}
+
+  {{input-errors errors=errors.image}}
+</form>
+
+<div class="row collapse" data-equalizer>
+  <div class="small-11 columns editor" data-equalizer-watch>
+    <canvas id="js-custom-product"></canvas>
+  </div>
+  <div class="small-1 columns controlls-wrapper" data-equalizer-watch>
+
+    {{#if product.image}}
+      <div class="controlls">
+        <div class="rotate">
+        </div>
+        <div class="move">
+        </div>
+        <div class="zoom">
+          <div class="plus" onclick={{action 'scaleUp'}}>
+          </div>
+          <div class="size" onclick={{action 'setScale'}}>
+            <div class="size-indicator"></div>
+          </div>
+          <div class="minus" onclick={{action 'scaleDown'}}>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</div>
