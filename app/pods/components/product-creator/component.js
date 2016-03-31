@@ -1,4 +1,4 @@
-/* global fabric */
+/* global fabric, $ */
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -7,6 +7,7 @@ export default Ember.Component.extend({
   size: 'MD',
   quantity: 1,
   product: new Ember.Object(),
+  scale: 1,
 
   init(){
     this._super(...arguments);
@@ -14,6 +15,34 @@ export default Ember.Component.extend({
   },
 
   actions: {
+    scaleUp(){
+      this.set('scale', this.get('scale') + 0.01);
+      let canvasActions = this.get('canvasActions');
+      canvasActions.scale.call(this, this.get('scale'));
+    },
+
+    scaleDown(){
+      let scale = this.get('scale');
+      scale = scale - 0.01;
+      if (scale < 0){ scale = 0; }
+      this.set('scale', scale);
+      let canvasActions = this.get('canvasActions');
+      canvasActions.scale.call(this, scale);
+    },
+
+    setScale(e){
+      let target = $(e.target);
+      if ($(target).hasClass('size-indicator')){
+        target = target.parent();
+      }
+      let offset = e.pageY - target.offset().top;
+      let clickPos = target.height() - offset;
+      let scale = clickPos * 2 / target.height();
+      this.set('scale', scale);
+      let canvasActions = this.get('canvasActions');
+      canvasActions.scale.call(this, scale);
+    },
+
     selectTemplate(template){
       this.set('selectedTemplate', template);
     },
@@ -53,6 +82,14 @@ export default Ember.Component.extend({
   canvas: Ember.computed(function(){
     return new fabric.Canvas('js-custom-product');
   }),
+
+  observeScale: function () {
+    let scalePercent = this.get('scale') * 100 / 2;
+    if (scalePercent > 100){
+      scalePercent = 100;
+    }
+    this.$('.size-indicator').css({bottom: scalePercent + '%'});
+  }.observes('scale'),
 
   observeSelectedTemplate: function () {
     let canvasActions = this.get('canvasActions');
@@ -96,6 +133,10 @@ export default Ember.Component.extend({
     customizeCanvas(){
       let canvas = this.get('canvas');
       canvas.hoverCursor = 'pointer';
+      canvas.on('object:scaling', ()=>{
+        var obj = canvas.getActiveObject();
+        this.set('scale', obj.getScaleX());
+      });
     },
 
     setSize(){
@@ -131,14 +172,31 @@ export default Ember.Component.extend({
           crossOrigin: 'anonymous' });
     },
 
-    setUploadedImage(imgBase64){
+    scale(value){
+      let canvas = this.get('canvas');
+      let currentObjects = canvas.getObjects() || [];
+      currentObjects.forEach(function(object){
+        object.centeredScaling = true;
+        let centerX = object.getLeft() + object.getWidth() / 2;
+        let centerY = object.getTop() + object.getHeight() / 2;
+        object.scale(value);
+        object.setLeft(centerX - object.getWidth() / 2);
+        object.setTop(centerY - object.getHeight() / 2);
+      });
+      canvas.renderAll();
+    },
+
+    removeImage(){
       let canvas = this.get('canvas');
 
       let currentObjects = canvas.getObjects() || [];
       currentObjects.forEach(function(object){
         canvas.remove(object);
       });
+    },
 
+    addImage(imgBase64){
+      let canvas = this.get('canvas');
       let width = this.$('.editor').width();
 
       fabric.Image.fromURL(imgBase64, function(oImg){
@@ -149,6 +207,12 @@ export default Ember.Component.extend({
         oImg.setCoords();
         canvas.renderAll().setActiveObject(oImg);
       }, this.get('imageOptions'));
+    },
+
+    setUploadedImage(imgBase64){
+      let canvasActions = this.get('canvasActions');
+      canvasActions.removeImage.call(this);
+      canvasActions.addImage.call(this, imgBase64);
     }
   }
 });
