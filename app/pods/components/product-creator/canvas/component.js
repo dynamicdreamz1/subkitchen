@@ -53,7 +53,13 @@ export default Ember.Component.extend({
   },
 
   canvas: Ember.computed(function(){
-    return new fabric.Canvas('js-custom-product');
+    let canvasOptions =
+      { backgroundColor: '#fff',
+        controlsAboveOverlay: true };
+
+    let canvas = new fabric.Canvas('js-custom-product', canvasOptions);
+
+    return canvas;
   }),
 
   observeScale: function () {
