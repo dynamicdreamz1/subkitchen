@@ -8,14 +8,33 @@
 <div class="row collapse" data-equalizer>
   <div class="small-11 columns editor" data-equalizer-watch>
     <canvas id="js-custom-product"></canvas>
+
+    {{#if product.image}}
+      {{#if showRotationWheel}}
+        <div class="js-rotation-tool rotation-wrapper" onclick={{action 'rotate'}}>
+          <div class="rotation-outline">
+            <div class="rotation-outline2">
+              <div class="rotation-position"></div>
+              <div class="rotation-center">
+              </div>
+            </div>
+          </div>
+          <div class="rotation-angle-wrapper">
+            <div class="rotation-angle">
+              {{rotationAngle}}°
+            </div>
+          </div>
+        </div>
+      {{/if}}
+    {{/if}}
   </div>
   <div class="small-1 columns controlls-wrapper" data-equalizer-watch>
 
     {{#if product.image}}
       <div class="controlls">
-        <div class="rotate">
+        <div class="rotate" onclick={{action 'showRotationWheel'}}>
         </div>
-        <div class="move">
+        <div class="move" onclick={{action 'hideRotationWheel'}}>
         </div>
         <div class="zoom">
           <div class="plus" onclick={{action 'scaleUp'}}>

@@ -6,8 +6,19 @@ export default Ember.Component.extend({
   selectedTemplate: null,
   product: null,
   scale: 1,
+  rotationAngle: 0,
+  showRotationWheel: false,
 
   actions: {
+    showRotationWheel(){
+      this.set('showRotationWheel', true);
+      this.get('rotateAngleIndicator').call(this);
+    },
+
+    hideRotationWheel(){
+      this.set('showRotationWheel', false);
+    },
+
     scaleUp(){
       this.set('scale', this.get('scale') + 0.01);
       let canvasActions = this.get('canvasActions');
@@ -34,6 +45,29 @@ export default Ember.Component.extend({
       this.set('scale', scale);
       let canvasActions = this.get('canvasActions');
       canvasActions.scale.call(this, scale);
+    },
+
+    rotate(event){
+      let target = $(event.target);
+
+      if (!$(target).hasClass('rotation-wrapper')){
+        target = target.parents('.rotation-wrapper');
+      }
+
+      let offsetY = event.pageY - target.offset().top - (target.height() / 2);
+      let offsetX = event.pageX - target.offset().left - (target.width() / 2);
+
+      var p1 = { x: 0, y: 0 };
+      var p2 = { x: offsetX, y: -offsetY };
+
+      var angleDeg = Math.floor(180 + 180 / Math.PI * Math.atan2(-(p2.x - p1.x), -(p2.y - p1.y)));
+      if (angleDeg === 360){
+        angleDeg = 0; }
+
+      this.set('rotationAngle', angleDeg);
+
+      let canvasActions = this.get('canvasActions');
+      canvasActions.rotate.call(this, angleDeg);
     }
   },
 
@@ -70,6 +104,10 @@ export default Ember.Component.extend({
     this.$('.size-indicator').css({bottom: scalePercent + '%'});
   }.observes('scale'),
 
+  observeAngle: function () {
+    this.get('rotateAngleIndicator').call(this);
+  }.observes('rotationAngle'),
+
   observeSelectedTemplate: function () {
     let canvasActions = this.get('canvasActions');
     canvasActions.init.call(this);
@@ -77,6 +115,8 @@ export default Ember.Component.extend({
 
   observeImage: function () {
     if (this.get('product.image') && this.get('product.image').length){
+      this.set('scale', 1);
+      this.set('rotationAngle', 0);
       let file = this.$('#imageFileUpload')[0].files[0];
       let reader = new FileReader();
       let canvasActions = this.get('canvasActions');
@@ -100,10 +140,26 @@ export default Ember.Component.extend({
     this.$().foundation();
   },
 
+  rotateAngleIndicator(){
+    setTimeout(()=>{
+      let indicator = this.$('.rotation-outline');
+      indicator.animate({deg: this.get('rotationAngle')}, {
+        duration: 500,
+        step: function(now){
+          indicator.css({
+            transform: 'rotate(' + now + 'deg)'
+          });
+        }
+      });
+    }, 500);
+  },
+
+
   canvasActions: {
     init(){
       let canvasActions = this.get('canvasActions');
       canvasActions.customizeCanvas.call(this);
+      canvasActions.bindEvents.call(this);
       canvasActions.setSize.call(this);
       canvasActions.setBackground.call(this);
       canvasActions.setMask.call(this);
@@ -111,10 +167,21 @@ export default Ember.Component.extend({
 
     customizeCanvas(){
       let canvas = this.get('canvas');
+
       canvas.hoverCursor = 'pointer';
+    },
+
+    bindEvents(){
+      let canvas = this.get('canvas');
+
       canvas.on('object:scaling', ()=>{
         var obj = canvas.getActiveObject();
         this.set('scale', obj.getScaleX());
+      });
+
+      canvas.on('object:rotating', ()=>{
+        var obj = canvas.getActiveObject();
+        this.set('rotationAngle', Math.floor(obj.getAngle()));
       });
     },
 
@@ -155,12 +222,16 @@ export default Ember.Component.extend({
       let canvas = this.get('canvas');
       let currentObjects = canvas.getObjects() || [];
       currentObjects.forEach(function(object){
-        object.centeredScaling = true;
-        let centerX = object.getLeft() + object.getWidth() / 2;
-        let centerY = object.getTop() + object.getHeight() / 2;
-        object.scale(value);
-        object.setLeft(centerX - object.getWidth() / 2);
-        object.setTop(centerY - object.getHeight() / 2);
+        object.scale(value).center().setCoords();
+      });
+      canvas.renderAll();
+    },
+
+    rotate(angle){
+      let canvas = this.get('canvas');
+      let currentObjects = canvas.getObjects() || [];
+      currentObjects.forEach(function(object){
+        object.setAngle(angle).setCoords();
       });
       canvas.renderAll();
     },

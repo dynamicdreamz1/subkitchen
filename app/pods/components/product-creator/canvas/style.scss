@@ -51,4 +51,83 @@
       }
     }
   }
+
+
+  .editor{
+    position: relative;
+
+    .rotation-wrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      background: rgba(255,255,255,0.4);
+
+      .rotation-outline{
+        border: 3px solid #a7a9ac;
+        border-radius: 50%;
+        background: transparent;
+        width: 30%;
+        height: 30%;
+        padding: 0;
+        margin: 0;
+      }
+
+      .rotation-outline2{
+        border: 7px solid #e7e7e8;
+        border-radius: 50%;
+        background: transparent;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        position: relative;
+      }
+
+      .rotation-center{
+        border: 3px solid #a7a9ac;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.4);
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      .rotation-angle-wrapper{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .rotation-angle{
+          padding: 0;
+          margin: 0;
+          color: black;
+          font-size: 3.5em;
+          font-weight: bold;
+          position: relative;
+          right: -0.1em;
+        }
+      }
+
+      .rotation-position{
+        position: absolute;
+        top: -15px;;
+        left: 40%;
+        border: 14px solid #a7a9ac;
+        border-radius: 50%;
+      }
+    }
+  }
+
 }
