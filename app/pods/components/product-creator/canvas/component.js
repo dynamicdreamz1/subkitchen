@@ -140,6 +140,33 @@ export default Ember.Component.extend({
     this.$().foundation();
   },
 
+  didRender(){
+    this.$('.size').on('mousedown', ()=>{
+      this.set('moveZoomSlider', true);
+    });
+
+    this.$('.size').on('mouseup', ()=>{
+      this.set('moveZoomSlider', false);
+    });
+
+    this.$('.size').on('mousemove', (e)=>{
+      let target = $(e.target);
+      if (this.get('moveZoomSlider') && target.hasClass('size') ){
+        let clickPos = target.height() - e.offsetY;
+        let scale = clickPos * 2 / target.height();
+        this.set('scale', scale);
+        let canvasActions = this.get('canvasActions');
+        canvasActions.scale.call(this, this.get('scale'));
+      }
+    });
+  },
+
+  willDestroyElement(){
+    this.$('.size').off('mousedown');
+    this.$('.size').off('mouseup');
+    this.$('.size').off('mousemove');
+  },
+
   rotateAngleIndicator(){
     setTimeout(()=>{
       let indicator = this.$('.rotation-outline');
