@@ -29,23 +29,28 @@
     {{/if}}
   </div>
   <div class="small-1 columns controlls-wrapper" data-equalizer-watch>
-
-    {{#if product.image}}
-      <div class="controlls">
-        <div class="rotate" onclick={{action 'showRotationWheel'}}>
+    <div class="controlls {{if product.image 'visible' 'hidden'}}">
+      <div class="rotate" onclick={{action 'showRotationWheel'}}>
+      </div>
+      <div class="move" onclick={{action 'hideRotationWheel'}}>
+      </div>
+      <div class="zoom">
+        <div class="plus" onclick={{action 'scaleUp'}}>
         </div>
-        <div class="move" onclick={{action 'hideRotationWheel'}}>
+        <div class="size" onclick={{action 'setScale'}} ontouchmove={{action 'setScale'}}>
+          <div class="size-indicator"></div>
         </div>
-        <div class="zoom">
-          <div class="plus" onclick={{action 'scaleUp'}}>
-          </div>
-          <div class="size" onclick={{action 'setScale'}}>
-            <div class="size-indicator"></div>
-          </div>
-          <div class="minus" onclick={{action 'scaleDown'}}>
-          </div>
+        <div class="minus" onclick={{action 'scaleDown'}}>
         </div>
       </div>
-    {{/if}}
+    </div>
   </div>
 </div>
+
+
+<!--
+drag and drop for resize
+2000x2000 or bigger
+1500 min
+mouse out stops resize
+-->

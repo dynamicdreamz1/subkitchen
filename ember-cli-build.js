@@ -28,5 +28,7 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('bower_components/fabric.js/dist/fabric.min.js');
+  app.import('vendor/hammer.min.js');
+  app.import('vendor/hammer-time.min.js');
   return app.toTree();
 };

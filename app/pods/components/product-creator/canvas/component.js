@@ -1,4 +1,4 @@
-/* global fabric, $ */
+/* global fabric, $, Hammer */
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -141,15 +141,27 @@ export default Ember.Component.extend({
   },
 
   didRender(){
-    this.$('.size').on('mousedown', ()=>{
+    this.$('.size').on('mousedown', (e)=>{
+      e.preventDefault();
+      e.stopPropagation();
       this.set('moveZoomSlider', true);
     });
 
-    this.$('.size').on('mouseup', ()=>{
+    this.$('.size').on('mouseup', (e)=>{
+      e.preventDefault();
+      e.stopPropagation();
+      this.set('moveZoomSlider', false);
+    });
+
+    this.$('.size').on('mouseleave', (e)=>{
+      e.preventDefault();
+      e.stopPropagation();
       this.set('moveZoomSlider', false);
     });
 
     this.$('.size').on('mousemove', (e)=>{
+      e.preventDefault();
+      e.stopPropagation();
       let target = $(e.target);
       if (this.get('moveZoomSlider') && target.hasClass('size') ){
         let clickPos = target.height() - e.offsetY;
@@ -157,6 +169,26 @@ export default Ember.Component.extend({
         this.set('scale', scale);
         let canvasActions = this.get('canvasActions');
         canvasActions.scale.call(this, this.get('scale'));
+      }
+    });
+
+    let mc = new Hammer.Manager(this.$('.size')[0], {});
+    mc.add( new Hammer.Pan({ direction: Hammer.DIRECTION_VERTICAL }) );
+
+    mc.on("pan", (e)=>{
+      if (this.get('product.image')){
+        console.log('pan', e);
+        let target = $(e.target);
+        if (target.hasClass('size') ){
+          let offsetY = this.$('.size-indicator').position().top + (e.deltaY / 20);
+          let clickPos = target.height() - offsetY;
+          if (clickPos < 0 ){ clickPos = 0; }
+          if (clickPos > target.height()){ clickPos = target.height(); }
+          let scale = clickPos * 2 / target.height();
+          this.set('scale', scale);
+          let canvasActions = this.get('canvasActions');
+          canvasActions.scale.call(this, this.get('scale'));
+        }
       }
     });
   },
