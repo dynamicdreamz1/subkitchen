@@ -9,7 +9,7 @@
       height: 100%;
 
       &.hidden{
-        display: none;
+        visibility: hidden;
       }
 
       .rotate{
@@ -29,6 +29,10 @@
         flex-direction: column;
         flex-grow: 9;
         background: url('images/editor-controlls/zoom.svg') center no-repeat;
+
+        &.hidden{
+          visibility: hidden;
+        }
 
         .plus{
           flex-grow: 1;
@@ -121,6 +125,13 @@
           font-weight: bold;
           position: relative;
           right: -0.1em;
+          &::selection {
+            background: transparent;
+          }
+
+          @include breakpoint(small down) {
+            font-size: 2em;
+          }
         }
       }
 

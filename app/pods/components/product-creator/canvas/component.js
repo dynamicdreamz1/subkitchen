@@ -12,7 +12,9 @@ export default Ember.Component.extend({
   actions: {
     showRotationWheel(){
       this.set('showRotationWheel', true);
-      this.get('rotateAngleIndicator').call(this);
+      setTimeout(()=>{
+        this.get('rotateAngleIndicator').call(this);
+      }, 0);
     },
 
     hideRotationWheel(){
@@ -47,28 +49,46 @@ export default Ember.Component.extend({
       canvasActions.scale.call(this, scale);
     },
 
+    startRotating(){
+      this.set('moveRotator', true);
+    },
+
+    stopRotating(){
+      this.set('moveRotator', false);
+    },
+
+    rotateNow(event){
+      this.get('rotate').call(this, event);
+    },
+
     rotate(event){
-      let target = $(event.target);
-
-      if (!$(target).hasClass('rotation-wrapper')){
-        target = target.parents('.rotation-wrapper');
+      if (this.get('moveRotator')){
+        this.get('rotate').call(this, event);
       }
-
-      let offsetY = event.pageY - target.offset().top - (target.height() / 2);
-      let offsetX = event.pageX - target.offset().left - (target.width() / 2);
-
-      var p1 = { x: 0, y: 0 };
-      var p2 = { x: offsetX, y: -offsetY };
-
-      var angleDeg = Math.floor(180 + 180 / Math.PI * Math.atan2(-(p2.x - p1.x), -(p2.y - p1.y)));
-      if (angleDeg === 360){
-        angleDeg = 0; }
-
-      this.set('rotationAngle', angleDeg);
-
-      let canvasActions = this.get('canvasActions');
-      canvasActions.rotate.call(this, angleDeg);
     }
+  },
+
+  rotate(event){
+    let target = $(event.target);
+
+    if (!$(target).hasClass('rotation-wrapper')){
+      target = target.parents('.rotation-wrapper');
+    }
+
+    let offsetY = event.pageY - target.offset().top - (target.height() / 2);
+    let offsetX = event.pageX - target.offset().left - (target.width() / 2);
+
+    var p1 = { x: 0, y: 0 };
+    var p2 = { x: offsetX, y: -offsetY };
+
+    var angleDeg = Math.floor(180 + 180 / Math.PI * Math.atan2(-(p2.x - p1.x), -(p2.y - p1.y)));
+    if (angleDeg === 360){
+      angleDeg = 0; }
+
+    this.set('rotationAngle', angleDeg);
+
+    let canvasActions = this.get('canvasActions');
+    canvasActions.rotate.call(this, angleDeg);
   },
 
   // ==========================================================================
@@ -141,6 +161,10 @@ export default Ember.Component.extend({
   },
 
   didRender(){
+    this.get('bindControlls').call(this);
+  },
+
+  bindControlls(){
     this.$('.size').on('mousedown', (e)=>{
       e.preventDefault();
       e.stopPropagation();
@@ -177,7 +201,6 @@ export default Ember.Component.extend({
 
     mc.on("pan", (e)=>{
       if (this.get('product.image')){
-        console.log('pan', e);
         let target = $(e.target);
         if (target.hasClass('size') ){
           let offsetY = this.$('.size-indicator').position().top + (e.deltaY / 20);
@@ -200,17 +223,16 @@ export default Ember.Component.extend({
   },
 
   rotateAngleIndicator(){
-    setTimeout(()=>{
-      let indicator = this.$('.rotation-outline');
-      indicator.animate({deg: this.get('rotationAngle')}, {
-        duration: 500,
-        step: function(now){
-          indicator.css({
-            transform: 'rotate(' + now + 'deg)'
-          });
-        }
-      });
-    }, 500);
+    console.log('rotateAngleIndicator', this.get('rotationAngle'));
+    let indicator = this.$('.rotation-outline');
+    indicator.animate({deg: this.get('rotationAngle')}, {
+      duration: 10,
+      step: function(now){
+        indicator.css({
+          transform: 'rotate(' + now + 'deg)'
+        });
+      }
+    });
   },
 
 

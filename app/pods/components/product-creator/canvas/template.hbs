@@ -11,7 +11,12 @@
 
     {{#if product.image}}
       {{#if showRotationWheel}}
-        <div class="js-rotation-tool rotation-wrapper" onclick={{action 'rotate'}}>
+      <div class="js-rotation-tool rotation-wrapper"
+        onmousedown={{action 'startRotating'}}
+        onmouseup={{action 'stopRotating'}}
+        onmouseleave={{action 'stopRotating'}}
+        onmousemove={{action 'rotate'}}
+        onclick={{action 'rotateNow'}} >
           <div class="rotation-outline">
             <div class="rotation-outline2">
               <div class="rotation-position"></div>
@@ -37,7 +42,7 @@
       <div class="zoom">
         <div class="plus" onclick={{action 'scaleUp'}}>
         </div>
-        <div class="size" onclick={{action 'setScale'}} ontouchmove={{action 'setScale'}}>
+        <div class="size" onclick={{action 'setScale'}}>
           <div class="size-indicator"></div>
         </div>
         <div class="minus" onclick={{action 'scaleDown'}}>
