@@ -153,7 +153,7 @@ export default Ember.Component.extend({
     let canvasActions = this.get('canvasActions');
     canvasActions.init.call(this);
 
-    this.get('resize').on('debouncedDidResize', ()=>{
+    this.get('resize').off('debouncedDidResize').on('debouncedDidResize', ()=>{
       canvasActions.init.call(this);
     });
 
@@ -165,40 +165,52 @@ export default Ember.Component.extend({
   },
 
   bindControlls(){
-    this.$('.size').on('mousedown', (e)=>{
+    let sizeControl = this.$('.size');
+
+    sizeControl.off('mousedown');
+    sizeControl.on('mousedown', (e)=>{
       e.preventDefault();
       e.stopPropagation();
+      this.get('actions.setScale').call(this, e);
       this.set('moveZoomSlider', true);
     });
 
-    this.$('.size').on('mouseup', (e)=>{
+    sizeControl.off('mouseup');
+    sizeControl.on('mouseup', (e)=>{
       e.preventDefault();
       e.stopPropagation();
       this.set('moveZoomSlider', false);
     });
 
-    this.$('.size').on('mouseleave', (e)=>{
+    sizeControl.off('mouseleave');
+    sizeControl.on('mouseleave', (e)=>{
       e.preventDefault();
       e.stopPropagation();
-      this.set('moveZoomSlider', false);
+      if (this.get('moveZoomSlider')){
+        this.set('moveZoomSlider', false);
+      }
     });
 
-    this.$('.size').on('mousemove', (e)=>{
-      e.preventDefault();
-      e.stopPropagation();
-      let target = $(e.target);
-      if (this.get('moveZoomSlider') && target.hasClass('size') ){
-        let clickPos = target.height() - e.offsetY;
-        let scale = clickPos * 2 / target.height();
-        this.set('scale', scale);
-        let canvasActions = this.get('canvasActions');
-        canvasActions.scale.call(this, this.get('scale'));
+    sizeControl.off('mousemove');
+    sizeControl.on('mousemove', (e)=>{
+      if (this.get('moveZoomSlider')){
+        e.preventDefault();
+        e.stopPropagation();
+        let target = $(e.target);
+        if (target.hasClass('size') ){
+          let clickPos = target.height() - e.offsetY;
+          let scale = clickPos * 2 / target.height();
+          this.set('scale', scale);
+          let canvasActions = this.get('canvasActions');
+          canvasActions.scale.call(this, this.get('scale'));
+        }
       }
     });
 
     let mc = new Hammer.Manager(this.$('.size')[0], {});
     mc.add( new Hammer.Pan({ direction: Hammer.DIRECTION_VERTICAL }) );
 
+    mc.off("pan");
     mc.on("pan", (e)=>{
       if (this.get('product.image')){
         let target = $(e.target);
@@ -223,7 +235,6 @@ export default Ember.Component.extend({
   },
 
   rotateAngleIndicator(){
-    console.log('rotateAngleIndicator', this.get('rotationAngle'));
     let indicator = this.$('.rotation-outline');
     indicator.animate({deg: this.get('rotationAngle')}, {
       duration: 10,
@@ -255,11 +266,13 @@ export default Ember.Component.extend({
     bindEvents(){
       let canvas = this.get('canvas');
 
+      canvas.off('object:scaling');
       canvas.on('object:scaling', ()=>{
         var obj = canvas.getActiveObject();
         this.set('scale', obj.getScaleX());
       });
 
+      canvas.off('object:rotating');
       canvas.on('object:rotating', ()=>{
         var obj = canvas.getActiveObject();
         this.set('rotationAngle', Math.floor(obj.getAngle()));
