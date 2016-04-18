@@ -5,6 +5,7 @@ export default Ember.Component.extend({
   size: 'MD',
   quantity: 1,
   product: new Ember.Object(),
+  themes: [],
 
   init(){
     this._super(...arguments);

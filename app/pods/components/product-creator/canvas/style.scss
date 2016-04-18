@@ -1,4 +1,12 @@
 .product-editor{
+  #formImageUpload{
+    float: left;
+    margin-right: 1em;
+  }
+
+  .js-publish-button{
+  }
+
   .controlls-wrapper{
     cursor: pointer;
 
@@ -145,4 +153,58 @@
     }
   }
 
+  #publishModal{
+    label{
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    input{
+      font-weight: 500;
+    }
+    input::placeholder{
+      font-weight: 300;
+    }
+    .hint{
+      font-weight: 300;
+      font-size: 0.9em;
+    }
+    .button{
+      margin: 0
+    }
+    &.reveal{
+      &:focus{
+        outline: -webkit-focus-ring-color none 5px;
+      }
+    }
+    .callout{
+      margin: 0.5rem 0;
+      padding: 0.1rem;
+    }
+    .actions{
+      margin-top: 1em;
+    }
+    .themes{
+      .column{
+        padding-right: 0.3em;
+
+        &:nth-child(4n){
+          padding-right: 0;
+        }
+
+        span{
+          background: #dcdcdc;
+          width: 100%;
+          display: inline-block;
+          padding: 0.2em 0.5em;
+          margin-top: 0.3em;
+          text-align: center;
+          cursor: pointer;
+          &.selected{
+            color: white;
+            background-color: black;
+          }
+        }
+      }
+    }
+  }
 }

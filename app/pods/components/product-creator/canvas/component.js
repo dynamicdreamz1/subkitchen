@@ -3,13 +3,59 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   resize: Ember.inject.service(),
+  dataUrlToBlob: Ember.inject.service('data-url-to-blob'),
   selectedTemplate: null,
   product: null,
   scale: 1,
   rotationAngle: 0,
   showRotationWheel: false,
 
+  init(){
+    this._super(...arguments);
+    this.set('product.joinedTags', '');
+  },
+
+  observeTags: function () {
+    let timeout = this.get('tagsTimeout');
+    if (timeout){
+      clearTimeout(timeout);
+    }
+
+    timeout = setTimeout(()=>{
+      let tags = [];
+      let t = this.get('product.joinedTags').split(',');
+      t.forEach(function (e) {
+        let tag = $.trim(e);
+        if (tag && tag.length) {
+          tags.push(tag.toLowerCase());
+        }
+      });
+      tags = [...new Set(tags)];
+      this.set('product.tags', tags);
+      this.set('product.joinedTags', tags.join(', ') + ', ');
+    }, 2000);
+
+    this.set('tagsTimeout', timeout);
+  }.observes('product.joinedTags'),
+
   actions: {
+    showPublishingPopup(){
+      $('#publishModal').foundation('open');
+    },
+
+    publish(){
+      // let canvas = this.get('canvas');
+      // canvas.deactivateAll().renderAll();
+      // let dataURL =  canvas.toDataURL('image/png');
+      // let file = this.get('dataUrlToBlob').convert(dataURL);
+
+      console.log('publish');
+    },
+
+    addTag(tag){
+      this.set('product.joinedTags', this.get('product.joinedTags') + ', ' +tag);
+    },
+
     showRotationWheel(){
       this.set('showRotationWheel', true);
       setTimeout(()=>{

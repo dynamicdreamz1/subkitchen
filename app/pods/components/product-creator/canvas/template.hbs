@@ -1,9 +1,17 @@
-<form id="formImageUpload">
-  <label id="uploadButton" for="imageFileUpload" class="button upload uppercase">upload artwork</label>
-  {{input type="file" name="image" id="imageFileUpload" class="show-for-sr" value=product.image}}
+<div class="row">
+  <div class="small-12 columns">
+    <form id="formImageUpload">
+      <label id="uploadButton" for="imageFileUpload" class="button upload uppercase">upload artwork</label>
+      {{input type="file" name="image" id="imageFileUpload" class="show-for-sr" value=product.image}}
 
-  {{input-errors errors=errors.image}}
-</form>
+      {{input-errors errors=errors.image}}
+    </form>
+    {{#if product.image}}
+      <a class="button uppercase js-publish-button" onclick={{action 'showPublishingPopup'}}>Publish</a>
+    {{/if}}
+  </div>
+</div>
+
 
 <div class="row collapse" data-equalizer>
   <div class="small-11 columns editor" data-equalizer-watch>
@@ -52,10 +60,62 @@
   </div>
 </div>
 
-
-<!--
-drag and drop for resize
-2000x2000 or bigger
-1500 min
-mouse out stops resize
--->
+<div class="reveal" id="publishModal" data-reveal data-close-on-click="true">
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="row white">
+    <div class="small-12 columns">
+      <div class="row">
+        <div class="small-12 columns">
+          <h5 class="uppercase">design details</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns">
+          <form novalidate {{action "publish" on="submit"}}>
+            <div class="row">
+              <div class="small-12 columns">
+                <label>Title:
+                  {{input  type="text" name="title" autocomplete="off" value=product.title placeholder="Puppy Monkey baby" aria-describedby="Product title" required=true}}
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 columns">
+                <label>Tags:
+                  {{input  type="text" name="tags" autocomplete="off" value=product.joinedTags placeholder="Pug, Monkey, Baby, Space, Pink" aria-describedby="Product tags" required=true}}
+                  <span class="hint">
+                    Press Comma, or Spacebar to create a new tag. Backspace or Delete to remove the last one.
+                  </span>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 columns">
+                <label>Themes:</label>
+                <span class="hint">
+                  Carefully select atleast 1 theme (up to 4) to help other people find your products in the Shop.
+                </span>
+              </div>
+            </div>
+                <div class="row collapse medium-up-4 themes">
+                  {{#each themes.themes as |theme|}}
+                    <div class="column">
+                      <span onclick={{action 'addTag' theme}}>
+                        {{theme}}
+                      </span>
+                    </div>
+                  {{/each}}
+                </div>
+            <div class="row actions text-center">
+              <div class="small-12 columns">
+                <button class="button dark uppercase font-bold" type="submit" value="publish">publish</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
