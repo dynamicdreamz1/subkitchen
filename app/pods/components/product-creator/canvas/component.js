@@ -9,6 +9,7 @@ export default Ember.Component.extend({
   scale: 1,
   rotationAngle: 0,
   showRotationWheel: false,
+  selectedThemes: [],
 
   init(){
     this._super(...arguments);
@@ -23,7 +24,8 @@ export default Ember.Component.extend({
 
     timeout = setTimeout(()=>{
       let tags = [];
-      let t = this.get('product.joinedTags').split(',');
+      var re = /\s*,\s*/;
+      let t = this.get('product.joinedTags').split(re);
       t.forEach(function (e) {
         let tag = $.trim(e);
         if (tag && tag.length) {
@@ -49,11 +51,7 @@ export default Ember.Component.extend({
       // let dataURL =  canvas.toDataURL('image/png');
       // let file = this.get('dataUrlToBlob').convert(dataURL);
 
-      console.log('publish');
-    },
-
-    addTag(tag){
-      this.set('product.joinedTags', this.get('product.joinedTags') + ', ' +tag);
+      console.log('publish', this.get('selectedThemes'));
     },
 
     showRotationWheel(){

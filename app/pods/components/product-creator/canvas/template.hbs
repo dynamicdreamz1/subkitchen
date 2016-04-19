@@ -6,9 +6,7 @@
 
       {{input-errors errors=errors.image}}
     </form>
-    {{#if product.image}}
-      <a class="button uppercase js-publish-button" onclick={{action 'showPublishingPopup'}}>Publish</a>
-    {{/if}}
+    <a class="button uppercase js-publish-button" onclick={{action 'showPublishingPopup'}}>Publish</a>
   </div>
 </div>
 
@@ -99,15 +97,14 @@
                 </span>
               </div>
             </div>
-                <div class="row collapse medium-up-4 themes">
-                  {{#each themes.themes as |theme|}}
-                    <div class="column">
-                      <span onclick={{action 'addTag' theme}}>
-                        {{theme}}
-                      </span>
-                    </div>
-                  {{/each}}
-                </div>
+            {{#multiselect-checkboxes options=themes.themes selection=selectedThemes tagName='div' classNames='row collapse medium-up-4 themes' as |theme isSelected|}}
+              <div class="column">
+                {{input type="checkbox" checked=isSelected id=(concat theme '-theme')}}
+                <label for="{{concat theme '-theme'}}">
+                  {{theme}}
+                </label>
+              </div>
+            {{/multiselect-checkboxes}}
             <div class="row actions text-center">
               <div class="small-12 columns">
                 <button class="button dark uppercase font-bold" type="submit" value="publish">publish</button>

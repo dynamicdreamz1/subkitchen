@@ -191,18 +191,22 @@
           padding-right: 0;
         }
 
-        span{
+        input{
+          display: none;
+          &:checked + label{
+            color: white;
+            background-color: black;
+          }
+        }
+
+        label{
           background: #dcdcdc;
           width: 100%;
           display: inline-block;
           padding: 0.2em 0.5em;
           margin-top: 0.3em;
           text-align: center;
-          cursor: pointer;
-          &.selected{
-            color: white;
-            background-color: black;
-          }
+          text-transform: capitalize;
         }
       }
     }
