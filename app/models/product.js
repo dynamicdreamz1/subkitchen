@@ -14,7 +14,9 @@ export default DS.Model.extend({
   image:               DS.attr(),         // we send it
   preview:             DS.attr(),         // we send it
   published:           DS.attr('boolean'),
+  sizes:               DS.attr(),
   tags:                DS.attr(),
+  variants:            DS.attr(),
 
   promoters:   DS.hasMany('promoter')
 });

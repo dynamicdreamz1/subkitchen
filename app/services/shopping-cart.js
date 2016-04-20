@@ -58,9 +58,10 @@ export default Ember.Service.extend({
   },
 
   // behavior
-  add(product_id, size, quantity) {
+  add(product_id, size, template_variant_id,  quantity) {
     var params = {
       product_id: product_id,
+      template_variant_id: template_variant_id,
       size: size,
       quantity: quantity };
       if (this.get('order.data')){

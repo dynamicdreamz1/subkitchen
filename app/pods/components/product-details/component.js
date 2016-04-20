@@ -6,7 +6,6 @@ export default Ember.Component.extend({
   like: Ember.inject.service('product-like'),
   size: 'MD',
   quantity: 1,
-  sizes: ['SM', 'MD', 'LG', 'XL', '2X', '3X'],
 
   didInsertElement() {
     this.$().foundation();
@@ -14,7 +13,7 @@ export default Ember.Component.extend({
 
   actions: {
     addToCart(){
-      this.get('cart').add(this.get('model.id'), this.get('size'), this.get('quantity'));
+      this.get('cart').add(this.get('product.id'), this.get('size'), this.get('product.variants.0.id'), this.get('quantity'));
       let button = this.$('.addToCart');
       button.text('added');
       setTimeout(function(){
@@ -35,10 +34,10 @@ export default Ember.Component.extend({
     },
 
     toggleLike(){
-      this.get('like').toggleLike(this.get('model.id'))
+      this.get('like').toggleLike(this.get('product.id'))
       .then((result) => {
-        this.set('model.likes_count', result.likes_count);
-        this.get('model').reload();
+        this.set('product.likes_count', result.likes_count);
+        this.get('product').reload();
       }, (error) => {
         if (error.responseJSON){
           this.set('errors', error.responseJSON.errors);
@@ -51,7 +50,7 @@ export default Ember.Component.extend({
     loadMoreComments(){
       let newPage = this.get('comments.meta.current_page') + 1;
       this.get('store')
-      .query('comment', {product_id: this.get('model.id'), page: newPage})
+      .query('comment', {product_id: this.get('product.id'), page: newPage})
       .then((results)=>{
         let comments = this.get('comments');
         comments.pushObjects(results.content);

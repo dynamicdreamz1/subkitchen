@@ -4,12 +4,11 @@ export default Ember.Component.extend({
   cart: Ember.inject.service('shopping-cart'),
   like: Ember.inject.service('product-like'),
   size: 'MD',
-  sizes: ['SM', 'MD', 'LG', 'XL', '2X', '3X'],
 
   actions: {
 
     addToCart(){
-      this.get('cart').add(this.get('id'), this.get('size'), 1);
+      this.get('cart').add(this.get('product.id'), this.get('size'), this.get('product.variants.0.id'), 1);
       let button = this.$('.addToCart');
       button.text('added');
       setTimeout(function(){
@@ -18,9 +17,9 @@ export default Ember.Component.extend({
     },
 
     toggleLike(){
-      this.get('like').toggleLike(this.get('id'))
+      this.get('like').toggleLike(this.get('product.id'))
       .then((result) => {
-        this.set('likes_count', result.likes_count);
+        this.set('product.likes_count', result.likes_count);
       }, (error) => {
         if (error.responseJSON){
           this.set('errors', error.responseJSON.errors);
