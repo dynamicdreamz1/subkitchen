@@ -4,7 +4,6 @@ export default Ember.Component.extend({
   selectedTemplate: null,
   size: 'MD',
   quantity: 1,
-  product: new Ember.Object(),
   themes: [],
 
   init(){

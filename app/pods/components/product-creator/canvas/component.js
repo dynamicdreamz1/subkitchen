@@ -1,11 +1,18 @@
 /* global fabric, $, Hammer */
 import Ember from 'ember';
+import config from 'subkitchen-front/config/environment';
 
 export default Ember.Component.extend({
   resize: Ember.inject.service(),
+  session: Ember.inject.service('session'),
+  routing: Ember.inject.service('-routing'),
+  store: Ember.inject.service(),
+  flashMessages: Ember.inject.service(),
   dataUrlToBlob: Ember.inject.service('data-url-to-blob'),
+
+  // product: new Ember.Object(),
+  product: null, //see init
   selectedTemplate: null,
-  product: null,
   scale: 1,
   rotationAngle: 0,
   showRotationWheel: false,
@@ -13,7 +20,10 @@ export default Ember.Component.extend({
 
   init(){
     this._super(...arguments);
-    this.set('product.joinedTags', '');
+    this.set('product', this.get('store').createRecord('product', {
+      name: '',
+      joinedTags: ''
+    }));
   },
 
   observeTags: function () {
@@ -33,7 +43,6 @@ export default Ember.Component.extend({
         }
       });
       tags = [...new Set(tags)];
-      this.set('product.tags', tags);
       this.set('product.joinedTags', tags.join(', ') + ', ');
     }, 2000);
 
@@ -46,12 +55,53 @@ export default Ember.Component.extend({
     },
 
     publish(){
-      // let canvas = this.get('canvas');
-      // canvas.deactivateAll().renderAll();
-      // let dataURL =  canvas.toDataURL('image/png');
-      // let file = this.get('dataUrlToBlob').convert(dataURL);
+      if ( this.get('product.image') ){
+        const flashMessages = this.get('flashMessages');
 
-      console.log('publish', this.get('selectedThemes'));
+        // get image
+        let canvas = this.get('canvas');
+        canvas.deactivateAll().renderAll();
+        let dataURL =  canvas.toDataURL('image/png');
+        let file = this.get('dataUrlToBlob').convert(dataURL);
+        this.set('product.preview', file);
+
+        // get tags
+        let re = /\s*,\s*/;
+        let tags = this.get('product.joinedTags').split(re);
+        tags = [...new Set([...tags, ...this.get('selectedThemes').toArray()])];
+        this.set('product.tags', tags);
+
+        let formData = new FormData(this.$('#formImageUpload')[0]);
+
+        formData.append('name', this.get('product.name'));
+        formData.append('tags', this.get('product.tags'));
+        formData.append('preview', this.get('product.preview'));
+        formData.append('product_template_id', this.get('selectedTemplate.id'));
+
+        this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
+          var headers = {};
+          headers[headerName] = headerValue;
+
+          Ember.$.ajax({
+            headers: headers,
+            method: "POST",
+            url: config.host + config.apiEndpoint + '/products',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType : 'json',
+          }).then((response) => {
+            this.get("routing").transitionTo("product", [response.product.id]);
+            flashMessages.success('Product saved.');
+            $('#publishModal').foundation('close');
+          }, () => {
+            // error
+            console.log('publish fail', arguments);
+          });
+        });
+
+      }
     },
 
     showRotationWheel(){
@@ -178,7 +228,7 @@ export default Ember.Component.extend({
   }.observes('selectedTemplate'),
 
   observeImage: function () {
-    if (this.get('product.image') && this.get('product.image').length){
+    if (this.get('product.rawImage') && this.get('product.rawImage').length){
       this.set('scale', 1);
       this.set('rotationAngle', 0);
       let file = this.$('#imageFileUpload')[0].files[0];
@@ -186,10 +236,11 @@ export default Ember.Component.extend({
       let canvasActions = this.get('canvasActions');
       reader.onload = (e)=>{
         canvasActions.setUploadedImage.call(this, e.target.result);
+        this.set('product.image', this.get('dataUrlToBlob').convert(e.target.result));
       };
       reader.readAsDataURL(file);
     }
-  }.observes('product.image'),
+  }.observes('product.rawImage'),
 
   didInsertElement() {
     this._super(...arguments);
