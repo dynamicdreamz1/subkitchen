@@ -50,6 +50,18 @@ export default Ember.Component.extend({
   }.observes('product.joinedTags'),
 
   actions: {
+
+    updateThemeSelection(newSelection, value) {
+      if(newSelection.length === 0) {
+        newSelection.push(value);
+        this.set('selectedThemes', newSelection);
+      }
+      if(newSelection.length > 4) {
+        newSelection.pop();
+        this.set('selectedThemes', newSelection);
+      }
+    },
+
     showPublishingPopup(){
       $('#publishModal').foundation('open');
     },
@@ -68,7 +80,11 @@ export default Ember.Component.extend({
         // get tags
         let re = /\s*,\s*/;
         let tags = this.get('product.joinedTags').split(re);
-        tags = [...new Set([...tags, ...this.get('selectedThemes').toArray()])];
+        let themes = this.get('selectedThemes').toArray();
+        tags = [...new Set([...tags, ...themes])];
+        tags = tags.reject(function(tag){
+          return tag === '';
+        });
         this.set('product.tags', tags);
 
         let formData = new FormData(this.$('#formImageUpload')[0]);

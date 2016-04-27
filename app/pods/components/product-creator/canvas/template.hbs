@@ -95,11 +95,11 @@
               <div class="small-12 columns">
                 <label>Themes:</label>
                 <span class="hint">
-                  Carefully select atleast 1 theme (up to 4) to help other people find your products in the Shop.
+                  Carefully select at least 1 theme (up to 4) to help other people find your products in the Shop.
                 </span>
               </div>
             </div>
-            {{#multiselect-checkboxes options=themes.themes selection=selectedThemes tagName='div' classNames='row collapse medium-up-4 themes' as |theme isSelected|}}
+            {{#multiselect-checkboxes options=themes.themes selection=selectedThemes tagName='div' classNames='row collapse medium-up-4 themes' onchange=(action 'updateThemeSelection') as |theme isSelected|}}
               <div class="column">
                 {{input type="checkbox" checked=isSelected id=(concat theme '-theme')}}
                 <label for="{{concat theme '-theme'}}">
