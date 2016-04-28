@@ -18,5 +18,14 @@ export default DS.Model.extend({
   tags:                DS.attr(),
   variants:            DS.attr(),
 
-  promoters:   DS.hasMany('promoter')
+  promoters:   DS.hasMany('promoter'),
+
+  formattedTags: function() {
+    let tags = this.get('tags');
+    if(tags) {
+      return tags.map((tag) => {
+        return '#' + tag.toUpperCase();
+      }).join(', ');
+    }
+  }.property('tags')
 });
