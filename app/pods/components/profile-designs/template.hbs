@@ -1,0 +1,32 @@
+<div class="row profile-designs">
+  <div class="small-12 columns">
+    <h5 class="font-black">My Designs</h5>
+    {{#each products as |product|}}
+      <div class="row design collapse">
+        <div class="small-2 columns">
+          {{#link-to 'product' product.id}}
+            <img src="{{product.product_image}}" alt="">
+          {{/link-to}}
+        </div>
+        <div class="small-7 columns design-info">
+          <p><b>{{product.name}}</b></p>
+          <p>{{product.formattedTags}}</p>
+        </div>
+        <div class="small-3 columns published">
+          <div class="row">
+            <div class="small-6 columns">
+              {{#if product.published}}
+                <img src="assets/images/published.svg" alt="" data-tooltip aria-haspopup="true" class="has-tip top" data-disable-hover="false" title="Published">
+              {{else}}
+                <img src="assets/images/unpublished.svg" alt="" data-tooltip aria-haspopup="true" class="has-tip top" data-disable-hover="false" title="Unpublished">
+              {{/if}}
+            </div>
+            <div class="small-6 columns">
+              <a class="button light uppercase js-publish-button">Edit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
