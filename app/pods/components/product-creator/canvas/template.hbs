@@ -60,6 +60,7 @@
   </div>
 </div>
 
+
 <div class="reveal" id="publishModal" data-reveal data-close-on-click="true">
   <button class="close-button" data-close aria-label="Close modal" type="button">
     <span aria-hidden="true">&times;</span>
@@ -74,6 +75,15 @@
       <div class="row">
         <div class="small-12 columns">
           <form novalidate {{action "publish" on="submit"}}>
+            <div class="row">
+              <div class="small-12 columns">
+                <label>Publish:</label>
+                {{#select-box/native on-select=(action 'updateIsPublished') as |sb|}}
+                  {{sb.option value='true' label='Yes'}}
+                  {{sb.option value='false' label='No'}}
+                {{/select-box/native}}
+              </div>
+            </div>
             <div class="row">
               <div class="small-12 columns">
                 <label>Title:

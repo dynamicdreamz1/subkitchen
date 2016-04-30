@@ -2,13 +2,15 @@
 import Ember from 'ember';
 import config from 'subkitchen-front/config/environment';
 
-export default Ember.Component.extend({
+export default Ember.Component.extend( {
   resize: Ember.inject.service(),
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
   store: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
   dataUrlToBlob: Ember.inject.service('data-url-to-blob'),
+  currentUser: Ember.inject.service('current-user'),
+
 
   // product: new Ember.Object(),
   product: null, //see init
@@ -17,6 +19,7 @@ export default Ember.Component.extend({
   rotationAngle: 0,
   showRotationWheel: false,
   selectedThemes: [],
+  isPublished: true,
 
   init(){
     this._super(...arguments);
@@ -66,6 +69,10 @@ export default Ember.Component.extend({
       $('#publishModal').foundation('open');
     },
 
+    updateIsPublished(publishedValue){
+      this.set('isPublished', publishedValue);
+    },
+
     publish(){
       if ( this.get('product.image') ){
         const flashMessages = this.get('flashMessages');
@@ -87,13 +94,15 @@ export default Ember.Component.extend({
         });
         this.set('product.tags', tags);
 
+        let publishedValue = this.get('isPublished');
+
         let formData = new FormData(this.$('#formImageUpload')[0]);
 
         formData.append('name', this.get('product.name'));
-        formData.append('published', false);
         formData.append('description', 'Custom Design');
         formData.append('preview', this.get('product.preview'));
         formData.append('product_template_id', this.get('selectedTemplate.id'));
+        formData.append('published', publishedValue);
 
         tags.forEach(function(tag){
           formData.append('tags[]', tag);
