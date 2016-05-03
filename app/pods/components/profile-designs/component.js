@@ -5,6 +5,7 @@ export default Ember.Component.extend({
   flashMessages: Ember.inject.service(),
   store: Ember.inject.service(),
   routing: Ember.inject.service('-routing'),
+  currentUser: Ember.inject.service('current-user'),
 
   selectedThemes: [],
   isPublished: true,
@@ -92,5 +93,15 @@ export default Ember.Component.extend({
       });
     },
 
+    loadMoreDesigns(){
+      let newPage = this.get('products.meta.current_page') + 1;
+      this.get('store')
+        .query('product', { author_id: this.get('currentUser.data.id') , page: newPage})
+        .then((results)=>{
+          let products = this.get('products');
+          products.pushObjects(results.content);
+          products.set('meta.current_page', results.get('meta.current_page'));
+        });
+    }
   }
 });
