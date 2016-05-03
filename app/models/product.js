@@ -27,5 +27,14 @@ export default DS.Model.extend({
         return '#' + tag.toUpperCase();
       }).join(', ');
     }
-  }.property('tags')
+  }.property('tags'),
+
+  publishStatus: function() {
+    if(this.get('published')) {
+      return 'published';
+    } else {
+      return 'unpublished';
+    }
+  }.property('published')
+
 });
