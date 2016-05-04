@@ -8,8 +8,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   model(){
     return Ember.RSVP.hash({
-      products: this.store.query('product', { author_id: this.get('currentUser.data.id') }),
-      themes: this.get('ajax').request(config.host + config.apiEndpoint + '/themes')
+      products: this.store.query('product', { author_id: this.get('currentUser.data.id'), per_page: 5}),
+      themes: this.get('ajax').request(config.host + config.apiEndpoint + '/themes'),
+      user: this.store.findRecord('user', 'current')
     });
   }
 });

@@ -36,6 +36,7 @@
               <div class="row">
                 <div class="small-12 columns">
                   <form novalidate {{action "publish" product.id on="submit"}}>
+                    {{#if user.artist}}
                     <div class="row">
                       <div class="small-12 columns">
                         <label>Publish:</label>
@@ -45,6 +46,7 @@
                         {{/select-box/native}}
                       </div>
                     </div>
+                    {{/if}}
                     <div class="row">
                       <div class="small-12 columns">
                         <label>Title:
@@ -80,7 +82,7 @@
                     {{/multiselect-checkboxes}}
                     <div class="row actions text-center">
                       <div class="small-12 columns">
-                        <button class="button dark uppercase font-bold" type="submit" value="publish">publish</button>
+                        <button class="button dark uppercase font-bold" type="submit" value="publish">save</button>
                       </div>
                     </div>
                   </form>
@@ -100,4 +102,3 @@
     {{/if}}
   </div>
 </div>
-
