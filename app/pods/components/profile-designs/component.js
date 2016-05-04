@@ -96,7 +96,7 @@ export default Ember.Component.extend({
     loadMoreDesigns(){
       let newPage = this.get('products.meta.current_page') + 1;
       this.get('store')
-        .query('product', { author_id: this.get('currentUser.data.id') , page: newPage})
+        .query('product', { author_id: this.get('currentUser.data.id') , page: newPage, per_page: 5})
         .then((results)=>{
           let products = this.get('products');
           products.pushObjects(results.content);
