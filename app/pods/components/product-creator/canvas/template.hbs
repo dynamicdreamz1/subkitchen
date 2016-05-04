@@ -77,17 +77,17 @@
       <div class="row">
         <div class="small-12 columns">
           <form novalidate {{action "publish" on="submit"}}>
-            {{#if user.artist}}
-            <div class="row">
-              <div class="small-12 columns">
-                <label>Publish:</label>
-                {{#select-box/native on-select=(action 'updateIsPublished') as |sb|}}
-                  {{sb.option value='true' label='Yes'}}
-                  {{sb.option value='false' label='No'}}
-                {{/select-box/native}}
+              {{#if user.artist}}
+              <div class="row">
+                <div class="small-12 columns">
+                  <label>Publish:</label>
+                  {{#select-box/native on-select=(action 'updateIsPublished') as |sb|}}
+                    {{sb.option value='true' label='Yes'}}
+                    {{sb.option value='false' label='No'}}
+                  {{/select-box/native}}
+                </div>
               </div>
-            </div>
-            {{/if}}
+              {{/if}}
             <div class="row">
               <div class="small-12 columns">
                 <label>Title:
