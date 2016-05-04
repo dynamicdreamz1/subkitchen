@@ -15,7 +15,9 @@
         <div class="small-3 columns published">
           <div class="row">
             <div class="small-6 columns publishedImage">
-              <img src="assets/images/{{product.publishStatus}}.svg" alt="" data-tooltip aria-haspopup="true" class="has-tip top" data-disable-hover="false" title={{product.publishStatus}}>
+              {{#if user.artist}}
+                <img src="assets/images/{{product.publishStatus}}.svg" alt="" data-tooltip aria-haspopup="true" class="has-tip top" data-disable-hover="false" title={{product.publishStatus}}>
+              {{/if}}
             </div>
             <div class="small-6 columns">
               <a class="button light uppercase js-publish-button" onclick={{action 'showPublishingPopup' product.id}}>Edit</a>
