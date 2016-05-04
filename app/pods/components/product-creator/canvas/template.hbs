@@ -7,7 +7,9 @@
       {{input-errors errors=errors.image}}
     </form>
       {{#if product.image}}
-        <a class="button uppercase js-publish-button" onclick={{action 'showPublishingPopup'}}>save</a>
+        {{#if session.isAuthenticated}}
+          <a class="button uppercase js-publish-button" onclick={{action 'showPublishingPopup'}}>save</a>
+        {{/if}}
       {{/if}}
   </div>
 </div>
