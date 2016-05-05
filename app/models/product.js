@@ -25,7 +25,7 @@ export default DS.Model.extend({
     if(tags) {
       return tags.map((tag) => {
         return '#' + tag.toUpperCase();
-      }).join(', ');
+      }).sort().join(', ');
     }
   }.property('tags'),
 
@@ -36,5 +36,4 @@ export default DS.Model.extend({
       return 'unpublished';
     }
   }.property('published')
-
 });

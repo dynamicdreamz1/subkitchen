@@ -25,44 +25,17 @@ export default Ember.Component.extend( {
     this._super(...arguments);
     this.set('product', this.get('store').createRecord('product', {
       name: '',
-      joinedTags: ''
+      tags: []
     }));
   },
 
-  observeTags: function () {
-    let timeout = this.get('tagsTimeout');
-    if (timeout){
-      clearTimeout(timeout);
-    }
-
-    timeout = setTimeout(()=>{
-      let tags = [];
-      var re = /\s*,\s*/;
-      let t = this.get('product.joinedTags').split(re);
-      t.forEach(function (e) {
-        let tag = $.trim(e);
-        if (tag && tag.length) {
-          tags.push(tag.toLowerCase());
-        }
-      });
-      tags = [...new Set(tags)];
-      this.set('product.joinedTags', tags.join(', ') + ', ');
-    }, 2000);
-
-    this.set('tagsTimeout', timeout);
-  }.observes('product.joinedTags'),
-
   actions: {
 
-    updateThemeSelection(newSelection, value) {
-      if(newSelection.length === 0) {
-        newSelection.push(value);
-        this.set('selectedThemes', newSelection);
-      }
-      if(newSelection.length > 4) {
+    updateThemeSelection(newSelection) {
+      if(newSelection.length > 4){
         newSelection.pop();
-        this.set('selectedThemes', newSelection);
       }
+      this.set('selectedThemes', newSelection);
     },
 
     showPublishingPopup(){
@@ -85,8 +58,7 @@ export default Ember.Component.extend( {
         this.set('product.preview', file);
 
         // get tags
-        let re = /\s*,\s*/;
-        let tags = this.get('product.joinedTags').split(re);
+        let tags = this.get('product.tags');
         let themes = this.get('selectedThemes').toArray();
         tags = [...new Set([...tags, ...themes])];
         tags = tags.reject(function(tag){
@@ -132,6 +104,19 @@ export default Ember.Component.extend( {
         });
 
       }
+    },
+
+    addTag(tag){
+      let tagToAdd = tag.toLowerCase();
+      this.get('product.tags').push(tagToAdd);
+    },
+
+    removeTag(tagToRemove){
+      let tags = this.get('product.tags');
+      let newTags = tags.filter(function(tag){
+        return tag !== tagToRemove;
+      });
+      this.set('product.tags', newTags);
     },
 
     showRotationWheel(){

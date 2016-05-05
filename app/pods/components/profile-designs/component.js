@@ -8,53 +8,35 @@ export default Ember.Component.extend({
   routing: Ember.inject.service('-routing'),
   currentUser: Ember.inject.service('current-user'),
 
-  selectedThemes: [],
   isPublished: true,
-  joinedTags: '',
-  product: null,
 
   didInsertElement() {
     this.$().foundation();
   },
 
-  observeTags: function () {
-    let timeout = this.get('tagsTimeout');
-    if (timeout){
-      clearTimeout(timeout);
-    }
-
-    timeout = setTimeout(()=>{
-      let tags = [];
-      var re = /\s*,\s*/;
-      let t = this.get('joinedTags').split(re);
-      t.forEach(function (e) {
-        let tag = $.trim(e);
-        if (tag && tag.length) {
-          tags.push(tag.toLowerCase());
-        }
-      });
-      tags = [...new Set(tags)];
-      this.set('joinedTags', tags.join(', ') + ', ');
-    }, 2000);
-
-    this.set('tagsTimeout', timeout);
-  }.observes('joinedTags'),
-
   actions: {
 
     showPublishingPopup(id){
       $('#editModal' + id).foundation('open');
+      this.set('product', this.get('store').findRecord('product', id)).then(() => {
+        let themes = this.get('product.tags').filter((tag) => {
+          return this.get('themes.themes').includes(tag);
+        });
+        this.set('selectedThemes', themes);
+      });
     },
 
-    updateThemeSelection(newSelection, value) {
-      if(newSelection.length === 0) {
-        newSelection.push(value);
-        this.set('selectedThemes', newSelection);
+    updateThemeSelection(newSelection, value, operation) {
+      if(operation === 'removed'){
+        let newTags = this.get('product.tags').filter(function(tag){
+          return tag !== value;
+        });
+        this.set('product.tags', newTags);
       }
-      if(newSelection.length > 4) {
+      if(newSelection.length > 4){
         newSelection.pop();
-        this.set('selectedThemes', newSelection);
       }
+      this.set('selectedThemes', newSelection);
     },
 
     updateIsPublished(publishedValue){
@@ -70,18 +52,15 @@ export default Ember.Component.extend({
 
           const flashMessages = this.get('flashMessages');
 
-          let re = /\s*,\s*/;
-          let tags = this.get('joinedTags').split(re);
+          let tags = this.get('product.tags');
           let themes = this.get('selectedThemes').toArray();
           tags = [...new Set([...tags, ...themes])];
           tags = tags.reject(function (tag) {
             return tag === '';
           });
-
           let publishedValue = this.get('isPublished');
 
           product.set('tags', tags);
-          product.set('name', this.get('productName'));
           product.set('description', 'Custom Design');
           product.set('published', publishedValue);
 
@@ -103,6 +82,19 @@ export default Ember.Component.extend({
           products.pushObjects(results.content);
           products.set('meta.current_page', results.get('meta.current_page'));
         });
+    },
+
+    addTag(tag){
+      let tagToAdd = tag.toLowerCase();
+      this.get('product.tags').push(tagToAdd);
+    },
+
+    removeTag(tagToRemove){
+      let tags = this.get('product.tags');
+      let newTags = tags.filter(function(tag){
+        return tag !== tagToRemove;
+      });
+      this.set('product.tags', newTags);
     }
   }
 });

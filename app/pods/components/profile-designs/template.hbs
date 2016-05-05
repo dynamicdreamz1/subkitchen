@@ -39,30 +39,30 @@
                 <div class="small-12 columns">
                   <form novalidate {{action "publish" product.id on="submit"}}>
                     {{#if user.artist}}
-                    <div class="row">
-                      <div class="small-12 columns">
-                        <label>Publish:</label>
-                        {{#select-box/native on-select=(action 'updateIsPublished') as |sb|}}
-                          {{sb.option value=true label='Yes'}}
-                          {{sb.option value=false label='No'}}
-                        {{/select-box/native}}
+                      <div class="row">
+                        <div class="small-12 columns">
+                          <label>Publish:</label>
+                            {{#x-select value=product.published action="updateIsPublished"}}
+                              {{#x-option value=true}}Yes{{/x-option}}
+                              {{#x-option value=false}}No{{/x-option}}
+                            {{/x-select}}
+                        </div>
                       </div>
-                    </div>
                     {{/if}}
                     <div class="row">
                       <div class="small-12 columns">
                         <label>Title:
-                          {{input  type="text" name="title" autocomplete="off" value=productName placeholder="Puppy Monkey baby" aria-describedby="Product title" required=true}}
+                          {{input type="text" name="title" autocomplete="off" value=product.name placeholder="Puppy Monkey baby" aria-describedby="Product title" required=true}}
                         </label>
                       </div>
                     </div>
                     <div class="row">
                       <div class="small-12 columns">
                         <label>Tags:
-                          {{input  type="text" name="tags" autocomplete="off" value=joinedTags placeholder="Pug, Monkey, Baby, Space, Pink" aria-describedby="Product tags" required=true}}
+                          {{tags-input values=product.tags themes=themes.themes onAddTag=(action 'addTag') onRemoveTag=(action 'removeTag')}}
                           <span class="hint">
-                      Press Comma, or Spacebar to create a new tag. Backspace or Delete to remove the last one.
-                    </span>
+                            Press Comma, or Spacebar to create a new tag. Backspace or Delete to remove the last one.
+                          </span>
                         </label>
                       </div>
                     </div>

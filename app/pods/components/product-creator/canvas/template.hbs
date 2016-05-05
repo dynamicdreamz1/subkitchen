@@ -81,10 +81,10 @@
               <div class="row">
                 <div class="small-12 columns">
                   <label>Publish:</label>
-                  {{#select-box/native on-select=(action 'updateIsPublished') as |sb|}}
-                    {{sb.option value='true' label='Yes'}}
-                    {{sb.option value='false' label='No'}}
-                  {{/select-box/native}}
+                  {{#x-select value=product.published action="updateIsPublished"}}
+                    {{#x-option value=true}}Yes{{/x-option}}
+                    {{#x-option value=false}}No{{/x-option}}
+                  {{/x-select}}
                 </div>
               </div>
               {{/if}}
@@ -98,7 +98,7 @@
             <div class="row">
               <div class="small-12 columns">
                 <label>Tags:
-                  {{input  type="text" name="tags" autocomplete="off" value=product.joinedTags placeholder="Pug, Monkey, Baby, Space, Pink" aria-describedby="Product tags" required=true}}
+                  {{tags-input values=product.tags themes=themes.themes onAddTag=(action 'addTag') onRemoveTag=(action 'removeTag')}}
                   <span class="hint">
                     Press Comma, or Spacebar to create a new tag. Backspace or Delete to remove the last one.
                   </span>
