@@ -32,8 +32,7 @@ export default DS.Model.extend({
   publishStatus: function() {
     if(this.get('published')) {
       return 'published';
-    } else {
-      return 'unpublished';
     }
+    return 'unpublished';
   }.property('published')
 });
