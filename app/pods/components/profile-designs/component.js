@@ -10,7 +10,6 @@ export default Ember.Component.extend({
 
   isPublished: false,
   selectedThemes: [],
-  errors: {},
 
   didInsertElement() {
     this.$().foundation();

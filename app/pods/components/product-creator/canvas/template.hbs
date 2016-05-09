@@ -3,8 +3,6 @@
     <form id="formImageUpload">
       <label id="uploadButton" for="imageFileUpload" class="button upload uppercase">upload artwork</label>
       {{input type="file" name="image" id="imageFileUpload" class="show-for-sr" value=product.rawImage}}
-
-      {{input-errors errors=errors.image}}
     </form>
       {{#if product.image}}
         {{#if session.isAuthenticated}}
@@ -90,9 +88,9 @@
               {{/if}}
             <div class="row">
               <div class="small-12 columns">
-                <label class={{if product.errors.name "is-invalid-label" ""}}>Title:
+                <label class={{if errors.name "is-invalid-label" ""}}>Title:
                   {{input  type="text" name="title" autocomplete="off" value=product.name placeholder="Puppy Monkey baby" aria-describedby="Product title" required=true}}
-                  {{input-data-errors errors=product.errors.name}}
+                  {{input-errors errors=errors.name}}
                 </label>
               </div>
             </div>
@@ -125,6 +123,7 @@
             {{#unless validThemes}}
               {{input-errors errors="Choose at least one theme"}}
             {{/unless}}
+            {{input-errors errors=errors.image}}
             <div class="row actions text-center">
               <div class="small-12 columns">
                 <button class="button dark uppercase font-bold {{if validThemes "" "disabled"}}" type="submit" value="publish">publish</button>

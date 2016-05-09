@@ -21,6 +21,7 @@ export default Ember.Component.extend( {
   selectedThemes: [],
   isPublished: false,
   isClicked: false,
+  errors: {},
 
   validThemes: function() {
     if(this.get('isClicked')){
@@ -48,6 +49,7 @@ export default Ember.Component.extend( {
     },
 
     showPublishingPopup(){
+      this.set('errors', {});
       $('#publishModal').foundation('open');
     },
 
@@ -106,9 +108,8 @@ export default Ember.Component.extend( {
             this.get("routing").transitionTo("product", [response.product.id]);
             flashMessages.success('Product saved.');
             $('#publishModal').foundation('close');
-          }, () => {
-            // error
-            console.log('publish fail', arguments);
+          }, (error) => {
+            this.set('errors', error.responseJSON.errors);
           });
         });
 
