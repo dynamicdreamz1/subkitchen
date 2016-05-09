@@ -8,11 +8,17 @@ export default Ember.Component.extend({
   routing: Ember.inject.service('-routing'),
   currentUser: Ember.inject.service('current-user'),
 
-  isPublished: true,
+  isPublished: false,
+  selectedThemes: [],
+  errors: {},
 
   didInsertElement() {
     this.$().foundation();
   },
+
+  validThemes: function() {
+    return this.get('selectedThemes').length > 0;
+  }.property('selectedThemes'),
 
   actions: {
 
@@ -59,7 +65,6 @@ export default Ember.Component.extend({
             return tag === '';
           });
           let publishedValue = this.get('isPublished');
-
           product.set('tags', tags);
           product.set('description', 'Custom Design');
           product.set('published', publishedValue);

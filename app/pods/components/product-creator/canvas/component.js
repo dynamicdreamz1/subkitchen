@@ -19,7 +19,15 @@ export default Ember.Component.extend( {
   rotationAngle: 0,
   showRotationWheel: false,
   selectedThemes: [],
-  isPublished: true,
+  isPublished: false,
+  isClicked: false,
+
+  validThemes: function() {
+    if(this.get('isClicked')){
+      return this.get('selectedThemes').length > 0;
+    }
+    return true;
+  }.property('selectedThemes'),
 
   init(){
     this._super(...arguments);
@@ -32,6 +40,7 @@ export default Ember.Component.extend( {
   actions: {
 
     updateThemeSelection(newSelection) {
+      this.set('isClicked', true);
       if(newSelection.length > 4){
         newSelection.pop();
       }

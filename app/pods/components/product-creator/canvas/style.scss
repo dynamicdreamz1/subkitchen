@@ -176,14 +176,21 @@
         outline: -webkit-focus-ring-color none 5px;
       }
     }
+    .form-error{
+      margin-top: 0rem;
+    }
+
     .callout{
       margin: 0.5rem 0;
       padding: 0.1rem;
     }
+
     .actions{
       margin-top: 1em;
     }
+
     .themes{
+      margin-bottom: 1.0rem;
       .column{
         padding-right: 0.3em;
 
@@ -210,17 +217,6 @@
           text-transform: capitalize;
         }
       }
-    }
-  }
-}
-div.tagsinput {
-  span.tag {
-    background: black;
-    color: white;
-    border: black;
-
-    a {
-      color: white;
     }
   }
 }

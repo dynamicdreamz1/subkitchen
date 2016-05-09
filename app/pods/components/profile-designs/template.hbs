@@ -51,8 +51,9 @@
                     {{/if}}
                     <div class="row">
                       <div class="small-12 columns">
-                        <label>Title:
+                        <label class={{if product.errors.name "is-invalid-label" ""}}>Title:
                           {{input type="text" name="title" autocomplete="off" value=product.name placeholder="Puppy Monkey baby" aria-describedby="Product title" required=true}}
+                          {{input-data-errors errors=product.errors.name}}
                         </label>
                       </div>
                     </div>
@@ -82,9 +83,12 @@
                         </label>
                       </div>
                     {{/multiselect-checkboxes}}
+                    {{#unless validThemes}}
+                      {{input-errors errors="Choose at least one theme"}}
+                    {{/unless}}
                     <div class="row actions text-center">
                       <div class="small-12 columns">
-                        <button class="button dark uppercase font-bold" type="submit" value="publish">save</button>
+                        <button class="button dark uppercase font-bold {{if validThemes "" "disabled"}}" type="submit" value="publish">save</button>
                       </div>
                     </div>
                   </form>

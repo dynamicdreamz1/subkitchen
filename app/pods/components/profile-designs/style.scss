@@ -65,6 +65,7 @@ div[id^='editModal'] {
   .button{
     margin: 0
   }
+
   &.reveal{
     &:focus{
       outline: -webkit-focus-ring-color none 5px;
@@ -78,6 +79,7 @@ div[id^='editModal'] {
     margin-top: 1em;
   }
   .themes{
+    margin-bottom: 1.0rem;
     .column{
       padding-right: 0.3em;
 
@@ -106,14 +108,4 @@ div[id^='editModal'] {
     }
   }
 }
-div.tagsinput {
-  span.tag {
-    background: black;
-    color: white;
-    border: black;
 
-    a {
-      color: white;
-    }
-  }
-}
