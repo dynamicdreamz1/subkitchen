@@ -21,6 +21,7 @@ Router.map(function() {
   this.route('become-cook-with-handle', { path: '/become-cook/:handle' });
   this.route('become-cook');
   this.route('cooking');
+  this.route('published-product', { path: '/published-product/:product_id' });
   this.route('check-out');
   this.route('public-profile', { path: '/:handle' });
 });

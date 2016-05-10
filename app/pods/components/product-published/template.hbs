@@ -1,0 +1,20 @@
+<div class="row published">
+  <div class="small-12 medium-12 columns">
+    <div class="row published-title">
+      <h4>CONGRATULATIONS! YOUR CREATION HAS BEEN PUBLISHED!</h4>
+    </div>
+    <div class="row published-content">
+      <div class="small-5 medium-5 columns published-image">
+        <img src="{{model.product.product_image}}" alt="">
+      </div>
+      <div class="small-7 medium-7 columns published-details">
+        <h4 class="published-name"> {{model.product.name}} </h4>
+        <p class="published-tags"> {{model.product.formattedTags}} </p>
+        <p class="published-author"> Created by: {{model.product.author}} </p>
+        <p class="">This artwork is avaliable for sale as a {{model.product.formattedProductType}}</p>
+        <button class="button light uppercase">share this product!</button>
+      </div>
+    </div>
+  </div>
+</div>
+

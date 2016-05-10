@@ -17,6 +17,7 @@ export default DS.Model.extend({
   sizes:               DS.attr(),
   tags:                DS.attr(),
   variants:            DS.attr(),
+  product_type:        DS.attr('string'),
 
   promoters:   DS.hasMany('promoter'),
 
@@ -34,5 +35,9 @@ export default DS.Model.extend({
       return 'published';
     }
     return 'unpublished';
-  }.property('published')
+  }.property('published'),
+
+  formattedProductType: function() {
+    return this.get('product_type').replace('_', ' ');
+  }.property('product_type')
 });

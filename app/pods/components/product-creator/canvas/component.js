@@ -105,7 +105,11 @@ export default Ember.Component.extend( {
             processData: false,
             dataType : 'json',
           }).then((response) => {
-            this.get("routing").transitionTo("product", [response.product.id]);
+            if(this.get('product.published')) {
+              this.get("routing").transitionTo("published-product", [response.product.id]);
+            } else {
+              this.get("routing").transitionTo("product", [response.product.id]);
+            }
             flashMessages.success('Product saved.');
             $('#publishModal').foundation('close');
           }, (error) => {
