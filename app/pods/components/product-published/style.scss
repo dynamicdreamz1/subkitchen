@@ -1,63 +1,65 @@
-div.row {
+.published-container {
+  div.row {
     width: 100%;
     max-width: 100%;
     margin: auto;
 
-  &.published {
-    height: 50%;
-    border-bottom: 1px solid #0a0a0a;
-    box-shadow: 0 -1px 0 0 #e6e6e6;
-  }
-
-  &.published-title {
-    margin: auto;
-    text-align: center;
-    padding-top: 2rem;
-  }
-
-  &.published-content {
-    margin: auto;
-    text-align: center;
-
-    .published-image {
-      text-align: right;
-      margin-top: 0.5rem;
-      margin-bottom: 2.5rem;
-
-      img {
-        height: 15rem;
-      }
+    &.published {
+      height: 50%;
+      border-bottom: 1px solid #0a0a0a;
+      box-shadow: 0 -1px 0 0 #e6e6e6;
     }
 
-    .published-details {
-      margin-top: 0.5rem;
-      margin-bottom: 2.5rem;
-      text-align: left;
+    &.published-title {
+      margin: auto;
+      text-align: center;
+      padding-top: 2rem;
+    }
 
-      .published-name {
-        font-weight: bold;
-        height: 1.5rem;
+    &.published-content {
+      margin: auto;
+      text-align: center;
+
+      .published-image {
+        text-align: right;
+        margin-top: 0.5rem;
+        margin-bottom: 2.5rem;
+
+        img {
+          height: 15rem;
+        }
       }
 
-      .published-tags {
-        height: 1.5rem;
-        font-size: 90%;
-        color: #c5c5c5;
-        margin-bottom: 0rem;
-      }
+      .published-details {
+        margin-top: 0.5rem;
+        margin-bottom: 2.5rem;
+        text-align: left;
 
-      .published-author {
-        height: 1.5rem;
-        font-size: 90%;
-        font-weight: bold;
-      }
+        .published-name {
+          font-weight: bold;
+          height: 1.5rem;
+        }
 
-      .button.light {
-        background: $white;
-        border: 2px solid $black;
-        color: $black;
-        line-height: 0rem;
-        width: auto;
+        .published-tags {
+          height: 1.5rem;
+          font-size: 90%;
+          color: #c5c5c5;
+          margin-bottom: 0rem;
+        }
+
+        .published-author {
+          height: 1.5rem;
+          font-size: 90%;
+          font-weight: bold;
+        }
+
+        .button.light {
+          background: $white;
+          border: 2px solid $black;
+          color: $black;
+          line-height: 0rem;
+          width: auto;
+        }
       }
     }
   }
