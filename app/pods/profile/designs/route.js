@@ -7,10 +7,21 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   ajax: Ember.inject.service(),
 
   model(){
+    let productPromise = new Ember.RSVP.Promise((resolve, reject) => {
+      this.store.findRecord('user', 'current').then((user) => {
+        this.store.query('product', { author_id: user.id, per_page: 5 }).then((product) => {
+          resolve(product);
+        }, () => {
+          reject();
+        });
+      });
+    });
+
     return Ember.RSVP.hash({
-      products: this.store.query('product', { author_id: this.get('currentUser.data.id'), per_page: 5}),
+      products: productPromise,
       themes: this.get('ajax').request(config.host + config.apiEndpoint + '/themes'),
       user: this.store.findRecord('user', 'current')
     });
   }
 });
+

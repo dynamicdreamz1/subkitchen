@@ -8,8 +8,8 @@ export default Ember.Component.extend({
   routing: Ember.inject.service('-routing'),
   currentUser: Ember.inject.service('current-user'),
 
-  isPublished: false,
   selectedThemes: [],
+  isPublished: null,
 
   didInsertElement() {
     this.$().foundation();
@@ -28,6 +28,7 @@ export default Ember.Component.extend({
           return this.get('themes.themes').includes(tag);
         });
         this.set('selectedThemes', themes);
+        this.set('isPublished', this.get('product.published'));
       });
     },
 
@@ -56,7 +57,6 @@ export default Ember.Component.extend({
         this.get('store').findRecord('product', product_id).then((product) => {
 
           const flashMessages = this.get('flashMessages');
-
           let tags = this.get('product.tags');
           let themes = this.get('selectedThemes').toArray();
           tags = [...new Set([...tags, ...themes])];

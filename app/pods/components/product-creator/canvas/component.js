@@ -19,7 +19,7 @@ export default Ember.Component.extend( {
   rotationAngle: 0,
   showRotationWheel: false,
   selectedThemes: [],
-  isPublished: false,
+  isPublished: true,
   isClicked: false,
   errors: {},
 
@@ -49,6 +49,7 @@ export default Ember.Component.extend( {
     },
 
     showPublishingPopup(){
+      this.set('selectedThemes', []);
       this.set('errors', {});
       $('#publishModal').foundation('open');
     },
@@ -280,6 +281,11 @@ export default Ember.Component.extend( {
     this.get('resize').off('debouncedDidResize').on('debouncedDidResize', ()=>{
       canvasActions.init.call(this);
     });
+
+    if(!this.get('user.artist')){
+      console.log('2');
+      this.set('isPublished', false);
+    }
 
     this.$().foundation();
   },
