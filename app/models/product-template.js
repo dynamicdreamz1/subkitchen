@@ -9,5 +9,9 @@ export default DS.Model.extend({
   size_chart:         DS.attr('string'),
   templateImage:      DS.attr('string'),
   templateImageLarge: DS.attr('string'),
-  templateMaskLarge:  DS.attr('string')
+  templateMaskLarge:  DS.attr('string'),
+
+  formattedProductType: function() {
+    return this.get('product_type').replace('_', ' ').toUpperCase();
+  }.property('product_type')
 });

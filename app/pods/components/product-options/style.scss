@@ -1,0 +1,32 @@
+.row.product-options{
+
+  .columns.options {
+    text-align: center;
+    padding-top: 4rem;
+    padding-top: 0.5rem;
+
+    .row {
+      &.title {}
+      &.actions {
+        a.button {
+          margin-top: 2em;
+          width: auto;
+        }
+      }
+
+      &.templates {
+        padding-top: 1rem;
+        display: inline-block;
+
+        div.column {
+          p {
+            margin: auto;
+            line-height: 1rem;
+          }
+          width: auto;
+          padding: 1rem;
+        }
+      }
+    }
+  }
+}

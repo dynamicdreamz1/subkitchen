@@ -18,7 +18,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     });
 
     return Ember.RSVP.hash({
-      product: productPromise
+      product: productPromise,
+      templates: this.store.query('productTemplate', {})
     });
   }
 });
