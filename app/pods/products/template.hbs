@@ -1,14 +1,83 @@
 {{#shopping-cart}}
   {{app-header}}
+  <div class="row small-12 column">
+    <div class="small-12 columns sort">
+      <label for="sort">SORT BY:</label>
+      {{#x-select value=sorted_by id="sort" action="updateSortBy"}}
+        {{#x-option value='created_at_desc'}}Created at desc{{/x-option}}
+        {{#x-option value='created_at_asc'}}Created at asc{{/x-option}}
+        {{#x-option value='name_desc'}}Name desc{{/x-option}}
+        {{#x-option value='name_asc'}}Name asc{{/x-option}}
+        {{#x-option value='price_desc'}}Price desc{{/x-option}}
+        {{#x-option value='price_asc'}}Price asc{{/x-option}}
+        {{#x-option value='best_sellers'}}Best Sellers{{/x-option}}
+      {{/x-select}}
+      <div class="per-page">
+        <a>ITEMS PER PAGE</a>
+        <a class="limit" onclick={{action 'changePerPage' 30}}>30</a>
+        <a class="limit" onclick={{action 'changePerPage' 90}}>90</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="filters-container">
+    <div class="row small-up-2 medium-up-4 large-up-6 filters">
+        <div class="column text-left">
+          <p class="filter-by">Type:</p>
+          <div class="row">
+            {{#multiselect-checkboxes options=productTypes selection=product_type tagName='div' classNames='column' as |type isSelected|}}
+              <div class="row">
+                <div class="column filter">
+                  {{input type="checkbox" checked=isSelected id=(concat type '-type')}}
+                  <label for="{{concat type '-type' }}">
+                    {{type}}
+                  </label>
+                </div>
+              </div>
+            {{/multiselect-checkboxes}}
+          </div>
+        </div>
+        <div class="column text-left">
+          <p class="filter-by">Theme:</p>
+          <div class="row">
+            {{#multiselect-checkboxes options=model.themes.themes selection=tags tagName='div' classNames='column' as |theme isSelected|}}
+              <div class="row">
+                <div class="column filter">
+                  {{input type="checkbox" checked=isSelected id=(concat theme '-type')}}
+                  <label for="{{concat theme '-type' }}">
+                    {{theme}}
+                  </label>
+                </div>
+              </div>
+            {{/multiselect-checkboxes}}
+          </div>
+        </div>
+        <div class="column text-left">
+          <p class="filter-by">Theme:</p>
+          <div class="row">
+            {{#multiselect-checkboxes options=priceRanges selection=price_range tagName='div' classNames='column' as |priceRange isSelected|}}
+              <div class="row">
+                <div class="column filter">
+                  {{input type="checkbox" checked=isSelected id=(concat priceRange '-type')}}
+                  <label for="{{concat priceRange '-type' }}">
+                    ${{priceRange.[0]}} - ${{priceRange.[1]}}
+                  </label>
+                </div>
+              </div>
+            {{/multiselect-checkboxes}}
+          </div>
+        </div>
+    </div>
+  </div>
   <section class="products" id="products">
     <div class="row small-up-1 medium-up-4">
-      {{#each model as |product|}}
+      {{#each model.products as |product|}}
         {{product-info product=product }}
       {{/each}}
     </div>
     <div class="row">
       <div class="small-12 columns text-right">
-        {{page-numbers content=model  action=(action 'pageClicked')}}
+        {{page-numbers content=model.products  action=(action 'pageClicked')}}
       </div>
     </div>
   </section>
