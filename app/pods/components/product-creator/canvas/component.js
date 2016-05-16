@@ -283,7 +283,6 @@ export default Ember.Component.extend( {
     });
 
     if(!this.get('user.artist')){
-      console.log('2');
       this.set('isPublished', false);
     }
 

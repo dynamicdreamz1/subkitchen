@@ -53,14 +53,14 @@
           </div>
         </div>
         <div class="column text-left">
-          <p class="filter-by">Theme:</p>
+          <p class="filter-by">Price:</p>
           <div class="row">
-            {{#multiselect-checkboxes options=priceRanges selection=price_range tagName='div' classNames='column' as |priceRange isSelected|}}
+            {{#multiselect-checkboxes options=priceRanges selection=price_range tagName='div' classNames='column' onchange=(action 'updatePriceRange') updateSelectionValue=false as |priceRange isSelected|}}
               <div class="row">
                 <div class="column filter">
                   {{input type="checkbox" checked=isSelected id=(concat priceRange '-type')}}
                   <label for="{{concat priceRange '-type' }}">
-                    ${{priceRange.[0]}} - ${{priceRange.[1]}}
+                    {{format-price-range priceRange}}
                   </label>
                 </div>
               </div>

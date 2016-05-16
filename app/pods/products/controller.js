@@ -6,10 +6,10 @@ export default Ember.Controller.extend({
 
   page: 1,
   per_page: 12,
-  priceRanges: [[0, 25], [25, 100]],
+  priceRanges: ['0, 60', '60, 100'],
   product_type: [],
   tags: [],
-  price_range: null,
+  price_range: [],
   sorted_by: 'created_at_desc',
 
   productTypes: function(){
@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
   actions: {
     pageClicked(page) {
       this.set('page', page);
-      setTimeout(function(){
+      setTimeout(function () {
         $('html, body').animate({
           scrollTop: $("#products").offset().top
         }, 500);
@@ -32,6 +32,16 @@ export default Ember.Controller.extend({
 
     changePerPage(perPage) {
       this.set('per_page', perPage);
+    },
+
+    updatePriceRange(newSelection, value, operation) {
+      if(operation === 'removed'){
+        this.set('price_range', []);
+      }
+      if(newSelection.length > 1){
+        newSelection.shift();
+      }
+      this.set('price_range', newSelection);
     }
   }
 });
