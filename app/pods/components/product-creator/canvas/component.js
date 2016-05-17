@@ -60,6 +60,8 @@ export default Ember.Component.extend( {
 
     publish(){
       if ( this.get('product.image') ){
+        this.$('.js-publish').addClass('loading-white');
+
         const flashMessages = this.get('flashMessages');
 
         // get image
