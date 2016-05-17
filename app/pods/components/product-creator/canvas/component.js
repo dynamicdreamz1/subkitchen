@@ -65,7 +65,11 @@ export default Ember.Component.extend( {
         // get image
         let canvas = this.get('canvas');
         canvas.deactivateAll().renderAll();
-        let dataURL =  canvas.toDataURL('image/png');
+        let multiplier = Math.floor(2048 / canvas.getWidth());
+        let dataURL =  canvas.toDataURL({
+          format: 'png',
+          multiplier: multiplier
+        });
         let file = this.get('dataUrlToBlob').convert(dataURL);
         this.set('product.preview', file);
 
