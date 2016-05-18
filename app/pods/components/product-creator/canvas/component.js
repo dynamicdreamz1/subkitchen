@@ -13,7 +13,6 @@ export default Ember.Component.extend( {
 
 
   // product: new Ember.Object(),
-  product: null, //see init
   selectedTemplate: null,
   scale: 1,
   rotationAngle: 0,
@@ -32,10 +31,17 @@ export default Ember.Component.extend( {
 
   init(){
     this._super(...arguments);
-    this.set('product', this.get('store').createRecord('product', {
-      name: '',
-      tags: []
-    }));
+    if(this.get('product')){
+      let themes = this.get('product.tags').filter((tag) => {
+        return this.get('themes.themes').includes(tag);
+      });
+      this.set('selectedThemes', themes);
+    } else {
+      this.set('product', this.get('store').createRecord('product', {
+        name: '',
+        tags: []
+      }));
+    }
   },
 
   actions: {
@@ -49,7 +55,6 @@ export default Ember.Component.extend( {
     },
 
     showPublishingPopup(){
-      this.set('selectedThemes', []);
       this.set('errors', {});
       $('#publishModal').foundation('open');
     },
@@ -94,6 +99,8 @@ export default Ember.Component.extend( {
         formData.append('product_template_id', this.get('selectedTemplate.id'));
         formData.append('published', publishedValue);
 
+        formData.append('image', this.get('product.image'));
+
         tags.forEach(function(tag){
           formData.append('tags[]', tag);
         });
@@ -110,7 +117,7 @@ export default Ember.Component.extend( {
             cache: false,
             contentType: false,
             processData: false,
-            dataType : 'json',
+            dataType : 'json'
           }).then((response) => {
             if(this.get('product.published')) {
               this.get("routing").transitionTo("published-product", [response.product.id]);
@@ -290,6 +297,14 @@ export default Ember.Component.extend( {
 
     if(!this.get('user.artist')){
       this.set('isPublished', false);
+    }
+
+    if(this.get('product.image')) {
+      let a = new FileReader();
+      a.onload = (e) => {
+        canvasActions.setUploadedImage.call(this, e.target.result);
+      };
+      a.readAsDataURL(this.get('product.image'));
     }
 
     this.$().foundation();

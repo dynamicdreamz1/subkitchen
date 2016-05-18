@@ -7,7 +7,7 @@
     <div class="row small-up-1 medium-up-3 large-up-5 templates">
       {{#each model.templates as |template|}}
         <div class="column">
-          {{#link-to 'cooking'}}<img src="{{template.templateImage}}" alt="">{{/link-to}}
+          {{#link-to 'cooking' (query-params product_id=model.product.id selected_template_id=template.id)}}<img src="{{template.templateImage}}" alt="">{{/link-to}}
           <p>{{template.formattedProductType}}</p>
         </div>
       {{/each}}

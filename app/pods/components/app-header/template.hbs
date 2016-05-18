@@ -23,7 +23,7 @@
       {{/link-to}}
     </li>
     <li> {{#link-to 'products' class="menu-item uppercase"}} shop {{/link-to}} </li>
-    <li> {{#link-to 'cooking' class="menu-item uppercase"}} create {{/link-to}} </li>
+    <li> {{#link-to 'cooking' (query-params product_id="" selected_template_id="") class="menu-item uppercase"}} create {{/link-to}} </li>
     <li><a class="menu-item" href="#">sell</a></li>
     <li><a class="menu-item" href="#">artists</a></li>
     <li class="divider"></li>
