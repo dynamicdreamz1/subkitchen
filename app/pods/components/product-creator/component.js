@@ -8,7 +8,11 @@ export default Ember.Component.extend({
 
   init(){
     this._super(...arguments);
-    this.set('selectedTemplate', this.get('productTemplates.firstObject'));
+    if(this.get('selectedTemplateId')) {
+      this.set('selectedTemplate', this.get('productTemplates').findBy('id', this.get('selectedTemplateId')));
+    } else {
+      this.set('selectedTemplate', this.get('productTemplates.firstObject'));
+    }
   },
 
   actions: {
@@ -29,7 +33,7 @@ export default Ember.Component.extend({
     increaseQuantity(){
       let newValue = this.get('quantity') + 1;
       this.set('quantity', newValue);
-    },
+    }
 
   },
 

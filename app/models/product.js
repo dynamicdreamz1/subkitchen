@@ -11,7 +11,7 @@ export default DS.Model.extend({
   likes_count:         DS.attr('number'),
   comments_count:      DS.attr('number'),
   template_variant_id: DS.attr('number'),
-  product_image:       DS.attr('string'), // image from backend
+  preview_url:         DS.attr('string'), // image from backend
   image:               DS.attr(),         // we send it
   preview:             DS.attr(),         // we send it
   published:           DS.attr('boolean'),
@@ -19,6 +19,7 @@ export default DS.Model.extend({
   tags:                DS.attr(),
   variants:            DS.attr(),
   product_type:        DS.attr('string'),
+  product_template_id: DS.attr('number'),
 
   promoters:   DS.hasMany('promoter'),
 
