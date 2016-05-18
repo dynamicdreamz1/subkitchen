@@ -93,6 +93,8 @@ export default Ember.Component.extend( {
         formData.append('product_template_id', this.get('selectedTemplate.id'));
         formData.append('published', publishedValue);
 
+        formData.append('image', this.get('product.image'));
+
         tags.forEach(function(tag){
           formData.append('tags[]', tag);
         });
@@ -291,8 +293,12 @@ export default Ember.Component.extend( {
       this.set('isPublished', false);
     }
 
-    if(this.get('product.image_url')) {
-      canvasActions.setUploadedImage.call(this, this.get('product.image_url'));
+    if(this.get('product.image')) {
+      let a = new FileReader();
+      a.onload = (e) => {
+        canvasActions.setUploadedImage.call(this, e.target.result);
+      };
+      a.readAsDataURL(this.get('product.image'));
     }
 
     this.$().foundation();

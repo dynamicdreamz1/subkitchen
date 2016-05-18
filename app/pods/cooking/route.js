@@ -31,23 +31,21 @@ export default Ember.Route.extend({
         this.set('product', this.store.findRecord('product', params.product_id)).then((product) => {
           this.set('author', this.store.findRecord('user', 'current')).then(() => {
             if (this.get('author.id') == this.get('product.author_id')) { // jshint ignore:line
-
-              console.debug(this.get('product.image_url'));
-              resolve(product)
-
-              Ember.$.ajax({
-                url: this.get('product.image_url'),
-                type: 'GET'
-              })
-              //).then((response)=>{
-              //  // this.set('product.image', response);
-              //  // resolve(this.get('product'));
-              //  resolve(product)
-              //}, function(){
-              //  reject();
-              //});
+              let oReq = new XMLHttpRequest();
+              oReq.open("GET", this.get('product.image_url'), true);
+              oReq.responseType = "blob";
+              oReq.onload = (oEvent)=>{
+                let blob = oReq.response;
+                this.set('product.image', blob);
+                resolve(this.get('product'));
+              };
+              oReq.onerror = ()=>{
+                reject();
+              };
+              oReq.send();
+            } else {
+              reject();
             }
-            reject();
           });
         }, function () {
           reject();
