@@ -31,6 +31,7 @@ export default Ember.Component.extend( {
 
   init(){
     this._super(...arguments);
+
     if(this.get('product')){
       let themes = this.get('product.tags').filter((tag) => {
         return this.get('themes.themes').includes(tag);
@@ -44,30 +45,22 @@ export default Ember.Component.extend( {
     }
   },
 
+
+  observeAddToCart: function () {
+    if(this.get('addToCart')){
+      console.log('observer this', this);
+      this.set('addToCart', false);
+      this.get('actions.addToCart').call(this);
+    }
+  }.observes('addToCart'),
+
   actions: {
 
-    updateThemeSelection(newSelection) {
-      this.set('isClicked', true);
-      if(newSelection.length > 4){
-        newSelection.pop();
-      }
-      this.set('selectedThemes', newSelection);
-    },
-
-    showPublishingPopup(){
-      this.set('errors', {});
-      $('#publishModal').foundation('open');
-    },
-
-    updateIsPublished(publishedValue){
-      this.set('isPublished', publishedValue);
-    },
-
-    publish(){
+    createProduct(callback){
+      console.log('createProduct this', this);
+      console.log(this.get('product.image'));
       if ( this.get('product.image') ){
         this.$('.js-publish').addClass('loading-white');
-
-        const flashMessages = this.get('flashMessages');
 
         // get image
         let canvas = this.get('canvas');
@@ -119,19 +112,59 @@ export default Ember.Component.extend( {
             processData: false,
             dataType : 'json'
           }).then((response) => {
-            if(this.get('product.published')) {
-              this.get("routing").transitionTo("published-product", [response.product.id]);
-            } else {
-              this.get("routing").transitionTo("product", [response.product.id]);
-            }
-            flashMessages.success('Product saved.');
-            $('#publishModal').foundation('close');
+            callback(response);
           }, (error) => {
             this.set('errors', error.responseJSON.errors);
           });
         });
 
       }
+    },
+
+    updateThemeSelection(newSelection) {
+      this.set('isClicked', true);
+      if(newSelection.length > 4){
+        newSelection.pop();
+      }
+      this.set('selectedThemes', newSelection);
+    },
+
+    showPublishingPopup(){
+      this.set('errors', {});
+      $('#publishModal').foundation('open');
+    },
+
+    updateIsPublished(publishedValue){
+      this.set('isPublished', publishedValue);
+    },
+
+    publish(){
+      let callback = (response) => {
+        const flashMessages = this.get('flashMessages');
+        if(this.get('product.published')) {
+          this.get("routing").transitionTo("published-product", [response.product.id]);
+        } else {
+          this.get("routing").transitionTo("product", [response.product.id]);
+        }
+        flashMessages.success('Product saved.');
+        $('#publishModal').foundation('close');
+      };
+      this.send('createProduct', callback);
+    },
+
+    addToCart(){
+      console.log('addToCart this', this);
+      let callback = (response) => {
+        const flashMessages = this.get('flashMessages');
+        if(this.get('product.published')) {
+          this.get("routing").transitionTo("published-product", [response.product.id]);
+        } else {
+          this.get("routing").transitionTo("product", [response.product.id]);
+        }
+        flashMessages.success('Product saved.');
+        $('#publishModal').foundation('close');
+      };
+      this.send('createProduct', callback);
     },
 
     addTag(tag){

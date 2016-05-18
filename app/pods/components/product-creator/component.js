@@ -5,6 +5,7 @@ export default Ember.Component.extend({
   size: 'MD',
   quantity: 1,
   themes: [],
+  addToCart: false,
 
   init(){
     this._super(...arguments);
@@ -21,6 +22,8 @@ export default Ember.Component.extend({
     },
 
     addToCart(){
+      console.log('123');
+      this.set('addToCart', true);
     },
 
     decreaseQuantity(){
