@@ -1,11 +1,21 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  productCreatorEventBus: Ember.inject.service('product-creator-event-bus'),
+
   selectedTemplate: null,
   size: 'MD',
   quantity: 1,
   themes: [],
-  addToCart: false,
+  child: null,
+
+  observeSize: function () {
+    this.set('productCreatorEventBus.size', this.get('size'));
+  }.observes('size'),
+
+  observeQuantity: function () {
+    this.set('productCreatorEventBus.quantity', this.get('quantity'));
+  }.observes('quantity'),
 
   init(){
     this._super(...arguments);
@@ -22,8 +32,8 @@ export default Ember.Component.extend({
     },
 
     addToCart(){
-      console.log('123');
-      this.set('addToCart', true);
+      // trigger action on canvas
+      this.set('productCreatorEventBus.addToCart', true);
     },
 
     decreaseQuantity(){

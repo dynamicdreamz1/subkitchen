@@ -3,6 +3,7 @@ import Ember from 'ember';
 import config from 'subkitchen-front/config/environment';
 
 export default Ember.Component.extend( {
+  cart: Ember.inject.service('shopping-cart'),
   resize: Ember.inject.service(),
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
@@ -10,6 +11,7 @@ export default Ember.Component.extend( {
   flashMessages: Ember.inject.service(),
   dataUrlToBlob: Ember.inject.service('data-url-to-blob'),
   currentUser: Ember.inject.service('current-user'),
+  productCreatorEventBus: Ember.inject.service('product-creator-event-bus'),
 
 
   // product: new Ember.Object(),
@@ -45,20 +47,16 @@ export default Ember.Component.extend( {
     }
   },
 
-
-  observeAddToCart: function () {
-    if(this.get('addToCart')){
-      console.log('observer this', this);
-      this.set('addToCart', false);
-      this.get('actions.addToCart').call(this);
+  observeEventBus: function () {
+    if (this.get('productCreatorEventBus.addToCart')){
+      this.set('productCreatorEventBus.addToCart', false);
+      this.send('addToCart');
     }
-  }.observes('addToCart'),
+  }.observes('productCreatorEventBus.addToCart'),
 
   actions: {
 
     createProduct(callback){
-      console.log('createProduct this', this);
-      console.log(this.get('product.image'));
       if ( this.get('product.image') ){
         this.$('.js-publish').addClass('loading-white');
 
@@ -153,16 +151,17 @@ export default Ember.Component.extend( {
     },
 
     addToCart(){
-      console.log('addToCart this', this);
+
+      if (!this.get('product.name')){
+        this.set('product.name', this.get('selectedTemplate.product_type'));
+      }
+
       let callback = (response) => {
-        const flashMessages = this.get('flashMessages');
-        if(this.get('product.published')) {
-          this.get("routing").transitionTo("published-product", [response.product.id]);
-        } else {
-          this.get("routing").transitionTo("product", [response.product.id]);
-        }
-        flashMessages.success('Product saved.');
-        $('#publishModal').foundation('close');
+        this.get('cart').add(
+          response.product.id,
+          this.get('productCreatorEventBus.size'),
+          response.product.variants[0].id,
+          this.get('productCreatorEventBus.quantity'));
       };
       this.send('createProduct', callback);
     },
@@ -339,6 +338,8 @@ export default Ember.Component.extend( {
       };
       a.readAsDataURL(this.get('product.image'));
     }
+
+    this.get('productCreatorEventBus.addToCart');
 
     this.$().foundation();
   },
