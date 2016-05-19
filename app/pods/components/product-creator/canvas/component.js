@@ -294,6 +294,7 @@ export default Ember.Component.extend( {
     centeredScaling: true,
     centeredRotation: true,
     transparentCorners: false,
+    cornerSize: jQuery.browser.mobile ? 40 : 13,
     cornerColor: 'rgba(0,0,0,1)',
     borderColor: 'rgba(0,0,0,1)',
     borderOpacityWhenMoving: 1

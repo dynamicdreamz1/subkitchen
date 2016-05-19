@@ -31,5 +31,6 @@ module.exports = function(defaults) {
   app.import('bower_components/fabric.js/dist/fabric.min.js');
   app.import('vendor/hammer.min.js');
   app.import('vendor/hammer-time.min.js');
+  app.import('vendor/detectmobilebrowser.js');
   return app.toTree();
 };
