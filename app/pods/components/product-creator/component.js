@@ -24,6 +24,9 @@ export default Ember.Component.extend({
     } else {
       this.set('selectedTemplate', this.get('productTemplates.firstObject'));
     }
+
+    this.set('productCreatorEventBus.size', this.get('size'));
+    this.set('productCreatorEventBus.quantity', this.get('quantity'));
   },
 
   actions: {

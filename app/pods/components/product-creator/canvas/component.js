@@ -56,7 +56,7 @@ export default Ember.Component.extend( {
 
   actions: {
 
-    createProduct(callback){
+    createProduct(callback, errorCallback){
       if ( this.get('product.image') ){
         this.$('.js-publish').addClass('loading-white');
 
@@ -113,9 +113,15 @@ export default Ember.Component.extend( {
             callback(response);
           }, (error) => {
             this.set('errors', error.responseJSON.errors);
+            if (typeof errorCallback === 'function'){
+              errorCallback(error);
+            }
           });
         });
-
+      } else {
+        if (typeof errorCallback === 'function'){
+          errorCallback({});
+        }
       }
     },
 
@@ -151,6 +157,7 @@ export default Ember.Component.extend( {
     },
 
     addToCart(){
+      $('.button.addToCart').addClass('loading-white');
 
       if (!this.get('product.name')){
         this.set('product.name', this.get('selectedTemplate.product_type'));
@@ -162,8 +169,15 @@ export default Ember.Component.extend( {
           this.get('productCreatorEventBus.size'),
           response.product.variants[0].id,
           this.get('productCreatorEventBus.quantity'));
+
+        $('.button.addToCart').removeClass('loading-white');
       };
-      this.send('createProduct', callback);
+
+      let error = function(){
+        $('.button.addToCart').removeClass('loading-white');
+      };
+
+      this.send('createProduct', callback, error);
     },
 
     addTag(tag){
