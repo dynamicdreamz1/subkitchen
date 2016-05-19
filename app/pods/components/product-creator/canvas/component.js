@@ -96,10 +96,19 @@ export default Ember.Component.extend( {
           formData.append('tags[]', tag);
         });
 
-        this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
-          var headers = {};
-          headers[headerName] = headerValue;
+        let optionalAuthorization = (callback)=>{
+          if(this.get('session.isAuthenticated')){
+            this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
+              var headers = {};
+              headers[headerName] = headerValue;
+              callback.call(this, headers);
+            });
+          } else {
+            callback.call(this, {});
+          }
+        };
 
+        optionalAuthorization((headers)=>{
           Ember.$.ajax({
             headers: headers,
             method: "POST",
@@ -118,6 +127,7 @@ export default Ember.Component.extend( {
             }
           });
         });
+
       } else {
         if (typeof errorCallback === 'function'){
           errorCallback({});
