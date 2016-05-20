@@ -6,7 +6,6 @@ $has-tip-border-bottom: null;
     box-shadow: 0 -1px 0 0 #e6e6e6;
     position: relative;
 
-
     &:last-of-type {
       border-bottom: 1px solid #0a0a0a;
     }
@@ -40,14 +39,15 @@ $has-tip-border-bottom: null;
     }
 
     img {
-      width: 9rem;
-      height: 9rem;
+      max-width: 9rem;
+      max-height: 9rem;
       padding: 15px;
+      width: 100%;
     }
   }
 }
 
-div[id^='editModal'] {
+.editModal {
   label{
     font-weight: 500;
     font-size: 1rem;

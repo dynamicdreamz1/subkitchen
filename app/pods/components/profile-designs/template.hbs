@@ -3,7 +3,7 @@
     <h5 class="font-black">My Designs</h5>
     {{#each products as |product|}}
       <div class="row design collapse">
-        <div class="small-2 columns">
+        <div class="small-3 columns">
           {{#link-to 'product' product.id}}
             <img src="{{product.preview_url}}" alt="">
           {{/link-to}}
@@ -24,7 +24,7 @@
             </div>
           </div>
         </div>
-        <div class="reveal" id="editModal{{product.id}}" data-reveal data-close-on-click="true">
+        <div class="reveal editModal" id="editModal{{product.id}}" data-reveal data-close-on-click="true">
           <button class="close-button" data-close aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>
           </button>

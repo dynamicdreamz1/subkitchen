@@ -244,6 +244,64 @@
       position: absolute;
       top: 0.25rem;
       right: 0.2rem;
+      text-align: center;
+    }
+  }
+
+  @include breakpoint(small only) {
+    .logo-wrapper{
+      display: none;
+    }
+
+    .divider{
+      display: none;
+    }
+
+    .search-form{
+      display: none;
+    }
+
+    .menu-item-wishlist__wrapper{
+      clear: both;
+      float: left;
+      width: 50%;
+      text-align: right;
+    }
+
+    .menu-item-my-kitchen__wrapper{
+      float: left;
+    }
+  }
+}
+
+.title-bar{
+  &.title-bar__small{
+    .menu-icon{
+      &:focus{
+        outline: none;
+      }
+    }
+
+    a{
+      color: $light-color;
+      font-size: 1rem;
+      padding: 0.7rem;
+    }
+
+    .logo{
+      position: relative;
+      img{
+        padding: 0;
+        margin: 0;
+        height: 2.5rem;
+      }
+      span.name{
+        font-size: 1.4rem;
+        vertical-align: middle;
+        strong{
+          font-weight: 900;
+        }
+      }
     }
   }
 }

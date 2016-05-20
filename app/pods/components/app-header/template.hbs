@@ -4,19 +4,18 @@
 </div>
 
 <!-- Small Navigation -->
-<div class="title-bar" data-responsive-toggle="nav-menu" data-hide-for="medium">
-  <span><strong>sub</strong>kitchen</span>
+<div class="title-bar title-bar__small" data-responsive-toggle="nav-menu" data-hide-for="medium">
   <button class="menu-icon" type="button" data-toggle></button>
-  <ul class="vertical medium-horizontal menu" data-dropdown-menu>
-    <li> <a> <span class="icon-sub-heart"></span> </a> </li>
-    <li> <a> <span class="icon-sub-basket"></span> </a> </li>
-  </ul>
+  {{#link-to 'index' class="logo"}}
+    <img src="assets/images/logo.png" alt="">
+    <span class="name"><strong>sub</strong>kitchen</span>
+  {{/link-to}}
 </div>
 
 <!-- Medium-Up Navigation -->
 <nav class="top-bar" id="nav-menu">
   <ul class="vertical medium-horizontal menu">
-    <li>
+    <li class="logo-wrapper">
       {{#link-to 'index' class="logo"}}
         <img src="assets/images/logo.png" alt="">
         <span class="name"><strong>sub</strong>kitchen</span>
@@ -57,9 +56,9 @@
       </a>
       {{/if}}
     </li>
-    <li> <a class="action-item"> <span class="icon-sub-heart"></span> </a> </li>
+    <li class="menu-item-wishlist__wrapper"> <a class="action-item"> <span class="icon-sub-heart"></span> </a> </li>
 
-    <li data-toggle="cart-dropdown" id="cart-dropdown-trigger">
+    <li class="menu-item-my-kitchen__wrapper" data-toggle="cart-dropdown" id="cart-dropdown-trigger">
       <a class="action-item basket-indicator" onclick={{action 'showCart'}}> <span class="icon-sub-basket"></span>
         <span class="basket-counter">{{cartCount}}</span>
       </a>
