@@ -5,7 +5,8 @@ export default Ember.Component.extend({
 
   actions: {
     goToCooking(){
-      this.get('route').transitionTo('cooking');
+      let template_id = this.get('template.id');
+      this.get('route').transitionTo('cooking', [], {selected_template_id: template_id});
     }
   }
 });

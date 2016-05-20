@@ -1,17 +1,17 @@
 <div class="small-12 medium-3 columns new-product-info" onclick={{action 'goToCooking'}}>
   <div class="row">
     <div class="small-12 columns center image">
-      <img src="assets/images/kinds/{{kind}}.png" alt="" data-equalizer-watch>
+      <img src="{{template.templateImage}}" alt="" data-equalizer-watch>
     </div>
   </div>
   <div class="row product-details">
     <div class="small-12 columns">
       <div class="row collapse">
         <div class="small-8 columns uppercase font-bold">
-          {{title}}
+          {{template.product_type}}
         </div>
         <div class="small-4 columns text-right nowrap font-bold">
-          ${{price}}
+          {{format-number template.price style="currency" currency="USD"}}
         </div>
       </div>
       <div class="row">
