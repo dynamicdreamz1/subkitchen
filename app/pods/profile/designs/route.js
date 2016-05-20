@@ -9,7 +9,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model(){
     let productPromise = new Ember.RSVP.Promise((resolve, reject) => {
       this.store.findRecord('user', 'current').then((user) => {
-        this.store.query('product', { author_id: user.id, per_page: 5 }).then((product) => {
+        this.store.query('product', { author_id: user.id, per_page: 5, only_published: false }).then((product) => {
           resolve(product);
         }, () => {
           reject();

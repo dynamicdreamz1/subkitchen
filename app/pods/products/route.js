@@ -16,7 +16,6 @@ export default Ember.Route.extend(RouteMixin, {
 
   model(params) {
     params.paramMapping = { perPage: 'per_page' };
-
     return Ember.RSVP.hash({
       products: this.findPaged('product', params),
       themes: this.get('ajax').request(config.host + config.apiEndpoint + '/themes'),

@@ -13,7 +13,6 @@ export default Ember.Component.extend( {
   currentUser: Ember.inject.service('current-user'),
   productCreatorEventBus: Ember.inject.service('product-creator-event-bus'),
 
-
   // product: new Ember.Object(),
   selectedTemplate: null,
   scale: 1,
@@ -23,6 +22,7 @@ export default Ember.Component.extend( {
   isPublished: true,
   isClicked: false,
   errors: {},
+  publishNotice: '',
 
   validThemes: function() {
     if(this.get('isClicked')){
@@ -33,18 +33,10 @@ export default Ember.Component.extend( {
 
   init(){
     this._super(...arguments);
-
-    if(this.get('product')){
-      let themes = this.get('product.tags').filter((tag) => {
-        return this.get('themes.themes').includes(tag);
-      });
-      this.set('selectedThemes', themes);
-    } else {
-      this.set('product', this.get('store').createRecord('product', {
-        name: '',
-        tags: []
-      }));
-    }
+    let themes = this.get('product.tags').filter((tag) => {
+      return this.get('themes.themes').includes(tag);
+    });
+    this.set('selectedThemes', themes);
   },
 
   observeEventBus: function () {
@@ -55,6 +47,30 @@ export default Ember.Component.extend( {
   }.observes('productCreatorEventBus.addToCart'),
 
   actions: {
+
+    updateThemeSelection(newSelection) {
+      this.set('isClicked', true);
+      if(newSelection.length > 4){
+        newSelection.pop();
+      }
+      this.set('selectedThemes', newSelection);
+    },
+
+    showPublishingPopup(){
+      if(this.get('session.isAuthenticated')) {
+        this.get('store').findRecord('user', 'current').then((user) => {
+          this.set('user', user);
+          if(this.get('user.status') === 'pending') {
+            this.set('publishNotice', 'Verify your artist account to publish your designs');
+          }
+          this.set('errors', {});
+          $('#publishModal').foundation('open');
+        });
+      } else {
+        this.$('#passwordReminderModal').foundation('close');
+        this.$('#loginModal').foundation('open');
+      }
+    },
 
     createProduct(callback, errorCallback){
       if ( this.get('product.image') ){
@@ -133,19 +149,6 @@ export default Ember.Component.extend( {
           errorCallback({});
         }
       }
-    },
-
-    updateThemeSelection(newSelection) {
-      this.set('isClicked', true);
-      if(newSelection.length > 4){
-        newSelection.pop();
-      }
-      this.set('selectedThemes', newSelection);
-    },
-
-    showPublishingPopup(){
-      this.set('errors', {});
-      $('#publishModal').foundation('open');
     },
 
     updateIsPublished(publishedValue){
@@ -370,6 +373,11 @@ export default Ember.Component.extend( {
   },
 
   didRender(){
+    if(this.get('session.isAuthenticated')) {
+      this.get('store').findRecord('user', 'current').then((user) => {
+        this.set('user', user);
+      });
+    }
     this.get('bindControlls').call(this);
   },
 

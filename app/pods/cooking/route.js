@@ -14,20 +14,12 @@ export default Ember.Route.extend({
   },
 
   model(params){
-    let userPromise = new Ember.RSVP.Promise((resolve, reject) => {
-      if(this.get('session.isAuthenticated')){
-        this.store.findRecord('user', 'current').then((user) => {
-          resolve(user);
-        }, function(){
-          reject();
-        });
-      } else {
-        resolve({});
-      }
-    });
-    let productPromise = null;
+    let product = this.set('product', this.get('store').createRecord('product', {
+      name: '',
+      tags: []
+    }));
     if(params.product_id) {
-      productPromise = new Ember.RSVP.Promise((resolve, reject) => {
+      product = new Ember.RSVP.Promise((resolve, reject) => {
         this.set('product', this.store.findRecord('product', params.product_id)).then(() => {
           this.set('author', this.store.findRecord('user', 'current')).then(() => {
             if (this.get('author.id') == this.get('product.author_id')) { // jshint ignore:line
@@ -56,8 +48,7 @@ export default Ember.Route.extend({
     return Ember.RSVP.hash({
       templates: this.store.query('productTemplate', {}),
       themes: this.get('ajax').request(config.host + config.apiEndpoint + '/themes'),
-      user: userPromise,
-      product: productPromise,
+      product: product,
       selectedTemplateId: params.selected_template_id
     });
   }

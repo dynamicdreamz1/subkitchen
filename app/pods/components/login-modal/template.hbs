@@ -1,0 +1,94 @@
+<div class="reveal" id="loginModal" data-reveal data-close-on-click="true">
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="row white">
+    <div class="small-12 columns">
+      <div class="row">
+        <div class="small-12 columns centered">
+          <img src="assets/images/account-login.svg" alt="">
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns">
+          {{#if errorMessage}}
+          <div class="callout alert center">
+            <h5 class="font-bold">LOGIN FAILED</h5>
+          </div>
+          {{/if}}
+          <form novalidate {{action "authenticate" on="submit"}}>
+            <div class="row">
+              <div class="small-12 columns">
+                <label>E-mail
+                  {{input  type="email" name="email" value=identification placeholder="Your e-mail address" aria-describedby="Your e-mail address" required=true pattern="email"}}
+                </label>
+              </div>
+              <div class="small-12 columns">
+                <label>Password
+                  <span class="float-right font-light">
+                    <a onclick={{action 'showPasswordReminder'}}>Oh no! I forgot!</a>
+                  </span>
+                  {{input  type="password" name="password" value=password placeholder="Your password" aria-describedby="Your password" required=true}}
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 columns">
+                <button class="button dark" type="submit" value="login">LOGIN</button>
+                <span class="font-light middle" data-equalizer-watch>or</span>
+                <a onclick={{action 'createAccount'}} class="font-bold middle" data-equalizer-watch>CREATE ACCOUNT</a>
+              </div>
+            </div>
+          </form>
+          <div class="row">
+            <div class="small-12 columns center">
+              {{facebook-login}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="reveal" id="passwordReminderModal" data-reveal data-close-on-click="true">
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="row white">
+    <div class="small-12 columns">
+      <div class="row">
+        <div class="small-12 columns">
+          {{#if errorMessage}}
+          <div class="callout alert center">
+            <h5 class="font-bold">UNKNOWN OR INVALID EMAIL</h5>
+          </div>
+          {{/if}}
+          {{#if mailSent}}
+          <div class="callout success center">
+            <h5 class="font-bold">WE SENT EMAIL, PLEASE CHECK YOUR MAILBOX</h5>
+          </div>
+          {{/if}}
+          <form novalidate {{action "remindPassword" on="submit"}}>
+            <div class="row">
+              <div class="small-12 columns">
+                <label>E-mail
+                  {{input  type="email" name="email" autocomplete="off" value=identification placeholder="Your e-mail address" aria-describedby="Your e-mail address" required=true pattern="email"}}
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 columns">
+                <button class="button dark" type="submit" value="login">REMIND ME PASSWORD</button>
+                <span class="font-light middle" data-equalizer-watch>or</span>
+                <a onclick={{action 'showLogin'}} class="font-bold middle" data-equalizer-watch>LOGIN</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{flash-messages}}

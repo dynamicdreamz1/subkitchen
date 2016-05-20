@@ -51,7 +51,6 @@ module.exports = function(environment) {
     authorizer: 'authorizer:custom',
     crossOriginWhitelist: ['http://subkitchen-api.herokuapp.com'],
     authenticationRoute: 'signin',
-    routeAfterAuthentication: 'index'
   };
 
   if (environment === 'development') {
