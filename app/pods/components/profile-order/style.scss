@@ -1,0 +1,86 @@
+.order {
+  .cost {
+    p {
+      margin: auto;
+    }
+  }
+  .order-info {
+    h5 {
+      font-weight: 800;
+    }
+    h6 {
+      margin: auto;
+    }
+  }
+
+  .address {
+    padding: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    p {
+      margin: auto;
+      font-size: small;
+
+      &.title {
+        font-size: inherit;
+        font-weight: bold;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  .logo {
+    img {
+      max-height: 3rem;
+    }
+    .name {
+      font-size: large;
+
+      strong {
+        font-weight: 900;
+      }
+    }
+  }
+  .print {
+    margin: auto;
+    display: block;
+
+    .button.light {
+      padding: 0.3rem;
+      background: $white;
+      border: 1px solid $black;
+      color: $black;
+      line-height: 0.5rem;
+      width: auto;
+    }
+  }
+}
+.order-head {
+  background: black;
+
+  th {
+    border-right: 1px solid white;
+    padding: 0.1rem;
+    text-align: center;
+    color: white;
+
+    &:last-of-type {
+      border-right: none;
+    }
+  }
+}
+
+.order-body {
+  border-bottom: 1px solid #0a0a0a;
+  border-left: none;
+  border-right: none;
+
+  td {
+    text-align: center;
+    font-size: small;
+  }
+
+  p {
+    margin: auto;
+  }
+}

@@ -1,0 +1,84 @@
+<div class="row order">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-8 columns">
+        <div class="row order-info">
+          <h5>Order #{{model.order.uuid}}</h5>
+          <h6><b>Order Status:</b> {{model.order.status}}</h6>
+          <h6><b>Order Placed:</b> {{model.order.placed}}</h6>
+        </div>
+        <div class="row">
+          <div class="small-4 columns address">
+            <p class="title">Billing Address</p>
+            <p>{{model.order.shippingAddress.first_name}}</p>
+            <p>{{model.order.shippingAddress.last_name}}</p>
+            <p>{{model.order.shippingAddress.address}}</p>
+            <p>{{model.order.shippingAddress.city}}</p>
+            <p>{{model.order.shippingAddress.zip}}</p>
+            <p>{{model.order.shippingAddress.region}}</p>
+            <p>{{model.order.shippingAddress.country}}</p>
+          </div>
+          <div class="small-8 columns address">
+            <p class="title">Shipping Address</p>
+            <p>{{model.order.shippingAddress.first_name}}</p>
+            <p>{{model.order.shippingAddress.last_name}}</p>
+            <p>{{model.order.shippingAddress.address}}</p>
+            <p>{{model.order.shippingAddress.city}}</p>
+            <p>{{model.order.shippingAddress.zip}}</p>
+            <p>{{model.order.shippingAddress.region}}</p>
+            <p>{{model.order.shippingAddress.country}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="small-4 columns text-right">
+        <div class="row logo">
+          <img src="assets/images/logo.png" alt="">
+          <span class="name"><strong>SUB</strong>KITCHEN</span>
+        </div>
+        {{#if model.order.invoice}}
+          <div class="row print">
+            <a class="button light uppercase" href={{model.order.pdf}}>print</a>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <table>
+    <thead class="order-head">
+    <tr>
+      <th width="450">PRODUCT</th>
+      <th>QUANTITY</th>
+      <th>PRICE</th>
+      <th>SUBTOTAL</th>
+    </tr>
+    </thead>
+    {{#each model.order.items as |item|}}
+      <tbody class="order-body">
+      <tr>
+        <td>
+          <div class="row">
+            <div class="small-3 columns">
+              {{#link-to 'product' item.product_id}}
+                <img src="{{item.preview_url}}" alt="">
+              {{/link-to}}
+            </div>
+            <div class="small-9 columns text-left">
+              <p>{{item.name}}</p>
+              <p>SIZE: {{item.size}}</p>
+            </div>
+          </div>
+        </td>
+        <td>{{item.quantity}}</td>
+        <td>{{format-number item.price style="currency" currency="USD"}}</td>
+        <td>{{format-number item.subtotal style="currency" currency="USD"}}</td>
+      </tr>
+      </tbody>
+    {{/each}}
+  </table>
+  <div class="small-12 columns text-right cost">
+    <p><strong>ORDER SUBTOTAL: </strong>{{format-number model.order.subtotal style="currency" currency="USD"}}</p>
+    <p><strong>SHIPPING: </strong>{{format-number model.order.shippingCost style="currency" currency="USD"}}</p>
+    <p><strong>TAX({{model.order.tax}}%): </strong>{{format-number model.order.taxCost style="currency" currency="USD"}}</p>
+    <p><strong>TOTAL: </strong>{{format-number model.order.totalCost style="currency" currency="USD"}}</p>
+  </div>
+</div>

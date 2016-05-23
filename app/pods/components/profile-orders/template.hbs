@@ -12,15 +12,17 @@
       </tr>
       </thead>
       {{#each model.orders as |order|}}
-        <tbody class="order-body">
-          <tr>
-            <td>{{order.uuid}}</td>
-            <td>{{moment-format order.createdAt}}</td>
-            <td>{{order.orderStatus}}</td>
-            <td>{{format-number order.totalCost style="currency" currency="USD"}}</td>
-            <td>{{#link-to 'profile.orders.order' order.id class='button light uppercase'}}View{{/link-to}}</td>
-          </tr>
-        </tbody>
+        {{#unless (eq order.status 'creating')}}
+          <tbody class="order-body">
+            <tr>
+              <td>{{order.uuid}}</td>
+              <td>{{moment-format order.createdAt}}</td>
+              <td>{{order.status}}</td>
+              <td>{{format-number order.totalCost style="currency" currency="USD"}}</td>
+              <td>{{#link-to 'profile.orders.order' order.id class='button light uppercase'}}View{{/link-to}}</td>
+            </tr>
+          </tbody>
+        {{/unless}}
       {{/each}}
     </table>
   </div>
