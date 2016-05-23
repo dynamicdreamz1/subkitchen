@@ -1,0 +1,27 @@
+<div class="row profile-orders">
+  <div class="small-12 columns">
+    <h5 class="font-black">My Orders</h5>
+    <table>
+      <thead class="order-head">
+      <tr>
+        <th width="200">ORDER #</th>
+        <th width="250">Date</th>
+        <th>STATUS</th>
+        <th>TOTAL</th>
+        <th></th>
+      </tr>
+      </thead>
+      {{#each model.orders as |order|}}
+        <tbody class="order-body">
+          <tr>
+            <td>{{order.uuid}}</td>
+            <td>{{moment-format order.createdAt}}</td>
+            <td>{{order.orderStatus}}</td>
+            <td>{{format-number order.totalCost style="currency" currency="USD"}}</td>
+            <td>{{#link-to 'profile.orders.order' order.id class='button light uppercase'}}View{{/link-to}}</td>
+          </tr>
+        </tbody>
+      {{/each}}
+    </table>
+  </div>
+</div>

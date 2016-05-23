@@ -1,0 +1,36 @@
+.profile-orders {
+  .order-head {
+    background: black;
+
+    th {
+      border-right: 1px solid white;
+      padding: 0.1rem;
+      text-align: center;
+      color: white;
+
+      &:last-of-type {
+        border-right: none;
+      }
+    }
+  }
+
+  .order-body {
+    border-bottom: 1px solid #0a0a0a;
+    border-left: none;
+    border-right: none;
+
+    td {
+      text-align: center;
+      font-size: small;
+
+      .button.light {
+        background: $white;
+        border: 1px solid $black;
+        color: $black;
+        line-height: 0.5rem;
+        width: 5rem;
+        margin: auto;
+      }
+    }
+  }
+}

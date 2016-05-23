@@ -81,15 +81,17 @@ export default Ember.Service.extend({
 
   // private
   fetchOrder(){
-    this.optionalAuthorization(()=>{
+    this.optionalAuthorization((headers)=>{
       let params = {};
       if (this.get('order.data')){
         params['uuid'] = this.get('order.data.uuid'); }
         Ember.$.ajax({
           method: "GET",
-          url: config.host + config.apiEndpoint + '/orders',
-          data: params
+          url: config.host + config.apiEndpoint + '/orders/current',
+          data: params,
+          headers: headers
         }).then((result) => {
+          console.log(result.order);
           this.set('order.data', result.order);
         }, (error) => {
           this.set('order.data', {});
@@ -172,5 +174,4 @@ export default Ember.Service.extend({
       callback({});
     }
   }
-
 });

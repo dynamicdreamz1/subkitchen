@@ -16,6 +16,9 @@ Router.map(function() {
   this.route('profile', function() {
     this.route('info', { path: '/' });
     this.route('designs');
+    this.route('orders', function() {
+      this.route('order', { path: '/:order_id'});
+    });
   });
   this.route('profile-address');
   this.route('become-cook-with-handle', { path: '/become-cook/:handle' });
