@@ -9,4 +9,6 @@ export default DS.Model.extend({
   artist:    DS.attr('boolean'),
   handle:    DS.attr('string'),
   status:    DS.attr('string'),
+
+  products:  DS.hasMany('products'),
 });

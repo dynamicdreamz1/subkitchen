@@ -6,7 +6,8 @@
     <div class="small-12 medium-6 columns">
       <div class="row collapse">
         <div class="small-11 columns ellipsis">
-          <h4> {{product.name}} </h4>
+          <h4 class="uppercase"> {{product.name}} </h4>
+          <h5 class="uppercase font-light"> {{product.formattedProductType}} </h5>
         </div>
         <div class="small-1 columns text-center likes" onclick={{action 'toggleLike'}}>
           <div class="icon">
@@ -21,6 +22,16 @@
             {{/if}}
           </div>
           {{product.likes_count}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns">
+          {{#if product.author.image_url}}
+            <img class="author-image" src="{{product.author.image_url}}" alt="">
+          {{else}}
+            <img class="author-image" src="assets/images/default.png" alt="">
+          {{/if}}
+          <span class="author uppercase font-bold"> {{product.author.name}} </span>
         </div>
       </div>
       <div class="row">
