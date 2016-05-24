@@ -26,6 +26,16 @@
       </div>
       <div class="row">
         <div class="small-12 columns">
+          {{#if product.author.image_url}}
+            <img class="author-image" src="{{product.author.image_url}}" alt="">
+          {{else}}
+            <img class="author-image" src="assets/images/default.png" alt="">
+          {{/if}}
+          <span class="author uppercase font-bold"> {{product.author.name}} </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns">
           <h4 class="price"> {{format-number product.price style="currency" currency="USD"}} </h4>
         </div>
       </div>

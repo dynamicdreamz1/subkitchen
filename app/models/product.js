@@ -4,7 +4,6 @@ export default DS.Model.extend({
   name:                DS.attr('string'),
   description:         DS.attr('string'),
   shipping:            DS.attr('string'),
-  author:              DS.attr('string'),
   author_id:           DS.attr('number'),
   image_url:           DS.attr('string'),
   price:               DS.attr('number'),
@@ -22,6 +21,7 @@ export default DS.Model.extend({
   product_template_id: DS.attr('number'),
 
   promoters:   DS.hasMany('promoter'),
+  author:      DS.belongsTo('user'),
 
   formattedTags: function() {
     let tags = this.get('tags');
