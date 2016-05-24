@@ -6,7 +6,8 @@
     <div class="small-12 medium-6 columns">
       <div class="row collapse">
         <div class="small-11 columns ellipsis">
-          <h4> {{product.name}} </h4>
+          <h4 class="uppercase"> {{product.name}} </h4>
+          <h5 class="uppercase font-light"> {{product.formattedProductType}} </h5>
         </div>
         <div class="small-1 columns text-center likes" onclick={{action 'toggleLike'}}>
           <div class="icon">
