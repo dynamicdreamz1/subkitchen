@@ -3,9 +3,12 @@
     <div class="row">
       <div class="small-8 columns">
         <div class="row order-info">
-          <h5>Order #{{model.order.uuid}}</h5>
+          <h5>Order #{{model.order.invoice_id}}/</h5>
           <h6><b>Order Status:</b> {{model.order.status}}</h6>
-          <h6><b>Order Placed:</b> {{model.order.placed}}</h6>
+          <h6><b>Order Placed:</b> {{moment-format model.order.createdAt}}</h6>
+          {{#if model.order.placed}}
+            <h6><b>Order Paid:</b> {{moment-format model.order.placed}}</h6>
+          {{/if}}
         </div>
         <div class="row">
           <div class="small-4 columns address">
@@ -35,7 +38,7 @@
           <img src="assets/images/logo.png" alt="">
           <span class="name"><strong>SUB</strong>KITCHEN</span>
         </div>
-        {{#if model.order.invoice}}
+        {{#if model.order.placed}}
           <div class="row print">
             <a class="button light uppercase" href={{model.order.pdf}}>print</a>
           </div>

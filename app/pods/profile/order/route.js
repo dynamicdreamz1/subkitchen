@@ -5,7 +5,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   model(params){
     return Ember.RSVP.hash({
-      order: this.store.findRecord('order', params.order_id)
+      order: this.store.findRecord('order', params.order_id, { reload: true })
     });
   }
 });

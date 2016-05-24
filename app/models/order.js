@@ -12,7 +12,7 @@ export default DS.Model.extend({
   tax:             DS.attr('string'),
   taxCost:         DS.attr('string'),
   discount:        DS.attr('string'),
-  invoice:         DS.attr('string'),
+  invoice_id:      DS.attr('string'),
   placed:          DS.attr('string'),
   items:           DS.attr(),
   shippingAddress: DS.attr(),
