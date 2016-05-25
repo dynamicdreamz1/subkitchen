@@ -25,10 +25,11 @@ export default Ember.Component.extend( {
   publishNotice: '',
 
   validThemes: function() {
-    if(this.get('isClicked')){
+    if(this.get('product.published')) {
       return this.get('selectedThemes').length > 0;
+    } else {
+      return true;
     }
-    return true;
   }.property('selectedThemes'),
 
   init(){

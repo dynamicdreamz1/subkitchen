@@ -16,7 +16,11 @@ export default Ember.Component.extend({
   },
 
   validThemes: function() {
-    return this.get('selectedThemes').length > 0;
+    if(this.get('product.published')) {
+      return this.get('selectedThemes').length > 0;
+    } else {
+      return true;
+    }
   }.property('selectedThemes'),
 
   actions: {
