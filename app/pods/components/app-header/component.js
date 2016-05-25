@@ -5,6 +5,8 @@ export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
   cart: Ember.inject.service('shopping-cart'),
+  queryString: null,
+
   cartCount: Ember.computed('cart.order.data.items.@each.quantity', function(){
     return this.get('cart').quantity();
   }),
@@ -14,8 +16,21 @@ export default Ember.Component.extend({
     return order && order.items && order.items.length;
   }),
 
+  queryStringObserver: function(){
+    if (this.get('queryStringObserverTimeout')){
+      clearTimeout(this.get('queryStringObserverTimeout'));
+    }
+
+    let queryStringObserverTimeout = setTimeout(()=>{
+      this.get('routing').transitionTo('products', [], { search_query: this.get('queryString') });
+    }, 800);
+
+    this.set('queryStringObserverTimeout', queryStringObserverTimeout);
+  }.observes('queryString'),
+
   didRender() {
     this.$().foundation();
+    this.get('queryString'); // trigger observer
   },
 
   actions: {

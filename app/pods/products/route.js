@@ -5,6 +5,7 @@ import config from 'subkitchen-front/config/environment';
 export default Ember.Route.extend(RouteMixin, {
   ajax: Ember.inject.service(),
   queryParams: {
+    search_query: { refreshModel: true },
     product_type: { refreshModel: true },
     tags: { refreshModel: true },
     price_range: { refreshModel: true },

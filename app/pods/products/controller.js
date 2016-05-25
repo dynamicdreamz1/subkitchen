@@ -2,7 +2,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  queryParams: ['page', 'per_page', 'product_type', 'tags', 'price_range', 'sorted_by'],
+  queryParams: ['page', 'per_page', 'product_type', 'tags', 'price_range', 'sorted_by', 'search_query'],
 
   page: 1,
   per_page: 12,

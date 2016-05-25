@@ -21,13 +21,13 @@
         <span class="name"><strong>sub</strong>kitchen</span>
       {{/link-to}}
     </li>
-    <li> {{#link-to 'products' class="menu-item uppercase"}} shop {{/link-to}} </li>
+    <li> {{#link-to 'products' (query-params search_query="") class="menu-item uppercase"}} shop {{/link-to}} </li>
     <li> {{#link-to 'cooking' (query-params product_id="" selected_template_id="") class="menu-item uppercase"}} create {{/link-to}} </li>
     <li><a class="menu-item" href="#">sell</a></li>
     <li><a class="menu-item" href="#">artists</a></li>
     <li class="divider"></li>
     <li class="search-form">
-      <input class="search" type="text" placeholder="SEARCH">
+      {{input type="text" class="search" placeholder="SEARCH" value=queryString}}
       <span class="icon-sub-search"></span>
     </li>
     <li class="divider"></li>
