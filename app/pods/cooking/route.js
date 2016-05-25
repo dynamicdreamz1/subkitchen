@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import config from 'subkitchen-front/config/environment';
+import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(ApplicationRouteMixin, {
   ajax: Ember.inject.service(),
   session: Ember.inject.service('session'),
   queryParams: {
@@ -12,6 +13,7 @@ export default Ember.Route.extend({
       refreshModel: true
     }
   },
+  userLoggingIn: false,
 
   model(params){
     let product = this.set('product', this.get('store').createRecord('product', {
@@ -51,5 +53,18 @@ export default Ember.Route.extend({
       product: product,
       selectedTemplateId: params.selected_template_id
     });
+  },
+
+  sessionAuthenticated() {
+    this.set('userLoggingIn', true);
+  },
+
+  actions: {
+    willTransition(transition){
+      if(transition.targetName === 'profile.info' && this.get('userLoggingIn')) {
+        transition.abort();
+        this.set('userLoggingIn', false);
+      }
+    }
   }
 });

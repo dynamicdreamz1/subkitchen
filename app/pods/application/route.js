@@ -11,10 +11,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     this.get('intl').setLocale('en-us');
   },
 
-  sessionAuthenticated() {
-    this.transitionTo('cooking');
-  },
-
   beforeModel() {
     return this.get('intl').setLocale('en-us');
   }

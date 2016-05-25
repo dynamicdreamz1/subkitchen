@@ -91,7 +91,6 @@ export default Ember.Service.extend({
           data: params,
           headers: headers
         }).then((result) => {
-          console.log(result.order);
           this.set('order.data', result.order);
         }, (error) => {
           this.set('order.data', {});

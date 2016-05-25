@@ -19,7 +19,6 @@ export default Ember.Component.extend({
       this.get('session').authenticate('authenticator:custom', credentials)
       .then(()=>{
         this.$('#loginModal').foundation('close');
-        //this.get("routing").transitionTo(this.get('transitionRoute'));
       })
       .catch((message) => {
         this.set('errorMessage', message);

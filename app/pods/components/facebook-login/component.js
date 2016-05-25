@@ -25,7 +25,6 @@ export default Ember.Component.extend({
       if ($('#loginModal').length){
         $('#loginModal').foundation('close');
       }
-      this.get("routing").transitionTo("profile");
     })
     .catch((message) => {
       this.set('errorMessage', message);
