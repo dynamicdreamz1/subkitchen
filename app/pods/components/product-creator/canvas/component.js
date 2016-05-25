@@ -155,7 +155,7 @@ export default Ember.Component.extend( {
 
     publish(){
       let callback = (response) => {
-        const flashMessages = this.get('flashMessages');
+        let flashMessages = this.get('flashMessages');
         if(this.get('product.published')) {
           this.get("routing").transitionTo("published-product", [response.product.id]);
         } else {
