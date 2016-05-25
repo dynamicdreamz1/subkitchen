@@ -80,10 +80,7 @@ export default Ember.Component.extend( {
         let canvas = this.get('canvas');
         canvas.deactivateAll().renderAll();
         let multiplier = Math.floor(2048 / canvas.getWidth());
-        let dataURL =  canvas.toDataURL({
-          format: 'png',
-          multiplier: multiplier
-        });
+        let dataURL =  canvas.toDataURLWithMultiplier('png', multiplier);
         let file = this.get('dataUrlToBlob').convert(dataURL);
         this.set('product.preview', file);
 
@@ -137,6 +134,7 @@ export default Ember.Component.extend( {
           }).then((response) => {
             callback(response);
           }, (error) => {
+            this.$('.js-publish').removeClass('loading-white');
             this.set('errors', error.responseJSON.errors);
             if (typeof errorCallback === 'function'){
               errorCallback(error);
@@ -157,7 +155,7 @@ export default Ember.Component.extend( {
 
     publish(){
       let callback = (response) => {
-        const flashMessages = this.get('flashMessages');
+        let flashMessages = this.get('flashMessages');
         if(this.get('product.published')) {
           this.get("routing").transitionTo("published-product", [response.product.id]);
         } else {
