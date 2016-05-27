@@ -1,11 +1,29 @@
 {{#shopping-cart}}
-  {{app-header}}
-  <section class="public-profile">
-    <div class="row">
-      <div class="small-12 small-centered medium-6 columns">
-        <h4>Here will be public profile for user {{model.handle}}.</h4>
+{{app-header}}
+<section class="public-profile">
+  <div class="row" data-equalizer data-equalize-on="medium">
+    <div class="small-12 medium-3 columns user-info" data-equalizer-watch>
+      <div class="row">
+        <div class="small-6 columns">
+          {{#if model.imageUrl}}
+            <img class="profile-image" src="{{model.imageUrl}}" alt="">
+          {{else}}
+            <img class="profile-image" src="assets/images/default.png" alt="">
+          {{/if}}
+        </div>
+        <div class="small-6 columns">
+          <h5 class="font-black uppercase user-name">{{model.name}}</h5>
+        </div>
       </div>
     </div>
-  </section>
-  {{app-footer}}
+
+    <div class="small-12 medium-6 columns user-bio" data-equalizer-watch>
+    </div>
+
+    <div class="small-12 medium-3 columns user-stats" data-equalizer-watch>
+      <span class="font-bold">{{model.products_count}} Designs</span>
+    </div>
+  </div>
+</section>
+{{app-footer}}
 {{/shopping-cart}}

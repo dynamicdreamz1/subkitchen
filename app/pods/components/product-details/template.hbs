@@ -31,7 +31,15 @@
           {{else}}
             <img class="author-image" src="assets/images/default.png" alt="">
           {{/if}}
-          <span class="author uppercase font-bold"> {{product.author.name}} </span>
+
+          {{#if product.author.handle}}
+            {{#link-to 'public-profile' [product.author.handle]}}
+              <span class="author uppercase font-bold"> {{product.author.name}} </span>
+            {{/link-to}}
+          {{else}}
+            <span class="author uppercase font-bold"> {{product.author.name}} </span>
+          {{/if}}
+
         </div>
       </div>
       <div class="row">
