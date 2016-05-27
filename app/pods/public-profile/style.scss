@@ -1,0 +1,21 @@
+.public-profile {
+  margin-top: 2em;
+
+  color: #5d5d5d;
+
+  .user-bio {
+    @include breakpoint(medium up) {
+      border-left: 1px solid #d1d2d4;
+      border-right: 1px solid #d1d2d4;
+    }
+  }
+
+  .user-name{
+    color: $black;
+  }
+
+  .profile-image {
+    border-radius: 50%;
+    width: 100%;
+  }
+}
