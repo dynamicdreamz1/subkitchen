@@ -151,6 +151,9 @@ export default Ember.Component.extend( {
     },
 
     updateIsPublished(publishedValue){
+      if(this.get('selectedThemes').length === 0 && publishedValue === true) {
+        this.set('validThemes', false);
+      }
       this.set('isPublished', publishedValue);
     },
 
