@@ -4,16 +4,32 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   cart: Ember.inject.service('shopping-cart'),
   like: Ember.inject.service('product-like'),
+  routing: Ember.inject.service('-routing'),
   size: 'MD',
   quantity: 1,
+  commentContent: '',
 
   didInsertElement() {
     this.$().foundation();
   },
 
   actions: {
+    addComment(){
+      let product = this.get('product');
+      let comment = this.get('store')
+        .createRecord('comment', {
+          content: this.get('commentContent')
+        });
+      comment.save();
+
+      product.get('comments').pushObject(comment);
+      product.save();
+      this.set('commentContent', '');
+    },
+
     addToCart(){
-      this.get('cart').add(this.get('product.id'), this.get('size'), this.get('product.variants.0.id'), this.get('quantity'));
+      this.get('cart')
+        .add(this.get('product.id'), this.get('size'), this.get('product.variants.0.id'), this.get('quantity'));
       let button = this.$('.addToCart');
       button.text('added');
       setTimeout(function(){
@@ -44,17 +60,6 @@ export default Ember.Component.extend({
         } else {
           this.set('errors', {base: ['Connection error. Please try again later.']});
         }
-      });
-    },
-
-    loadMoreComments(){
-      let newPage = this.get('comments.meta.current_page') + 1;
-      this.get('store')
-      .query('comment', {product_id: this.get('product.id'), page: newPage})
-      .then((results)=>{
-        let comments = this.get('comments');
-        comments.pushObjects(results.content);
-        comments.set('meta.current_page', results.get('meta.current_page'));
       });
     }
   }

@@ -4,7 +4,6 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   ajax: Ember.inject.service(),
-  session: Ember.inject.service('session'),
   queryParams: {
     product_id: {
       refreshModel: true

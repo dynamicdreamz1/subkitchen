@@ -20,8 +20,9 @@ export default DS.Model.extend({
   product_type:        DS.attr('string'),
   product_template_id: DS.attr('number'),
 
-  promoters:   DS.hasMany('promoter'),
-  author:      DS.belongsTo('user'),
+  promoters:           DS.hasMany('promoter'),
+  author:              DS.belongsTo('user'),
+  comments:            DS.hasMany('comment'),
 
   formattedTags: function() {
     let tags = this.get('tags');

@@ -11,5 +11,6 @@ export default DS.Model.extend({
   status:         DS.attr('string'),
   products_count: DS.attr('number'),
 
-  products:  DS.hasMany('products'),
+  products:       DS.hasMany('products'),
+  comments:       DS.hasMany('comment')
 });

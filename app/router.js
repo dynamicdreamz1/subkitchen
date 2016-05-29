@@ -7,7 +7,7 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('products');
-  this.route('product', { path: '/products/:product_id' });
+  this.route('product', { path: 'products/:product_id' });
   this.route('signin');
   this.route('register');
   this.route('confirm-email', { path: '/confirm_email/:token' });
