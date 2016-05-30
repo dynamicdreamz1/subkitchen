@@ -1,3 +1,4 @@
+/* global $*/
 import Ember from 'ember';
 
 export default Ember.Component.extend({
@@ -14,6 +15,10 @@ export default Ember.Component.extend({
   },
 
   actions: {
+    openSizingInfo(){
+      $('#sizingInfoModal').foundation('open');
+    },
+
     addComment(){
       let product = this.get('product');
       let comment = this.get('store')

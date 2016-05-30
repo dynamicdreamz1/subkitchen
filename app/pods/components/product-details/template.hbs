@@ -49,7 +49,7 @@
       </div>
       <div class="row">
         <div class="small-12 columns sizes">
-          SIZE:
+          SIZE:<span class="sizing-info" onclick={{action "openSizingInfo"}}>SIZING INFO</span>
           <form>
             <ul class="center">
               {{#each product.sizes as |s|}}
@@ -59,6 +59,16 @@
           </form>
         </div>
       </div>
+
+      <div class="reveal" id="sizingInfoModal" data-reveal data-close-on-click="true">
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="row">
+          <img src="{{product.size_chart}}" alt="">
+        </div>
+      </div>
+
       <div class="row">
         <div class="small-12 columns">
           QUANTITY:
@@ -88,7 +98,7 @@
               <p> {{{product.description}}} </p>
             </div>
             <div class="tabs-panel" id="panel2">
-              <p>Suspendisse dictum feugiat nisl ut dapibus.  Vivamus hendrerit arcu sed erat molestie vehicula. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.  Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
+              <img src="{{product.size_chart}}" alt="">
             </div>
             <div class="tabs-panel" id="panel3">
               <p> {{{product.shipping}}} </p>

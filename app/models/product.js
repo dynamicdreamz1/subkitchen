@@ -19,6 +19,7 @@ export default DS.Model.extend({
   variants:            DS.attr(),
   product_type:        DS.attr('string'),
   product_template_id: DS.attr('number'),
+  size_chart:          DS.attr('string'),
 
   promoters:           DS.hasMany('promoter'),
   author:              DS.belongsTo('user'),

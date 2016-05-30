@@ -31,6 +31,12 @@
   }
 
   .sizes{
+    .sizing-info {
+      color: #00d2ff;
+      font-size: x-small;
+      padding: 0.2rem;
+      cursor: pointer;
+    }
     ul{
       width: 100%;
       margin: 0.2rem;
@@ -157,7 +163,7 @@
       button {
         margin-top: 1rem;
         line-height: 0.5rem;
-        
+
       }
       img{
         padding: 1em;
