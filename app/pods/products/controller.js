@@ -42,6 +42,13 @@ export default Ember.Controller.extend({
         newSelection.shift();
       }
       this.set('price_range', newSelection);
+    },
+
+    refine() {
+      this.set('sorted_by', 'created_at_desc');
+      this.set('price_range', []);
+      this.set('tags', []);
+      this.set('product_type', []);
     }
   }
 });
