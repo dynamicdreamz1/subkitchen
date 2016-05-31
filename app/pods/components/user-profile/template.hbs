@@ -52,6 +52,12 @@
                 {{input-data-errors errors=user.errors.handle}}
               </label>
             </div>
+            <div class="small-12 columns">
+              <label class={{if user.errors.bio "is-invalid-label" ""}}>BIO
+                {{textarea value=user.bio id="user-bio" rows="5" placeholder="About you"}}
+                {{input-data-errors errors=user.errors.bio}}
+              </label>
+            </div>
           </div>
           <div class="row">
             <div class="small-12 columns text-right">

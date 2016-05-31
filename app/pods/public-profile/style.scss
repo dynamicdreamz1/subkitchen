@@ -10,8 +10,19 @@
     }
   }
 
+  hr{
+    background-color: #d1d2d4;
+    border-color: #d1d2d4;
+  }
+
   .user-name{
     color: $black;
+  }
+
+  .user-stats{
+    .columns:last-of-type{
+      padding-left: 0.5em;
+    }
   }
 
   .profile-image {
