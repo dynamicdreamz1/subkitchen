@@ -1,0 +1,58 @@
+<div class="row" data-equalizer data-equalize-on="medium">
+  <div class="small-12 medium-3 columns user-info" data-equalizer-watch>
+    <div class="row">
+      <div class="small-6 columns">
+        {{#if user.imageUrl}}
+          <img class="profile-image" src="{{user.imageUrl}}" alt="">
+        {{else}}
+          <img class="profile-image" src="assets/images/default.png" alt="">
+        {{/if}}
+      </div>
+      <div class="small-6 columns">
+        <h5 class="font-black uppercase user-name">{{user.name}}</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="small-12 medium-6 columns user-bio" data-equalizer-watch>
+    <div class="row">
+      <div class="small-1 columns font-bold">
+        BIO:
+      </div>
+      <div class="small-11 columns">
+        {{user.bio}}
+      </div>
+    </div>
+  </div>
+
+  <div class="small-12 medium-3 columns user-stats" data-equalizer-watch>
+    <div class="row collapse">
+      <div class="small-1 columns text-center">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </div>
+      <div class="small-1 columns text-right">
+        {{user.products_count}}
+      </div>
+      <div class="small-10 columns">
+        <span class="font-bold">Designs</span>
+      </div>
+    </div>
+
+    <div class="row collapse">
+      <div class="small-1 columns text-center">
+        <i class="fa fa-heart" aria-hidden="true"></i>
+      </div>
+      <div class="small-1 columns text-right">
+        {{user.likes_count}}
+      </div>
+      <div class="small-10 columns">
+        <span class="font-bold">Promoted</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+{{user-public-profile/products user=user}}
