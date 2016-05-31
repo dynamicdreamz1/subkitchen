@@ -6,12 +6,21 @@ export default Ember.Component.extend({
   cart: Ember.inject.service('shopping-cart'),
   like: Ember.inject.service('product-like'),
   routing: Ember.inject.service('-routing'),
+  session: Ember.inject.service('session'),
   size: 'MD',
   quantity: 1,
   commentContent: '',
 
   didInsertElement() {
     this.$().foundation();
+  },
+
+  didRender() {
+    if(this.get('session.isAuthenticated')) {
+      this.get('store').findRecord('user', 'current').then((user) => {
+        this.set('user', user);
+      });
+    }
   },
 
   actions: {

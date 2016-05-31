@@ -141,36 +141,38 @@
           </div>
           {{/each}}
 
-          <div class="row comment">
-            <form novalidate {{action "addComment" on="submit"}}>
-              <div class="small-12 columns">
-                <div class="row">
-                  <div class="small-2 columns">
-                    {{#if user.image_url}}
-                      <img src="{{user.image_url}}" alt="{{user.name}}">
-                    {{else}}
-                      <img src="assets/images/default-2.png" alt="{{user.name}}">
-                    {{/if}}
-                  </div>
-                  <div class="small-10 columns comment-content">
-                    <div class="row">
-                      <div class="small-12 columns info">
-                        <span class="leave-a-comment">Leave a comment</span>
+          {{#if user}}
+            <div class="row comment">
+              <form novalidate {{action "addComment" on="submit"}}>
+                <div class="small-12 columns">
+                  <div class="row">
+                    <div class="small-2 columns">
+                      {{#if user.image_url}}
+                        <img src="{{user.image_url}}" alt="{{user.name}}">
+                      {{else}}
+                        <img src="assets/images/default-2.png" alt="{{user.name}}">
+                      {{/if}}
+                    </div>
+                    <div class="small-10 columns comment-content">
+                      <div class="row">
+                        <div class="small-12 columns info">
+                          <span class="leave-a-comment">Leave a comment</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="small-12 columns">
+                            {{textarea name="comment" rows="3" value=commentContent required=true}}
+                        </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="small-12 columns">
-                          {{textarea name="comment" rows="3" value=commentContent required=true}}
-                      </div>
-                    </div>
+                  </div>
+                  <div class="row text-right">
+                    <button class="button uppercase dark" type="submit" value="comment">add comment</button>
                   </div>
                 </div>
-                <div class="row text-right">
-                  <button class="button uppercase dark" type="submit" value="comment">add comment</button>
-                </div>
-              </div>
-            </form>
-          </div>
+              </form>
+            </div>
+          {{/if}}
         </div>
 
         <div class="tabs-panel" id="promoters">
