@@ -25,12 +25,11 @@ export default Ember.Component.extend( {
   publishNotice: '',
 
   validThemes: function() {
-    if(this.get('product.published')) {
-      return this.get('selectedThemes').length > 0;
-    } else {
-      return true;
+    if(!this.get('selectedThemes').length) {
+      return !this.get('product.published');
     }
-  }.property('selectedThemes'),
+    return true;
+  }.property('selectedThemes', 'isPublished'),
 
   init(){
     this._super(...arguments);
@@ -151,9 +150,6 @@ export default Ember.Component.extend( {
     },
 
     updateIsPublished(publishedValue){
-      if(this.get('selectedThemes').length === 0 && publishedValue === true) {
-        this.set('validThemes', false);
-      }
       this.set('isPublished', publishedValue);
     },
 
