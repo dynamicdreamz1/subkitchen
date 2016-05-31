@@ -9,7 +9,9 @@ export default DS.Model.extend({
   artist:         DS.attr('boolean'),
   handle:         DS.attr('string'),
   status:         DS.attr('string'),
+  bio:            DS.attr('string'),
   products_count: DS.attr('number'),
+  likes_count:    DS.attr('number'),
 
   products:       DS.hasMany('products'),
   comments:       DS.hasMany('comment')
