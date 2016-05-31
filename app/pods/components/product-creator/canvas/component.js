@@ -10,7 +10,6 @@ export default Ember.Component.extend( {
   store: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
   dataUrlToBlob: Ember.inject.service('data-url-to-blob'),
-  currentUser: Ember.inject.service('current-user'),
   productCreatorEventBus: Ember.inject.service('product-creator-event-bus'),
 
   // product: new Ember.Object(),
@@ -60,6 +59,9 @@ export default Ember.Component.extend( {
       if(this.get('session.isAuthenticated')) {
         this.get('store').findRecord('user', 'current').then((user) => {
           this.set('user', user);
+          if(!this.get('user.artist')){
+            this.set('isPublished', false);
+          }
           if(this.get('user.status') === 'pending') {
             this.set('publishNotice', 'Verify your artist account to publish your designs');
           }
@@ -353,10 +355,6 @@ export default Ember.Component.extend( {
       canvasActions.init.call(this);
     });
 
-    if(!this.get('user.artist')){
-      this.set('isPublished', false);
-    }
-
     if(this.get('product.image')) {
       let a = new FileReader();
       a.onload = (e) => {
@@ -371,11 +369,6 @@ export default Ember.Component.extend( {
   },
 
   didRender(){
-    if(this.get('session.isAuthenticated')) {
-      this.get('store').findRecord('user', 'current').then((user) => {
-        this.set('user', user);
-      });
-    }
     this.get('bindControlls').call(this);
   },
 
