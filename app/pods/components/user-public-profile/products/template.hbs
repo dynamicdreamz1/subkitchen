@@ -3,3 +3,11 @@
     {{product-info product=product }}
   {{/each}}
 </div>
+
+{{#if (gt products.meta.total_pages products.meta.current_page)}}
+  <div class="row">
+    <div class="small-12 columns text-center">
+      <button class="button" onclick={{action 'loadMore'}}>Load More</button>
+    </div>
+  </div>
+{{/if}}
