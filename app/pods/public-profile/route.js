@@ -1,13 +1,29 @@
-/* global $ */
 import Ember from 'ember';
+import config from 'subkitchen-front/config/environment';
+import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(RouteMixin, {
+  ajax: Ember.inject.service(),
+  queryParams: {
+    search_query: { refreshModel: true },
+    product_type: { refreshModel: true },
+    tags: { refreshModel: true },
+    price_range: { refreshModel: true },
+    sorted_by: { refreshModel: true },
+    per_page: { refreshModel: true }
+  },
+
   model(params){
+    params.paramMapping = { perPage: 'per_page' };
+
     let user = this.store.queryRecord('user', { handle: params.handle });
 
     let productsPromise = new Ember.RSVP.Promise((resolve, reject) => {
       user.then((user) => {
-        this.store.query('product', { author_id: user.id, per_page: $.browser.mobile ? 4 : 16}).then((products) => {
+        params.author_id = user.id;
+
+        // this.store.query('product', params).then((products) => {
+        this.findPaged('product', params).then((products) => {
           resolve(products);
         }, () => {
           reject();
@@ -17,7 +33,9 @@ export default Ember.Route.extend({
 
     return Ember.RSVP.hash({
       user: user,
-      products: productsPromise
+      products: productsPromise,
+      themes: this.get('ajax').request(config.host + config.apiEndpoint + '/themes'),
+      templates: this.store.query('productTemplate', {})
     });
   }
 });

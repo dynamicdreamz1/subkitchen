@@ -9,6 +9,11 @@
   width: 100%;
   height: auto;
   background-color: rgb(207, 207, 207);
+  padding: 1rem;
+
+  input {
+    margin: 0;
+  }
 
   .filter {
     height: 1rem;
@@ -29,14 +34,6 @@
   font-weight: bold;
   font-size: inherit;
   margin: 0;
-}
-
-.filters {
-  padding: 1rem;
-
-  input {
-    margin: 0;
-  }
 }
 
 .sort {
@@ -76,7 +73,7 @@
   .refine {
     .refine-content {
       border: 1px solid black;
-      padding: 0.1rem;
+      padding: 0.1rem 0.5em;
       border-radius: 10px;
       font-size: small;
     }

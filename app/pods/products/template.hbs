@@ -25,7 +25,7 @@
               </div>
             </div>
             <div class="column refine text-left">
-              <span class="refine-content" onclick={{action 'refine'}}>REFINE</span>
+              <a class="refine-content" onclick={{action 'refine'}}>REFINE</a>
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@
                 <div class="column filter">
                   {{input type="checkbox" checked=isSelected id=(concat type '-type')}}
                   <label for="{{concat type '-type' }}">
-                    {{type}}
+                    {{capitalize type}}
                   </label>
                 </div>
               </div>
@@ -58,7 +58,7 @@
                 <div class="column filter">
                   {{input type="checkbox" checked=isSelected id=(concat theme '-type')}}
                   <label for="{{concat theme '-type' }}">
-                    {{theme}}
+                    {{capitalize theme}}
                   </label>
                 </div>
               </div>
