@@ -26,8 +26,8 @@
       </div>
       <div class="row">
         <div class="small-12 columns">
-          {{#if product.author.image_url}}
-            <img class="author-image" src="{{product.author.image_url}}" alt="">
+          {{#if product.author.imageUrl}}
+            <img class="author-image" src="{{product.author.imageUrl}}" alt="">
           {{else}}
             <img class="author-image" src="assets/images/default.png" alt="">
           {{/if}}
@@ -120,8 +120,8 @@
           {{#each product.comments as |comment|}}
           <div class="row comment">
             <div class="small-2 columns">
-              {{#if comment.user.image_url}}
-              <img src="{{comment.user.image_url}}" alt="{{comment.user.name}}">
+              {{#if comment.user.imageUrl}}
+              <img src="{{comment.user.imageUrl}}" alt="{{comment.user.name}}">
               {{else}}
               <img src="assets/images/default-2.png" alt="{{comment.user.name}}">
               {{/if}}
@@ -147,8 +147,8 @@
                 <div class="small-12 columns">
                   <div class="row">
                     <div class="small-2 columns">
-                      {{#if user.image_url}}
-                        <img src="{{user.image_url}}" alt="{{user.name}}">
+                      {{#if user.imageUrl}}
+                        <img src="{{user.imageUrl}}" alt="{{user.name}}">
                       {{else}}
                         <img src="assets/images/default-2.png" alt="{{user.name}}">
                       {{/if}}
@@ -181,8 +181,8 @@
             <div class="column promoter">
               <div class="row collapse">
                 <div class="small-4 columns">
-                  {{#if promoter.image_url}}
-                  <img src="{{promoter.image_url}}" alt="">
+                  {{#if promoter.imageUrl}}
+                  <img src="{{promoter.imageUrl}}" alt="">
                   {{else}}
                   <img src="assets/images/default.png" alt="">
                   {{/if}}
