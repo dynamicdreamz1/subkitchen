@@ -122,8 +122,9 @@
               </div>
             {{/multiselect-checkboxes}}
             {{#unless validThemes}}
-              {{input-errors errors="Choose at least one theme"}}
+              {{input-errors errors="Select at least one theme"}}
             {{/unless}}
+            {{input-errors errors=errors.themes}}
             {{input-errors errors=errors.image}}
             <div class="row actions text-center">
               <div class="small-12 columns">

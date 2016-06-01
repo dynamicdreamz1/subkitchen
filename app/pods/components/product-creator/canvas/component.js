@@ -48,6 +48,7 @@ export default Ember.Component.extend( {
   actions: {
 
     updateThemeSelection(newSelection) {
+      this.set('errors', {});
       this.set('isClicked', true);
       if(newSelection.length > 4){
         newSelection.pop();
