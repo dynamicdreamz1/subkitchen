@@ -1,3 +1,4 @@
+/* global $ */
 import Ember from 'ember';
 import config from 'subkitchen-front/config/environment';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
@@ -63,6 +64,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       if(transition.targetName === 'profile.info' && this.get('userLoggingIn')) {
         transition.abort();
         this.set('userLoggingIn', false);
+        if ($('#loginModal').length){
+          $('#loginModal').foundation('close');
+        }
       }
     }
   }
