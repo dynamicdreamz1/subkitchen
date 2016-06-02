@@ -70,8 +70,8 @@ export default Ember.Component.extend( {
           $('#publishModal').foundation('open');
         });
       } else {
-        this.$('#passwordReminderModal').foundation('close');
-        this.$('#loginModal').foundation('open');
+        $('#passwordReminderModal').foundation('close');
+        $('#loginModal').foundation('open');
       }
     },
 
