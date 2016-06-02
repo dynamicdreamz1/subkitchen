@@ -5,6 +5,8 @@ export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
   current_user: Ember.inject.service('current-user'),
+  isoCountries: Ember.inject.service('iso-countries'),
+
 
   handle: null, // from component params or null
 

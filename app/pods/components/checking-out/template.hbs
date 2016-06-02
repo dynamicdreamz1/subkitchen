@@ -160,7 +160,11 @@
                     {{input-errors errors=errors.zip}}
                   </div>
                   <div class="small-12 medium-6 columns">
-                    {{input type="text" placeholder="Country" value=order.country disabled=(not hasItems)}}
+                    {{#x-select value=order.country disabled=(not hasItems)}}
+                      {{#each isoCountries.data as |country|}}
+                        {{#x-option value=country.[0]}}{{country.[0]}}{{/x-option}}
+                      {{/each}}
+                    {{/x-select}}
                     {{input-errors errors=errors.country}}
                   </div>
                 </div>

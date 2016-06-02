@@ -5,6 +5,7 @@ export default Ember.Component.extend({
   cart: Ember.inject.service('shopping-cart'),
   stripe: Ember.inject.service(),
   routing: Ember.inject.service('-routing'),
+  isoCountries: Ember.inject.service('iso-countries'),
   payment: null,
   address: null,
   user: null,

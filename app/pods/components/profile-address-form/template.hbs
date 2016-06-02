@@ -61,7 +61,11 @@
                 </div>
                 <div class="small-12 medium-6 columns">
                   <label class={{if address.errors.country "is-invalid-label" ""}}>Country
-                    {{input type="text" placeholder="eg. US" value=address.country}}
+                    {{#x-select value=address.country}}
+                      {{#each isoCountries.data as |country|}}
+                        {{#x-option value=country.[0]}}{{country.[0]}}{{/x-option}}
+                      {{/each}}
+                    {{/x-select}}
                     {{input-errors errors=address.errors.country}}
                   </label>
                 </div>
