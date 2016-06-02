@@ -2,7 +2,6 @@ import Ember from 'ember';
 import config from 'subkitchen-front/config/environment';
 
 export default Ember.Service.extend({
-  ajax: Ember.inject.service(),
 
   init() {
     this._super(...arguments);
@@ -10,7 +9,10 @@ export default Ember.Service.extend({
   },
 
   fetchIsoCountries() {
-    this.get('ajax').request(config.host + config.apiEndpoint + '/iso_countries').then((result) => {
+    Ember.$.ajax({
+      method: "GET",
+      url: config.host + config.apiEndpoint + '/iso_countries'
+    }).then((result) => {
       this.set('data', result);
     });
   }
