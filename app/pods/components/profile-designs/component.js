@@ -81,6 +81,7 @@ export default Ember.Component.extend({
     },
 
     loadMoreDesigns(){
+      this.$('.loadMore').addClass('loading-white');
       let newPage = this.get('products.meta.current_page') + 1;
       this.get('store')
         .query('product', { author_id: this.get('currentUser.data.id') , page: newPage, per_page: 5})
@@ -88,6 +89,7 @@ export default Ember.Component.extend({
           let products = this.get('products');
           products.pushObjects(results.content);
           products.set('meta.current_page', results.get('meta.current_page'));
+          this.$('.loadMore').removeClass('loading-white');
         });
     },
 
