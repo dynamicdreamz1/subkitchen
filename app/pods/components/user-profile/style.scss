@@ -1,19 +1,27 @@
-.profile{
+.profile {
+  img {
+    border-radius: 50%;
+  }
+
   label {
     font-weight: 700;
     font-size: 1rem;
   }
-  .dark{
+
+  .dark {
     margin: 0;
   }
-  .or{
+
+  .or {
     margin-left: 1rem;
     margin-right: 1rem;
   }
-  .become-a-cook{
+
+  .become-a-cook {
     background: #d1d2d3;
   }
-  .button.upload{
+
+  .button.upload {
     text-transform: uppercase;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;

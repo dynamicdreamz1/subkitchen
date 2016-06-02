@@ -11,7 +11,7 @@ export default Ember.Component.extend({
   selectedThemes: [],
   isPublished: null,
 
-  didInsertElement() {
+  didRender() {
     this.$().foundation();
   },
 

@@ -17,6 +17,8 @@
 
   .user-name{
     color: $black;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .user-stats{
