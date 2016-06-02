@@ -24,6 +24,12 @@ export default Ember.Component.extend({
 
   actions: {
 
+    deleteProduct(id) {
+      this.get('store').find('product', id).then((product) => {
+        product.destroyRecord();
+      });
+    },
+
     showPublishingPopup(id){
       $('#editModal' + id).foundation('open');
       this.set('product', this.get('store').findRecord('product', id)).then(() => {

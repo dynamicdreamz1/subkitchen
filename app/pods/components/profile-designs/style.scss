@@ -10,6 +10,13 @@ $has-tip-border-bottom: null;
       border-bottom: 1px solid #0a0a0a;
     }
 
+    img.status {
+      margin-top: 3rem;
+      width: 2rem;
+      height: 2rem;
+      padding: 0px;
+    }
+
     .design-info {
       padding: 15px;
 
@@ -19,15 +26,7 @@ $has-tip-border-bottom: null;
     }
 
     .published {
-      position: absolute;
-      top: 40%;
-      left: 70%;
-
-      img {
-        width: 2rem;
-        height: 2rem;
-        padding: 0px;
-      }
+      margin-top: 3rem;
 
       .button.light {
         background: $white;
@@ -108,4 +107,12 @@ $has-tip-border-bottom: null;
     }
   }
 }
-
+@media screen and (max-width: 39.9375em) {
+  .profile-designs {
+    .design {
+      .published {
+        margin-top: 1rem;
+      }
+    }
+  }
+}

@@ -8,19 +8,22 @@
             <img src="{{product.preview_url}}" alt="">
           {{/link-to}}
         </div>
-        <div class="small-6 columns design-info">
+        <div class="small-4 columns design-info">
           <p><b>{{product.name}}</b></p>
           <p>{{product.formattedTags}}</p>
         </div>
+        <div class="small-2 columns">
+          {{#if user.artist}}
+            <img src="assets/images/{{product.publishStatus}}.svg" alt="" data-tooltip aria-haspopup="true" class="has-tip top status" data-disable-hover="false" title={{product.publishStatus}}>
+          {{/if}}
+        </div>
         <div class="small-3 columns published">
-          <div class="row">
-            <div class="small-6 columns publishedImage">
-              {{#if user.artist}}
-                <img src="assets/images/{{product.publishStatus}}.svg" alt="" data-tooltip aria-haspopup="true" class="has-tip top" data-disable-hover="false" title={{product.publishStatus}}>
-              {{/if}}
-            </div>
-            <div class="small-6 columns">
+          <div class="row small-up-1 large-up-2">
+            <div class="small-3 columns">
               <a class="button light uppercase js-publish-button" onclick={{action 'showPublishingPopup' product.id}}>Edit</a>
+            </div>
+            <div class="small-3 columns">
+              <a class="button light uppercase js-publish-button" onclick={{action 'deleteProduct' product.id}}>Delete</a>
             </div>
           </div>
         </div>
