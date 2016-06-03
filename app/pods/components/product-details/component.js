@@ -29,16 +29,33 @@ export default Ember.Component.extend({
     },
 
     addComment(){
-      let product = this.get('product');
       let comment = this.get('store')
         .createRecord('comment', {
+          product: this.get('product'),
           content: this.get('commentContent')
         });
-      comment.save();
 
-      product.get('comments').pushObject(comment);
-      product.save();
-      this.set('commentContent', '');
+      comment.save().then((result)=>{
+        this.set('commentContent', '');
+        this.set('product.comments_count', this.get('product.comments_count') +1 );
+        this.get('comments').unshiftObject(result._internalModel);
+      });
+    },
+
+    loadMoreComments(){
+      this.$('.loadMoreComments').addClass('loading-white');
+      let newPage = this.get('comments.meta.current_page') + 1;
+      this.get('store')
+        .query('comment', { product_id: this.get('product.id') , page: newPage, per_page: 5})
+        .then((results)=>{
+          let comments = this.get('comments');
+          comments.pushObjects(results.content);
+          comments.set('meta.current_page', results.get('meta.current_page'));
+          this.$('.loadMoreComments').removeClass('loading-white');
+          if (results.content.length === 0){ // last page
+            this.$('.loadMoreComments').hide();
+          }
+        });
     },
 
     addToCart(){
