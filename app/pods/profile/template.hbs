@@ -3,7 +3,7 @@
   <div class="spacer"></div>
   <div class="row">
     <div class="small-12 columns">
-      <div class="row">
+      <div class="row" style="position: relative">
         <div class="small-12 medium-3 columns" data-sticky-container>
           <h5 class="center font-black">Account</h5>
           {{profile-menu}}
@@ -12,6 +12,7 @@
           {{outlet}}
         </div>
       </div>
+      {{outlet "artist-stats"}}
     </div>
   </div>
   {{app-footer}}

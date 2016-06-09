@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="small-12 medium-3 large-2 columns">
+    {{#if currentUser.content.imageUrl}}
+      <img src="{{currentUser.content.imageUrl}}" alt="">
+    {{else}}
+      <img src="assets/images/default.png" alt="">
+    {{/if}}
+  </div>
+  <div class="small-12 medium-9 large-10 columns">
+    <h5 class="font-black uppercase">{{currentUser.content.name}}</h5>
+    <p>{{currentUser.content.email}}</p>
+    <p>
+    <form id="formAvatarUpload">
+      <label id="uploadButton" for="avatarFileUpload" class="button hollow upload">upload</label>
+      {{input type="file" name="image" id="avatarFileUpload" class="show-for-sr" value=currentUser.content.profileImage}}
+
+      {{input-errors errors=errors.profile_image}}
+    </form>
+    </p>
+  </div>
+</div>

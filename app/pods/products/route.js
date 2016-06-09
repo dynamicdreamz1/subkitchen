@@ -10,10 +10,9 @@ export default Ember.Route.extend(RouteMixin, {
     tags: { refreshModel: true },
     price_range: { refreshModel: true },
     sorted_by: { refreshModel: true },
-    per_page: { refreshModel: true }
+    per_page: { refreshModel: true },
+    author_id: { refreshModel: true }
   },
-
-
 
   model(params) {
     params.paramMapping = { perPage: 'per_page' };

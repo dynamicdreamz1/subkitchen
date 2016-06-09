@@ -1,0 +1,135 @@
+.artist-stats {
+  margin-top: 1em;
+
+  .columns {
+    width: 100vw;
+    margin-left: calc(-1 * ((100vw - 100%) / 2));
+    background: url(images/stats-background.png) repeat;
+
+    .column {
+      padding: 1em 0 1em 0;
+      text-align: center;
+
+      .stat {
+        font-size: 500%;
+        font-weight: bold;
+      }
+
+      .stat-title {
+        font-weight: 600;
+        font-size: small;
+        width: auto;
+        margin-left: 3em;
+        margin-right: 3em;
+        background-color: #0a0a0a;
+
+        &.blue {
+          color: #00adf1;
+        }
+
+        &.pink {
+          color: #e619da;
+        }
+
+        &.yellow {
+          color: #dcde17;
+        }
+
+        &.white {
+          color: #d1d2d3;
+        }
+      }
+
+
+
+      .stat-percentage {
+        margin-top: 1em;
+        font-size: x-small;
+      }
+    }
+  }
+}
+
+.artist-products {
+  margin-top: 3em;
+
+  .button.view {
+    padding: 0.5em 1em;
+    margin-bottom: 0;
+  }
+
+  img {
+    max-width: 9rem;
+    max-height: 9rem;
+    padding: 1em;
+    width: 100%;
+  }
+
+  .products-title {
+    font-size: x-large;
+    font-weight: 800;
+  }
+
+  .columns {
+
+    .products-body {
+      border-bottom: 1px solid #0a0a0a;
+      border-left: none;
+      border-right: none;
+
+      &:first-of-type {
+        border-top: 2px solid #0a0a0a;
+      }
+
+      td {
+        text-align: left;
+        padding: 0;
+        font-size: small;
+
+        &.image {
+          width: 9rem;
+          max-width: 9rem;
+        }
+
+        .info {
+          padding: 0;
+        }
+
+        .name {
+          font-size: large;
+          text-transform: uppercase;
+        }
+
+        .likes {
+          font-weight: bold;
+        }
+
+        .purchase-info {
+          text-align: center;
+          text-transform: uppercase;
+
+          .status {
+            color: white;
+            font-size: medium;
+            text-align: center;
+            width: auto;
+            margin-left: 2em;
+            margin-right: 2em;
+
+            &.cooking {
+              background-color: #e619da;
+            }
+
+            &.pending {
+              background-color: #00adf1;
+            }
+          }
+        }
+
+        p {
+          margin-bottom: 0.5em;
+        }
+      }
+    }
+  }
+}

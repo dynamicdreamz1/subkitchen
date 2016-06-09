@@ -16,6 +16,7 @@ Router.map(function() {
   this.route('profile', function() {
     this.route('info', { path: '/' });
     this.route('designs');
+    this.route('artist');
     this.route('orders');
     this.route('order', { path: 'orders/:order_id'});
   });

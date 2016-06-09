@@ -1,0 +1,153 @@
+<div class="row artist-stats">
+  <div class="small-up-1 large-up-4 columns">
+    <div class="column">
+      <div class="stat">
+        {{model.stats.total_sales}}
+      </div>
+      <div class="stat-title blue">
+        TOTAL SALES
+      </div>
+      <div class="stat-percentage">
+        {{model.stats.total_sales_percentage}}% this week
+      </div>
+    </div>
+    <div class="column">
+      <div class="stat">
+        {{model.stats.earnings}}
+      </div>
+      <div class="stat-title pink">
+        EARNINGS
+      </div>
+      <div class="stat-percentage">
+        {{model.stats.earnings_percentage}}% this week
+      </div>
+    </div>
+    <div class="column">
+      <div class="stat">
+        {{model.stats.published_designs}}
+      </div>
+      <div class="stat-title yellow">
+        PUBLISHED DESIGNS
+      </div>
+      <div class="stat-percentage">
+        {{model.stats.published_designs_percentage}}% this week
+      </div>
+    </div>
+    <div class="column">
+      <div class="stat">
+        {{model.stats.total_likes}}
+      </div>
+      <div class="stat-title white">
+        TOTAL LIKES
+      </div>
+      <div class="stat-percentage">
+        {{model.stats.total_likes_percentage}}% this week
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row artist-products">
+  <div class="small-up-1 large-up-2 columns">
+    {{#if model.order_items}}
+      <div class="column last-sales">
+        <div class="row">
+          <div class="small-7 medium-10 columns">
+            <span class="products-title">LAST SALES</span>
+          </div>
+          <div class="small-5 medium-2 columns">
+          </div>
+        </div>
+        <table>
+          {{#each model.order_items as |order_item|}}
+            <tbody class="products-body">
+            <tr>
+              <td class="image">
+                {{#link-to 'product' order_item.product_id}}
+                  <img src="{{order_item.preview_url}}" alt="">
+                {{/link-to}}
+              </td>
+              <td class="info">
+                <div class="row">
+                  <div class="small-up-1 medium-up-2 columns">
+                    <div class="small-9 column">
+                      <p class="name"><b>{{order_item.name}}</b></p>
+                      <p class="likes">
+                        {{#if order_item.likes_count}}
+                          <span class="icon-sub-liked">
+                            <span class="path1"></span><span class="path2"></span>
+                          </span>
+                        {{else}}
+                          <span class="icon-sub-unliked">
+                            <span class="path1"></span><span class="path2"></span>
+                          </span>
+                        {{/if}}
+                        {{order_item.likes_count}}
+                      </p>
+                      <p class="quantity">QUANTITY: {{order_item.quantity}}</p>
+                    </div>
+                    <div class="small-3 column purchase-info">
+                      {{#if (eq order_item.status 'cooking')}}
+                        <p class="status cooking">{{order_item.status}}</p>
+                      {{else}}
+                        <p class="status pending">{{order_item.status}}</p>
+                      {{/if}}
+                      <p class="purchased-ago">{{moment-from-now order_item.purchased_at interval=1000}}</p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          {{/each}}
+        </table>
+      </div>
+      <div class="column best-sellers">
+        <div class="row">
+          <div class="small-7 medium-10 columns">
+            <span class="products-title">BEST SELLERS</span>
+          </div>
+          <div class="small-5 medium-2 columns">
+            {{#link-to 'products' (query-params sorted_by='best_sellers' author_id=currentUser.content.id) class="button hollow view"}}
+              VIEW
+            {{/link-to}}
+          </div>
+        </div>
+        <table>
+          {{#each model.products as |product|}}
+            <tbody class="products-body">
+            <tr>
+              <td class="image">
+                {{#link-to 'product' product.id}}
+                  <img src="{{product.preview_url}}" alt="">
+                {{/link-to}}
+              </td>
+              <td class="info">
+                <div class="row">
+                  <div class="small-up-1 large-up-2 columns">
+                    <div class="small-12 column">
+                      <p class="name"><b>{{product.name}}</b></p>
+                      <p class="likes">
+                        {{#if product.likes_count}}
+                          <span class="icon-sub-liked">
+                            <span class="path1"></span><span class="path2"></span>
+                          </span>
+                        {{else}}
+                          <span class="icon-sub-unliked">
+                            <span class="path1"></span><span class="path2"></span>
+                          </span>
+                        {{/if}}
+                        {{product.likes_count}}
+                      </p>
+                      <p class="quantity">QUANTITY: {{product.sales_count}}</p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          {{/each}}
+        </table>
+      </div>
+    {{/if}}
+  </div>
+</div>

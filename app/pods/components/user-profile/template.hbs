@@ -2,27 +2,7 @@
 <div class="row profile">
   <div class="small-12 columns">
 
-    <div class="row">
-      <div class="small-12 medium-3 large-2 columns">
-        {{#if user.imageUrl}}
-        <img src="{{user.imageUrl}}" alt="">
-        {{else}}
-        <img src="assets/images/default.png" alt="">
-        {{/if}}
-      </div>
-      <div class="small-12 medium-9 large-10 columns">
-        <h5 class="font-black uppercase">{{user.name}}</h5>
-        <p>{{user.email}}</p>
-        <p>
-          <form id="formAvatarUpload">
-            <label id="uploadButton" for="avatarFileUpload" class="button hollow upload">upload</label>
-            {{input type="file" name="image" id="avatarFileUpload" class="show-for-sr" value=user.profileImage}}
-
-            {{input-errors errors=errors.profile_image}}
-          </form>
-        </p>
-      </div>
-    </div>
+    {{profile-image-uploader}}
 
     <hr>
 
