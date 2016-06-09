@@ -13,7 +13,7 @@
           <p>{{product.formattedTags}}</p>
         </div>
         <div class="small-2 columns">
-          {{#if user.artist}}
+          {{#if currentUser.content.artist}}
             <img src="assets/images/{{product.publishStatus}}.svg" alt="" data-tooltip aria-haspopup="true" class="has-tip top status" data-disable-hover="false" title={{product.publishStatus}}>
           {{/if}}
         </div>
@@ -41,7 +41,7 @@
               <div class="row">
                 <div class="small-12 columns">
                   <form novalidate {{action "publish" product.id on="submit"}}>
-                    {{#if (eq user.status 'verified')}}
+                    {{#if (eq currentUser.content.status 'verified')}}
                       <div class="row">
                         <div class="small-12 columns">
                           <label>Publish:</label>

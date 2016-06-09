@@ -8,19 +8,16 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   model(){
     let productPromise = new Ember.RSVP.Promise((resolve, reject) => {
-      this.store.findRecord('user', 'current').then((user) => {
-        this.store.query('product', { author_id: user.id, per_page: 5, only_published: false }).then((product) => {
-          resolve(product);
-        }, () => {
-          reject();
-        });
+      this.store.query('product', { author_id: this.get('currentUser.content.id'), per_page: 5, only_published: false }).then((product) => {
+        resolve(product);
+      }, () => {
+        reject();
       });
     });
 
     return Ember.RSVP.hash({
       products: productPromise,
-      themes: this.get('ajax').request(config.host + config.apiEndpoint + '/themes'),
-      user: this.store.findRecord('user', 'current')
+      themes: this.get('ajax').request(config.host + config.apiEndpoint + '/themes')
     });
   }
 });

@@ -58,17 +58,14 @@ export default Ember.Component.extend( {
 
     showPublishingPopup(){
       if(this.get('session.isAuthenticated')) {
-        this.get('store').findRecord('user', 'current').then((user) => {
-          this.set('user', user);
-          if(!this.get('user.artist')){
-            this.set('isPublished', false);
-          }
-          if(this.get('user.status') === 'pending') {
-            this.set('publishNotice', 'Verify your artist account to publish your designs');
-          }
-          this.set('errors', {});
-          $('#publishModal').foundation('open');
-        });
+        if(this.get('currentUser.content.status') !== 'verified'){
+          this.set('isPublished', false);
+        }
+        if(this.get('currentUser.content.status') === 'pending') {
+          this.set('publishNotice', 'Verify your artist account to publish your designs');
+        }
+        this.set('errors', {});
+        $('#publishModal').foundation('open');
       } else {
         $('#passwordReminderModal').foundation('close');
         $('#loginModal').foundation('open');

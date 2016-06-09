@@ -151,16 +151,16 @@
             {{/if}}
           {{/if}}
 
-          {{#if user}}
+          {{#if currentUser.content}}
             <div class="row comment">
               <form novalidate {{action "addComment" on="submit"}}>
                 <div class="small-12 columns">
                   <div class="row">
                     <div class="small-2 columns">
-                      {{#if user.imageUrl}}
-                        <img src="{{user.imageUrl}}" alt="{{user.name}}">
+                      {{#if currentUser.content.imageUrl}}
+                        <img src="{{currentUser.content.imageUrl}}" alt="{{currentUser.content.name}}">
                       {{else}}
-                        <img src="assets/images/default-2.png" alt="{{user.name}}">
+                        <img src="assets/images/default-2.png" alt="{{currentUser.content.name}}">
                       {{/if}}
                     </div>
                     <div class="small-10 columns comment-content">

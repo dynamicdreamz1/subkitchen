@@ -8,7 +8,6 @@ export default Ember.Component.extend({
   isoCountries: Ember.inject.service('iso-countries'),
   payment: null,
   address: null,
-  user: null,
   card: new Ember.Object({
     number: '',
     exp_month: '',
@@ -17,7 +16,7 @@ export default Ember.Component.extend({
   }),
   errors: {},
 
-  order: Ember.computed(['address', 'user.data.email'], function(){
+  order: Ember.computed(['address', 'currentUser.content.email'], function(){
     let address = this.get('address');
     let fullname = [address.get('firstName'), address.get('lastName')].
       reject(function(i){
@@ -27,7 +26,7 @@ export default Ember.Component.extend({
     let order = new Ember.Object({
       payment_type: 'paypal',
       return_path: '/profile',
-      email: this.get('user').get('data.email'),
+      email: this.get('currentUser.content.email'),
       full_name: fullname,
       address: address.get('address'),
       city: address.get('city'),

@@ -4,14 +4,13 @@ import config from 'subkitchen-front/config/environment';
 export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
-  current_user: Ember.inject.service('current-user'),
   isoCountries: Ember.inject.service('iso-countries'),
 
 
   handle: null, // from component params or null
 
   company: Ember.computed(['session', 'handle'], function(){
-    let user = new Ember.Object(this.get('session').get('data.user'));
+    let user = this.get('currentUser.content');
     let company = new Ember.Object(user.get('company'));
     let handle = this.get('handle') || user.get('handle');
     company.set('handle', handle);
@@ -41,7 +40,6 @@ export default Ember.Component.extend({
           data: params
         }).then((result) => {
           this.set('errors', {});
-          this.get('current_user').reload();
           window.top.location.href = result.url;
         }, (error) => {
           if (error.responseJSON){

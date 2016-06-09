@@ -11,7 +11,7 @@
         <div class="small-7 medium-7 columns published-details">
           <h4 class="published-name"> {{model.product.name}} </h4>
           <p class="published-tags"> {{model.product.formattedTags}} </p>
-          <p class="published-author"> Created by: {{model.author.name}} </p>
+          <p class="published-author"> Created by: {{currentUser.content.name}} </p>
           <p>This artwork is available for sale as {{model.product.formattedProductType}}</p>
           <button class="button light uppercase">share this product!</button>
         </div>

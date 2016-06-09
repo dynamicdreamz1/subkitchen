@@ -24,8 +24,9 @@ export default Ember.Component.extend({
   actions: {
 
     deleteProduct(id) {
-      this.get('store').find('product', id).then((product) => {
-        product.destroyRecord();
+      this.get('store').findRecord('product', id).then((product) => {
+        product.deleteRecord();
+        product.save();
       });
     },
 

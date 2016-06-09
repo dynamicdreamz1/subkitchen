@@ -15,14 +15,6 @@ export default Ember.Component.extend({
     this.$().foundation();
   },
 
-  didRender() {
-    if(this.get('session.isAuthenticated')) {
-      this.get('store').findRecord('user', 'current').then((user) => {
-        this.set('user', user);
-      });
-    }
-  },
-
   actions: {
     openSizingInfo(){
       $('#sizingInfoModal').foundation('open');

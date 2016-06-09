@@ -4,9 +4,9 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 export default Ember.Route.extend(ApplicationRouteMixin, {
   intl: Ember.inject.service(),
   routing: Ember.inject.service('-routing'),
+  session: Ember.inject.service('session'),
 
   setupController(controller, model) {
-    // Call _super for default behavior
     this._super(controller, model);
     this.get('intl').setLocale('en-us');
   },
@@ -22,17 +22,25 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   actions: {
     invalidateSession() {
       this.get('session').invalidate();
-    },
-
-    sessionAuthenticationSucceeded() {
-      this._populateCurrentUser();
     }
+  },
+
+  invalidationSucceeded() {
+    this._deleteCurrentUser();
+  },
+
+  sessionAuthenticated() {
+    this._populateCurrentUser();
   },
 
   _populateCurrentUser() {
     return this.store.findRecord('user', 'current').then(
       (user) => {
         this.get('currentUser').set('content', user);
-      }).catch(function () {});
+      });
+  },
+
+  _deleteCurrentUser() {
+    return this.get('currentUser').set('content', null);
   }
 });

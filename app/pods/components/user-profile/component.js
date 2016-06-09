@@ -5,7 +5,6 @@ export default Ember.Component.extend({
   routing: Ember.inject.service('-routing'),
   flashMessages: Ember.inject.service(),
 
-  user: null,
   address: null,
   errors: {},
   typingDelays: {},
@@ -31,7 +30,7 @@ export default Ember.Component.extend({
       const flashMessages = this.get('flashMessages');
 
       this.$('#save-button').addClass('loading-white');
-      this.get('user').save()
+      this.get('currentUser.content').save()
       .then(()=>{
         flashMessages.success('Profile updated');
         this.$('#save-button').removeClass('loading-white');

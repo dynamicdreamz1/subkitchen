@@ -8,34 +8,34 @@
 
     <div class="row">
       <div class="small-12 medium-7 columns">
-        {{input-data-errors errors=user.errors.base}}
+        {{input-data-errors errors=currentUser.content.errors.base}}
         <form novalidate  {{action "save" on="submit"}}>
           <div class="row">
             <div class="small-12 columns">
-              <label class={{if user.errors.name "is-invalid-label" ""}}>Profile name
-                {{input type="text" placeholder="eg, John Doe" value=user.name id="user-name"}}
-                {{input-data-errors errors=user.errors.name}}
+              <label class={{if currentUser.content.errors.name "is-invalid-label" ""}}>Profile name
+                {{input type="text" placeholder="eg, John Doe" value=currentUser.content.name id="user-name"}}
+                {{input-data-errors errors=currentUser.content.errors.name}}
               </label>
             </div>
             <div class="small-12 columns">
-              <label class={{if user.errors.email "is-invalid-label" ""}}>Email Address
-                {{input type="email" placeholder="Email Address" value=user.email id="user-email"}}
-                {{input-data-errors errors=user.errors.email}}
+              <label class={{if currentUser.content.errors.email "is-invalid-label" ""}}>Email Address
+                {{input type="email" placeholder="Email Address" value=currentUser.content.email id="user-email"}}
+                {{input-data-errors errors=currentUser.content.errors.email}}
               </label>
             </div>
             <div class="small-12 columns">
-              <label class={{if user.errors.handle "is-invalid-label" ""}}>Handle
+              <label class={{if currentUser.content.errors.handle "is-invalid-label" ""}}>Handle
                 <div class="input-group">
                   <span class="input-group-label">http://sublimation.kitchen/</span>
-                  {{input class="input-group-field" type="text" placeholder="johndoe" value=user.handle id="user-handle"}}
+                  {{input class="input-group-field" type="text" placeholder="johndoe" value=currentUser.content.handle id="user-handle"}}
                 </div>
-                {{input-data-errors errors=user.errors.handle}}
+                {{input-data-errors errors=currentUser.content.errors.handle}}
               </label>
             </div>
             <div class="small-12 columns">
-              <label class={{if user.errors.bio "is-invalid-label" ""}}>BIO
-                {{textarea value=user.bio id="user-bio" rows="5" placeholder="About you"}}
-                {{input-data-errors errors=user.errors.bio}}
+              <label class={{if currentUser.content.errors.bio "is-invalid-label" ""}}>BIO
+                {{textarea value=currentUser.content.bio id="user-bio" rows="5" placeholder="About you"}}
+                {{input-data-errors errors=currentUser.content.errors.bio}}
               </label>
             </div>
           </div>
@@ -81,8 +81,8 @@
       </div>
     </div>
 
-    {{#if user.artist}}
-      {{#if (eq user.status 'unverified')}}
+    {{#if currentUser.content.artist}}
+      {{#if (eq currentUser.content.status 'unverified')}}
         <div class="row font-bold become-a-cook">
           <div class="small-12 columns center">
             <h2 class="font-black uppercase">We are waiting for payment confirmation!</h2>
