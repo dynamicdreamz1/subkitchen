@@ -11,7 +11,28 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     this.get('intl').setLocale('en-us');
   },
 
-  beforeModel() {
+  beforeModel(transition) {
+    this._super(transition);
+    if (this.get('session.isAuthenticated')) {
+      return this._populateCurrentUser();
+    }
     return this.get('intl').setLocale('en-us');
+  },
+
+  actions: {
+    invalidateSession() {
+      this.get('session').invalidate();
+    },
+
+    sessionAuthenticationSucceeded() {
+      this._populateCurrentUser();
+    }
+  },
+
+  _populateCurrentUser() {
+    return this.store.findRecord('user', 'current').then(
+      (user) => {
+        this.get('currentUser').set('content', user);
+      }).catch(function () {});
   }
 });

@@ -6,7 +6,6 @@ export default Ember.Component.extend({
   flashMessages: Ember.inject.service(),
   store: Ember.inject.service(),
   routing: Ember.inject.service('-routing'),
-  currentUser: Ember.inject.service('current-user'),
 
   selectedThemes: [],
   isPublished: null,
