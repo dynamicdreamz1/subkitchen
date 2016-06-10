@@ -8,5 +8,9 @@ export default DS.Model.extend({
   quantity:            DS.attr('string'),
   purchased_at:        DS.attr('date'),
   status:              DS.attr('string'),
-  product_id:          DS.attr('number')
+  product_id:          DS.attr('number'),
+
+  formattedStatus: function() {
+    this.get('status').replace('_', ' ');
+  }.property('status')
 });

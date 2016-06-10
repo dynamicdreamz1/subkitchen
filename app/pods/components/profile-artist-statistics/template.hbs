@@ -89,7 +89,7 @@
                       {{#if (eq order_item.status 'cooking')}}
                         <p class="status cooking">{{order_item.status}}</p>
                       {{else}}
-                        <p class="status pending">{{order_item.status}}</p>
+                        <p class="status pending">{{order_item.formattedStatus}}</p>
                       {{/if}}
                       <p class="purchased-ago">{{moment-from-now order_item.purchased_at interval=1000}}</p>
                     </div>
