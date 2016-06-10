@@ -5,5 +5,9 @@
   {{/if}}
   <li>{{#link-to "profile.designs" class="button dark"}}Designs{{/link-to}}</li>
   <li>{{#link-to "profile.orders" class="button dark"}}Orders{{/link-to}}</li>
-  <li><a href="#javascript-reference" class="button dark">Log Out</a></li>
+  <li>
+    <a class="button dark" onclick={{action 'invalidateSession'}}>
+      Logout
+    </a>
+  </li>
 </ul>
