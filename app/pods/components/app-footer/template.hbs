@@ -42,10 +42,23 @@
             <div class="small-12 columns">
               <h4>NEWSLETTER</h4>
               <p>
-                <div class="input-group">
-                  <input class="input-group-field" type="text" placeholder="Email Address">
-                  <a href="#" class="input-group-button button dark">SUBSCRIBE</a>
+              <div>
+                <form novalidate {{action "subscribe" on="submit"}} class="newsletter-form">
+                  {{input type="text" class="newsletter-field" placeholder="Email Address" value=newsletterReceiverEmail required=true}}
+                  <button class="button dark" type="submit" value="subscribe">SUBSCRIBE</button>
+                </form>
+                {{input-errors errors=errors}}
+              </div>
+              <div class="reveal newsletterModal" id="newsletterModal" data-reveal data-close-on-click="true">
+                <button class="close-button" data-close aria-label="Close modal" type="button">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row white">
+                  <div class="small-12 text-center columns">
+                    <p>You've successfully subscribed to our newsletter!</p>
+                  </div>
                 </div>
+              </div>
               </p>
             </div>
           </div>

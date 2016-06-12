@@ -26,3 +26,11 @@ footer{
     padding: 1rem;
   }
 }
+
+.newsletter-form {
+  display: inline-flex;
+
+  .newsletter-field {
+    min-width: 17em;
+  }
+}
