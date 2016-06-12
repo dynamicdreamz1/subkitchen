@@ -23,11 +23,16 @@ export default Ember.Component.extend({
 
   actions: {
 
+    showProductDeletingPopup(id) {
+      $('#productDeleteModal' + id).foundation('open');
+    },
+
     deleteProduct(id) {
       this.get('store').findRecord('product', id).then((product) => {
         product.deleteRecord();
         product.save();
       });
+      $('#productDeleteModal' + id).foundation('close');
     },
 
     showPublishingPopup(id){
@@ -90,7 +95,7 @@ export default Ember.Component.extend({
       this.$('.loadMore').addClass('loading-white');
       let newPage = this.get('products.meta.current_page') + 1;
       this.get('store')
-        .query('product', { author_id: this.get('currentUser.data.id') , page: newPage, per_page: 5})
+        .query('product', { author_id: this.get('currentUser.content.id') , page: newPage, per_page: 5})
         .then((results)=>{
           let products = this.get('products');
           products.pushObjects(results.content);
