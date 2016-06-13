@@ -27,15 +27,13 @@ export default Ember.Component.extend({
       $('#productDeleteModal' + id).foundation('open');
     },
 
-    deleteProduct(id) {
-      this.get('store').findRecord('product', id).then((product) => {
-        product.deleteRecord();
-        product.save().then(() => {
-          let products = this.get('products');
-          products.removeObject(product);
-        });
+    deleteProduct(product) {
+      product.deleteRecord();
+      product.save().then(() => {
+        let products = this.get('products');
+        products.removeObject(product);
       });
-      $('#productDeleteModal' + id).foundation('close');
+      $('#productDeleteModal' + product.id).foundation('close');
     },
 
     showPublishingPopup(id){
