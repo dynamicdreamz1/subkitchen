@@ -23,8 +23,8 @@
     </li>
     <li> {{#link-to 'products' (query-params search_query="") class="menu-item uppercase"}} shop {{/link-to}} </li>
     <li> {{#link-to 'cooking' (query-params product_id="" selected_template_id="") class="menu-item uppercase"}} create {{/link-to}} </li>
-    <li><a class="menu-item" href="#">sell</a></li>
-    <li><a class="menu-item" href="#">artists</a></li>
+    <!-- <li><a class="menu-item" href="#">sell</a></li> -->
+    <!-- <li><a class="menu-item" href="#">artists</a></li> -->
     <li class="divider"></li>
     <li class="search-form">
       {{input type="text" class="search" placeholder="SEARCH" value=queryString}}
@@ -56,7 +56,7 @@
       </a>
       {{/if}}
     </li>
-    <li class="menu-item-wishlist__wrapper"> <a class="action-item"> <span class="icon-sub-heart"></span> </a> </li>
+    <!-- <li class="menu-item-wishlist__wrapper"> <a class="action-item"> <span class="icon-sub-heart"></span> </a> </li> -->
 
     <li class="menu-item-my-kitchen__wrapper" data-toggle="cart-dropdown" id="cart-dropdown-trigger">
       <a class="action-item basket-indicator" onclick={{action 'showCart'}}> <span class="icon-sub-basket"></span>
