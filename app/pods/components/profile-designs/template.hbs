@@ -90,7 +90,7 @@
                       </div>
                     </div>
                     {{#multiselect-checkboxes options=themes.themes selection=selectedThemes tagName='div' classNames='row collapse medium-up-4 themes' onchange=(action 'updateThemeSelection') as |theme isSelected|}}
-                      <div class="column">
+                      <div class="column theme">
                         {{input type="checkbox" checked=isSelected id=(concat theme '-theme' product.id)}}
                         <label for="{{concat theme '-theme' product.id}}">
                           {{theme}}
