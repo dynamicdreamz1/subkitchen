@@ -30,7 +30,10 @@ export default Ember.Component.extend({
     deleteProduct(id) {
       this.get('store').findRecord('product', id).then((product) => {
         product.deleteRecord();
-        product.save();
+        product.save().then(() => {
+          let products = this.get('products');
+          products.removeObject(product);
+        });
       });
       $('#productDeleteModal' + id).foundation('close');
     },
