@@ -11,6 +11,6 @@ export default DS.Model.extend({
   product_id:          DS.attr('number'),
 
   formattedStatus: function() {
-    this.get('status').replace('_', ' ');
+    return this.get('status').replace('_', ' ');
   }.property('status')
 });
