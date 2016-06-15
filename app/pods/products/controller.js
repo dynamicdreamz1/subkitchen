@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   queryParams: ['page', 'per_page', 'product_type', 'tags', 'price_range', 'sorted_by', 'search_query'],
 
   page: 1,
-  per_page: 12,
+  per_page: 60,
   priceRanges: ['0, 60', '60, 100'],
   product_type: [],
   tags: [],
