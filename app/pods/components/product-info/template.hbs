@@ -1,69 +1,67 @@
-<div class="small-12 medium-3 columns product-info">
-  <div class="row">
-    <div class="small-12 columns center image">
-      <div class="row">
-        <div class="small-12 columns">
-          {{#link-to 'product' product.id}}
-            <img src="{{product.preview_url}}" alt="">
-          {{/link-to}}
-        </div>
+<div class="row">
+  <div class="small-12 columns center image">
+    <div class="row">
+      <div class="small-12 columns">
+        {{#link-to 'product' product.id}}
+          <img src="{{product.preview_url}}" alt="">
+        {{/link-to}}
       </div>
-      <div class="row">
-        <div class="small-12 columns product-actions">
-          <div class="row">
-            <div class="small-12 columns sizes">
-              <span> SIZES: </span>
-              <form>
-                <ul class="sizes">
-                  {{#each product.sizes as |s|}}
-                  <li>{{radio-button value=s model_id=product.id text=s execute=setSize chosen=size}}</li>
-                  {{/each}}
-                </ul>
-              </form>
-            </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns product-actions">
+        <div class="row">
+          <div class="small-12 columns sizes">
+            <span> SIZES: </span>
+            <form>
+              <ul class="sizes">
+                {{#each product.sizes as |s|}}
+                <li>{{radio-button value=s model_id=product.id text=s execute=setSize chosen=size}}</li>
+                {{/each}}
+              </ul>
+            </form>
           </div>
-          <div class="column row small-collapse buttons">
-            <div class="small-6 columns">
-              {{#link-to 'product' product.id class="black button uppercase"}}
-                view product
-              {{/link-to}}
-            </div>
-            <div class="small-6 columns">
-              <a onclick={{action "addToCart"}} class="primary button addToCart uppercase">ADD TO CART</a>
-            </div>
+        </div>
+        <div class="column row small-collapse buttons">
+          <div class="small-6 columns">
+            {{#link-to 'product' product.id class="black button uppercase"}}
+              view product
+            {{/link-to}}
+          </div>
+          <div class="small-6 columns">
+            <a onclick={{action "addToCart"}} class="primary button addToCart uppercase">ADD TO CART</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row product-details">
-    <div class="small-12 columns">
-      <div class="row collapse">
-        <div class="small-9 columns uppercase font-bold ellipsis">
-          {{#link-to 'product' product.id}}
-            {{product.name}}
-          {{/link-to}}
-        </div>
-        <div class="small-3 columns text-right nowrap font-light likes" onclick={{action 'toggleLike'}}>
-          {{product.likes_count}}
-          {{#if product.likes_count}}
-          <span class="icon-sub-liked">
-            <span class="path1"></span><span class="path2"></span>
-          </span>
-          {{else}}
-          <span class="icon-sub-unliked">
-            <span class="path1"></span><span class="path2"></span>
-          </span>
-          {{/if}}
-        </div>
+</div>
+<div class="row product-details">
+  <div class="small-12 columns">
+    <div class="row collapse">
+      <div class="small-9 columns uppercase font-bold ellipsis">
+        {{#link-to 'product' product.id}}
+          <div class="product-name">{{product.name}}</div>
+        {{/link-to}}
       </div>
-      <div class="row collapse">
-        <div class="small-9 columns uppercase artist-name">
-          by {{product.author.name}}
-        </div>
-        <div class="small-3 columns text-right nowrap font-bold">
-          {{format-number product.price style="currency" currency="USD"}}
-        </div>
+      <div class="small-3 columns text-right nowrap font-light likes" onclick={{action 'toggleLike'}}>
+        {{product.likes_count}}
+        {{#if product.likes_count}}
+        <span class="icon-sub-liked">
+          <span class="path1"></span><span class="path2"></span>
+        </span>
+        {{else}}
+        <span class="icon-sub-unliked">
+          <span class="path1"></span><span class="path2"></span>
+        </span>
+        {{/if}}
+      </div>
+    </div>
+    <div class="row collapse">
+      <div class="small-9 columns uppercase artist-name">
+        by {{product.author.name}}
+      </div>
+      <div class="small-3 columns text-right nowrap font-bold">
+        {{format-number product.price style="currency" currency="USD"}}
       </div>
     </div>
   </div>
