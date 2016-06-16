@@ -14,7 +14,7 @@
             {{#each cart.order.data.items as |item|}}
             <div class="small-12 columns item" id="item-{{item.id}}">
               <div class="row collapse" >
-                <div class="small-4 columns">
+                <div class="small-4 columns img-wrapper">
                   <img src={{item.preview_url}} alt="{{item.name}}">
                 </div>
                 <div class="small-8 columns">
@@ -52,6 +52,7 @@
                   <strong>subtotal:</strong> {{format-number cart.order.data.subtotal style="currency" currency="USD"}}
                 </div>
               </div>
+              {{!--
               <div class="row">
                 <div class="small-12 columns">
                   <strong>shipping:</strong> {{format-number cart.order.data.shipping_cost style="currency" currency="USD"}}
@@ -72,6 +73,7 @@
                   <button class="button checkout {{if (gt quantity 0) "" "disabled"}}" onclick={{action 'checkout'}}>check out</button>
                 </div>
               </div>
+              --}}
             </div>
           </div>
           {{else}}
