@@ -339,6 +339,39 @@ export default Ember.Component.extend( {
         canvasActions.setUploadedImage.call(this, e.target.result);
         this.set('product.image', this.get('dataUrlToBlob').convert(e.target.result));
       };
+
+      // size validation
+      reader.onloadend = (evt) => {
+        if (evt.target.readyState === FileReader.DONE) {
+          var tempImg = new Image();
+          tempImg.src = reader.result;
+          tempImg.onload = () => {
+            let MAX_WIDTH  = 5000;
+            let MAX_HEIGHT = 5000;
+
+            let MIN_WIDTH  = 500;
+            let MIN_HEIGHT = 500;
+
+            let tempW = tempImg.width;
+            let tempH = tempImg.height;
+
+            if (tempH > MAX_HEIGHT ||
+                tempH < MIN_HEIGHT ||
+                tempW > MAX_WIDTH ||
+                tempW < MIN_WIDTH) {
+              let canvasActions = this.get('canvasActions');
+              let flashMessages = this.get('flashMessages');
+              let msg = 'Please upload image bigger than 1024 over 1024 and smaller than 5000 over 5000 pixels.';
+
+              canvasActions.removeImage.call(this);
+              flashMessages.alert(msg, { timeout: 10000 });
+              this.set('product.rawImage', null);
+              this.set('product.image', null);
+            }
+          };
+        }
+      };
+
       reader.readAsDataURL(file);
     }
   }.observes('product.rawImage'),
