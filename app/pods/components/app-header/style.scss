@@ -136,12 +136,42 @@
     &.shop-menu{
       .submenu{
         left: -100%;
+        text-align: left;
+
+        li {
+
+          a{
+            font-size: 0.9rem;
+            margin: 0 16px;
+
+            &:hover{
+              &:before{
+                content: "";
+              }
+            }
+          }
+        }
       }
     }
 
     &.cooking-menu{
       .submenu{
         left: -65%;
+        text-align: left;
+
+        li {
+
+          a{
+            font-size: 0.9rem;
+            margin: 0 16px;
+
+            &:hover{
+              &:before{
+                content: "";
+              }
+            }
+          }
+        }
       }
     }
   }
