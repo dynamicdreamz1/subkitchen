@@ -50,11 +50,13 @@
               <strong>shipping:</strong> {{format-number payment.order.shipping_cost style="currency" currency="USD"}}
             </div>
           </div>
+          {{!--
           <div class="row">
             <div class="small-12 columns">
               <strong>tax ({{payment.order.tax}}%):</strong> {{format-number payment.order.tax_cost style="currency" currency="USD"}}
             </div>
           </div>
+          --}}
           <div class="row">
             <div class="small-12 columns">
               <strong>total:</strong> {{format-number payment.order.total_cost style="currency" currency="USD"}}
