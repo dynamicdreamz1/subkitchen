@@ -13,5 +13,10 @@ export default DS.Model.extend({
 
   formattedProductType: function() {
     return this.get('product_type').replace('_', ' ').toUpperCase();
+  }.property('product_type'),
+
+  productTypeAsArray: function() {
+    return [this.get('product_type')];
   }.property('product_type')
+
 });

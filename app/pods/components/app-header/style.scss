@@ -132,6 +132,18 @@
         margin-bottom: 12px;
       }
     }
+
+    &.shop-menu{
+      .submenu{
+        left: -100%;
+      }
+    }
+
+    &.cooking-menu{
+      .submenu{
+        left: -65%;
+      }
+    }
   }
 
   & > ul{

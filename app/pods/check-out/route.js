@@ -10,7 +10,8 @@ export default Ember.Route.extend({
     let paymentEndpoint = config.host + config.apiEndpoint + '/orders/' + this.get('cart.order.data.uuid') + '/payment';
     let models = {
       payment: this.get('ajax').request(paymentEndpoint),
-      address: new Ember.Object()
+      address: new Ember.Object(),
+      templates: this.store.query('productTemplate', {})
     };
 
     if (this.get('session').get('isAuthenticated')){
