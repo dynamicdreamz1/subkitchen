@@ -10,8 +10,10 @@
   </div>
 
   <div class="row">
-    {{#each products as |product|}}
-      {{product-info product=product }}
-    {{/each}}
+    <div class="row small-up-2 medium-up-4">
+      {{#each products as |product|}}
+        {{product-info class="small-12 medium-3 columns product-info" product=product }}
+      {{/each}}
+    </div>
   </div>
 </section>
