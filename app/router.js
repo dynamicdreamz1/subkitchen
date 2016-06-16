@@ -20,6 +20,17 @@ Router.map(function() {
     this.route('orders');
     this.route('order', { path: 'orders/:order_id'});
   });
+  this.route('information', function() {
+    this.route('delivery-and-returns');
+    this.route('payment');
+    this.route('about-artist');
+    this.route('artist-terms');
+    this.route('custom-clothing');
+    this.route('terms-and-conditions');
+    this.route('wholesale');
+    this.route('privacy-policy');
+    this.route('contact');
+  });
   this.route('profile-address');
   this.route('become-cook-with-handle', { path: '/become-cook/:handle' });
   this.route('become-cook');

@@ -1,0 +1,28 @@
+{{#shopping-cart}}
+  {{app-header}}
+  <div class="spacer"></div>
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="row" style="position: relative">
+        <div class="small-12 medium-3 columns" data-sticky-container>
+          <h5 class="left font-black">Menu</h5>
+          <ul class="vertical menu information-menu">
+            <li>{{#link-to "information.delivery-and-returns" class="link"}}Delivery and Returns{{/link-to}}</li>
+            <li>{{#link-to "information.payment" class="link"}}Payment{{/link-to}}</li>
+            <li>{{#link-to "information.about-artist" class="link"}}About Artist Accounts{{/link-to}}</li>
+            <li>{{#link-to "information.artist-terms" class="link"}}Artist Terms{{/link-to}}</li>
+            <li>{{#link-to "information.custom-clothing" class="link"}}Custom Clothing{{/link-to}}</li>
+            <li>{{#link-to "information.terms-and-conditions" class="link"}}Terms and Conditions{{/link-to}}</li>
+            <li>{{#link-to "information.wholesale" class="link"}}Wholesale{{/link-to}}</li>
+            <li>{{#link-to "information.privacy-policy" class="link"}}Privacy Policy{{/link-to}}</li>
+            <li>{{#link-to "information.contact" class="link"}}Contact{{/link-to}}</li>
+          </ul>
+        </div>
+        <div class="small-12 medium-9 columns">
+          {{outlet}}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{app-footer}}
+{{/shopping-cart}}

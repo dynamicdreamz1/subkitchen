@@ -1,0 +1,53 @@
+.information-menu {
+  border-top: 2px solid rgba(166, 166, 166, 0.51);
+  padding: 1em 0 1em 0;
+
+  .link {
+    padding: 0.5em;
+    font-size: small;
+    font-weight: 300;
+  }
+}
+.information {
+  font-size: small;
+
+  .information-title {
+    font-size: x-large;
+    font-weight: 700;
+    margin-bottom: 2em;
+  }
+
+  .article {
+    .article-title {
+      margin: 2em;
+      font-weight: 600;
+
+      p {
+        font-weight: 600;
+      }
+    }
+
+    .article-content {
+      font-weight: 300;
+    }
+  }
+
+  h6 {
+    margin: 2em 0em 1em 0;
+  }
+
+  p {
+    font-weight: 300;
+    margin-bottom:0;
+
+    &.question {
+      font-weight: 700;
+      margin-top: 1em;
+      margin-bottom: 0;
+    }
+
+    &.answer {
+      margin-bottom: 2em;
+    }
+  }
+}
