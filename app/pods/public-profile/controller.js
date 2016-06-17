@@ -45,10 +45,12 @@ export default Ember.Controller.extend({
     },
 
     refine() {
-      this.set('sorted_by', 'created_at_desc');
-      this.set('price_range', []);
-      this.set('tags', []);
-      this.set('product_type', []);
+      $('.refine-content').toggleClass('refine-active');
+      $('.filters-container').toggleClass('collapse');
+      // this.set('sorted_by', 'created_at_desc');
+      // this.set('price_range', []);
+      // this.set('tags', []);
+      // this.set('product_type', []);
     }
   }
 });

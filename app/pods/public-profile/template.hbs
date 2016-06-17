@@ -22,16 +22,14 @@
       </div>
       <div class="small-6 medium-4 column">
         <div class="row">
-          <div class="small-up-1 large-up-2 columns text-right">
-            <div class="column per-page">
-              <div class="per-page-content">
-                <a>ITEMS PER PAGE:</a>
-                <a class="limit" onclick={{action 'changePerPage' 30}}>30</a>
-                <a class="limit" onclick={{action 'changePerPage' 90}}>90</a>
+          <div class="small-12 columns text-right">
+            <div class="per-page-content">
+              <a>ITEMS PER PAGE:</a>
+              <a class="limit" onclick={{action 'changePerPage' 30}}>30</a>
+              <a class="limit" onclick={{action 'changePerPage' 90}}>90</a>
+              <div class="refine text-left">
+                <a class="refine-content" onclick={{action 'refine'}}>REFINE</a>
               </div>
-            </div>
-            <div class="column refine text-left">
-              <a class="refine-content" onclick={{action 'refine'}}>REFINE</a>
             </div>
           </div>
         </div>
