@@ -73,6 +73,9 @@
   }
   .artist-name{
     color: $grey;
+    a {
+      color: $grey;
+    }
   }
 }
 
