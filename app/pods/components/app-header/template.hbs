@@ -21,8 +21,42 @@
         <span class="name"><strong>sub</strong>kitchen</span>
       {{/link-to}}
     </li>
-    <li> {{#link-to 'products' (query-params search_query="") class="menu-item uppercase"}} shop {{/link-to}} </li>
-    <li> {{#link-to 'cooking' (query-params product_id="" selected_template_id="") class="menu-item uppercase"}} create {{/link-to}} </li>
+
+    <li>
+      <ul class="dropdown menu shop-menu" data-dropdown-menu>
+        <li>
+          {{#link-to 'products' (query-params product_type="" search_query="") class="menu-item uppercase"}} shop {{/link-to}}
+          <ul class="menu">
+            {{#each templates as |template| }}
+              <li>
+                {{#link-to 'products' (query-params product_type=template.productTypeAsArray search_query="") class="menu-item uppercase"}}
+                  {{capitalize template.product_type}}
+                {{/link-to}}
+              </li>
+            {{/each}}
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <ul class="dropdown menu cooking-menu" data-dropdown-menu>
+        <li>
+          {{#link-to 'cooking' (query-params product_id="" selected_template_id="") class="menu-item uppercase"}} create {{/link-to}}
+          <ul class="menu">
+            {{#each templates as |template| }}
+              <li>
+                {{#link-to 'cooking' (query-params selected_template_id=template.id product_id="") class="menu-item uppercase"}}
+                  {{capitalize template.product_type}}
+                {{/link-to}}
+              </li>
+            {{/each}}
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+
     <!-- <li><a class="menu-item" href="#">sell</a></li> -->
     <!-- <li><a class="menu-item" href="#">artists</a></li> -->
     <li class="divider"></li>
@@ -33,7 +67,7 @@
     <li class="divider"></li>
     <li>
       {{#if session.isAuthenticated}}
-      <ul class="dropdown menu" data-dropdown-menu>
+      <ul class="dropdown menu user-menu" data-dropdown-menu>
         <li>
           {{#link-to 'profile' class="join uppercase"}}
             <span class="uppercase">my&nbsp;kitchen</span>
