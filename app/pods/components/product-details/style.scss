@@ -149,6 +149,9 @@
   }
   .promoter{
     background: #e4e4e4;
+    .lazy-image-container{
+      min-height: 2em;
+    }
     img{
       padding: 0.2rem;
       border-radius: 50%;
@@ -160,6 +163,9 @@
   }
   .comments{
     .comment{
+      .lazy-image-container{
+        min-height: 2em;
+      }
       button {
         margin-top: 1rem;
         line-height: 0.5rem;
@@ -167,8 +173,9 @@
       }
       img{
         padding: 1em;
-        padding-top: 0;
         border-radius: 50%;
+        top: -1em;
+        position: relative;
       }
       .comment-content{
         padding: 1em;
