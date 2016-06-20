@@ -49,6 +49,11 @@
             <div class="small-12 columns">
               <div class="row">
                 <div class="small-12 columns">
+                  <strong>discount:</strong> -{{format-number cart.order.data.discount style="currency" currency="USD"}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="small-12 columns">
                   <strong>subtotal:</strong> {{format-number cart.order.data.subtotal style="currency" currency="USD"}}
                 </div>
               </div>

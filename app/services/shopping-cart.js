@@ -129,9 +129,10 @@ export default Ember.Service.extend({
 
     return Ember.$.ajax({
       method: "PUT",
-      url: config.host + config.apiEndpoint + '/orders/item/'+params['id'],
+      url: config.host + config.apiEndpoint + '/orders/item/'+ params['id'],
       data: params
     }).then((result) => {
+      this.set('order.data.discount', result.order.discount);
       this.set('order.data.total_cost', result.order.total_cost);
       this.set('order.data.subtotal', result.order.subtotal);
       this.set('order.data.tax', result.order.tax);

@@ -17,6 +17,10 @@ export default Ember.Component.extend({
   errors: {},
   couponCode: null,
 
+  isCouponApplied: function() {
+    return this.get('cart.order.data.discount') != 0; // jshint ignore:line
+  }.property('cart.order.data.discount') ,
+
   order: Ember.computed(['address', 'currentUser.content.email'], function(){
     let address = this.get('address');
     let fullname = [address.get('firstName'), address.get('lastName')].
@@ -62,11 +66,27 @@ export default Ember.Component.extend({
 
   actions: {
     applyCoupon() {
-      console.log(this.get('cart.order.data.uuid'));
+      this.set('errors', {});
       Ember.$.ajax({
           url: config.host + config.apiEndpoint + '/coupon',
           type: 'POST',
           data:  { order_uuid: this.get('cart.order.data.uuid'), coupon_code: this.get('couponCode') },
+          dataType: 'json'
+        })
+        .then(() => {
+          this.get('cart').reload();
+          this.set('couponCode', '');
+        }, (error) => {
+          this.set('errors', error.responseJSON.errors);
+        });
+    },
+
+    removeCoupon() {
+      this.set('errors', {});
+      Ember.$.ajax({
+          url: config.host + config.apiEndpoint + '/coupon',
+          type: 'DELETE',
+          data:  { order_uuid: this.get('cart.order.data.uuid') },
           dataType: 'json'
         })
         .then(() => {

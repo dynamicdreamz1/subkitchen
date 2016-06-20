@@ -116,11 +116,14 @@
 
 
       <div class="row info">
-        <div class="small-12 columns">
+        <div class="small-12 columns coupon">
           <form novalidate {{action "applyCoupon" on="submit"}} class="coupon-form">
             {{input type="text" class="coupon-field" placeholder="Gift Card or Promo Code" value=couponCode required=true}}
             <button class="button dark" type="submit" value="applyCoupon">APPLY</button>
           </form>
+          {{#if isCouponApplied}}
+            <button class="remove-coupon" onclick={{action "removeCoupon"}}>Remove Coupon</button>
+          {{/if}}
           {{input-errors errors=errors.coupon}}
         </div>
         <div class="small-12 columns">
