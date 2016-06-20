@@ -42,6 +42,11 @@
         <div class="small-12 columns">
           <div class="row">
             <div class="small-12 columns">
+              <strong>discount:</strong> -{{format-number payment.order.discount style="currency" currency="USD"}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 columns">
               <strong>subtotal:</strong> {{format-number payment.order.subtotal style="currency" currency="USD"}}
             </div>
           </div>
@@ -111,6 +116,13 @@
 
 
       <div class="row info">
+        <div class="small-12 columns">
+          <form novalidate {{action "applyCoupon" on="submit"}} class="coupon-form">
+            {{input type="text" class="coupon-field" placeholder="Gift Card or Promo Code" value=couponCode required=true}}
+            <button class="button dark" type="submit" value="applyCoupon">APPLY</button>
+          </form>
+          {{input-errors errors=errors.coupon}}
+        </div>
         <div class="small-12 columns">
           <strong>
             How long will it take to get my order?

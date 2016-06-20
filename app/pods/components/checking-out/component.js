@@ -15,6 +15,7 @@ export default Ember.Component.extend({
     cvc: ''
   }),
   errors: {},
+  couponCode: null,
 
   order: Ember.computed(['address', 'currentUser.content.email'], function(){
     let address = this.get('address');
@@ -60,6 +61,21 @@ export default Ember.Component.extend({
   },
 
   actions: {
+    applyCoupon() {
+      console.log(this.get('cart.order.data.uuid'));
+      Ember.$.ajax({
+          url: config.host + config.apiEndpoint + '/coupon',
+          type: 'POST',
+          data:  { order_uuid: this.get('cart.order.data.uuid'), coupon_code: this.get('couponCode') },
+          dataType: 'json'
+        })
+        .then(() => {
+          this.get('cart').reload();
+        }, (error) => {
+          this.set('errors', error.responseJSON.errors);
+        });
+    },
+
     order(){
       this.showSpinner();
       let payment_type = this.get('order.payment_type');

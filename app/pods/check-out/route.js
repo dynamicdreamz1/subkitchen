@@ -7,15 +7,15 @@ export default Ember.Route.extend({
   ajax: Ember.inject.service(),
 
   model(){
-    let country = Ember.$.ajax({ url: "http://freegeoip.net/json/" }).then((response) => {
-      return response.country_name;
-    });
+    //let country = Ember.$.ajax({ url: "http://freegeoip.net/json/" }).then((response) => {
+    //  return response.country_name;
+    //});
 
     let paymentEndpoint = config.host + config.apiEndpoint + '/orders/' + this.get('cart.order.data.uuid') + '/payment';
     let models = {
       payment: this.get('ajax').request(paymentEndpoint),
       address: new Ember.Object(),
-      country: country,
+      //country: country,
       templates: this.store.query('productTemplate', {})
     };
 
