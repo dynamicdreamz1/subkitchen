@@ -121,7 +121,7 @@
           <div class="row comment">
             <div class="small-2 columns">
               {{#if comment.user.imageUrl}}
-              <img src="{{comment.user.imageUrl}}" alt="{{comment.user.name}}">
+              {{lazy-image url=comment.user.imageUrl alt=comment.user.name}}
               {{else}}
               <img src="assets/images/default-2.png" alt="{{comment.user.name}}">
               {{/if}}
@@ -158,7 +158,7 @@
                   <div class="row">
                     <div class="small-2 columns">
                       {{#if currentUser.content.imageUrl}}
-                        <img src="{{currentUser.content.imageUrl}}" alt="{{currentUser.content.name}}">
+                        {{lazy-image url=currentUser.content.imageUrl alt=currentUser.content.name}}
                       {{else}}
                         <img src="assets/images/default-2.png" alt="{{currentUser.content.name}}">
                       {{/if}}
@@ -192,7 +192,7 @@
               <div class="row collapse">
                 <div class="small-4 columns">
                   {{#if promoter.imageUrl}}
-                  <img src="{{promoter.imageUrl}}" alt="">
+                  {{lazy-image url=promoter.imageUrl}}
                   {{else}}
                   <img src="assets/images/default.png" alt="">
                   {{/if}}

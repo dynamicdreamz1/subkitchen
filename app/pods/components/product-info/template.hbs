@@ -3,7 +3,7 @@
     <div class="row">
       <div class="small-12 columns">
         {{#link-to 'product' product.id}}
-          <img src="{{product.preview_url}}" alt="">
+          {{lazy-image url=product.preview_url}}
         {{/link-to}}
       </div>
     </div>
@@ -58,7 +58,14 @@
     </div>
     <div class="row collapse">
       <div class="small-9 columns uppercase artist-name">
-        by {{product.author.name}}
+        by
+        {{#if product.author.handle}}
+          {{#link-to 'public-profile' [product.author.handle]}}
+            {{product.author.name}}
+          {{/link-to}}
+        {{else}}
+          {{product.author.name}}
+        {{/if}}
       </div>
       <div class="small-3 columns text-right nowrap font-bold">
         {{format-number product.price style="currency" currency="USD"}}

@@ -5,7 +5,7 @@ export default DS.Model.extend({
   first_name:      DS.attr('string'),
   last_name:       DS.attr('string'),
   followers_count: DS.attr('number'),
-  image_url:       DS.attr('string'),
+  imageUrl:       DS.attr('string'),
   artist:          DS.attr('boolean'),
 
   product:         DS.belongsTo('product')

@@ -5,7 +5,7 @@
           cook up something new
         </strong>
         //
-        <a class="link-to-all" href="">view all</a>
+        {{#link-to 'cooking' (query-params product_id="" selected_template_id="") class="link-to-all"}} view all {{/link-to}}
     </div>
   </div>
 
