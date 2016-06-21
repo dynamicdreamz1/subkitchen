@@ -36,17 +36,12 @@
             {{/each}}
           </ul>
         </li>
-      </ul>
-    </li>
-
-    <li>
-      <ul class="dropdown menu cooking-menu" data-dropdown-menu>
         <li>
           {{#link-to 'cooking' (query-params product_id="" selected_template_id="") class="menu-item uppercase"}} create {{/link-to}}
-          <ul class="menu">
+          <ul class="menu cook">
             {{#each templates as |template| }}
               <li>
-                {{#link-to 'cooking' (query-params selected_template_id=template.id product_id="") class="menu-item uppercase"}}
+                {{#link-to 'cooking' (query-params selected_template_id=template.id product_id="") class="menu-item"}}
                   {{capitalize template.product_type}}
                 {{/link-to}}
               </li>

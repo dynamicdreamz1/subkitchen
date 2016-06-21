@@ -1,16 +1,19 @@
 .product{
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid #918f8f;
+
   img.main{
     width: 100%;
   }
+  .product-author-info {
+    margin: 1em 0 1em 0;
 
-  .author-image{
-    border-radius: 50%;
-    height: 4em;
-    float: left;
-    margin-right: 1em;
+    .author-image {
+      border-radius: 50%;
+      height: 6em;
+      float: left;
+      margin-right: 1em;
+    }
   }
 
   h4{
@@ -31,6 +34,7 @@
   }
 
   .sizes{
+    margin: 0.8em 0 0.8em 0;
     .sizing-info {
       color: #00d2ff;
       font-size: x-small;
@@ -79,6 +83,7 @@
   .tabs-title{
     font-weight: 300;
     a{
+      padding: 0.6rem 0.8rem;
       font-size: 1rem;
     }
     &.is-active{
@@ -121,25 +126,27 @@
     }
   }
   .quantity{
-    font-weight: 900;
-    max-width: 10rem;
+    font-weight: 600;
+    width: 10rem;
+    height: auto;
+    margin-bottom: 2em;
+
     .minus{
       border: 2px solid $black;
       border-bottom-left-radius: 50%;
       border-top-left-radius: 50%;
-      font-size: 1.5rem;
-      line-height: 1rem;
+      font-size: small;
     }
     input{
       border-top: 2px solid $black;
       border-bottom: 2px solid $black;
+      padding: 0.2rem;
     }
     .plus{
       border: 2px solid $black;
       border-bottom-right-radius: 50%;
       border-top-right-radius: 50%;
-      font-size: 1.5rem;
-      line-height: 1rem;
+      font-size: small;
     }
   }
   .icon-sub-liked,
@@ -162,6 +169,7 @@
     }
   }
   .comments{
+    padding: 2em;
     .comment{
       .lazy-image-container{
         min-height: 2em;
@@ -169,15 +177,18 @@
       button {
         margin-top: 1rem;
         line-height: 0.5rem;
-
+        margin-right: 3%;
       }
       img{
+        max-width: 80%;
         padding: 1em;
         border-radius: 50%;
         top: -1em;
         position: relative;
       }
       .comment-content{
+        margin-bottom: 0.5rem;
+        right: 3%;
         padding: 1em;
         background: $light-gray;
         font-size: 0.8em;
@@ -198,12 +209,29 @@
           content: '';
           position: absolute;
           left: -12px;
-          top: 12px;
+          top: 6px;
           width: 0;
           height: 0;
           border-top: 12px solid transparent;
           border-bottom: 12px solid transparent;
           border-right: 12px solid $light-gray;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 39.9375em) {
+  .product {
+    .comments {
+      .comment {
+        img {
+          padding: 0;
+          top: 30%;
+          right: 30%;
+        }
+        .comment-content {
+          font-size: small;
         }
       }
     }

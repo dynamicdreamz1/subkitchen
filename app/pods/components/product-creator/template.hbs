@@ -22,10 +22,10 @@
 </section>
 <section class="product-editor">
   <div class="row">
-    <div class="small-12 medium-6 columns">
+    <div class="small-12 medium-7 columns">
       {{product-creator/canvas selectedTemplate=selectedTemplate themes=themes product=product}}
     </div>
-    <div class="small-12 medium-6 columns">
+    <div class="small-12 medium-5 columns">
       <div class="row collapse">
         <div class="small-12 columns ellipsis uppercase">
           <h4> {{selectedTemplate.product_type}} </h4>
@@ -60,7 +60,7 @@
       </div>
 
       <div class="row">
-        <div class="small-12 medium-6 columns">
+        <div class="small-12 medium-6 columns addToCart">
           <a onclick={{action "addToCart"}} class="blue button addToCart uppercase">ADD TO CART</a>
         </div>
       </div>

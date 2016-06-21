@@ -1,15 +1,23 @@
 .pagination{
   margin-top: 2rem;
+
+  .page-number {
+    a {
+      color: #8c8c8c;
+    }
+  }
+
   a, button{
-    font-size: 1.4rem;
+    font-size: x-small;
     font-weight: 700;
   }
   .active a{
-    font-weight: 900;
-    text-decoration: underline;
+    color: black;
+    font-weight: 700;
   }
   .prev a{
-    border: 1px solid $black;
+    border-radius: 5px;
+    border: 2px solid $black;
     color: rgba(0,0,0,0);
     &:before{
       color: $black;
@@ -23,10 +31,11 @@
     }
     &:after{
       color: $black;
-      content: 'PREV'
+      content: 'PREVIOUS'
     }
   }
   .next a{
+    border-radius: 5px;
     border: 1px solid $black;
     color: rgba(0,0,0,0);
     &:before{

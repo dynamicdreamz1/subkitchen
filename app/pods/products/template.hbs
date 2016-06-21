@@ -5,12 +5,12 @@
       <div class="small-6 medium-6 column">
         <label for="sort">SORT BY:</label>
         {{#x-select value=sorted_by id="sort" action="updateSortBy"}}
-          {{#x-option value='created_at_desc'}}Created at desc{{/x-option}}
-          {{#x-option value='created_at_asc'}}Created at asc{{/x-option}}
-          {{#x-option value='name_desc'}}Name desc{{/x-option}}
-          {{#x-option value='name_asc'}}Name asc{{/x-option}}
-          {{#x-option value='price_desc'}}Price desc{{/x-option}}
-          {{#x-option value='price_asc'}}Price asc{{/x-option}}
+          {{#x-option value='created_at_desc'}}Latest{{/x-option}}
+          {{#x-option value='created_at_asc'}}Oldest{{/x-option}}
+          {{#x-option value='name_desc'}}Alphabetically: Z-A{{/x-option}}
+          {{#x-option value='name_asc'}}Alphabetically: A-Z{{/x-option}}
+          {{#x-option value='price_desc'}}Price: High to Low{{/x-option}}
+          {{#x-option value='price_asc'}}Price: Low to High{{/x-option}}
           {{#x-option value='best_sellers'}}Best Sellers{{/x-option}}
         {{/x-select}}
       </div>
@@ -32,52 +32,40 @@
   </div>
 
   <div class="filters-container">
-    <div class="row small-up-2 medium-up-4 large-up-6 filters">
-        <div class="column text-left">
-          <p class="filter-by">Type:</p>
-          <div class="row">
-            {{#multiselect-checkboxes options=productTypes selection=product_type tagName='div' classNames='column' as |type isSelected|}}
-              <div class="row">
-                <div class="column filter">
-                  {{input type="checkbox" checked=isSelected id=(concat type '-type')}}
-                  <label for="{{concat type '-type' }}">
-                    {{capitalize type}}
-                  </label>
+      <div class="small-12 columns filters">
+          <div class="column small-4 medium-2">
+            <p class="filter-by">Type:</p>
+              {{#multiselect-checkboxes options=productTypes selection=product_type tagName='div' classNames='columns small-up-1 filter' as |type isSelected|}}
+                <div class="column text-left">
+                {{input type="checkbox" checked=isSelected id=(concat type '-type')}}
+                    <label for="{{concat type '-type' }}">
+                      {{capitalize type}}
+                    </label>
                 </div>
-              </div>
-            {{/multiselect-checkboxes}}
+              {{/multiselect-checkboxes}}
           </div>
-        </div>
-        <div class="column text-left">
-          <p class="filter-by">Theme:</p>
-          <div class="row">
-            {{#multiselect-checkboxes options=model.themes.themes selection=tags tagName='div' classNames='column' as |theme isSelected|}}
-              <div class="row">
-                <div class="column filter">
-                  {{input type="checkbox" checked=isSelected id=(concat theme '-type')}}
+          <div class="column small-4 medium-6">
+            <p class="filter-by">Theme:</p>
+              {{#multiselect-checkboxes options=model.themes.themes selection=tags tagName='div' classNames='columns small-up-5 filter theme' as |theme isSelected|}}
+                <div class="column text-left">
+                {{input type="checkbox" checked=isSelected id=(concat theme '-type')}}
                   <label for="{{concat theme '-type' }}">
                     {{capitalize theme}}
                   </label>
-                </div>
               </div>
-            {{/multiselect-checkboxes}}
-          </div>
-        </div>
-        <div class="column text-left">
-          <p class="filter-by">Price:</p>
-          <div class="row">
-            {{#multiselect-checkboxes options=priceRanges selection=price_range tagName='div' classNames='column' onchange=(action 'updatePriceRange') updateSelectionValue=false as |priceRange isSelected|}}
-              <div class="row">
-                <div class="column filter">
-                  {{input type="checkbox" checked=isSelected id=(concat priceRange '-type')}}
+              {{/multiselect-checkboxes}}
+            </div>
+          <div class="column small-4 medium-4">
+            <p class="filter-by">Price:</p>
+            {{#multiselect-checkboxes options=priceRanges selection=price_range tagName='div' classNames='columns small-up-1 filter' onchange=(action 'updatePriceRange') updateSelectionValue=false as |priceRange isSelected|}}
+              <div class="column text-left">
+              {{input type="checkbox" checked=isSelected id=(concat priceRange '-type')}}
                   <label for="{{concat priceRange '-type' }}">
                     {{format-price-range priceRange}}
                   </label>
-                </div>
-              </div>
+            </div>
             {{/multiselect-checkboxes}}
-          </div>
-        </div>
+            </div>
     </div>
   </div>
   <section class="products" id="products">

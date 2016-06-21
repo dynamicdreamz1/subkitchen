@@ -86,7 +86,7 @@
 #nav-menu, #nav-menu > ul{
   background: $dark-color;
   text-transform: uppercase;
-  text-align: center;
+  text-align: left;
   font-weight: normal;
   padding: 0;
   font-size: 1rem;
@@ -97,13 +97,16 @@
       display: none;
     }
     .submenu{
-      left: -20%;
+      left: 0;
       background: #404041;
       border: none;
+      top: 58px;
+      padding: 0.5em;
+
       &:before{
         content: '';
         position: absolute;
-        left: 45%;
+        left: 10%;
         top: -11px;
         width: 0;
         height: 0;
@@ -112,65 +115,25 @@
         border-bottom: 12px solid #404041;
       }
 
-      li a{
-        margin: 8px 16px;
-        &:hover{
-          &:before{
-            content: "\f111";
-            font: normal normal normal 14px/1 FontAwesome;
-            position: absolute;
-            left: 20px;
-            font-size: 8px;
-            line-height: 1.5;
-          }
+      li {
+        a{
+          font-size: small;
+          font-weight: 300;
+          margin: 0;
         }
       }
-      li:first-of-type a{
-        margin-top: 12px;
-      }
-      li:last-of-type a{
-        margin-bottom: 12px;
-      }
+
     }
 
     &.shop-menu{
       .submenu{
-        left: -100%;
+        padding: 0.5em;
+        left: 0;
         text-align: left;
+        top: 50px;
 
-        li {
-
-          a{
-            font-size: 0.9rem;
-            margin: 0 16px;
-
-            &:hover{
-              &:before{
-                content: "";
-              }
-            }
-          }
-        }
-      }
-    }
-
-    &.cooking-menu{
-      .submenu{
-        left: -65%;
-        text-align: left;
-
-        li {
-
-          a{
-            font-size: 0.9rem;
-            margin: 0 16px;
-
-            &:hover{
-              &:before{
-                content: "";
-              }
-            }
-          }
+        &:before{
+          left: 10%;
         }
       }
     }
@@ -183,7 +146,7 @@
 
   a {
     color: $light-color;
-    font-size: 1rem;
+    font-size: medium;
     padding: 0.7rem;
 
     &:hover, &.active{
@@ -193,10 +156,17 @@
       opacity: 1;
     }
     &.menu-item:hover{
-      text-decoration: underline;
     }
     &.action-item:hover{
       opacity: 0.8;
+    }
+
+    .menu {
+      li {
+        .item {
+          font-size: x-small;
+        }
+      }
     }
   }
 

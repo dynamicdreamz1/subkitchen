@@ -1,9 +1,9 @@
 <section class="product">
   <div class="row">
-    <div class="small-12 medium-6 columns">
+    <div class="small-12 medium-7 columns">
       <img class="main" src="{{product.preview_url}}" alt="">
     </div>
-    <div class="small-12 medium-6 columns">
+    <div class="small-12 medium-5 columns">
       <div class="row collapse">
         <div class="small-11 columns ellipsis">
           <h4 class="uppercase"> {{product.name}} </h4>
@@ -24,7 +24,7 @@
           {{product.likes_count}}
         </div>
       </div>
-      <div class="row">
+      <div class="row product-author-info">
         <div class="small-12 columns">
           {{#if product.author.imageUrl}}
             <img class="author-image" src="{{product.author.imageUrl}}" alt="">
@@ -34,7 +34,7 @@
 
           {{#if product.author.handle}}
             {{#link-to 'public-profile' [product.author.handle]}}
-              <span class="author uppercase font-bold"> {{product.author.name}} </span>
+              <span class="author uppercase font-bold">BY {{product.author.name}} </span>
             {{/link-to}}
           {{else}}
             <span class="author uppercase font-bold"> {{product.author.name}} </span>
@@ -81,7 +81,7 @@
       </div>
 
       <div class="row">
-        <div class="small-12 medium-6 columns">
+        <div class="small-12 medium-6 columns" style="width: 100%;">
           <a class="button" onclick={{action "addToCart"}} class="blue button addToCart uppercase">ADD TO CART</a>
         </div>
       </div>
@@ -119,14 +119,14 @@
         <div class="tabs-panel is-active comments" id="comments">
           {{#each comments as |comment|}}
           <div class="row comment">
-            <div class="small-2 columns">
+            <div class="small-3 medium-2 columns">
               {{#if comment.user.imageUrl}}
               {{lazy-image url=comment.user.imageUrl alt=comment.user.name}}
               {{else}}
               <img src="assets/images/default-2.png" alt="{{comment.user.name}}">
               {{/if}}
             </div>
-            <div class="small-10 columns comment-content">
+            <div class="small-9 medium-10 columns comment-content">
               <div class="row">
                 <div class="small-12 columns info">
                   <span class="username">{{comment.user.name}}</span> commented on {{format-date comment.createdAt  hour='numeric' minute='numeric' hour12=true month='long' day='numeric' year ='numeric'}}
@@ -156,14 +156,14 @@
               <form novalidate {{action "addComment" on="submit"}}>
                 <div class="small-12 columns">
                   <div class="row">
-                    <div class="small-2 columns">
+                    <div class="small-3 medium-2 columns">
                       {{#if currentUser.content.imageUrl}}
                         {{lazy-image url=currentUser.content.imageUrl alt=currentUser.content.name}}
                       {{else}}
                         <img src="assets/images/default-2.png" alt="{{currentUser.content.name}}">
                       {{/if}}
                     </div>
-                    <div class="small-10 columns comment-content">
+                    <div class="small-9 medium-10 columns comment-content">
                       <div class="row">
                         <div class="small-12 columns info">
                           <span class="leave-a-comment">Leave a comment</span>

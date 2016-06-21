@@ -36,6 +36,7 @@ section.template-selector{
   }
 
   .sizes{
+    margin: 0.8em 0 0.8em 0;
     ul{
       width: 100%;
       margin: 0.2rem;
@@ -120,25 +121,27 @@ section.template-selector{
     }
   }
   .quantity{
-    font-weight: 900;
-    max-width: 10rem;
+    font-weight: 600;
+    width: 10rem;
+    height: auto;
+    margin-bottom: 2em;
+
     .minus{
       border: 2px solid $black;
       border-bottom-left-radius: 50%;
       border-top-left-radius: 50%;
-      font-size: 1.5rem;
-      line-height: 1rem;
+      font-size: small;
     }
     input{
       border-top: 2px solid $black;
       border-bottom: 2px solid $black;
+      padding: 0.2rem;
     }
     .plus{
       border: 2px solid $black;
       border-bottom-right-radius: 50%;
       border-top-right-radius: 50%;
-      font-size: 1.5rem;
-      line-height: 1rem;
+      font-size: small;
     }
   }
   .icon-sub-liked,
