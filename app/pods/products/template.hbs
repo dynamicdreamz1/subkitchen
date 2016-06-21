@@ -32,42 +32,43 @@
   </div>
 
   <div class="filters-container">
-      <div class="small-12 columns filters">
-          <div class="column small-4 medium-2">
-            <p class="filter-by">Type:</p>
-              {{#multiselect-checkboxes options=productTypes selection=product_type tagName='div' classNames='columns small-up-1 filter' as |type isSelected|}}
-                <div class="column text-left">
-                {{input type="checkbox" checked=isSelected id=(concat type '-type')}}
-                    <label for="{{concat type '-type' }}">
-                      {{capitalize type}}
-                    </label>
-                </div>
-              {{/multiselect-checkboxes}}
+    <div class="small-12 columns filters">
+      <div class="column small-4 medium-2">
+        <p class="filter-by">Type:</p>
+          {{#multiselect-checkboxes options=productTypes selection=product_type tagName='div' classNames='columns small-up-1 filter' as |type isSelected|}}
+            <div class="column text-left">
+            {{input type="checkbox" checked=isSelected id=(concat type '-type')}}
+                <label for="{{concat type '-type' }}">
+                  {{capitalize type}}
+                </label>
+            </div>
+          {{/multiselect-checkboxes}}
+      </div>
+      <div class="column small-4 medium-6">
+        <p class="filter-by">Theme:</p>
+          {{#multiselect-checkboxes options=model.themes.themes selection=tags tagName='div' classNames='columns small-up-5 filter theme' as |theme isSelected|}}
+            <div class="column text-left">
+            {{input type="checkbox" checked=isSelected id=(concat theme '-type')}}
+              <label for="{{concat theme '-type' }}">
+                {{capitalize theme}}
+              </label>
           </div>
-          <div class="column small-4 medium-6">
-            <p class="filter-by">Theme:</p>
-              {{#multiselect-checkboxes options=model.themes.themes selection=tags tagName='div' classNames='columns small-up-5 filter theme' as |theme isSelected|}}
-                <div class="column text-left">
-                {{input type="checkbox" checked=isSelected id=(concat theme '-type')}}
-                  <label for="{{concat theme '-type' }}">
-                    {{capitalize theme}}
-                  </label>
-              </div>
-              {{/multiselect-checkboxes}}
-            </div>
-          <div class="column small-4 medium-4">
-            <p class="filter-by">Price:</p>
-            {{#multiselect-checkboxes options=priceRanges selection=price_range tagName='div' classNames='columns small-up-1 filter' onchange=(action 'updatePriceRange') updateSelectionValue=false as |priceRange isSelected|}}
-              <div class="column text-left">
-              {{input type="checkbox" checked=isSelected id=(concat priceRange '-type')}}
-                  <label for="{{concat priceRange '-type' }}">
-                    {{format-price-range priceRange}}
-                  </label>
-            </div>
-            {{/multiselect-checkboxes}}
-            </div>
+          {{/multiselect-checkboxes}}
+        </div>
+      <div class="column small-4 medium-4">
+        <p class="filter-by">Price:</p>
+        {{#multiselect-checkboxes options=priceRanges selection=price_range tagName='div' classNames='columns small-up-1 filter' onchange=(action 'updatePriceRange') updateSelectionValue=false as |priceRange isSelected|}}
+          <div class="column text-left">
+          {{input type="checkbox" checked=isSelected id=(concat priceRange '-type')}}
+          <label for="{{concat priceRange '-type' }}">
+            {{format-price-range priceRange}}
+          </label>
+        </div>
+        {{/multiselect-checkboxes}}
+      </div>
     </div>
   </div>
+
   <section class="products" id="products">
     <div class="row small-up-2 medium-up-4">
       {{#each model.products as |product|}}
