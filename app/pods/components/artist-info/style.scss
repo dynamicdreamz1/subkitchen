@@ -1,15 +1,41 @@
-.artist-info{
-  .avatar{
-    img{
-      background-color: #e4e4e4;
-      width: 100%;
+@media screen and (max-width: 39.9375em) {
+  .artist-info {
+    margin-bottom: 2em;
+
+    .lazy-image-container {
+      min-height: 0;
+    }
+    .artist-details {
+      font-size: 1.4rem;
+    }
+    .image {
+      .products-count {
+        left: 7%;
+      }
     }
   }
 }
-@media screen and (max-width: 39.9375em) {
-  .artist-info{
-    .artist-details{
-      font-size: 1.4rem;
+.artist-info {
+  padding: 0;
+  .image {
+    position: relative;
+
+    img {
+      width: 90%;
     }
+  }
+
+  .products-count {
+    top: 0;
+    left: 13%;
+    position: absolute;
+    font-size: 80%;
+  }
+
+  .likes {
+    cursor: pointer;
+  }
+  .artist-details {
+    font-size: 0.9rem;
   }
 }

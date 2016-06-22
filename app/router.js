@@ -38,6 +38,7 @@ Router.map(function() {
   this.route('published-product', { path: '/published-product/:product_id' });
   this.route('check-out');
   this.route('public-profile', { path: '/:handle' });
+  this.route('artists');
 });
 
 export default Router;

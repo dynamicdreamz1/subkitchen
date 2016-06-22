@@ -1,18 +1,19 @@
-<div class="small-12 medium-3 columns artist-info">
-  <div class="row">
-    <div class="small-12 columns center avatar">
-      <img src="assets/images/default.png" alt="" data-equalizer-watch>
-    </div>
+<div class="row image">
+  {{#link-to 'public-profile' [artist.handle]}}
+    {{lazy-image url=artist.imageUrl}}
+  {{/link-to}}
+  <div class="uppercase products-count">{{artist.products_count}} designs</div>
+</div>
+<div class="row artist-details">
+  <div class="small-6 column uppercase text-left font-bold ellipsis">
+    {{#link-to 'public-profile' [artist.handle]}}
+      <div class="product-name">{{artist.name}}</div>
+    {{/link-to}}
   </div>
-  <div class="row artist-details">
-    <div class="small-8 columns uppercase font-bold">
-      {{name}}
-    </div>
-    <div class="small-4 columns text-right nowrap font-light">
-      {{likes}}
-      <span class="icon-sub-unliked">
-        <span class="path1"></span><span class="path2"></span>
-      </span>
-    </div>
+  <div class="small-6 column text-right nowrap font-light likes">
+    {{artist.likes_count}}
+    <span class="icon-sub-liked">
+      <span class="path1"></span><span class="path2"></span>
+    </span>
   </div>
 </div>
