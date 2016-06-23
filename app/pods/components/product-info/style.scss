@@ -1,4 +1,5 @@
 .product-info{
+  padding: 1em;
   .image{
     position: relative;
     padding-bottom: 1.5rem;
@@ -11,8 +12,10 @@
   }
   .product-details{
     font-size: 0.9rem;
+    padding: 0 1em;
   }
   .product-actions{
+    padding: 0 2em;
     background-color: rgba(255, 255, 255, 0.6);
     opacity: 0;
     transition: opacity 0.5s linear;

@@ -1,24 +1,29 @@
-<div class="small-12 medium-3 columns new-product-info" onclick={{action 'goToCooking'}}>
-  <div class="row">
-    <div class="small-12 columns center image">
-      <img src="{{template.templateImage}}" alt="" data-equalizer-watch>
-    </div>
-  </div>
-  <div class="row product-details">
-    <div class="small-12 columns">
-      <div class="row collapse">
-        <div class="small-8 columns uppercase font-bold">
-          {{template.product_type}}
-        </div>
-        <div class="small-4 columns text-right nowrap font-bold">
-          {{format-number template.price style="currency" currency="USD"}}
-        </div>
-      </div>
-      <div class="row">
-        <div class="small-8 columns uppercase artist-name">
-          by you!
-        </div>
+<div class="row">
+  <div class="small-12 columns center image">
+    <div class="row">
+      <div class="small-12 columns">
+        {{#link-to 'cooking' (query-params selected_template_id=template.id)}}
+          {{lazy-image url=template.templateImage}}
+        {{/link-to}}
       </div>
     </div>
   </div>
 </div>
+<div class="row product-details">
+  <div class="small-12 columns">
+    <div class="row collapse">
+      <div class="small-9 columns uppercase font-bold ellipsis">
+        <div class="product-name">{{capitalize template.product_type}}</div>
+      </div>
+    </div>
+    <div class="row collapse">
+      <div class="small-9 columns uppercase artist-name">
+        by you!
+      </div>
+      <div class="small-3 columns text-right nowrap font-bold">
+        {{format-number template.price style="currency" currency="USD"}}
+      </div>
+    </div>
+  </div>
+</div>
+
