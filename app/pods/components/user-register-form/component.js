@@ -4,6 +4,7 @@ import config from 'subkitchen-front/config/environment';
 export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
+  flashMessages: Ember.inject.service(),
 
   user: new Ember.Object(),
   errors: {},
@@ -26,6 +27,7 @@ export default Ember.Component.extend({
             password: params.password
           })
           .then(()=>{
+            this.get('flashMessages').success("You've successfully created your account");
             this.get("routing").transitionTo("index");
           })
           .catch(() => {
