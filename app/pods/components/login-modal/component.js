@@ -6,6 +6,7 @@ export default Ember.Component.extend({
   routing: Ember.inject.service('-routing'),
   identification: null,
   password: null,
+  flashMessages: Ember.inject.service(),
 
   didInsertElement() {
     this.set('errorMessage', null);
@@ -19,7 +20,8 @@ export default Ember.Component.extend({
       this.get('session').authenticate('authenticator:custom', credentials)
       .then(()=>{
         this.$('#loginModal').foundation('close');
-        this.get("routing").transitionTo("profile.info");
+        this.get('flashMessages').success("You've successfully signed in");
+        this.get("routing").transitionTo('profile');
       })
       .catch((message) => {
         this.set('errorMessage', message);

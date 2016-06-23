@@ -349,8 +349,8 @@ export default Ember.Component.extend( {
             let MAX_WIDTH  = 5000;
             let MAX_HEIGHT = 5000;
 
-            let MIN_WIDTH  = 500;
-            let MIN_HEIGHT = 500;
+            let MIN_WIDTH  = 1024;
+            let MIN_HEIGHT = 1024;
 
             let tempW = tempImg.width;
             let tempH = tempImg.height;
