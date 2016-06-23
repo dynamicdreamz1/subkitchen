@@ -26,12 +26,12 @@
         margin-bottom: 2.5rem;
 
         img {
-          height: 15rem;
+          max-height: 25rem;
         }
       }
 
       .published-details {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
         margin-bottom: 2.5rem;
         text-align: left;
 
@@ -44,7 +44,7 @@
           height: 1.5rem;
           font-size: 90%;
           color: #c5c5c5;
-          margin-bottom: 0rem;
+          margin: 1em 0;
         }
 
         .published-author {
@@ -66,6 +66,28 @@
     &.published-actions {
       margin: auto;
       text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: 39.9375em) {
+  .published-container {
+    h4 {
+      font-size: small;
+    }
+    div.row {
+      &.published-content {
+        .published-details {
+          margin-bottom: 1em;
+          .published-tags, .published-author{
+            font-size: x-small;
+            margin: 0;
+          }
+          .button.light {
+            font-size: small;
+          }
+        }
+      }
     }
   }
 }

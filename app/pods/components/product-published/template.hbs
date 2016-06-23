@@ -5,15 +5,14 @@
         <h4>CONGRATULATIONS! YOUR CREATION HAS BEEN PUBLISHED!</h4>
       </div>
       <div class="row published-content">
-        <div class="small-5 medium-5 columns published-image">
+        <div class="small-5 medium-7 columns published-image">
           <img src="{{model.product.preview_url}}" alt="">
         </div>
-        <div class="small-7 medium-7 columns published-details">
+        <div class="small-7 medium-5 columns published-details">
           <h4 class="published-name"> {{model.product.name}} </h4>
           <p class="published-tags"> {{model.product.formattedTags}} </p>
           <p class="published-author"> Created by: {{currentUser.content.name}} </p>
-          <p>This artwork is available for sale as {{model.product.formattedProductType}}</p>
-          <button class="button light uppercase">share this product!</button>
+          {{#link-to 'product' model.product.id class="button light uppercase"}}View Product{{/link-to}}
         </div>
       </div>
       <div class="row collapse published-actions">

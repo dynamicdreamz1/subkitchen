@@ -4,7 +4,7 @@
       <h4>YOU CAN EASILY ADD ANY OF THESE PRODUCTS TO ACCOMPANY THIS DESIGN</h4>
       <p>JUST SELECT YOUR NEW PRODUCT, REPOSITION ARTWORK AS NEEDED, AND PUBLISH!</p>
     </div>
-    <div class="row small-up-1 medium-up-3 large-up-5 templates">
+    <div class="row small-up-2 medium-up-3 large-up-5 templates">
       {{#each model.templates as |template|}}
         <div class="column">
           {{#link-to 'cooking' (query-params product_id=model.product.id selected_template_id=template.id)}}
