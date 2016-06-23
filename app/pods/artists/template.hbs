@@ -1,23 +1,41 @@
 {{#shopping-cart}}
-  {{app-header templates=model.templates}}
-  <div class="row small-12 column">
-    <div class="small-12 columns sort">
-      <div class="small-12 column">
-        <label for="sort">
-          <h4 class="font-bold uppercase">All Artists</h4>
-        </label>
-        {{#x-select value=sorted_by id="sort" action="updateSortBy"}}
-          {{#x-option value='created_at_desc'}}Latest{{/x-option}}
-          {{#x-option value='created_at_asc'}}Oldest{{/x-option}}
-        {{/x-select}}
+  {{app-header}}
+  <section class="artists">
+    <div class="row small-12 column">
+      <div class="small-12 columns sort">
+        <div class="small-12 column">
+          <label for="sort">
+            <h4 class="font-bold uppercase">Featured Artists</h4>
+          </label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <section class="artists" id="artists">
+    <div class="row small-up-2 medium-up-4">
+      {{#each model.featuredArtists as |artist|}}
+        {{artist-info class="column artist-info" artist=artist}}
+      {{/each}}
+    </div>
+    <div class="row">
+    </div>
+
+    <div class="row small-12 column">
+      <div class="small-12 columns sort">
+        <div class="small-12 column">
+          <label for="sort">
+            <h4 class="font-bold uppercase">All Artists</h4>
+          </label>
+          {{#x-select value=sorted_by id="sort" action="updateSortBy"}}
+            {{#x-option value='created_at_desc'}}Latest{{/x-option}}
+            {{#x-option value='created_at_asc'}}Oldest{{/x-option}}
+          {{/x-select}}
+        </div>
+      </div>
+    </div>
+
     <div class="row small-up-2 medium-up-4">
       {{#each model.artists as |artist|}}
-        {{artist-info class="column artist-info" artist=artist }}
+        {{artist-info class="column artist-info" artist=artist}}
       {{/each}}
     </div>
     <div class="row">

@@ -16,7 +16,7 @@ export default Ember.Route.extend(RouteMixin, {
   model(params){
     params.paramMapping = { perPage: 'per_page' };
 
-    let user = this.store.queryRecord('user', { handle: params.handle });
+    let user = this.store.findRecord('user', params.handle );
 
     let productsPromise = new Ember.RSVP.Promise((resolve, reject) => {
       user.then((user) => {

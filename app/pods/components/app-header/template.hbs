@@ -27,7 +27,7 @@
         <li>
           {{#link-to 'products' (query-params product_type="" search_query="") class="menu-item uppercase"}} shop {{/link-to}}
           <ul class="menu">
-            {{#each templates as |template| }}
+            {{#each templates.data as |template| }}
               <li>
                 {{#link-to 'products' (query-params product_type=template.productTypeAsArray search_query="") class="menu-item uppercase"}}
                   {{capitalize template.product_type}}
@@ -39,7 +39,7 @@
         <li>
           {{#link-to 'cooking' (query-params product_id="" selected_template_id="") class="menu-item uppercase"}} create {{/link-to}}
           <ul class="menu cook">
-            {{#each templates as |template| }}
+            {{#each templates.data as |template| }}
               <li>
                 {{#link-to 'cooking' (query-params selected_template_id=template.id product_id="") class="menu-item"}}
                   {{capitalize template.product_type}}
@@ -50,6 +50,22 @@
         </li>
         <li>
           {{#link-to 'artists' class="menu-item uppercase"}} artists {{/link-to}}
+          <ul class="menu featured">
+            <div class="featured-title">FEATURED</div>
+            {{#each featuredArtists.data as |artist| }}
+              <li class="featured-artist">
+                {{#link-to 'public-profile' [artist.handle] class="menu-item"}}
+                  {{#if artist.imageUrl}}
+                    <img src={{artist.imageUrl}}>
+                  {{else}}
+                    <img src="assets/images/default.png" alt="">
+                  {{/if}}
+                  <div class="name">{{capitalize artist.name}}</div>
+                {{/link-to}}
+              </li>
+            {{/each}}
+            {{#link-to 'artists' (query-params sorted_by="") class="button light uppercase"}}view all{{/link-to}}
+          </ul>
         </li>
       </ul>
     </li>

@@ -2,9 +2,6 @@
   .artist-info {
     margin-bottom: 2em;
 
-    .lazy-image-container {
-      min-height: 0;
-    }
     .artist-details {
       font-size: 1.4rem;
     }
@@ -17,6 +14,12 @@
 }
 .artist-info {
   padding: 0;
+  margin-bottom: 2em;
+
+  .lazy-image-container {
+    min-height: 0;
+  }
+
   .image {
     position: relative;
 

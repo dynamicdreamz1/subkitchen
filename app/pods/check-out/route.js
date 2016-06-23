@@ -15,8 +15,7 @@ export default Ember.Route.extend({
     let models = {
       payment: this.get('ajax').request(paymentEndpoint),
       address: new Ember.Object(),
-      country: country,
-      templates: this.store.query('productTemplate', {})
+      country: country
     };
 
     if (this.get('session').get('isAuthenticated')){

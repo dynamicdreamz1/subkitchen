@@ -5,6 +5,8 @@ export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
   cart: Ember.inject.service('shopping-cart'),
+  featuredArtists: Ember.inject.service('featured-artists'),
+  templates: Ember.inject.service(),
   queryString: null,
 
   cartCount: Ember.computed('cart.order.data.items.@each.quantity', function(){

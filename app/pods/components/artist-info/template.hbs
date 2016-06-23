@@ -1,6 +1,10 @@
 <div class="row image">
   {{#link-to 'public-profile' [artist.handle]}}
-    {{lazy-image url=artist.imageUrl}}
+    {{#if artist.imageUrl}}
+      {{lazy-image url=artist.imageUrl}}
+    {{else}}
+      <img src="assets/images/default.png" alt="">
+    {{/if}}
   {{/link-to}}
   <div class="uppercase products-count">{{artist.products_count}} designs</div>
 </div>

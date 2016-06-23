@@ -10,7 +10,7 @@ export default Ember.Route.extend(RouteMixin, {
     params.paramMapping = { perPage: 'per_page' };
     return Ember.RSVP.hash({
       artists: this.findPaged('user', params),
-      templates: this.store.query('productTemplate', {})
+      featuredArtists: this.store.query('user', { featured: true, per_page: 16  }),
     });
   }
 });
