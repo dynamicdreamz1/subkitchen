@@ -19,7 +19,7 @@
     &.published-content {
       margin: auto;
       text-align: center;
-
+      width: 80%;
       .published-image {
         text-align: right;
         margin-top: 0.5rem;
@@ -37,18 +37,14 @@
 
         .published-name {
           font-weight: bold;
-          height: 1.5rem;
         }
 
         .published-tags {
-          height: 1.5rem;
           font-size: 90%;
           color: #c5c5c5;
-          margin: 1em 0;
         }
 
         .published-author {
-          height: 1.5rem;
           font-size: 90%;
           font-weight: bold;
         }
@@ -77,6 +73,7 @@
     }
     div.row {
       &.published-content {
+        width: 100%;
         .published-details {
           margin-bottom: 1em;
           .published-tags, .published-author{
@@ -84,6 +81,7 @@
             margin: 0;
           }
           .button.light {
+            margin: 1em 0;
             font-size: small;
           }
         }
