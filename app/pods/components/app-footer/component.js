@@ -24,6 +24,14 @@ export default Ember.Component.extend({
       }, (error) => {
         this.set('errors', error.errors[0].detail);
       });
+    },
+
+    linkClicked() {
+      setTimeout(function () {
+        $('html, body').animate({
+          scrollTop: $('body').offset().top
+        }, 500);
+      }, 500);
     }
   }
 });

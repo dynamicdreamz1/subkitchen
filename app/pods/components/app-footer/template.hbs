@@ -4,7 +4,7 @@
       <div class="row footer-links">
         <div class="small-12 large-7 columns">
           <h4>CUSTOMER SERVICE</h4>
-          <ul>
+          <ul onclick={{action 'linkClicked'}}>
             <li>{{#link-to "information.delivery-and-returns" class="link"}}Delivery and Returns{{/link-to}}</li>
             <li>{{#link-to "information.payment" class="link"}}Payment{{/link-to}}</li>
             <li>{{#link-to "information.about-artist" class="link"}}About Artist Accounts{{/link-to}}</li>
@@ -14,7 +14,7 @@
         </div>
         <div class="small-12 large-5 columns">
           <h4 class="font-normal"><strong class="font-black">SUB</strong>KITCHEN</h4>
-          <ul>
+          <ul onclick={{action 'linkClicked'}}>
             <li>{{#link-to "information.custom-clothing" class="link"}}Custom Clothing{{/link-to}}</li>
             <li>{{#link-to "information.wholesale" class="link"}}Wholesale{{/link-to}}</li>
             <li>{{#link-to "information.privacy-policy" class="link"}}Privacy Policy{{/link-to}}</li>
