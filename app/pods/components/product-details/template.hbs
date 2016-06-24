@@ -106,6 +106,13 @@
           </div>
         </div>
       </div>
+      <div class="row tags">
+        <div class="small-12 columns">
+          {{#each product.tags as |tag|}}
+            <div class="tag">#{{tag}}</div>
+          {{/each}}
+        </div>
+      </div>
     </div>
   </div>
 
