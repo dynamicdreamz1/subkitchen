@@ -8,7 +8,11 @@ export default Ember.Route.extend({
 
   model(){
     let country = Ember.$.ajax({ url: "http://freegeoip.net/json/" }).then((response) => {
-      return response.country_code;
+      let countryName = response.country_name;
+      if(response.country_name === 'United States') {
+        countryName = 'United States of America';
+      }
+      return countryName;
     });
 
     let paymentEndpoint = config.host + config.apiEndpoint + '/orders/' + this.get('cart.order.data.uuid') + '/payment';
