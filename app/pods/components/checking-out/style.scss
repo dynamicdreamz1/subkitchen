@@ -119,3 +119,19 @@
     margin-bottom: 1rem;
   }
 }
+
+@media screen and (max-width: 39.9375em) {
+  .check-out {
+    .item {
+      .name {
+        font-size: medium;
+      }
+      .price {
+        font-size: medium;
+      }
+      .size {
+        font-size: medium;
+      }
+    }
+  }
+}
