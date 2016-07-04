@@ -9,13 +9,11 @@
     </div>
   </div>
 
-  <div class="row"  data-equalizer data-equalize-on="medium">
-    <div class="row small-up-2 medium-up-4">
-      {{#each templates.data as |template index|}}
-        {{#if (lt index 4)}}
-          {{new-product-info class="small-12 medium-3 columns product-info" template=template}}
-        {{/if}}
-      {{/each}}
-    </div>
+  <div class="row small-up-2 medium-up-4" data-equalizer data-equalize-on="medium">
+    {{#each templates.data as |template index|}}
+      {{#if (lt index 4)}}
+        {{new-product-info class="small-12 medium-3 columns product-info" template=template}}
+      {{/if}}
+    {{/each}}
   </div>
 </section>

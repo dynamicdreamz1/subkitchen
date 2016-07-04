@@ -13,9 +13,14 @@
   .product-details{
     font-size: 0.9rem;
     padding: 0 1em;
+
+    .product-name{
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
   .product-actions{
-    padding: 0 2em;
+    // padding: 0 2em;
     background-color: rgba(255, 255, 255, 0.6);
     opacity: 0;
     transition: opacity 0.5s linear;

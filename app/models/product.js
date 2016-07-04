@@ -44,14 +44,5 @@ export default DS.Model.extend({
 
   formattedProductType: function() {
     return this.get('product_type').replace('_', ' ');
-  }.property('product_type'),
-
-  truncatedName: function() {
-    const limit = 17;
-    let name = this.get('name');
-    if (name.length > limit){
-      name = name.substr(0, limit) + "...";
-    }
-    return name;
-  }.property('name')
+  }.property('product_type')
 });

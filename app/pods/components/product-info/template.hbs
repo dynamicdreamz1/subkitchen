@@ -35,12 +35,12 @@
     </div>
   </div>
 </div>
-<div class="row product-details">
+<div class="row column product-details collapse">
   <div class="small-12 columns">
     <div class="row collapse">
       <div class="small-9 columns uppercase font-bold ellipsis">
         {{#link-to 'product' product.id}}
-          <div class="product-name">{{product.truncatedName}}</div>
+          <div class="product-name">{{product.name}}</div>
         {{/link-to}}
       </div>
       <div class="small-3 columns text-right nowrap font-light likes" onclick={{action 'toggleLike'}}>
