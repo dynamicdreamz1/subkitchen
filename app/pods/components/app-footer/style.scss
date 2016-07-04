@@ -38,8 +38,20 @@ footer{
 .newsletter-form {
   display: inline-flex;
 
+  .button {
+    width: 10em;
+  }
+
   .newsletter-field {
-    min-width: 20em;
+    min-width: 15em;
     font-size: small;
+  }
+}
+
+@media screen and (max-width: 40em) {
+  .newsletter-form {
+    .button {
+      font-size: x-small;
+    }
   }
 }
