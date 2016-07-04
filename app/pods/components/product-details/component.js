@@ -13,6 +13,11 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     this.$().foundation();
+    this.$('.easyzoom').easyZoom();
+  },
+
+  willDestroyElement(){
+    this.$('.easyzoom').data('easyZoom').teardown();
   },
 
   actions: {
