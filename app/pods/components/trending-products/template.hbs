@@ -5,7 +5,7 @@
         {{title}}
       </strong>
       //
-      <a class="link-to-all" href="/products">view all</a>
+      {{#link-to 'products' (query-params sorted_by='best_sellers') class="link-to-all"}}view all{{/link-to}}
     </div>
   </div>
 
