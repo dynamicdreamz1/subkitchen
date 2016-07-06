@@ -1,7 +1,11 @@
-#formAvatarUpload {
-  .button.upload {
-    text-transform: uppercase;
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
+.profile-image-uploader {
+  img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+  }
+
+  #avatarFileUpload {
+    display: none;
   }
 }
