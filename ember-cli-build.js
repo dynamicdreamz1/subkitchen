@@ -32,5 +32,6 @@ module.exports = function(defaults) {
   app.import('vendor/hammer.min.js');
   app.import('vendor/hammer-time.min.js');
   app.import('vendor/detectmobilebrowser.js');
+  app.import('vendor/easyzoom.js');
   return app.toTree();
 };

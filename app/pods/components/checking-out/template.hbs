@@ -12,7 +12,7 @@
         <div class="small-12 columns item" id="item-{{item.id}}">
           <div class="row">
             <div class="small-4 medium-3 columns image">
-              <img src={{item.preview_url}} alt="{{item.name}}">
+              <img src={{item.previewUrl}} alt="{{item.name}}">
               <span class="quantity">
                 {{item.quantity}}
               </span>
@@ -23,7 +23,7 @@
                   {{item.name}}
                 </div>
                 <div class="small-3 columns price text-right">
-                  {{format-number item.price style="currency" currency="USD"}}
+                  {{format-number item.price style="currency" currency="USD" fallback=''}}
                 </div>
               </div>
               <div class="row">
@@ -43,30 +43,30 @@
           {{#if (gt payment.order.discount 0)}}
             <div class="row">
               <div class="small-12 columns">
-                <strong>discount:</strong> -{{format-number payment.order.discount style="currency" currency="USD"}}
+                <strong>discount:</strong> -{{format-number payment.order.discount style="currency" currency="USD" fallback=''}}
               </div>
             </div>
           {{/if}}
           <div class="row">
             <div class="small-12 columns">
-              <strong>subtotal:</strong> {{format-number payment.order.subtotal style="currency" currency="USD"}}
+              <strong>subtotal:</strong> {{format-number payment.order.subtotal style="currency" currency="USD" fallback=''}}
             </div>
           </div>
           <div class="row">
             <div class="small-12 columns">
-              <strong>shipping:</strong> {{format-number payment.order.shipping_cost style="currency" currency="USD"}}
+              <strong>shipping:</strong> {{format-number payment.order.shipping_cost style="currency" currency="USD" fallback=''}}
             </div>
           </div>
           {{!--
           <div class="row">
             <div class="small-12 columns">
-              <strong>tax ({{payment.order.tax}}%):</strong> {{format-number payment.order.tax_cost style="currency" currency="USD"}}
+              <strong>tax ({{payment.order.tax}}%):</strong> {{format-number payment.order.tax_cost style="currency" currency="USD" fallback=''}}
             </div>
           </div>
           --}}
           <div class="row">
             <div class="small-12 columns">
-              <strong>total:</strong> {{format-number payment.order.total_cost style="currency" currency="USD"}}
+              <strong>total:</strong> {{format-number payment.order.total_cost style="currency" currency="USD" fallback=''}}
             </div>
           </div>
         </div>
@@ -90,7 +90,7 @@
         <div class="small-12 columns item removed-item" id="item-{{item.id}}">
           <div class="row">
             <div class="small-4 medium-3 columns image">
-              <img src={{item.preview_url}} alt="{{item.name}}">
+              <img src={{item.previewUrl}} alt="{{item.name}}">
               <span class="quantity">
                 {{item.quantity}}
               </span>
@@ -101,7 +101,7 @@
                   {{item.name}}
                 </div>
                 <div class="small-3 columns price text-right">
-                  {{format-number item.price style="currency" currency="USD"}}
+                  {{format-number item.price style="currency" currency="USD" fallback=''}}
                 </div>
               </div>
               <div class="row">

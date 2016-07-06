@@ -3,7 +3,7 @@
     <div class="row">
       <div class="small-12 columns">
         {{#link-to 'product' product.id}}
-          {{lazy-image url=product.preview_url}}
+          {{lazy-image url=product.previewUrl}}
         {{/link-to}}
       </div>
     </div>
@@ -68,7 +68,7 @@
         {{/if}}
       </div>
       <div class="small-3 columns text-right nowrap font-bold">
-        {{format-number product.price style="currency" currency="USD"}}
+        {{format-number product.price style="currency" currency="USD" fallback=''}}
       </div>
     </div>
   </div>

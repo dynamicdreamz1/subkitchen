@@ -62,7 +62,7 @@
           <div class="row">
             <div class="small-3 columns">
               {{#link-to 'product' item.product_id}}
-                <img src="{{item.preview_url}}" alt="">
+                <img src="{{item.previewUrl}}" alt="">
               {{/link-to}}
             </div>
             <div class="small-9 columns text-left">
@@ -72,16 +72,16 @@
           </div>
         </td>
         <td>{{item.quantity}}</td>
-        <td>{{format-number item.price style="currency" currency="USD"}}</td>
-        <td>{{format-number item.subtotal style="currency" currency="USD"}}</td>
+        <td>{{format-number item.price style="currency" currency="USD" fallback=''}}</td>
+        <td>{{format-number item.subtotal style="currency" currency="USD" fallback=''}}</td>
       </tr>
       </tbody>
     {{/each}}
   </table>
   <div class="small-12 columns text-right cost">
-    <p><strong>ORDER SUBTOTAL: </strong>{{format-number model.order.subtotal style="currency" currency="USD"}}</p>
-    <p><strong>SHIPPING: </strong>{{format-number model.order.shippingCost style="currency" currency="USD"}}</p>
-    <p><strong>TAX({{model.order.tax}}%): </strong>{{format-number model.order.taxCost style="currency" currency="USD"}}</p>
-    <p><strong>TOTAL: </strong>{{format-number model.order.totalCost style="currency" currency="USD"}}</p>
+    <p><strong>ORDER SUBTOTAL: </strong>{{format-number model.order.subtotal style="currency" currency="USD" fallback=''}}</p>
+    <p><strong>SHIPPING: </strong>{{format-number model.order.shippingCost style="currency" currency="USD" fallback=''}}</p>
+    <p><strong>TAX({{model.order.tax}}%): </strong>{{format-number model.order.taxCost style="currency" currency="USD" fallback=''}}</p>
+    <p><strong>TOTAL: </strong>{{format-number model.order.totalCost style="currency" currency="USD" fallback=''}}</p>
   </div>
 </div>
