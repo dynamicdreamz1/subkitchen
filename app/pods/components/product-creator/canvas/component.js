@@ -22,6 +22,7 @@ export default Ember.Component.extend( {
   isClicked: false,
   errors: {},
   publishNotice: '',
+  publishing: false,
   imgSizeError: false,
 
   validThemes: function() {
@@ -155,6 +156,7 @@ export default Ember.Component.extend( {
     },
 
     publish(){
+      this.set('publishing', true);
       let callback = (response) => {
         let flashMessages = this.get('flashMessages');
         if(this.get('product.published')) {
@@ -164,8 +166,14 @@ export default Ember.Component.extend( {
         }
         flashMessages.success('Product saved.');
         $('#publishModal').foundation('close');
+        this.set('publishing', false);
       };
-      this.send('createProduct', callback);
+
+      let error = function(){
+        this.set('publishing', false);
+      };
+
+      this.send('createProduct', callback, error);
     },
 
     addToCart(){

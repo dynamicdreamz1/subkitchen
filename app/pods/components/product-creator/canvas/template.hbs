@@ -135,7 +135,7 @@
             {{input-errors errors=errors.image}}
             <div class="row actions text-center">
               <div class="small-12 columns">
-                <button class="js-publish button dark uppercase font-bold {{if validThemes "" "disabled"}}" type="submit" value="publish">publish</button>
+                <button class="js-publish button dark uppercase font-bold {{if validThemes "" "disabled"}} {{if publishing "disabled" ""}}" type="submit" value="publish">publish</button>
               </div>
             </div>
           </form>
