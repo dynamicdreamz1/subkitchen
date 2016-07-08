@@ -22,6 +22,7 @@ export default Ember.Component.extend( {
   isClicked: false,
   errors: {},
   publishNotice: '',
+  imgSizeError: false,
 
   validThemes: function() {
     if(!this.get('selectedThemes').length) {
@@ -360,11 +361,12 @@ export default Ember.Component.extend( {
                 tempW > MAX_WIDTH ||
                 tempW < MIN_WIDTH) {
               let canvasActions = this.get('canvasActions');
-              let flashMessages = this.get('flashMessages');
-              let msg = 'Please upload image bigger than 1024 over 1024 and smaller than 5000 over 5000 pixels.';
 
               canvasActions.removeImage.call(this);
-              flashMessages.alert(msg, { timeout: 10000 });
+              this.set('imgSizeError', true);
+              setTimeout(()=>{
+                this.set('imgSizeError', false);
+              }, 5000);
               this.set('product.rawImage', null);
               this.set('product.image', null);
             }

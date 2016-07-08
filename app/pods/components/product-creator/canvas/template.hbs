@@ -4,10 +4,17 @@
       <label id="uploadButton" for="imageFileUpload" class="button upload uppercase">upload artwork</label>
       {{input type="file" name="image" id="imageFileUpload" class="show-for-sr" value=product.rawImage}}
     </form>
-      {{#if product.image}}
-        <a class="button uppercase js-publish-button" onclick={{action 'showPublishingPopup'}}>save</a>
-      {{/if}}
+    {{#if product.image}}
+      <a class="button uppercase js-publish-button" onclick={{action 'showPublishingPopup'}}>save</a>
+    {{/if}}
   </div>
+  {{#if imgSizeError}}
+    <div class="small-12 columns">
+      <small class="is-invalid-label">
+        Please upload image between 1024x1024 and 5000x5000 pixels.
+      </small>
+    </div>
+  {{/if}}
 </div>
 
 
