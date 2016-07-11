@@ -1,0 +1,56 @@
+.shop-banner-uploader {
+  position: relative;
+  .banner {
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    .default-banner {
+      background-color: #959595;
+      min-height: 31em;
+      width: 100%;
+      color: white;
+      text-align: center;
+
+      h3 {
+        padding: 6em;
+        margin: 0;
+        white-space: pre-wrap;
+        display: inline-block;
+        width: 50%;
+      }
+    }
+  }
+  .banner-upload {
+    bottom: 7%;
+    left: 3%;
+    position: absolute;
+    width: 100%;
+
+    .button {
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.3em 1em;
+      float: left;
+      margin-right: 0.5em;
+      margin-bottom: 0;
+    }
+
+    .banner-tip {
+      font-weight: 300;
+      font-size: small;
+      margin: 0.3em;
+    }
+  }
+
+  .black-spacer {
+    width: 100%;
+    height: 1.5em;
+    background-color: black;
+    margin-bottom: 1em;
+  }
+
+  #bannerFileUpload {
+    display: none;
+  }
+}

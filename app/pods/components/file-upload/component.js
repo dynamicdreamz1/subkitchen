@@ -5,6 +5,7 @@ import config from 'subkitchen-front/config/environment';
 
 
 export default EmberUploader.FileField.extend({
+  flashMessages: Ember.inject.service(),
   store: Ember.inject.service(),
 
   filesDidChange(files) {
@@ -14,11 +15,18 @@ export default EmberUploader.FileField.extend({
 
     uploader.on('didUpload', response => {
       let uploadedUrl = $(response).find('Location')[0].textContent;
+      let flashMessages = this.get('flashMessages');
       uploadedUrl = decodeURIComponent(uploadedUrl);
       this.get('store').findRecord('user', 'current').then((user) => {
         let attribute = this.get('attribute');
+        let previousUploadedUrl = user.get(attribute);
         user.set(attribute, uploadedUrl);
-        user.save();
+        user.save().then(() => {
+          flashMessages.success("Successfully uploaded image" , { timeout: 10000 });
+        }, (error) => {
+          user.set(attribute, previousUploadedUrl);
+          flashMessages.alert(error.errors[0].detail, { timeout: 10000 });
+        });
       });
     });
 
