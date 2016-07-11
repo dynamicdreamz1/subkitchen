@@ -2,7 +2,7 @@
   <div class="banner">
     {{#if user.bannerUrl}}
       <img src="{{user.bannerUrl}}" alt="">
-    {{else}}
+    {{else if withDefaultBanner}}
       <div class="default-banner">
         <h3>ARTIST PROFILE BANNER</h3>
       </div>

@@ -1,7 +1,7 @@
 {{#shopping-cart}}
 {{app-header}}
 {{#if (eq model.user.status 'verified')}}
-  {{shop-banner-uploader withUploader=false user=model.user}}
+  {{shop-banner-uploader withUploader=false withDefaultBanner=false user=model.user}}
 {{/if}}
 <section class="public-profile">
   {{user-public-profile user=model.user products=model.products}}
