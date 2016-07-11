@@ -22,6 +22,8 @@ export default Ember.Component.extend( {
   isClicked: false,
   errors: {},
   publishNotice: '',
+  publishing: false,
+  imgSizeError: false,
 
   validThemes: function() {
     if(!this.get('selectedThemes').length) {
@@ -154,6 +156,7 @@ export default Ember.Component.extend( {
     },
 
     publish(){
+      this.set('publishing', true);
       let callback = (response) => {
         let flashMessages = this.get('flashMessages');
         if(this.get('product.published')) {
@@ -163,8 +166,14 @@ export default Ember.Component.extend( {
         }
         flashMessages.success('Product saved.');
         $('#publishModal').foundation('close');
+        this.set('publishing', false);
       };
-      this.send('createProduct', callback);
+
+      let error = function(){
+        this.set('publishing', false);
+      };
+
+      this.send('createProduct', callback, error);
     },
 
     addToCart(){
@@ -360,11 +369,12 @@ export default Ember.Component.extend( {
                 tempW > MAX_WIDTH ||
                 tempW < MIN_WIDTH) {
               let canvasActions = this.get('canvasActions');
-              let flashMessages = this.get('flashMessages');
-              let msg = 'Please upload image bigger than 1024 over 1024 and smaller than 5000 over 5000 pixels.';
 
               canvasActions.removeImage.call(this);
-              flashMessages.alert(msg, { timeout: 10000 });
+              this.set('imgSizeError', true);
+              setTimeout(()=>{
+                this.set('imgSizeError', false);
+              }, 5000);
               this.set('product.rawImage', null);
               this.set('product.image', null);
             }

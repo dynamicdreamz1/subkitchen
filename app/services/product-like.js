@@ -1,3 +1,5 @@
+/* global $ */
+
 import Ember from 'ember';
 import config from 'subkitchen-front/config/environment';
 import { storageFor } from 'ember-local-storage';
@@ -22,11 +24,11 @@ export default Ember.Service.extend({
         }, function(error){
           reject(error);
         });
-      });
+      }, resolve);
     });
   },
 
-  optionalAuthorization(callback){
+  optionalAuthorization(callback, resolve){
     if(this.get('session.isAuthenticated')){
       this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
         var headers = {};
@@ -34,7 +36,9 @@ export default Ember.Service.extend({
         callback(headers);
       });
     } else {
-      callback({});
+      resolve(null);
+      $('#passwordReminderModal').foundation('close');
+      $('#loginModal').foundation('open');
     }
   }
 });
