@@ -2,7 +2,7 @@
   {{app-header}}
   <div class="spacer" style="margin-top: 0;"></div>
   {{#if (eq currentUser.content.status 'verified')}}
-    {{shop-banner-uploader}}
+    {{shop-banner-uploader user=currentUser.content}}
   {{/if}}
   <div class="row" style="margin-top: 2em;">
     <div class="small-12 columns">

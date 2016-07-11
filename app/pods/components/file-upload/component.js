@@ -17,16 +17,15 @@ export default EmberUploader.FileField.extend({
       let uploadedUrl = $(response).find('Location')[0].textContent;
       let flashMessages = this.get('flashMessages');
       uploadedUrl = decodeURIComponent(uploadedUrl);
-      this.get('store').findRecord('user', 'current').then((user) => {
-        let attribute = this.get('attribute');
-        let previousUploadedUrl = user.get(attribute);
-        user.set(attribute, uploadedUrl);
-        user.save().then(() => {
-          flashMessages.success("Successfully uploaded image" , { timeout: 10000 });
-        }, (error) => {
-          user.set(attribute, previousUploadedUrl);
-          flashMessages.alert(error.errors[0].detail, { timeout: 10000 });
-        });
+      let user = this.get('user');
+      let attribute = this.get('attribute');
+      let previousUploadedUrl = user.get(attribute);
+      user.set(attribute, uploadedUrl);
+      user.save().then(() => {
+        flashMessages.success("Successfully uploaded image" , { timeout: 10000 });
+      }, (error) => {
+        user.set(attribute, previousUploadedUrl);
+        flashMessages.alert(error.errors[0].detail, { timeout: 10000 });
       });
     });
 

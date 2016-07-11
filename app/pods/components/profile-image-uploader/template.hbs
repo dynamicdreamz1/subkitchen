@@ -12,7 +12,7 @@
       <p>{{currentUser.content.email}}</p>
       <p>
         <label id="uploadButton" for="avatarFileUpload" class="button hollow upload">upload</label>
-        {{file-upload elementId='avatarFileUpload' attribute='imageUrl'}}
+        {{file-upload elementId='avatarFileUpload' attribute='imageUrl' user=currentUser.content}}
       </p>
     </div>
   </div>
