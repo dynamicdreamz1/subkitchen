@@ -1,3 +1,4 @@
+/* globals $ */
 import Ember from 'ember';
 
 
@@ -48,6 +49,16 @@ export default Ember.Component.extend({
 
     showCart(){
       this.get('cart').open();
+    },
+
+    linkClicked() {
+      $('#nav-menu').hide();
+
+      Ember.run.later(this, function() {
+        $('html, body').animate({
+          scrollTop: $('body').offset().top
+        }, 500);
+      }, 500);
     }
   }
 });
