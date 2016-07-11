@@ -5,15 +5,20 @@
     left: 0;
     width: 100%;
 
+    img {
+      width: auto;
+      height: auto;
+    }
+
     .default-banner {
       background-color: #959595;
-      min-height: 31em;
+      height: auto;
       width: 100%;
       color: white;
       text-align: center;
 
       h3 {
-        padding: 6em;
+        padding: 3.9em;
         margin: 0;
         white-space: pre-wrap;
         display: inline-block;
@@ -22,7 +27,7 @@
     }
   }
   .banner-upload {
-    bottom: 7%;
+    bottom: 10%;
     left: 3%;
     position: absolute;
     width: 100%;
