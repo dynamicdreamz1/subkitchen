@@ -297,7 +297,42 @@
     }
   }
 
+  @include breakpoint(medium) {
+    .close-button {
+      display: none;
+    }
+    .menu-item-footer__wrapper{
+      display: none;
+    }
+  }
+
+  .menu-item-footer__wrapper{
+    font-weight: 300;
+    text-transform: capitalize;
+  }
+
   @include breakpoint(small only) {
+    & > ul{
+      display: table;
+      margin: 0;
+      width: 100%;
+    }
+
+    &{
+      text-align: center;
+      text-transform: capitalize;
+
+      .submenu{
+        display: none;
+      }
+
+      li{
+        width: 100%;
+        clear: both;
+        float: left;
+      }
+    }
+
     .logo-wrapper{
       display: none;
     }
@@ -320,10 +355,17 @@
     .menu-item-my-kitchen__wrapper{
       float: left;
     }
+
+    .basket-indicator{
+      width: 3em;
+      margin: 0 auto;
+    }
   }
 }
 
 .title-bar{
+  text-transform: uppercase;
+
   &.title-bar__small{
     .menu-icon{
       &:focus{

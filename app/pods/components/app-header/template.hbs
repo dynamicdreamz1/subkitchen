@@ -4,7 +4,7 @@
 </div>
 
 <!-- Small Navigation -->
-<div class="title-bar title-bar__small" data-responsive-toggle="nav-menu" data-hide-for="medium">
+<div class="title-bar title-bar__small" data-responsive-toggle="nav-menu" data-hide-for="medium" data-animate="hinge-in-from-top spin-out">
   <button class="menu-icon" type="button" data-toggle></button>
   {{#link-to 'index' class="logo"}}
     <img src="assets/images/logo.png" alt="">
@@ -13,8 +13,9 @@
 </div>
 
 <!-- Medium-Up Navigation -->
-<nav class="top-bar" id="nav-menu">
+<nav class="top-bar" id="nav-menu" data-closable>
   <ul class="vertical medium-horizontal menu">
+    <button class="close-button" data-close>&times;</button>
     <li class="logo-wrapper">
       {{#link-to 'index' class="logo"}}
         <img src="assets/images/logo.png" alt="">
@@ -23,10 +24,10 @@
     </li>
 
     <li>
-      <ul class="dropdown menu shop-menu" data-dropdown-menu>
+      <ul class="dropdown menu shop-menu" data-responsive-menu="medium-dropdown">
         <li>
-          {{#link-to 'products' (query-params product_type="" search_query="") class="menu-item uppercase"}} shop {{/link-to}}
-          <ul class="menu">
+          {{#link-to 'products' (query-params product_type="" search_query="") class="menu-item"}} shop {{/link-to}}
+          <ul class="menu submenu">
             {{#each templates.data as |template| }}
               <li>
                 {{#link-to 'products' (query-params product_type=template.productTypeAsArray search_query="") class="menu-item uppercase"}}
@@ -37,8 +38,8 @@
           </ul>
         </li>
         <li>
-          {{#link-to 'cooking' (query-params product_id="" selected_template_id="") class="menu-item uppercase"}} create {{/link-to}}
-          <ul class="menu cook">
+          {{#link-to 'cooking' (query-params product_id="" selected_template_id="") class="menu-item"}} create {{/link-to}}
+          <ul class="menu cook submenu">
             {{#each templates.data as |template| }}
               <li>
                 {{#link-to 'cooking' (query-params selected_template_id=template.id product_id="") class="menu-item"}}
@@ -49,8 +50,8 @@
           </ul>
         </li>
         <li>
-          {{#link-to 'artists' class="menu-item uppercase"}} artists {{/link-to}}
-          <ul class="menu featured">
+          {{#link-to 'artists' class="menu-item"}} artists {{/link-to}}
+          <ul class="menu featured submenu">
             <div class="featured-title">FEATURED</div>
             {{#each featuredArtists.data as |artist| }}
               <li class="featured-artist">
@@ -105,6 +106,20 @@
       {{/if}}
     </li>
     <!-- <li class="menu-item-wishlist__wrapper"> <a class="action-item"> <span class="icon-sub-heart"></span> </a> </li> -->
+
+    <li class="menu-item-footer__wrapper">
+      <ul class="menu" onclick={{action 'linkClicked'}}>
+        <li>{{#link-to "information.delivery-and-returns" class="menu-item"}}Delivery and Returns{{/link-to}}</li>
+        <li>{{#link-to "information.payment" class="menu-item"}}Payment{{/link-to}}</li>
+        <li>{{#link-to "information.about-artist" class="menu-item"}}About Artist Accounts{{/link-to}}</li>
+        <li>{{#link-to "information.artist-terms" class="menu-item"}}Artist Terms{{/link-to}}</li>
+        <li>{{#link-to "information.terms-and-conditions" class="menu-item"}}Terms and Conditions{{/link-to}}</li>
+        <li>{{#link-to "information.custom-clothing" class="menu-item"}}Custom Clothing{{/link-to}}</li>
+        <li>{{#link-to "information.wholesale" class="menu-item"}}Wholesale{{/link-to}}</li>
+        <li>{{#link-to "information.privacy-policy" class="menu-item"}}Privacy Policy{{/link-to}}</li>
+        <li>{{#link-to "information.contact" class="menu-item"}}Contact{{/link-to}}</li>
+      </ul>
+    </li>
 
     <li class="menu-item-my-kitchen__wrapper" data-toggle="cart-dropdown" id="cart-dropdown-trigger">
       <a class="action-item basket-indicator" onclick={{action 'showCart'}}> <span class="icon-sub-basket"></span>
