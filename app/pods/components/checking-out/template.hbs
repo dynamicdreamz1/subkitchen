@@ -12,7 +12,7 @@
         <div class="small-12 columns item" id="item-{{item.id}}">
           <div class="row">
             <div class="small-4 medium-3 columns image">
-              <img src={{item.previewUrl}} alt="{{item.name}}">
+              <img src={{item.preview_url}} alt="{{item.name}}">
               <span class="quantity">
                 {{item.quantity}}
               </span>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="small-3 columns price text-right">
                   {{format-number item.price style="currency" currency="USD" fallback=''}}
-                </div>
+                 </div>
               </div>
               <div class="row">
                 <div class="small-12 columns size">
@@ -90,7 +90,7 @@
         <div class="small-12 columns item removed-item" id="item-{{item.id}}">
           <div class="row">
             <div class="small-4 medium-3 columns image">
-              <img src={{item.previewUrl}} alt="{{item.name}}">
+              <img src={{item.preview_url}} alt="{{item.name}}">
               <span class="quantity">
                 {{item.quantity}}
               </span>
