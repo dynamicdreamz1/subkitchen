@@ -5,6 +5,7 @@ export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
   isoCountries: Ember.inject.service('iso-countries'),
+  flashMessages: Ember.inject.service(),
 
 
   handle: null, // from component params or null
@@ -36,11 +37,12 @@ export default Ember.Component.extend({
         Ember.$.ajax({
           headers: headers,
           method: "POST",
-          url: config.host + config.apiEndpoint + '/account/verification',
+          url: config.host + config.apiEndpoint + '/account/simple_verification',
           data: params
-        }).then((result) => {
+        }).then(() => {
           this.set('errors', {});
-          window.top.location.href = result.url;
+          this.get('routing').transitionTo('profile');
+          this.get('flashMessages').success("You've successfully became an artist. Please wait for the verification");
         }, (error) => {
           if (error.responseJSON){
             this.set('errors', error.responseJSON.errors);
