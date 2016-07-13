@@ -28,7 +28,7 @@ export default Ember.Component.extend({
         return !(i && i.length);
       }).compact().join(' ');
 
-    let country = address.get('country') || this.get('country');
+    let country = address.get('country') || 'United States of America';
     let order = new Ember.Object({
       payment_type: 'paypal',
       return_path: '/profile',

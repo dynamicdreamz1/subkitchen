@@ -7,19 +7,10 @@ export default Ember.Route.extend({
   ajax: Ember.inject.service(),
 
   model(){
-    let country = Ember.$.ajax({ url: "http://freegeoip.net/json/" }).then((response) => {
-      let countryName = response.country_name;
-      if(response.country_name === 'United States') {
-        countryName = 'United States of America';
-      }
-      return countryName;
-    });
-
     let paymentEndpoint = config.host + config.apiEndpoint + '/orders/' + this.get('cart.order.data.uuid') + '/payment';
     let models = {
       payment: this.get('ajax').request(paymentEndpoint),
-      address: new Ember.Object(),
-      country: country
+      address: new Ember.Object()
     };
 
     if (this.get('session').get('isAuthenticated')){
