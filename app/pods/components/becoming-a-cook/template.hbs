@@ -21,6 +21,9 @@
         <div class="small-6 column">
           {{input-errors errors=errors.base}}
           <form novalidate {{action "becomeCook" on="submit"}}>
+          {{#if session.isAuthenticated}}
+            <button class="button blue uppercase" type="submit">reserve your shop</button>
+          {{else}}
             <label class={{if errors.handle "is-invalid-label" ""}}>
               <div class="input-group">
                 {{input class="input-group-field" type="text" placeholder="sublimation.kitchen/Your Shop URL" value=company.handle id="user-handle"}}
@@ -28,11 +31,9 @@
               {{input-errors errors=errors.handle}}
             </label>
             <button class="button blue uppercase" type="submit">reserve your shop</button>
+            <a class="join" onclick={{action 'showLogin'}}><span>Already a user? Login</span></a>
+          {{/if}}
           </form>
-          {{#unless session.isAuthenticated}}
-            <a class="join" onclick={{action 'showLogin'}}><span>Already a user? Login</span>
-            </a>
-          {{/unless}}
         </div>
       </div>
     </div>
@@ -139,6 +140,6 @@
   <div class="small-12 medium-6 small-centered columns content">
     <h3>Plus we'll double your first $1,000*</h3>
     <h5>Are you ready?</h5>
-    <button class="button blue uppercase" type="submit">start selling</button>
+    <button class="button blue uppercase" onclick={{action 'scrollUp'}}>start selling</button>
   </div>
 </div>
