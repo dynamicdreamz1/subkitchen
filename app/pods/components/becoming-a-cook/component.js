@@ -25,6 +25,11 @@ export default Ember.Component.extend({
   }),
 
   actions: {
+    showLogin(){
+      this.$('#passwordReminderModal').foundation('close');
+      this.$('#loginModal').foundation('open');
+    },
+
     becomeCook(){
       if (!this.get('company.terms')) {
         return false; }

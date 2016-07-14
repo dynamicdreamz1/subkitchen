@@ -1,108 +1,144 @@
 <div class="row becoming-a-cook">
-  <div class="small-12 medium-6 small-centered columns">
+  <div class="small-12 medium-6 small-centered columns reserve-your-shop">
     <div class="row">
-      <div class="small-12 columns center">
-        <h4 class="uppercase font-bold">VERIFY YOUR IDENTITY</h4>
-        <p>In order to sell your designs you must be verifeid member.
-          Verification is one-time process that must be completed
-          through PayPal and costs $1. You must also read and
-          accept the <a target="_blank" href="/assets/docs/terms-and-conditions.pdf">Artists Terms and Conditions </a>.</p>
-        <h5 class="uppercase font-bold">BECOME A COOK</h5>
-
-        <div class="row">
-          <div class="small-12 columns center">
-            <label>
-              {{input type="checkbox" checked=company.terms}}
-              I agree to the <a target="_blank" href="/assets/docs/terms-and-conditions.pdf"> Terms and Conditions </a>
-              {{input-errors errors=errors.terms}}
-            </label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="small-12 columns center">
-            <label>
-              {{input type="checkbox" checked=company.has_company}}
-              I run my own business
-              {{input-errors errors=errors.has_company}}
-            </label>
-          </div>
-        </div>
-
+      <div class="small-12 columns">
+        <h2 class="uppercase font-bold">WE'VE GOT THE RECIPE FOR ALL-OVER-PRINT</h2>
       </div>
     </div>
     <div class="row">
       <div class="small-12 columns">
-        {{input-errors errors=errors.base}}
-        <form novalidate {{action "becomeCook" on="submit"}}>
-          <div class="row">
-            <div class="small-12 columns">
-              <label class={{if errors.handle "is-invalid-label" ""}}>Handle
-                <div class="input-group">
-                  <span class="input-group-label">http://sublimation.kitchen/artists/</span>
-                  {{input class="input-group-field" type="text" placeholder="johndoe" value=company.handle id="user-handle"}}
-                </div>
-                {{input-errors errors=errors.handle}}
-              </label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="small-12 columns">
-              <label class={{if errors.comapny_name "is-invalid-label" ""}}>Company Name
-                {{input type="text" placeholder="Company Name" value=company.company_name disabled=private }}
-                {{input-errors errors=errors.company_name}}
-              </label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="small-12 columns">
-              <label class={{if errors.address "is-invalid-label" ""}}>Address
-                {{input type="text" placeholder="Address" value=company.address disabled=private}}
-                {{input-errors errors=errors.address}}
-              </label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="small-12 medium-6 columns">
-              <label class={{if errors.city "is-invalid-label" ""}}>City
-                {{input type="text" placeholder="City" value=company.city disabled=private}}
-                {{input-errors errors=errors.city}}
-              </label>
-            </div>
-            <div class="small-12 medium-6 columns">
-              <label class={{if errors.zip "is-invalid-label" ""}}>Postal/Zip Code
-                {{input type="text" placeholder="Postal/Zip Code" value=company.zip disabled=private}}
-                {{input-errors errors=errors.zip}}
-              </label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="small-12 medium-6 columns">
-              <label class={{if errors.region "is-invalid-label" ""}}>region/Providence
-                {{input type="text" placeholder="State/Providence" value=company.region disabled=private}}
-                {{input-errors errors=errors.region}}
-              </label>
-            </div>
-            <div class="small-12 medium-6 columns">
-              <label class={{if errors.country "is-invalid-label" ""}}>Country
-                {{#x-select value=company.country disabled=private}}
-                  {{#each isoCountries.data as |country|}}
-                    {{#x-option value=country.[0]}}{{country.[0]}}{{/x-option}}
-                  {{/each}}
-                {{/x-select}}
-                {{input-errors errors=errors.country}}
-              </label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="small-12 columns center">
-              <button class="button dark uppercase {{if company.terms "" "disabled"}}" type="submit">lets start cooking</button>
-            </div>
-          </div>
-        </form>
+        <div class="small-6 column">
+          <h3>Let's Cook!</h3>
+          <ul>
+            <li>100 % FREE e-commerce shop</li>
+            <li>On-Demand Fulfillment (no logistics to worry about)</li>
+            <li>Network of like minded creatives</li>
+            <li>100% cut & sew high quality sublimation (Yes, we have hoodies & sweatshirts)</li>
+            <li>Higher commissions than you'll make anywhere else</li>
+            <li>Plus we'll double your first $1,000 in earnings (beta participants only*)</li>
+          </ul>
+        </div>
+        <div class="small-6 column">
+          {{input-errors errors=errors.base}}
+          <form novalidate {{action "becomeCook" on="submit"}}>
+            <label class={{if errors.handle "is-invalid-label" ""}}>
+              <div class="input-group">
+                {{input class="input-group-field" type="text" placeholder="sublimation.kitchen/Your Shop URL" value=company.handle id="user-handle"}}
+              </div>
+              {{input-errors errors=errors.handle}}
+            </label>
+            <button class="button blue uppercase" type="submit">reserve your shop</button>
+          </form>
+          {{#unless session.isAuthenticated}}
+            <a class="join" onclick={{action 'showLogin'}}><span>Already a user? Login</span>
+            </a>
+          {{/unless}}
+        </div>
       </div>
     </div>
+  </div>
+</div>
+{{login-modal}}
+<div class="cooking-process">
+  <div class="small-12 medium-6 small-centered columns content">
+    <h3>You + Us = Amazing</h3>
+    <div class="row">
+      <div class="small-4 column">
+        <img src="assets/images/process-3.svg" alt="">
+        <h5>YOU CREATE</h5>
+        <p>We’ve made it as easy as possible to do what you do best - create using our mock up generator</p>
+      </div>
+      <div class="small-4 column">
+        <img src="assets/images/process-2.svg" alt="">
+        <h5>We Manufacture</h5>
+        <p>With all-over-print cut and sew craftsmanship, we’ll bring your creations to life. People will be amazed by the quality</p>
+      </div>
+      <div class="small-4 column">
+        <img src="assets/images/process-1.svg" alt="">
+        <h5>You Make Bank</h5>
+        <p>Your risk is 0. No setup fees. 100% free to sign up. Your reward is 20% of all revenue. That's higher than anybody else in the industry, p.s. $getpaid</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="process-table">
+  <div class="small-12 medium-6 small-centered columns content">
+    <h3>How does it work?</h3>
+    <p>It’s easy! Once you’ve been verified, you can start uploading your art, and create products
+      right away. You could be making money by the end of the day. We’ll
+      handle production, shipping, and customer service. </p>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th><img src="assets/images/logo-with-title.svg" alt=""></th>
+          <th class="e-commerce">E-Commerce Platforms</th>
+          <th>On-Demand Platforms</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sell Your Art Online</td>
+          <td><img src="assets/images/checkmark.svg" alt=""></td>
+          <td class="e-commerce"><img src="assets/images/checkmark.svg" alt=""></td>
+          <td><img src="assets/images/checkmark.svg" alt=""></td>
+        </tr>
+        <tr>
+          <td>20% Commissions</td>
+          <td><img src="assets/images/checkmark.svg" alt=""></td>
+          <td class="e-commerce"><img src="assets/images/checkmark.svg" alt=""></td>
+          <td><div></div></td>
+        </tr>
+        <tr>
+          <td>Cut & Sew Garments</td>
+          <td><img src="assets/images/checkmark.svg" alt=""></td>
+          <td class="e-commerce"><div></div></td>
+          <td><div></div></td>
+        </tr>
+        <tr>
+          <td>All-Over-Print Hoodies & Sweatshirts</td>
+          <td><img src="assets/images/checkmark.svg" alt=""></td>
+          <td class="e-commerce"><div></div></td>
+          <td><div></div></td>
+        </tr>
+        <tr>
+          <td>On Demand Manufacturing</td>
+          <td><img src="assets/images/checkmark.svg" alt=""></td>
+          <td class="e-commerce"><div></div></td>
+          <td><img src="assets/images/checkmark.svg" alt=""></td>
+        </tr>
+        <tr>
+          <td>Fulfillment & Shipping</td>
+          <td><img src="assets/images/checkmark.svg" alt=""></td>
+          <td class="e-commerce"><div></div></td>
+          <td><img src="assets/images/checkmark.svg" alt=""></td>
+        </tr>
+        <tr>
+          <td>Customer Service</td>
+          <td><img src="assets/images/checkmark.svg" alt=""></td>
+          <td class="e-commerce"><div></div></td>
+          <td><img src="assets/images/checkmark.svg" alt=""></td>
+        </tr>
+        <tr>
+          <td>No Cost To You</td>
+          <td><img src="assets/images/checkmark.svg" alt=""></td>
+          <td class="e-commerce"><div></div></td>
+          <td><img src="assets/images/checkmark.svg" alt=""></td>
+        </tr>
+        <tr>
+          <td>Recommended Choice</td>
+          <td><img src="assets/images/checkmark.svg" alt=""></td>
+          <td class="e-commerce"><div></div></td>
+          <td><div></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="are-you-ready">
+  <div class="small-12 medium-6 small-centered columns content">
+    <h3>Plus we'll double your first $1,000*</h3>
+    <h5>Are you ready?</h5>
+    <button class="button blue uppercase" type="submit">start selling</button>
   </div>
 </div>

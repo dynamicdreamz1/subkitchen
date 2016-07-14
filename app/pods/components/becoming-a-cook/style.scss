@@ -1,9 +1,187 @@
-.becoming-a-cook{
+$table-striped-background: white;
+$table-head-background: white;
+
+.row.becoming-a-cook {
+  max-width: 100%;
+  margin: 0;
+  color: white;
+
+  h2 {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 1em;
+  }
+
+  h3 {
+    font-weight: 600;
+    padding-bottom: 0.5em;
+  }
+
+  ul {
+    padding-left: 0.5em;
+    font-weight: 300;
+  }
+
+  form {
+    text-align: center;
+
+    input {
+      border-radius: 5px;
+    }
+
+    .button {
+      border-radius: 5px;
+    }
+  }
+
+  .row {
+    margin: 0 5em 0 5em;
+  }
+
   a{
     color: #009cff;
-    &:hover{
+
+    &:hover {
       color: #009cff;
       text-decoration: underline;
     }
+  }
+
+  .reserve-your-shop {
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/artist-form.png) center no-repeat;
+    opacity: 1.5;
+    background-size: 100%;
+    padding: 3em 9em 3em 9em;
+  }
+
+  input {
+    width: 100%;
+  }
+}
+
+.cooking-process {
+  text-align: center;
+  padding: 1.5em 0 1.5em 0;
+
+  h3 {
+    margin: 0 1.5em 1.5em 1.5em;
+    font-weight: 600;
+  }
+
+  h5 {
+    font-weight: 600;
+    margin: 0.5em;
+  }
+
+  p {
+    padding: 0 2.5em 0 2.5em;
+    font-size: small;
+  }
+  img {
+    max-height: 10em;
+  }
+
+  & .content {
+    width: 75%;
+  }
+}
+
+.process-table {
+  padding: 1.5em 0 1.5em 0;
+  text-align: center;
+  background-color: #00b4ff;
+  color: white;
+
+  h3 {
+    font-weight: 600;
+  }
+
+  p {
+    font-weight: 300;
+    margin: 1em;
+    padding: 0 2.5em 1.5em 2.5em;
+  }
+
+  & .content {
+    width: 55%;
+  }
+
+  table {
+    border: 15px solid white;
+    color: black;
+
+    .e-commerce {
+      background-color: #d3d3d3;
+    }
+
+    thead {
+      tr {
+        border-bottom: 2px solid black;
+
+        th {
+          text-align: center;
+          font-size: medium;
+          font-weight: 500;
+          width: 23%;
+
+          img {
+            height: 40%;
+          }
+
+          &:first-of-type {
+            width: 30%;
+          }
+        }
+      }
+    }
+
+    tr {
+      font-size: small;
+
+      td {
+        border-bottom: 2px solid black;
+
+        div {
+          height: 3px;
+          width: 2em;
+          background-color: black;
+          margin: 0.5em 4em 0 4em;
+        }
+
+        img {
+          height: 13%;
+        }
+
+        &:first-of-type {
+          height: 4em;
+          text-align: left;
+          padding: 0.5em 0.5em 0.5em 0;
+          border-bottom: 2px solid black;
+        }
+      }
+    }
+  }
+}
+.are-you-ready {
+  background-color: #373434;
+  color: white;
+  text-align: center;
+  padding: 4em;
+
+  h3 {
+    font-weight: 600;
+  }
+
+  h5 {
+    padding: 0 1em 1em 1em;
+  }
+
+  .button {
+    padding: 1.5em 3.5em 1.5em 3.5em;
+    font-size: larger;
+    font-weight: 600;
+    border-radius: 5px;
   }
 }
