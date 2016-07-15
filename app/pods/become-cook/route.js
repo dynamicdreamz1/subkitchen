@@ -1,23 +1,21 @@
-/* global $ */
 import Ember from 'ember';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
-  userLoggingIn: false,
+export default Ember.Route.extend({
+  flashMessages: Ember.inject.service(),
+  session: Ember.inject.service('session'),
 
-  sessionAuthenticated() {
-    this.set('userLoggingIn', true);
+  queryParams: {
+    uuid: { refreshModel: false }
   },
 
-  actions: {
-    willTransition(transition){
-      if(transition.targetName === 'profile.info' && this.get('userLoggingIn')) {
-        transition.abort();
-        this.set('userLoggingIn', false);
-        if ($('#loginModal').length){
-          $('#loginModal').foundation('close');
-        }
-      }
+  model(params) {
+    return params;
+  },
+
+  afterModel(model) {
+    let unauthorized = !model.uuid && !this.get('session.isAuthenticated');
+    if (this.get('currentUser.content.artist') || unauthorized) {
+      this.transitionTo('profile');
     }
   }
 });
