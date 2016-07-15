@@ -25,17 +25,19 @@ export default Ember.Component.extend({
     },
 
     becomeCook() {
-      if(!this.get('session.isAuthenticated')) {
-        let user = this.get('user');
-        let params = user.getProperties('handle', 'name', 'email', 'password');
-        params.password_confirmation = params.password;
-        params.uuid = this.get('params.uuid');
-        Ember.$.ajax({
-          method: "POST",
-          url: config.host + config.apiEndpoint + '/account/simple_verification',
-          data: params
-        }).then(() => {
-          this.set('errors', {});
+      let successCallback = (params, response) => {
+        this.set('errors', {});
+        if(this.get('session.isAuthenticated')) {
+          this.set('currentUser.content', response.user);
+          this.get('routing').transitionTo('profile');
+          let msg = '';
+          if(params.uuid) {
+            msg = "You've successfully became an artist.";
+          } else {
+            msg = "You've successfully became an artist. Please wait for the verification";
+          }
+          this.get('flashMessages').success(msg);
+        } else {
           this.get('session').authenticate('authenticator:custom', {
               identification: params.email,
               password: params.password
@@ -47,43 +49,51 @@ export default Ember.Component.extend({
             .catch(() => {
               this.set('errors.base', ['signed up but could not sign in automatically']);
             });
-        }, (error) => {
-          if (error.responseJSON) {
-            this.set('errors', error.responseJSON.errors);
-          } else {
-            this.set('errors', {base: ['Connection error. Please try again later.']});
-          }
-        });
-      } else {
-        this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
-          let uuid = this.get('params.uuid');
-          let headers = {};
-          headers[headerName] = headerValue;
-          Ember.$.ajax({
-            headers: headers,
-            method: "POST",
-            url: config.host + config.apiEndpoint + '/account/simple_verification',
-            data: { uuid: uuid }
-          }).then((response) => {
-            this.set('currentUser.content', response.user);
-            this.set('errors', {});
-            this.get('routing').transitionTo('profile');
-            let msg = '';
-            if(uuid) {
-              msg = "You've successfully became an artist.";
-            } else {
-              msg = "You've successfully became an artist. Please wait for the verification";
-            }
-            this.get('flashMessages').success(msg);
-          }, (error) => {
-            if (error.responseJSON) {
-              this.set('errors', error.responseJSON.errors);
-            } else {
-              this.set('errors', {base: ['Connection error. Please try again later.']});
-            }
+        }
+      };
+      let errorCallback = (error) => {
+        if (error.responseJSON) {
+          this.set('errors', error.responseJSON.errors);
+        } else {
+          this.set('errors', {base: ['Connection error. Please try again later.']});
+        }
+      };
+
+      this.send('becomeCookRequest', successCallback, errorCallback);
+    },
+
+    becomeCookRequest(successCallback, errorCallback) {
+      let optionalAuthorization = (callback) => {
+        if(this.get('session.isAuthenticated')) {
+          this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
+            var headers = {};
+            headers[headerName] = headerValue;
+            callback.call(this, headers);
           });
-        });
+        } else {
+          callback.call(this, {});
+        }
+      };
+
+      let params = {};
+      if(!this.get('session.isAuthenticated')) {
+        let user = this.get('user');
+        params = user.getProperties('handle', 'name', 'email', 'password');
+        params.password_confirmation = params.password;
       }
+      params.uuid = this.get('params.uuid');
+      optionalAuthorization((headers) => {
+        Ember.$.ajax({
+          headers: headers,
+          method: "POST",
+          url: config.host + config.apiEndpoint + '/account/simple_verification',
+          data: params
+        }).then((response) => {
+          successCallback(params, response);
+        }, (error) => {
+          errorCallback(error);
+        });
+      });
     }
   }
 });
