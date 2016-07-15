@@ -31,14 +31,23 @@ $table-head-background: white;
     }
 
     .button {
-      padding: 1.5em 3.5em 1.5em 3.5em;
+      padding: 1em 3em 1em 3em;
       font-size: medium;
       font-weight: 600;
       border-radius: 5px;
+      float: left;
+      margin: 0 5em 1em 5em;
+    }
+
+    .join {
+      color: white;
+      text-decoration: underline;
+      white-space: pre-wrap;
+      font-weight: 300;
     }
   }
 
-  .row {
+  & > .row {
     margin: 0 5em 0 5em;
   }
 
@@ -53,8 +62,8 @@ $table-head-background: white;
 
   .reserve-your-shop {
     width: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/artist-form.png) center no-repeat;
-    opacity: 1.5;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url(images/artist-form.png) center no-repeat;
     background-size: 100%;
     padding: 3em 9em 3em 9em;
   }

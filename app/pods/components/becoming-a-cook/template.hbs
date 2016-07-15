@@ -24,14 +24,36 @@
           {{#if session.isAuthenticated}}
             <button class="button blue uppercase" type="submit">reserve your shop</button>
           {{else}}
-            <label class={{if errors.handle "is-invalid-label" ""}}>
-              <div class="input-group">
-                {{input class="input-group-field" type="text" placeholder="sublimation.kitchen/Your Shop URL" value=company.handle id="user-handle"}}
+            <div class="row">
+              <div class="small-12 columns">
+                <label class={{if errors.handle "is-invalid-label" ""}}>
+                  {{input type="text" placeholder="sublimation.kitchen/Your Shop URL" value=user.handle}}
+                  {{input-errors errors=errors.handle}}
+                </label>
               </div>
-              {{input-errors errors=errors.handle}}
-            </label>
-            <button class="button blue uppercase" type="submit">reserve your shop</button>
-            <a class="join" onclick={{action 'showLogin'}}><span>Already a user? Login</span></a>
+              <div class="small-12 columns">
+                <label class={{if errors.name "is-invalid-label" ""}}>
+                  {{input type="text" placeholder="Username" value=user.name}}
+                  {{input-errors errors=errors.name}}
+                </label>
+              </div>
+              <div class="small-12 columns">
+                <label class={{if errors.email "is-invalid-label" ""}}>
+                  {{input type="email" placeholder="Email" value=user.email}}
+                  {{input-errors errors=errors.email}}
+                </label>
+              </div>
+              <div class="small-12 columns">
+                <label class={{if errors.password "is-invalid-label" ""}}>
+                  {{input type="password" placeholder="Password" value=user.password}}
+                  {{input-errors errors=errors.password}}
+                </label>
+              </div>
+              <div class="small-12 columns">
+                <button class="button blue uppercase" type="submit">reserve your shop</button>
+                <a class="join" onclick={{action 'showLogin'}}>Already a user? Login</a>
+              </div>
+            </div>
           {{/if}}
           </form>
         </div>
