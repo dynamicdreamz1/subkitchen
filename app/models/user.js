@@ -9,6 +9,7 @@ export default DS.Model.extend({
   email:                  DS.attr('string'),
   artist:                 DS.attr('boolean'),
   handle:                 DS.attr('string'),
+  paypal_id:              DS.attr('string'),
   status:                 DS.attr('string'),
   bio:                    DS.attr('string'),
   products_count:         DS.attr('number'),

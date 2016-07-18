@@ -24,6 +24,12 @@
               </label>
             </div>
             <div class="small-12 columns">
+              <label class={{if currentUser.content.errors.paypal_id "is-invalid-label" ""}}>Paypal Account
+                {{input type="text" placeholder="Paypal Account" value=currentUser.content.paypal_id id="user-paypal_id"}}
+                {{input-data-errors errors=currentUser.content.errors.paypal_id}}
+              </label>
+            </div>
+            <div class="small-12 columns">
               <label class={{if currentUser.content.errors.handle "is-invalid-label" ""}}>Handle
                 <div class="input-group">
                   <span class="input-group-label">http://sublimation.kitchen/</span>
