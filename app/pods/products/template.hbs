@@ -1,6 +1,6 @@
 {{#shopping-cart}}
   {{app-header}}
-  <div class="row small-12 column">
+  <div class="row">
     <div class="small-12 columns sort">
       <div class="small-6 medium-6 column">
         <label for="sort">SORT BY:</label>
@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <div class="filters-container collapse">
+  <div class="filters-container">
     <div class="row collapse">
       <div class="small-12 columns filters">
         <div class="column small-4 medium-2">
@@ -47,7 +47,7 @@
               </div>
             {{/multiselect-checkboxes}}
         </div>
-        <div class="column small-4 medium-6">
+        <div class="column small-4 medium-7">
           <p class="filter-by">Theme:</p>
             {{#multiselect-checkboxes options=model.themes.themes selection=tags tagName='div' classNames='columns small-up-5 filter theme' as |theme isSelected|}}
               <div class="column text-left">
@@ -58,7 +58,7 @@
             </div>
             {{/multiselect-checkboxes}}
           </div>
-        <div class="column small-4 medium-4">
+        <div class="column small-4 medium-3">
           <!--<p class="filter-by">Price:</p>-->
           <!--{{!#multiselect-checkboxes options=priceRanges selection=price_range tagName='div' classNames='columns small-up-1 filter' onchange=(action 'updatePriceRange') updateSelectionValue=false as |priceRange isSelected|}}-->
             <!--<div class="column text-left">-->

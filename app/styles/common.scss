@@ -73,6 +73,11 @@ a.link-to-all{
 .sort {
   margin-top: 5em;
   position: relative;
+  padding: 0;
+
+  .column {
+    padding: 0;
+  }
 
   .x-select {
     float: left;
@@ -160,6 +165,7 @@ a.link-to-all{
     }
 
     .filter {
+      padding: 0;
       height: 1rem;
       .column {
         padding: 0;
