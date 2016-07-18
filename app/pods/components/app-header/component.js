@@ -3,6 +3,7 @@ import Ember from 'ember';
 
 
 export default Ember.Component.extend({
+  classNames: ['appHeader'],
   session: Ember.inject.service('session'),
   routing: Ember.inject.service('-routing'),
   cart: Ember.inject.service('shopping-cart'),

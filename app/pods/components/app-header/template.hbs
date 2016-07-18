@@ -13,7 +13,8 @@
 </div>
 
 <!-- Medium-Up Navigation -->
-<nav class="top-bar" id="nav-menu" data-closable>
+<nav class="top-bar row small-12 column" id="nav-menu" data-closable>
+  <div class="top-bar-left">
   <ul class="vertical medium-horizontal menu">
     <button class="close-button" data-close>&times;</button>
     <li class="logo-wrapper">
@@ -79,7 +80,12 @@
       {{input type="text" class="search" placeholder="SEARCH" value=queryString}}
       <span class="icon-sub-search"></span>
     </li>
-    <li class="divider"></li>
+    </ul>
+  </div>
+
+    <div class="top-bar-right">
+  <ul class="vertical medium-horizontal menu">
+    <!-- <li class="divider"></li> -->
     <li>
       {{#if session.isAuthenticated}}
       <ul class="dropdown menu user-menu" data-dropdown-menu>
@@ -179,6 +185,7 @@
     </li>
 
   </ul>
+  </div>
 </nav>
 
 {{login-modal}}
