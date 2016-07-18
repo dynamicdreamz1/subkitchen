@@ -1,0 +1,26 @@
+.profile-earnings {
+  h5 {
+    margin-bottom: 1.5em;
+  }
+
+  .earning {
+    border-top: 1px solid #0a0a0a;
+    box-shadow: 0 -1px 0 0 #e6e6e6;
+    padding: 1em;
+
+    &:first-of-type {
+      margin-top: 2em;
+    }
+    &:last-of-type {
+      border-bottom: 1px solid #0a0a0a;
+      margin-bottom: 2em;
+    }
+  }
+}
+@media screen and (max-width: 39.9375em) {
+  .profile-earnings {
+    .earning {
+
+    }
+  }
+}

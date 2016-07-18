@@ -1,0 +1,28 @@
+<div class="row profile-earnings">
+  <div class="small-12 columns">
+    <h5 class="font-black">Earnings history</h5>
+    <h6>Current Account: {{currentUser.content.current_account_state}}$</h6>
+    <h6>Earnings Overall: {{currentUser.content.earnings_overall}}$</h6>
+    {{#if (eq model.length 0)}}
+      <h6>You don't have any earnings yet</h6>
+    {{else}}
+      {{#each model as |payout|}}
+        <div class="row collapse earning">
+          <div class="small-6 column">
+            {{moment-format payout.created_at}}
+          </div>
+          <div class="small-6 column">
+            {{payout.value}}$ earned!
+          </div>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+  {{#if (gt model.meta.total_pages model.meta.current_page)}}
+    <div class="row">
+      <div class="small-12 columns text-center">
+        <button class="button uppercase loadMore" onclick={{action 'loadMorePayouts'}}>load more</button>
+      </div>
+    </div>
+  {{/if}}
+</div>

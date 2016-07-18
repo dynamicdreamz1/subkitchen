@@ -19,6 +19,7 @@ Router.map(function() {
     this.route('artist');
     this.route('orders');
     this.route('order', { path: 'orders/:order_id'});
+    this.route('earnings');
   });
   this.route('information', function() {
     this.route('delivery-and-returns');
