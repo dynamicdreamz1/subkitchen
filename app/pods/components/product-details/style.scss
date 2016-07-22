@@ -75,8 +75,10 @@
     .author-image {
       border-radius: 50%;
       height: 6em;
+      width: 6em;
       float: left;
       margin-right: 1em;
+      object-fit: cover;
     }
   }
 

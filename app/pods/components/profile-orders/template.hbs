@@ -20,9 +20,16 @@
               <tr>
                 <td>{{order.invoice_id}}</td>
                 <td>{{moment-format order.createdAt}}</td>
-                <td>{{order.status}}</td>
+                <td>{{capitalize order.status}}</td>
                 <td>{{format-number order.totalCost style="currency" currency="USD" fallback=''}}</td>
-                <td>{{#link-to 'profile.order' order.id class='button light uppercase'}}View{{/link-to}}</td>
+                <td>
+                  {{#if (eq order.status 'payment_pending')}}
+                    {{#if order.paypal_url}}
+                      <a class="button light uppercase" href={{order.paypal_url}}>Continue</a>
+                    {{/if}}
+                  {{/if}}
+                  {{#link-to 'profile.order' order.id class='button light uppercase'}}View{{/link-to}}
+                </td>
               </tr>
             </tbody>
           {{/unless}}

@@ -2,10 +2,10 @@
   <li>{{#link-to "profile.info" class="button dark"}}Profile{{/link-to}}</li>
   {{#if currentUser.content.artist}}
     <li>{{#link-to "profile.artist" class="button dark"}}Artist{{/link-to}}</li>
+    <li>{{#link-to "profile.earnings" class="button dark"}}Earnings{{/link-to}}</li>
   {{/if}}
   <li>{{#link-to "profile.designs" class="button dark"}}Designs{{/link-to}}</li>
   <li>{{#link-to "profile.orders" class="button dark"}}Orders{{/link-to}}</li>
-  <li>{{#link-to "profile.earnings" class="button dark"}}Earnings{{/link-to}}</li>
   <li>
     <a class="button dark" onclick={{action 'invalidateSession'}}>
       Log Out
