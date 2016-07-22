@@ -1,0 +1,11 @@
+{{#if withUploader}}
+  <div class="row banner-upload">
+    <div class="small-12 small-collapse columns text-left">
+      <div class="upload-button-wrapper">
+        <label id="uploadButton" for="bannerFileUpload" class="button hollow uppercase upload">upload</label>
+        {{file-upload elementId='bannerFileUpload' attribute='bannerUrl' user=user}}
+        <div class="banner-tip">PROFILE BANNER DIMENSIONS <br>SHOULD BE 1920x400</div>
+      </div>
+    </div>
+  </div>
+{{/if}}

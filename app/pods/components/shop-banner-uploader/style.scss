@@ -12,25 +12,39 @@
 
     .default-banner {
       background-color: #959595;
+      background-image: url('images/becom-a-cook-banner.png');
       height: auto;
       width: 100%;
       color: white;
       text-align: center;
-
-      h3 {
-        padding: 3.9em;
-        margin: 0;
-        white-space: pre-wrap;
-        display: inline-block;
-        width: 40%;
-      }
+      padding-top: 12rem;
     }
+
+    .user-banner {
+      padding-top: 25rem;
+      background-size: cover;
+      background-position: 0;
+      background-repeat: no-repeat;
+    }
+
   }
   .banner-upload {
-    bottom: 10%;
-    left: 3%;
-    position: absolute;
-    width: 100%;
+    // bottom: 10%;
+    // left: 3%;
+    // position: absolute;
+    // width: 100%;
+    padding-bottom: 1em;
+
+    .upload-button-wrapper{
+      float: left;
+      padding: 1em;
+      border-radius: 5px;
+      background-color: rgba(0,0,0,0.5);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
     .button {
       font-weight: 700;
@@ -39,12 +53,21 @@
       float: left;
       margin-right: 0.5em;
       margin-bottom: 0;
+      background-color: #fff;
+      border-radius: 5px;
+      border: 2px solid #000;
+
+      &:hover{
+        background-color: rgba(255, 255, 255, 0.8);
+      }
     }
 
     .banner-tip {
-      font-weight: 300;
+      font-weight: bold;
       font-size: small;
       margin: 0.3em;
+      float: right;
+      color: $white;
     }
   }
 

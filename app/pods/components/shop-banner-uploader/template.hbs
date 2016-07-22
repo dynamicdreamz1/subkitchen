@@ -1,20 +1,14 @@
 <section class="shop-banner-uploader">
   <div class="banner">
     {{#if user.bannerUrl}}
-      <img src="{{user.bannerUrl}}" alt="">
+      <div class="user-banner" style="background-image: url({{user.bannerUrl}})">
+        {{shop-banner-uploader/upload-button withUploader=withUploader user=user}}
+      </div>
     {{else if withDefaultBanner}}
       <div class="default-banner">
-        <h3>ARTIST PROFILE BANNER</h3>
+        <h3></h3>
+        {{shop-banner-uploader/upload-button withUploader=withUploader user=user}}
       </div>
     {{/if}}
   </div>
-  {{#if withUploader}}
-    <div class="row banner-upload">
-      <div class="small-12 small-collapse columns">
-          <label id="uploadButton" for="bannerFileUpload" class="button hollow uppercase upload">upload</label>
-          {{file-upload elementId='bannerFileUpload' attribute='bannerUrl' user=user}}
-        <div class="banner-tip">(Make sure to make your banner dimensions at 1372 x 315)</div>
-      </div>
-    </div>
-  {{/if}}
 </section>
