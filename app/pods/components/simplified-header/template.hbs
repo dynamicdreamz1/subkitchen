@@ -1,15 +1,20 @@
-<nav class="top-bar simplified-top-bar" id="nav-menu">
-  <h1>
-    {{#link-to 'index' class="logo"}}
-    <img src="assets/images/logo.png" alt="">
-    <span class="name"><strong>sub</strong>kitchen</span>
-    {{/link-to}}
+<nav class="top-bar simplified-top-bar">
+  <header>
+    <div class="logo-wrapper">
+      {{#link-to 'index' class="logo"}}
+        <img src="assets/images/logo.png" alt="">
+        <div class='name-wrapper'>
+          <span class="name"><strong>sub</strong>kitchen</span>
+          <div class="beta">beta</div>
+        </div>
+      {{/link-to}}
+    </div>
     <div class="menu-wrapper">
-    <ul class="vertical medium-horizontal menu">
+    <ul class="menu">
       <li> {{#link-to 'cooking' class="menu-item uppercase"}} create {{/link-to}} </li>
       <li> {{#link-to 'products' class="menu-item uppercase"}} shop {{/link-to}} </li>
       <li><a class="menu-item" href="#">artists</a></li>
     </ul>
     </div>
-  </h1>
+  </header>
 </nav>

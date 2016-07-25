@@ -6,10 +6,14 @@
 <!-- Small Navigation -->
 <div class="title-bar title-bar__small" data-responsive-toggle="nav-menu" data-hide-for="medium" data-animate="hinge-in-from-top spin-out">
   <button class="menu-icon" type="button" data-toggle></button>
-  {{#link-to 'index' class="logo"}}
-    <img src="assets/images/logo.png" alt="">
-    <span class="name"><strong>sub</strong>kitchen</span>
-  {{/link-to}}
+  <div class="logo-wrapper">
+    {{#link-to 'index' class="logo"}}
+      <img src="assets/images/logo.png" alt="">
+      <span class="name"><strong>sub</strong>kitchen</span>
+      <br>
+      <span class="beta">beta</span>
+    {{/link-to}}
+  </div>
 </div>
 
 <!-- Medium-Up Navigation -->
@@ -21,6 +25,7 @@
       {{#link-to 'index' class="logo"}}
         <img src="assets/images/logo.png" alt="">
         <span class="name"><strong>sub</strong>kitchen</span>
+        <span class="beta">beta</span>
       {{/link-to}}
     </li>
 

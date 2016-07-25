@@ -147,7 +147,7 @@
           .featured-title {
             font-size: small;
             font-weight: 700;
-            color: white;
+            color: $white;
             padding: 0.5em;
             text-align: left;
           }
@@ -232,9 +232,19 @@
     }
     span.name{
       font-size: 1.4rem;
+      float: right;
+      line-height: 2rem;
       strong{
         font-weight: 900;
       }
+    }
+
+    span.beta{
+      font-size: 0.8rem;
+      font-weight: 700;
+      float: right;
+      clear: both;
+      line-height: 0px;
     }
   }
 
@@ -387,19 +397,34 @@
       padding: 0.7rem;
     }
 
+    .logo-wrapper{
+      display: inline-block;
+    }
+
     .logo{
       position: relative;
+      display: inline-block;
       img{
         padding: 0;
         margin: 0;
         height: 2.5rem;
       }
+
       span.name{
         font-size: 1.4rem;
         vertical-align: middle;
+        line-height: 2rem;
+        float: right;
         strong{
           font-weight: 900;
         }
+      }
+
+      span.beta{
+        font-weight: 700;
+        float: right;
+        clear: both;
+        line-height: 0px;
       }
     }
   }
