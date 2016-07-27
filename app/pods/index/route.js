@@ -7,7 +7,8 @@ export default Ember.Route.extend({
   model(){
     return Ember.RSVP.hash({
       promo: this.get('ajax').request(config.host + config.apiEndpoint + '/config'),
-      trending: this.store.query('product', { page: 1, per_page: 4, featured: true })
+      trending: this.store.query('product', { page: 1, per_page: 4, featured: true }),
+      artists: this.store.query('user', { page: 1, per_page: 4, featured: true })
     });
   }
 });

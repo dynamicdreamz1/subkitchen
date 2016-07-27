@@ -1,7 +1,7 @@
 {{#shopping-cart}}
   {{app-header}}
   <section class="artists">
-    <div class="row small-12 column">
+    <div class="row small-12">
       <div class="small-12 columns sort">
         <div class="small-12 column">
           <label for="sort">
@@ -13,13 +13,11 @@
 
     <div class="row small-up-2 medium-up-4">
       {{#each model.featuredArtists as |artist|}}
-        {{artist-info class="column artist-info" artist=artist}}
+        {{artist-info class="small-12 medium-3 columns artist-info" artist=artist}}
       {{/each}}
     </div>
-    <div class="row">
-    </div>
 
-    <div class="row small-12 column">
+    <div class="row small-12">
       <div class="small-12 columns sort">
         <div class="small-12 column">
           <label for="sort">
@@ -35,7 +33,7 @@
 
     <div class="row small-up-2 medium-up-4">
       {{#each model.artists as |artist|}}
-        {{artist-info class="column artist-info" artist=artist}}
+        {{artist-info class="small-12 medium-3 columns artist-info" artist=artist}}
       {{/each}}
     </div>
     <div class="row">

@@ -2,17 +2,16 @@
   <div class="row title">
     <div class="small-12 columns uppercase">
       <strong>
-        discover new artists
+        featured artists
       </strong>
       //
-      <a class="link-to-all" href="">view all</a>
+      {{#link-to 'artists' class="link-to-all"}}view all{{/link-to}}
     </div>
   </div>
 
-  <div class="row">
-    {{artist-info name='jack' likes=100 }}
-    {{artist-info name='jil' likes=101 }}
-    {{artist-info name='john' likes=103 }}
-    {{artist-info name='dovahkiin' likes=102 }}
+  <div class="row small-up-2 medium-up-4">
+    {{#each artists as |artist|}}
+      {{artist-info class="small-12 medium-3 columns artist-info" artist=artist }}
+    {{/each}}
   </div>
 </section>
