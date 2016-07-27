@@ -1,7 +1,8 @@
 <section class="shop-banner-uploader">
   <div class="banner">
     {{#if user.bannerUrl}}
-      <div class="user-banner" style="background-image: url({{user.bannerUrl}})">
+      <img src="{{user.bannerUrl}}" alt="{{user.name}}">
+      <div class="user-banner">
         {{shop-banner-uploader/upload-button withUploader=withUploader user=user}}
       </div>
     {{else if withDefaultBanner}}

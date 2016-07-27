@@ -22,18 +22,13 @@
     }
 
     .user-banner {
-      padding-top: 25rem;
-      background-size: cover;
-      background-position: 0;
-      background-repeat: no-repeat;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
     }
 
   }
   .banner-upload {
-    // bottom: 10%;
-    // left: 3%;
-    // position: absolute;
-    // width: 100%;
     padding-bottom: 1em;
 
     .upload-button-wrapper{
@@ -115,7 +110,8 @@
       }
     }
     .banner-upload {
-      margin-bottom: 1em;
+      margin-bottom: 0;
+      padding-bottom: 0;
     }
   }
 }
@@ -130,7 +126,8 @@
     }
     .banner-upload {
       left: 0%;
-      margin-bottom: 1em;
+      margin-bottom: 0;
+      padding-bottom: 0;
     }
   }
 }
