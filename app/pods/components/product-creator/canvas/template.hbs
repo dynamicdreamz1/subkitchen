@@ -49,16 +49,20 @@
   <div class="small-1 columns controlls-wrapper" data-equalizer-watch>
     <div class="controlls {{if product.image 'visible' 'hidden'}}">
       <div class="rotate" onclick={{action 'showRotationWheel'}}>
+        <img src="assets/images/editor-controlls/rotate.svg" alt="rotate">
       </div>
       <div class="move" onclick={{action 'hideRotationWheel'}}>
+        <img src="assets/images/editor-controlls/move.svg" alt="move">
       </div>
       <div class="zoom">
         <div class="plus" onclick={{action 'scaleUp'}}>
+          <img src="assets/images/empty.png" alt="">
         </div>
         <div class="size">
           <div class="size-indicator"></div>
         </div>
         <div class="minus" onclick={{action 'scaleDown'}}>
+          <img src="assets/images/empty.png" alt="">
         </div>
       </div>
     </div>
