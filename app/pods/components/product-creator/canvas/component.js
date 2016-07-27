@@ -489,7 +489,7 @@ export default Ember.Component.extend( {
       duration: 10,
       step: function(now){
         indicator.css({
-          transform: 'rotate(' + now + 'deg)'
+          transform: 'translate(-50%, -50%) rotate(' + now + 'deg)'
         });
       }
     });
