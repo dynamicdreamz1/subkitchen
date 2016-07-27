@@ -1,19 +1,27 @@
 <section class="profile-image-uploader">
-  <div class="row">
-    <div class="small-12 medium-3 large-2 columns">
-      {{#if currentUser.content.imageUrl}}
-        <img src="{{currentUser.content.imageUrl}}" alt="">
-      {{else}}
-        <img src="assets/images/default.png" alt="">
-      {{/if}}
-    </div>
-    <div class="small-12 medium-9 large-10 columns">
-      <h5 class="font-black uppercase">{{currentUser.content.name}}</h5>
-      <p>{{currentUser.content.email}}</p>
-      <p>
-        <label id="uploadButton" for="avatarFileUpload" class="button hollow upload">upload</label>
-        {{file-upload elementId='avatarFileUpload' attribute='imageUrl' user=currentUser.content}}
-      </p>
+  {{#if (eq currentUser.content.status 'pending')}}
+    <h5 class="pending-notice">You are waiting for verification</h5>
+  {{/if}}
+  <h5 class="font-black">My Profile</h5>
+  <div class="row profile">
+    <div class="small-12 columns">
+      <div class="row">
+        <div class="small-12 medium-3 large-2 columns">
+          {{#if currentUser.content.imageUrl}}
+            <img src="{{currentUser.content.imageUrl}}" alt="">
+          {{else}}
+            <img src="assets/images/default.png" alt="">
+          {{/if}}
+        </div>
+        <div class="small-12 medium-9 large-10 columns">
+          <h5 class="font-black uppercase">{{currentUser.content.name}}</h5>
+          <p>{{currentUser.content.email}}</p>
+          <p>
+            <label id="uploadButton" for="avatarFileUpload" class="button hollow upload">upload</label>
+            {{file-upload elementId='avatarFileUpload' attribute='imageUrl' user=currentUser.content}}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
