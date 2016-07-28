@@ -1,89 +1,29 @@
-.become-a-cook{
-  background-color: $grey;
-  background: url(images/becom-a-cook.png) center no-repeat;
-  background-size: cover;
-  color: $white;
-  margin-top: 3rem;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+.become-a-cook {
+  margin-top: 2em;
+  border-top: 2px solid $grey;
+  border-bottom: 2px solid $grey;
+  text-align: center;
+  padding: 3em;
 
-  &.clickable{
-    cursor: pointer;
-    input:hover{
-      cursor: pointer;
-    }
-  }
+  .content {
+    width: 100%;
 
-  h4{
-    font-weight: 700;
-    font-size: 3rem;
-  }
-
-  h5{
-    font-weight: 700;
-  }
-
-  .number{
-    display: inline-block;
-    width: 2rem;
-    height: 2rem;
-    background-color: $white;
-    border: 0.3rem solid $white;
-    border-radius: 50%;
-    font-weight: 700;
-
-    &.one{
-      background: #e619da;
-      border-color: #e619da;
-    }
-
-    &.two{
-      background: #19b3e6;
-      border-color: #19b3e6;
-    }
-
-    &.three{
-      background: #dcde17;
-      border-color: #dcde17;
-    }
-  }
-
-  .steps{
-    margin-top: 2rem;
-    @include breakpoint(small only) {
-      margin-top: 0rem;
-      & > .columns{
-        margin-top: 2rem;
+    h2, h3 {
+      @include breakpoint(small only) {
+        font-size: small;
       }
-    }
-  }
-
-  .signup{
-    margin-top: 2rem;
-
-    .input-group-label{
-      background: transparent;
-      border: 0px solid;
-      font-weight: 300;
-      padding: 0 0.3rem;
-      color: $white;
+      text-transform: uppercase;
     }
 
-    .input-group-field{
-      &::placeholder{
-        text-align: center;
-        color: $grey;
+    .button {
+      @include breakpoint(small only) {
+        font-size: small;
       }
-    }
-
-    .signup-form{
-      float: none;
-      display: inline-block;
-      margin: 0 auto;
-    }
-
-    .input-group-button{
-      font-size: 1.4rem;
+      padding: 1.5em;
+      margin-top: 1.5em;
+      font-size: large;
+      font-weight: 600;
+      border-radius: 5px;
     }
   }
 }

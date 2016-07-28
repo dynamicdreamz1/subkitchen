@@ -1,76 +1,11 @@
-{{#if shouldSeeMe}}
-<section class="become-a-cook" onclick={{action 'wholeBannerClick'}}>
-  <div class="row">
-    <div class="small-12 columns center uppercase">
-      <h4>how to become a cook?</h4>
-    </div>
-  </div>
-
-  <div class="row steps">
-    <div class="small-12 medium-4 columns center">
-      <div class="row">
-        <div class="small-12 columns uppercase">
-          <span class="number one">1</span>
-          <h5>create an account</h5>
-        </div>
-      </div>
-      <div class="row">
-        <div class="small-12 coulumns">
-          Fill out all the needed information<br>
-          and verify your paypal account.<br>
-          It’ll only take you 10 minutes of your<br>
-          free time. Let’s get cooking!
-        </div>
-      </div>
-    </div>
-
-    <div class="small-12 medium-4 columns center">
-      <div class="row">
-        <div class="small-12 columns uppercase">
-          <span class="number two">2</span>
-          <h5>UPLOAD YOUR ARTWORK</h5>
-        </div>
-      </div>
-      <div class="row">
-        <div class="small-12 coulumns">
-          Upload your artwork and place it<br>
-          on whatever products you want<br>
-          using our mock up generator.
-        </div>
-      </div>
-    </div>
-
-    <div class="small-12 medium-4 columns center">
-      <div class="row">
-        <div class="small-12 columns uppercase">
-          <span class="number three">3</span>
-          <h5>EARN MONEY</h5>
-        </div>
-      </div>
-      <div class="row">
-        <div class="small-12 coulumns">
-          You’ll earn 20% revenue on each<br>
-          item sold of your design.<br>
-          Let us do the cooking for you.
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row signup center">
+{{#unless currentUser.content.artist}}
+  <div class="row become-a-cook">
     <div class="small-12 columns">
-      <div class="row">
-        <div class="small-12 medium-10 large-7 columns signup-form">
-          <div class="input-group">
-            <span class="input-group-label">
-              https://sublimation.kitchen/
-            </span>
-            {{input type="text" value=handle class="text input-group-field" placeholder="yournamehere"}}
-            <a class="submit input-group-button button blue" onclick={{action 'join'}}>JOIN!</a>
-          </div>
+        <div class="small-12 medium-6 small-centered columns content">
+          <h2><b>interested in selling your designs?</b></h2>
+          <h3>sign up for a free sellers account an we'll double your first $1,000 in earnings*</h3>
+          {{#link-to "become-cook" class="button blue uppercase"}}reserve your shop{{/link-to}}
         </div>
-      </div>
     </div>
   </div>
-</section>
-{{/if}}
+{{/unless}}

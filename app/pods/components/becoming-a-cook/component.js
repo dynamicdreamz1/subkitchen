@@ -10,6 +10,14 @@ export default Ember.Component.extend({
   user: new Ember.Object(),
   errors: {},
 
+  didRender(){
+    setTimeout(() => {
+      $('html, body').animate({
+        scrollTop: $('body').offset().top
+      }, 500);
+    }, 500);
+  },
+
   actions: {
     scrollUp() {
       setTimeout(() => {
