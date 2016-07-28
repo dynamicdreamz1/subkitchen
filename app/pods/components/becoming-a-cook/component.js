@@ -27,8 +27,8 @@ export default Ember.Component.extend({
     becomeCook() {
       let successCallback = (params, response) => {
         this.set('errors', {});
+        this.set('currentUser.content', response.user);
         if(this.get('session.isAuthenticated')) {
-          this.set('currentUser.content', response.user);
           this.get('routing').transitionTo('profile');
           let msg = '';
           if(params.uuid) {

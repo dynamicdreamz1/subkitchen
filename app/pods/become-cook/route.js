@@ -12,9 +12,8 @@ export default Ember.Route.extend({
     return params;
   },
 
-  afterModel(model) {
-    let unauthorized = !model.uuid && !this.get('session.isAuthenticated');
-    if (this.get('currentUser.content.artist') || unauthorized) {
+  afterModel() {
+    if (this.get('currentUser.content.artist')) {
       this.transitionTo('profile');
     }
   }
