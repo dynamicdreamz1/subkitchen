@@ -197,6 +197,7 @@ export default Ember.Component.extend( {
         $('.button.addToCart').removeClass('loading-white');
       };
 
+      this.set('isPublished', false);
       this.send('createProduct', callback, error);
     },
 
