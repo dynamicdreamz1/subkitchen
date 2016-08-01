@@ -26,9 +26,9 @@
             <button class="button blue uppercase" type="submit">reserve your shop</button>
           {{else}}
             <div class="row">
-              <div class="small-12 columns">
+              <div class="small-12 columns handle-wrapper">
                 <label class={{if errors.handle "is-invalid-label" ""}}>
-                  {{input type="text" placeholder="sublimation.kitchen/Your Shop URL" value=user.handle}}
+                  {{input type="text" placeholder="Your Shop URL" value=user.handle}}
                   {{input-errors errors=errors.handle}}
                 </label>
               </div>
