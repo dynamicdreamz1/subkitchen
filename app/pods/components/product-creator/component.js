@@ -8,6 +8,7 @@ export default Ember.Component.extend({
   quantity: 1,
   themes: [],
   child: null,
+  progress: null,
 
   observeSize: function () {
     this.set('productCreatorEventBus.size', this.get('size'));

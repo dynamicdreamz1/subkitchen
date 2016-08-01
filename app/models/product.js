@@ -6,13 +6,13 @@ export default DS.Model.extend({
   shipping:            DS.attr('string'),
   author_id:           DS.attr('number'),
   image_url:           DS.attr('string'),
+  uploaded_image:      DS.attr('string'),
   price:               DS.attr('number'),
   likes_count:         DS.attr('number'),
   comments_count:      DS.attr('number'),
   template_variant_id: DS.attr('number'),
   preview_url:         DS.attr('string'), // image from backend
   big_preview_url:     DS.attr('string'), // image from backend
-  image:               DS.attr(),         // we send it
   preview:             DS.attr(),         // we send it
   published:           DS.attr('boolean'),
   sizes:               DS.attr(),

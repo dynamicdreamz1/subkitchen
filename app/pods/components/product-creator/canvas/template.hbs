@@ -142,6 +142,18 @@
                 <button class="js-publish button dark uppercase font-bold {{if validThemes "" "disabled"}} {{if publishing "disabled" ""}}" type="submit" value="publish">publish</button>
               </div>
             </div>
+
+            {{#if progress}}
+              <div class="row">
+                <div class="small-12 columns">
+                  <div class="progress" role="progressbar" tabindex="0" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuetext="{{progress}} percent" aria-valuemax="100">
+                    <div class="progress-meter" style="width: {{progress}}%"></div>
+                  </div>
+                </div>
+              </div>
+            {{/if}}
+
+
           </form>
         </div>
       </div>

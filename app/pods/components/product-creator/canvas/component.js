@@ -1,4 +1,5 @@
 /* global fabric, $, Hammer */
+import EmberUploader from 'ember-uploader';
 import Ember from 'ember';
 import config from 'subkitchen-front/config/environment';
 
@@ -24,6 +25,7 @@ export default Ember.Component.extend( {
   publishNotice: '',
   publishing: false,
   imgSizeError: false,
+  progress: null,
 
   validThemes: function() {
     if(!this.get('selectedThemes').length) {
@@ -97,15 +99,13 @@ export default Ember.Component.extend( {
 
         let publishedValue = this.get('isPublished');
 
-        let formData = new FormData(this.$('#formImageUpload')[0]);
+        let formData = new FormData();
 
         formData.append('name', this.get('product.name'));
         formData.append('description', 'Custom Design');
         formData.append('preview', this.get('product.preview'));
         formData.append('product_template_id', this.get('selectedTemplate.id'));
         formData.append('published', publishedValue);
-
-        formData.append('image', this.get('product.image'));
 
         tags.forEach(function(tag){
           formData.append('tags[]', tag);
@@ -124,24 +124,51 @@ export default Ember.Component.extend( {
         };
 
         optionalAuthorization((headers)=>{
-          Ember.$.ajax({
-            headers: headers,
-            method: "POST",
-            url: config.host + config.apiEndpoint + '/products',
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType : 'json'
-          }).then((response) => {
-            callback(response);
-          }, (error) => {
+
+          const uploader = EmberUploader.S3Uploader.create({
+            signingUrl: config.host + config.apiEndpoint + '/s3_direct'
+          });
+
+          uploader.on('didUpload', response => {
+            let uploadedUrl = $(response).find('Location')[0].textContent;
+            uploadedUrl = decodeURIComponent(uploadedUrl);
+
+            formData.append('uploaded_image', uploadedUrl);
+
+            Ember.$.ajax({
+              headers: headers,
+              method: "POST",
+              url: config.host + config.apiEndpoint + '/products',
+              data: formData,
+              cache: false,
+              contentType: false,
+              processData: false,
+              dataType : 'json'
+            }).then((response) => {
+              callback(response);
+            }, (error) => {
+              this.$('.js-publish').removeClass('loading-white');
+              this.set('errors', error.responseJSON.errors);
+              if (typeof errorCallback === 'function'){
+                errorCallback(error);
+              }
+            });
+
+
+          });
+
+          uploader.on('didError', (jqXHR, textStatus, error) => {
             this.$('.js-publish').removeClass('loading-white');
-            this.set('errors', error.responseJSON.errors);
             if (typeof errorCallback === 'function'){
               errorCallback(error);
             }
           });
+
+          uploader.on('progress', e => {
+            this.set('progress', e.percent);
+          });
+
+          uploader.upload(this.$('#imageFileUpload')[0].files[0], {});
         });
 
       } else {
@@ -158,6 +185,7 @@ export default Ember.Component.extend( {
     publish(){
       this.set('publishing', true);
       let callback = (response) => {
+        this.set('progress', null);
         let flashMessages = this.get('flashMessages');
         if(this.get('product.published')) {
           this.get("routing").transitionTo("published-product", [response.product.id]);
@@ -169,7 +197,8 @@ export default Ember.Component.extend( {
         this.set('publishing', false);
       };
 
-      let error = function(){
+      let error = () => {
+        this.set('progress', null);
         this.set('publishing', false);
       };
 
@@ -184,6 +213,7 @@ export default Ember.Component.extend( {
       }
 
       let callback = (response) => {
+        this.set('progress', null);
         this.get('cart').add(
           response.product.id,
           this.get('productCreatorEventBus.size'),
@@ -193,7 +223,8 @@ export default Ember.Component.extend( {
         $('.button.addToCart').removeClass('loading-white');
       };
 
-      let error = function(){
+      let error = () => {
+        this.set('progress', null);
         $('.button.addToCart').removeClass('loading-white');
       };
 

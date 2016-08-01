@@ -23,7 +23,7 @@
 <section class="product-editor">
   <div class="row">
     <div class="small-12 medium-7 columns">
-      {{product-creator/canvas selectedTemplate=selectedTemplate themes=themes product=product}}
+      {{product-creator/canvas selectedTemplate=selectedTemplate themes=themes product=product progress=progress}}
     </div>
     <div class="small-12 medium-5 columns">
       <div class="row collapse">
@@ -64,6 +64,16 @@
           <a onclick={{action "addToCart"}} class="blue button addToCart uppercase">ADD TO CART</a>
         </div>
       </div>
+
+      {{#if progress}}
+        <div class="row">
+          <div class="small-12 columns">
+            <div class="progress" role="progressbar" tabindex="0" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuetext="{{progress}} percent" aria-valuemax="100">
+              <div class="progress-meter" style="width: {{progress}}%"></div>
+            </div>
+          </div>
+        </div>
+      {{/if}}
 
       <div class="row">
         <div class="small-12 columns">
