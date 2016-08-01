@@ -104,7 +104,7 @@ export default Ember.Component.extend( {
         formData.append('name', this.get('product.name'));
         formData.append('description', 'Custom Design');
         formData.append('preview', this.get('product.preview'));
-        formData.append('uploaded_image', this.get('product.uploaded_image'));
+        formData.append('uploaded_image', this.get('product.image_url'));
         formData.append('product_template_id', this.get('selectedTemplate.id'));
         formData.append('published', publishedValue);
 
