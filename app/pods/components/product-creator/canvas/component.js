@@ -104,6 +104,7 @@ export default Ember.Component.extend( {
         formData.append('name', this.get('product.name'));
         formData.append('description', 'Custom Design');
         formData.append('preview', this.get('product.preview'));
+        formData.append('uploaded_image', this.get('product.uploaded_image'));
         formData.append('product_template_id', this.get('selectedTemplate.id'));
         formData.append('published', publishedValue);
 
@@ -125,50 +126,74 @@ export default Ember.Component.extend( {
 
         optionalAuthorization((headers)=>{
 
-          const uploader = EmberUploader.S3Uploader.create({
-            signingUrl: config.host + config.apiEndpoint + '/s3_direct'
-          });
+          if (this.$('#imageFileUpload')[0].files[0]) {
 
-          uploader.on('didUpload', response => {
-            let uploadedUrl = $(response).find('Location')[0].textContent;
-            uploadedUrl = decodeURIComponent(uploadedUrl);
+            const uploader = EmberUploader.S3Uploader.create({
+              signingUrl: config.host + config.apiEndpoint + '/s3_direct'
+            });
 
-            formData.append('uploaded_image', uploadedUrl);
+            uploader.on('didUpload', response => {
+              let uploadedUrl = $(response).find('Location')[0].textContent;
+              uploadedUrl = decodeURIComponent(uploadedUrl);
 
-            Ember.$.ajax({
-              headers: headers,
-              method: "POST",
-              url: config.host + config.apiEndpoint + '/products',
-              data: formData,
-              cache: false,
-              contentType: false,
-              processData: false,
-              dataType : 'json'
-            }).then((response) => {
-              callback(response);
-            }, (error) => {
+              formData.append('uploaded_image', uploadedUrl);
+
+              Ember.$.ajax({
+                headers: headers,
+                method: "POST",
+                url: config.host + config.apiEndpoint + '/products',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType : 'json'
+              }).then((response) => {
+                callback(response);
+              }, (error) => {
+                this.$('.js-publish').removeClass('loading-white');
+                this.set('errors', error.responseJSON.errors);
+                if (typeof errorCallback === 'function'){
+                  errorCallback(error);
+                }
+              });
+
+
+            });
+
+            uploader.on('didError', (jqXHR, textStatus, error) => {
               this.$('.js-publish').removeClass('loading-white');
-              this.set('errors', error.responseJSON.errors);
               if (typeof errorCallback === 'function'){
                 errorCallback(error);
               }
             });
 
+            uploader.on('progress', e => {
+              this.set('progress', e.percent);
+            });
 
-          });
+            uploader.upload(this.$('#imageFileUpload')[0].files[0], {});
 
-          uploader.on('didError', (jqXHR, textStatus, error) => {
-            this.$('.js-publish').removeClass('loading-white');
-            if (typeof errorCallback === 'function'){
-              errorCallback(error);
-            }
-          });
+          } else {
 
-          uploader.on('progress', e => {
-            this.set('progress', e.percent);
-          });
-
-          uploader.upload(this.$('#imageFileUpload')[0].files[0], {});
+              Ember.$.ajax({
+                headers: headers,
+                method: "POST",
+                url: config.host + config.apiEndpoint + '/products',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType : 'json'
+              }).then((response) => {
+                callback(response);
+              }, (error) => {
+                this.$('.js-publish').removeClass('loading-white');
+                this.set('errors', error.responseJSON.errors);
+                if (typeof errorCallback === 'function'){
+                  errorCallback(error);
+                }
+              });
+          }
         });
 
       } else {
