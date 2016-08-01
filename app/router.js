@@ -40,6 +40,7 @@ Router.map(function() {
   this.route('check-out');
   this.route('public-profile', { path: '/:handle' });
   this.route('artists');
+  this.route('beta');
 });
 
 export default Router;
