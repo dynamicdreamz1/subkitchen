@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    LOG_STRIPE_SERVICE: true,
+    LOG_STRIPE_SERVICE: false,
     host: 'https://subkitchen-api.herokuapp.com',
     apiEndpoint: '/api/v1',
     modulePrefix: 'subkitchen-front',
