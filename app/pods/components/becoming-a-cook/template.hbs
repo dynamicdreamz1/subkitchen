@@ -7,7 +7,8 @@
     </div>
     <div class="row">
       <div class="small-12 columns">
-        <div class="small-6 column">
+      <div class="row">
+        <div class="small-12 medium-6 column">
           <h3>Let's Cook!</h3>
           <ul>
             <li>100 % FREE e-commerce shop</li>
@@ -18,7 +19,7 @@
             <li>Plus we'll double your first $1,000 in earnings (beta participants only*)</li>
           </ul>
         </div>
-        <div class="small-6 column">
+        <div class="small-12 medium-6 column">
           {{input-errors errors=errors.base}}
           <form novalidate {{action "becomeCook" on="submit"}}>
           {{#if session.isAuthenticated}}
@@ -57,6 +58,7 @@
           {{/if}}
           </form>
         </div>
+      </div>
       </div>
     </div>
   </div>

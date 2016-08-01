@@ -40,7 +40,13 @@ $table-head-background: white;
       font-weight: 600;
       border-radius: 5px;
       float: left;
-      margin: 0 1em 1em 5em;
+
+      @include breakpoint(medium up) {
+        margin: 0 1em 1em 5em;
+      }
+      @include breakpoint(small only) {
+        width: 100%;
+      }
     }
 
     .join {
@@ -68,8 +74,11 @@ $table-head-background: white;
     width: 100%;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
                 url(images/artist-form.png) center no-repeat;
-    background-size: 100%;
-    padding: 3em 9em 3em 9em;
+    background-size: cover;
+
+    @include breakpoint(medium up) {
+      padding: 3em 9em 3em 9em;
+    }
   }
 
   input {
