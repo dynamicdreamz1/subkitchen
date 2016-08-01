@@ -10,6 +10,9 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+    rollbar: {
+      accessToken: '4cb8da362bad4db68daf4beca144bd29'
+    },
     intl: {
       baseLocale: 'en-us',
       locales: ['en-us']
