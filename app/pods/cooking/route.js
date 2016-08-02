@@ -24,8 +24,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       product = new Ember.RSVP.Promise((resolve, reject) => {
         this.set('product', this.store.findRecord('product', params.product_id)).then(() => {
           if (this.get('currentUser.content.id') == this.get('product.author_id')) { // jshint ignore:line
+            let timestamp = new Date().getTime();
             let oReq = new XMLHttpRequest();
-            oReq.open("GET", this.get('product.image_url'), true);
+            oReq.open("GET", this.get('product.image_url')+'?'+timestamp, true);
             oReq.responseType = "blob";
             oReq.onload = ()=>{
               let blob = oReq.response;
