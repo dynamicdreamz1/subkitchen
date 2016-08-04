@@ -51,7 +51,7 @@
           </ul>
         </li>
         <li>
-          {{#link-to 'artists' class="menu-item"}} artists {{/link-to}}
+          {{#link-to 'artists' (query-params sorted_by='created_at_desc') class="menu-item"}} artists {{/link-to}}
           <ul class="menu featured submenu">
             <div class="featured-title">FEATURED</div>
             {{#each featuredArtists.data as |artist| }}
@@ -66,7 +66,7 @@
                 {{/link-to}}
               </li>
             {{/each}}
-            {{#link-to 'artists' (query-params sorted_by="") class="button light uppercase"}}view all{{/link-to}}
+            {{#link-to 'artists' (query-params sorted_by='created_at_desc') class="button light uppercase"}}view all{{/link-to}}
           </ul>
         </li>
       </ul>

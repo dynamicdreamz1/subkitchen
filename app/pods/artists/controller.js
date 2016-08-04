@@ -6,7 +6,6 @@ export default Ember.Controller.extend({
 
   page: 1,
   per_page: 60,
-  sorted_by: 'created_at_desc',
 
   actions: {
     pageClicked(page) {
