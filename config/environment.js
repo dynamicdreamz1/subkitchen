@@ -47,7 +47,7 @@ module.exports = function(environment) {
   };
 
   ENV.stripe = {
-    publishableKey: 'pk_test_h5Aqwd3kEZvC3496unFZclWC'
+    publishableKey: 'pk_live_i6VlmcO16kg4wFMfcy264C6Q'
   };
 
   ENV['ember-simple-auth'] = {
@@ -73,6 +73,10 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+
+    ENV.host = 'http://localhost:3000';
+    ENV.FB.appId = '563205840504659';
+    ENV.stripe.publishableKey = 'pk_test_h5Aqwd3kEZvC3496unFZclWC';
   }
 
   if (environment === 'production') {
