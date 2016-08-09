@@ -47,7 +47,7 @@ module.exports = function(environment) {
   };
 
   ENV.stripe = {
-    publishableKey: 'pk_live_i6VlmcO16kg4wFMfcy264C6Q'
+    publishableKey: 'pk_test_TO0J8uC45YC0RU8NSYdb3NSU'
   };
 
   ENV['ember-simple-auth'] = {
