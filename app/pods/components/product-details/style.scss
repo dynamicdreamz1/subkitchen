@@ -302,6 +302,13 @@
   }
 }
 
+.reveal-modal.open {
+  position:fixed;
+  top:50%!important; /* override inline style injected from JS */
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+
 @media screen and (max-width: 39.9375em) {
   .product {
     .comments {
