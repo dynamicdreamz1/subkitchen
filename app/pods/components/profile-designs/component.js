@@ -36,8 +36,15 @@ export default Ember.Component.extend({
       $('#productDeleteModal' + product.id).foundation('close');
     },
 
-    showPublishingPopup(id){
+    showPublishingPopup(id, index){
       $('#editModal' + id).foundation('open');
+      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        var top_px = ((index + 4) * (-100));
+        $('#editModal' + id).css('top', '');
+        $('#editModal' + id).css('vertical-align', 'top!important');
+        $('#editModal' + id).css('max-height', '350px');
+        setModalMaxHeight(this);
+      }
       this.set('product', this.get('store').findRecord('product', id)).then(() => {
         let themes = this.get('product.tags').filter((tag) => {
           return this.get('themes.themes').includes(tag);

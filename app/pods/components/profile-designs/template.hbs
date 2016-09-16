@@ -1,7 +1,7 @@
 <div class="row profile-designs">
   <div class="small-12 columns">
     <h5 class="font-black">My Designs</h5>
-    {{#each products as |product|}}
+    {{#each products as |product index|}}
       <div class="row design collapse">
         <div class="small-3 columns">
           {{#link-to 'product' product.id}}
@@ -20,7 +20,7 @@
         <div class="small-3 columns published">
           <div class="row small-up-1 large-up-2">
             <div class="small-3 columns">
-              <a class="button light uppercase js-publish-button" onclick={{action 'showPublishingPopup' product.id}}>Edit</a>
+              <a class="button light uppercase js-publish-button" onclick={{action 'showPublishingPopup' product.id index}}>Edit</a>
             </div>
             <div class="small-3 columns">
               <a class="button light uppercase js-publish-button" onclick={{action 'showProductDeletingPopup' product.id}}>Delete</a>
