@@ -36,13 +36,19 @@ export default Ember.Component.extend({
       $('#productDeleteModal' + product.id).foundation('close');
     },
 
-    showPublishingPopup(id, index){
+    showPublishingPopup(id){
       $('#editModal' + id).foundation('open');
       if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        $('#editModal' + id).css('top', '');
-        $('#editModal' + id).css('vertical-align', 'top!important');
-        $('#editModal' + id).css('max-height', '350px');
-        setModalMaxHeight(this);
+        $('#editModal' + id).css('max-height', '400px');
+        $('#editModal' + id).css('position', 'fixed');
+        $('#editModal' + id).css('top', '-10%');
+        $('#editModal' + id).css('right', '0');
+        $('#editModal' + id).css('left', '0');
+        $('#editModal' + id).css('z-index', '10001');
+        $('#editModal' + id).css('width', '95%');
+        $('#editModal' + id).css('overflow', 'scroll');
+        $('#editModal' + id).css('filter', 'alpha(opacity=0)');
+        $('#editModal' + id).css('webkit-transition', 'all ease-in-out 0.2s');
       }
       this.set('product', this.get('store').findRecord('product', id)).then(() => {
         let themes = this.get('product.tags').filter((tag) => {
