@@ -60,6 +60,9 @@ export default Ember.Component.extend({
         .add(this.get('product.id'), this.get('size'), this.get('product.variants.0.id'), this.get('quantity'));
       let button = this.$('.addToCart');
       button.text('added');
+      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        this.get('cart').open();
+      }
       setTimeout(function(){
         button.text('add to cart');
       }, 3000);
