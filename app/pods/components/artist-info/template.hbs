@@ -1,3 +1,16 @@
+<div class="row column artist-details collapse">
+  <div class="small-12 columns">
+    <div class="row collapse">
+      <div class="small-10 column text-right nowrap font-light likes">
+        {{artist.likes_count}}
+        <span class="icon-sub-liked">
+          <span class="path1"></span><span class="path2"></span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="small-12 columns center image">
     <div class="row">
@@ -9,24 +22,21 @@
             <img src="assets/images/default.png" alt="">
           {{/if}}
         {{/link-to}}
-        <div class="uppercase products-count">{{artist.products_count}} designs</div>
       </div>
     </div>
   </div>
 </div>
+
 <div class="row column artist-details collapse">
   <div class="small-12 columns">
+    <div class="row collapse font-bold text-center">
+      <div class="product-name">{{artist.name}}</div>
+    </div>
     <div class="row collapse">
-      <div class="small-6 columns uppercase text-left font-bold ellipsis">
+      <div class="small-12 columns text-center ellipsis">
         {{#link-to 'public-profile' [artist.handle]}}
-          <div class="product-name">{{artist.name}}</div>
+          <div class="product-name">{{artist.products_count}} designs</div>
         {{/link-to}}
-      </div>
-      <div class="small-6 column text-right nowrap font-light likes">
-        {{artist.likes_count}}
-        <span class="icon-sub-liked">
-          <span class="path1"></span><span class="path2"></span>
-        </span>
       </div>
     </div>
   </div>
