@@ -7,6 +7,7 @@ export default DS.Model.extend({
   followers_count: DS.attr('number'),
   imageUrl:       DS.attr('string'),
   artist:          DS.attr('boolean'),
+  handle:          DS.attr('string'),
 
   product:         DS.belongsTo('product')
 });
