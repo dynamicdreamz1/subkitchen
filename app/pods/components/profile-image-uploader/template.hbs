@@ -2,7 +2,10 @@
   {{#if (eq currentUser.content.status 'pending')}}
     <h5 class="pending-notice">You are waiting for verification</h5>
   {{/if}}
-  <h5 class="font-black">My Profile</h5>
+  <div>
+    <h5 class="font-black" style="display:inline; float:left;">My Profile</h5>
+    <a href="{{ currentUser.content.handle }}" target="_blank" class="button hollow font-black" style="display:inline; float:right;">View Your Brand</a>
+  </div>
   <div class="row profile">
     <div class="small-12 columns">
       <div class="row">
