@@ -27,7 +27,7 @@
     <li>
       <ul class="dropdown menu shop-menu" data-responsive-menu="medium-dropdown">
         <li>
-          {{#link-to 'products' (query-params product_type="" search_query="") class="menu-item"}} shop {{/link-to}}
+          <a href='/products?product_type=%5B"Sweatshirt"%5D&search_query=' class="menu-item">shop</a>
           <ul class="menu submenu">
             {{#each templates.data as |template| }}
               <li>
