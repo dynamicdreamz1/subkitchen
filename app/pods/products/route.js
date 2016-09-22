@@ -11,7 +11,8 @@ export default Ember.Route.extend(RouteMixin, {
     price_range: { refreshModel: true },
     sorted_by: { refreshModel: true },
     per_page: { refreshModel: true },
-    author_id: { refreshModel: true }
+    author_id: { refreshModel: true },
+    featured: { refreshModel: true }
   },
 
   model(params) {

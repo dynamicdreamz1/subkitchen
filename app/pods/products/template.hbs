@@ -2,7 +2,7 @@
   {{app-header}}
   <div class="row">
     <div class="small-12 columns sort">
-      <div class="small-6 medium-6 column">
+      <div class="small-4 medium-4 column">
         <label for="sort">SORT BY:</label>
         {{#x-select value=sorted_by id="sort" action="updateSortBy"}}
           {{#x-option value='created_at_desc'}}Latest{{/x-option}}
@@ -13,6 +13,21 @@
           {{#x-option value='price_asc'}}Price: Low to High{{/x-option}}
           {{#x-option value='best_sellers'}}Best Sellers{{/x-option}}
         {{/x-select}}
+      </div>
+      <div class="small-2 medium-2 column">
+        <label>FEATURED:</label>
+        {{#if featured}}
+          <div id="toggle_div" class="toggle-button toggle-button-selected">
+            <button id="toggle_btn"></button>
+          </div>
+        {{else}}
+          <div id="toggle_div" class="toggle-button">
+            <button id="toggle_btn"></button>
+          </div>
+        {{/if}}
+        <label class="switch">
+          <input id='toggle_checkbox' style="visibility: hidden;" type="checkbox" checked={{featured}} class="filter" onclick={{action 'featuredProduct' value="target.checked"}}>
+        </label>
       </div>
       <div class="small-6 medium-6 column">
         <div class="row">

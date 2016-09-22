@@ -2,7 +2,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  queryParams: ['page', 'per_page', 'product_type', 'tags', 'price_range', 'sorted_by', 'search_query'],
+  queryParams: ['page', 'per_page', 'product_type', 'tags', 'price_range', 'sorted_by', 'search_query', 'featured'],
 
   page: 1,
   per_page: 60,
@@ -11,6 +11,7 @@ export default Ember.Controller.extend({
   tags: [],
   price_range: [],
   sorted_by: 'created_at_desc',
+  featured: false,
 
   productTypes: function(){
     return this.get('model.templates').mapBy('product_type');
@@ -24,6 +25,10 @@ export default Ember.Controller.extend({
           scrollTop: $("#products").offset().top
         }, 500);
       }, 1000);
+    },
+
+    featuredProduct(featured_value){
+      this.set('featured', featured_value);
     },
 
     updateSortBy(sortBy){
@@ -53,4 +58,8 @@ export default Ember.Controller.extend({
       // this.set('product_type', []);
     }
   }
+});
+
+$(document).on('click', '.toggle-button', function() {
+  $('#toggle_checkbox').click();
 });
