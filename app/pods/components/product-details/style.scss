@@ -327,6 +327,6 @@ body.is-reveal-open { overflow: scroll !important }
   }
 }
 
-/*@media only screen and ( max-width: 1199px ) {
-  .reveal.large { display: block !important; }
-}*/
+@media only screen and (max-width: 320px) {
+  .product .sizes ul li label { width: 2.5rem; height: 2.5rem; font-size: 11px; }
+}
