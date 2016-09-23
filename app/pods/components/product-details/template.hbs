@@ -1,9 +1,9 @@
 <section class="product">
   <div class="row">
     <div class="small-12 medium-7 columns">
-      <div class="easyzoom easyzoom--overlay">
-        <a href="{{product.big_preview_url}}">
-          <img class="main" src="{{product.preview_url}}" alt="">
+      <div >
+        <a href="{{product.big_preview_url}}" {{action "openSizingInfo" 'product_image'}}>
+          <img class="main" src="{{product.preview_url}}" {{action "openSizingInfo" 'product_image'}} alt="">
         </a>
       </div>
     </div>
@@ -54,7 +54,7 @@
       </div>
       <div class="row">
         <div class="small-12 columns sizes">
-          SIZE:<span class="sizing-info" onclick={{action "openSizingInfo"}}>SIZING INFO</span>
+          SIZE:<span class="sizing-info" onclick={{action "openSizingInfo" 'size_chart'}}>SIZING INFO</span>
           <form>
             <ul class="center">
               {{#each product.sizes as |s|}}
@@ -71,6 +71,15 @@
         </button>
         <div class="row">
           <img src="{{product.size_chart}}" alt="">
+        </div>
+      </div>
+
+      <div class="reveal large" id="imageModal" data-reveal data-close-on-click="true">
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="row">
+          <img src="{{product.big_preview_url}}" alt="">
         </div>
       </div>
 
@@ -237,4 +246,3 @@
     </div>
   </div>
 </section>
-

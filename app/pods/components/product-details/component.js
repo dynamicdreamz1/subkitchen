@@ -21,8 +21,12 @@ export default Ember.Component.extend({
   },
 
   actions: {
-    openSizingInfo(){
-      $('#sizingInfoModal').foundation('open');
+    openSizingInfo(content){
+      if(content == "size_chart"){
+        $('#sizingInfoModal').foundation('open');
+      }else{
+        $('#imageModal').foundation('open');
+      }
     },
 
     addComment(){
@@ -96,5 +100,4 @@ export default Ember.Component.extend({
       });
     }
   }
-
 });
