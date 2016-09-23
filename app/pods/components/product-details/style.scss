@@ -306,7 +306,9 @@
 .product { position: relative; }
 
 .product .sizes ul li label { width: 3rem; height: 3rem; padding: 0.5rem;  } 
-.product .sizes ul li #ember1034 label { padding-left: 4px;  } 
+.product .sizes ul li:last-child label { padding-left: 4px;  } 
+
+body.is-reveal-open { overflow: scroll !important } 
 
 @media screen and (max-width: 39.9375em) {
   .product {
@@ -324,3 +326,7 @@
     }
   }
 }
+
+/*@media only screen and ( max-width: 1199px ) {
+  .reveal.large { display: block !important; }
+}*/
