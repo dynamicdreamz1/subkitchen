@@ -302,10 +302,11 @@
   }
 }
 
+.reveal { min-height: 350px !important; overflow-y: scroll !important; height: 540px; margin-top: 30px !important;}
+.product { position: relative; }
 
-.reveal { min-height: 540px !important; } 
-
-
+.product .sizes ul li label { width: 3rem; height: 3rem; padding: 0.5rem;  } 
+.product .sizes ul li #ember1034 label { padding-left: 4px;  } 
 
 @media screen and (max-width: 39.9375em) {
   .product {
