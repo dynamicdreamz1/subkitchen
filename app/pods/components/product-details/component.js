@@ -17,12 +17,12 @@ export default Ember.Component.extend({
   },
 
   willDestroyElement(){
-    this.$('.easyzoom').data('easyZoom').teardown();
+    // this.$('.easyzoom').data('easyZoom').teardown();
   },
 
   actions: {
     openSizingInfo(content){
-      if(content == "size_chart"){
+      if(content === "size_chart"){
         $('#sizingInfoModal').foundation('open');
       }else{
         $('#imageModal').foundation('open');
