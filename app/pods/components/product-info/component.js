@@ -9,6 +9,9 @@ export default Ember.Component.extend({
 
     addToCart(){
       this.get('cart').add(this.get('product.id'), this.get('size'), this.get('product.variants.0.id'), 1);
+      // AddToCart
+      // Track when items are added to a shopping cart (ex. click/landing page on Add to Cart button)
+      fbq('track', 'AddToCart');
       let button = this.$('.addToCart');
       button.text('added');
       setTimeout(function(){

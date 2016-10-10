@@ -126,6 +126,7 @@ export default Ember.Component.extend({
         errors.card[response.error.param] = [response.error.message];
         this.set('errors', errors);
       }
+      fbq('track', 'Purchase', {value: this.get('cart.order.data.total_cost'), currency: 'USD'});
     });
   },
 
@@ -141,14 +142,23 @@ export default Ember.Component.extend({
       url: paymentEndpoint,
       type: 'POST',
       data: params,
-      dataType: 'json'
+      dataType: 'json',
+      success: function(response) {
+        fbq('track', 'Purchase', {value: this.get('cart.order.data.total_cost'), currency: 'USD'});
+        // this.addObject(response);
+        // alert(response.responseJSON.order);
+        alert(response.responseJSON);
+        // alert(response);
+        // alert(response.data);
+      }
     })
     .then((result)=>{
       this.get('cart').reload();
       if (result.url){
         window.top.location.href = result.url;
       } else {
-        this.get("routing").transitionTo("profile");
+        // window.location.href = "/profile/orders/1371";
+        this.get("routing").transitionTo("profile.orders");
       }
     }, (error)=>{
       this.hideSpinner();

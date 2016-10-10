@@ -19,6 +19,9 @@ export default Ember.Component.extend({
 
   actions: {
     checkout(){
+      // InitiateCheckout
+      // Track when people enter the checkout flow (ex. click/landing page on checkout button)
+      fbq('track', 'InitiateCheckout');
       this.get('routes').transitionTo('check-out');
     },
 

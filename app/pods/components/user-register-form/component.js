@@ -27,6 +27,9 @@ export default Ember.Component.extend({
             password: params.password
           })
           .then(()=>{
+            // CompleteRegistration
+            // Track when a registration form is completed (ex. complete subscription, sign up for a service)
+            fbq('track', 'CompleteRegistration');
             this.get('flashMessages').success("You've successfully created your account");
             this.get("routing").transitionTo("index");
           })

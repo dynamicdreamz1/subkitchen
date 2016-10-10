@@ -26,6 +26,9 @@ export default Ember.Component.extend({
     }
 
     let queryStringObserverTimeout = setTimeout(()=>{
+      // Search
+      // Track searches on your website (ex. product searches)
+      fbq('track', 'Search');
       this.get('routing').transitionTo('products', [], { search_query: this.get('queryString') });
     }, 800);
 
