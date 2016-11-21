@@ -1,28 +1,141 @@
+{{#if session.isAuthenticated}}
+<div class="top-sec clearfix">
+<div class="small-12 medium-6 columns"><div class="top-link"><a href="#"><i class="fa fa-pie-chart" aria-hidden="true"></i>
+ Go To Dashboard</a></div></div>
+<div class="small-12 medium-6 columns">
+  <div class="top-right-link hide-in-mobile" id="nav-menudd">
+
+    <ul class="dropdowndd menudd user-menu" data-dropdown-menu>
+      <li>
+        {{#link-to 'profile' class="join uppercase"}}
+          <span class="uppercase">my&nbsp;kitchen</span>
+        {{/link-to}}
+        <ul class="menudd">
+          {{#if currentUser.content.artist}}
+          <li>
+            <a href="{{ currentUser.content.handle }}" class="uppercase">storefronts</a>
+          </li>
+          {{/if}}
+          <li>
+            {{#link-to 'profile' class="uppercase"}}account{{/link-to}}
+          </li>
+          <li>
+            <a class="uppercase" onclick={{action 'invalidateSession'}}>
+              logout
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+</div>
+</div>
+</div>
+{{else}}
 <!-- top bar -->
+<div class="top-sec clearfix">
+<div class="small-12 medium-6 columns"><div class="top-link"><a href="#">Wholsale & dropshipping</a></div></div>
+<div class="small-12 medium-6 columns">
+  <div class="top-right-link">
+  <a href="#">Sell on Subkitchen</a>
+  <a class="join" onclick={{action 'showLogin'}}><i class="fa fa-user" aria-hidden="true"></i> <span>join/login</span></a>
+</div>
+</div>
+</div>
+{{/if}}
+
+
+
 <div class="top-bar top-info" style="display: none;">
   <span>yes, we ship internationally!</span>
 </div>
 
-<!-- Small Navigation -->
-<div class="title-bar title-bar__small" data-responsive-toggle="nav-menu" data-hide-for="medium" data-animate="hinge-in-from-top spin-out">
-  <button class="menu-icon" type="button" data-toggle></button>
+<div class="header-middle clearfix">
+<div class="small-12 medium-3 columns">
   <div class="logo-wrapper">
     {{#link-to 'index' class="logo"}}
       <img src="assets/images/logo_beta.svg" alt="">
     {{/link-to}}
   </div>
+  <!-- Small Navigation -->
+  <div class="title-bar title-bar__small" data-responsive-toggle="nav-menu" data-hide-for="medium" data-animate="hinge-in-from-top spin-out">
+    <button class="menu-icon" type="button" data-toggle></button>
+  </div>
+
+</div>
+<div class="small-12 medium-7 columns">
+  <div class="search-form hide-in-mobile">
+    {{input type="text" class="search" placeholder="SEARCH" value=queryString}}
+    <span>search</span>
+  </div>
+</div>
+<div class="small-12 medium-2 columns">
+
+  <div class="menu-item-my-kitchen__wrapper hide-in-mobile" data-toggle="cart-dropdown" id="cart-dropdown-trigger">
+    <a class="action-item basket-indicator" onclick={{action 'showCart'}}> <span class="icon-sub-basket"></span>
+      <span class="basket-counter">{{cartCount}}</span>
+    </a>
+
+    <div class="dropdown-pane bottom" id="cart-dropdown" data-dropdown data-hover="true" data-auto-focus="true" data-close-on-click="true">
+      <h5 class="uppercase font-bold text-center">your cart</h5>
+
+      {{#if hasData}}
+      <ul class="vertical menu">
+        {{#each cart.order.data.items as |item|}}
+        <li>
+          <div class="row collapse" >
+            <div class="small-8 columns text-left">
+              <div class="row collapse">
+                <div class="small-12 columns ellipsis name">
+                  <small>{{item.name}}</small>
+                </div>
+              </div>
+              <div class="row collapse">
+                <div class="small-12 columns size">
+                  <small>QTY: {{item.quantity}} {{item.size}}</small>
+                </div>
+              </div>
+            </div>
+            <div class="small-4 columns text-right">
+              <div class="row collapse">
+                <div class="small-12 columns price">
+                  <small>{{format-number item.price style="currency" currency="USD" fallback=''}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+      {{else}}
+      <div class="row items">
+        <div class="small-12 columns uppercase center">
+          is empty
+        </div>
+      </div>
+      {{/if}}
+
+      <div class="row total">
+        <div class="small-12 columns text-center">
+          <small><strong>Subtotal:</strong> {{format-number cart.order.data.subtotal style="currency" currency="USD" fallback=''}}</small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns">
+          <div class="button blue" onclick={{action 'showCart'}}>Edit cart/Checkout</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 </div>
 
 <!-- Medium-Up Navigation -->
-<nav class="top-bar row small-12 column" id="nav-menu" data-closable>
+<nav class="top-bar small-12 column" id="nav-menu" data-closable>
   <div class="top-bar-left">
   <ul class="vertical medium-horizontal menu">
     <button class="close-button" data-close>&times;</button>
-    <li class="logo-wrapper">
-      {{#link-to 'index' class="logo"}}
-        <img src="assets/images/logo_beta.svg" alt="">
-      {{/link-to}}
-    </li>
+
 
     <li>
       <ul class="dropdown menu shop-menu" data-responsive-menu="medium-dropdown">
@@ -69,48 +182,32 @@
             {{#link-to 'artists' (query-params sorted_by='created_at_desc') class="button light uppercase"}}view all{{/link-to}}
           </ul>
         </li>
+        <li>
+          <div class="my-kitchen-mobi">
+            {{#link-to 'profile' class="join uppercase"}}
+            <span class="uppercase">my&nbsp;kitchen</span>
+            {{/link-to}}
+          </div>
+        </li>
       </ul>
     </li>
 
-
     <!-- <li><a class="menu-item" href="#">sell</a></li> -->
     <!-- <li><a class="menu-item" href="#">artists</a></li> -->
-    <li class="divider"></li>
-    <li class="search-form">
-      {{input type="text" class="search" placeholder="SEARCH" value=queryString}}
-      <span class="icon-sub-search"></span>
-    </li>
     </ul>
   </div>
 
     <div class="top-bar-right">
   <ul class="vertical medium-horizontal menu">
     <!-- <li class="divider"></li> -->
-    <li>
+    <!-- <li>
       {{#if session.isAuthenticated}}
-      <ul class="dropdown menu user-menu" data-dropdown-menu>
-        <li>
-          {{#link-to 'profile' class="join uppercase"}}
-            <span class="uppercase">my&nbsp;kitchen</span>
-          {{/link-to}}
-          <ul class="menu">
-            <li>
-              {{#link-to 'profile' class="uppercase"}}profile{{/link-to}}
-            </li>
-            <li>
-              <a class="uppercase" onclick={{action 'invalidateSession'}}>
-                logout
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
       {{else}}
       <a class="join" onclick={{action 'showLogin'}}>
         <span>join/login</span>
       </a>
       {{/if}}
-    </li>
+    </li> -->
     <!-- <li class="menu-item-wishlist__wrapper"> <a class="action-item"> <span class="icon-sub-heart"></span> </a> </li> -->
 
     <li class="menu-item-footer__wrapper">
@@ -124,65 +221,17 @@
         <li>{{#link-to "information.wholesale" class="menu-item"}}Wholesale{{/link-to}}</li>
         <li>{{#link-to "information.privacy-policy" class="menu-item"}}Privacy Policy{{/link-to}}</li>
         <li>{{#link-to "information.contact" class="menu-item"}}Contact{{/link-to}}</li>
+        <li>
+          <div class="menu-item-my-kitchen__wrapper hide-in-desktop show-in-mobile" data-toggle="cart-dropdown" id="cart-dropdown-trigger">
+            <a class="action-item basket-indicator" onclick={{action 'showCart'}}> <span class="icon-sub-basket"></span>
+              <span class="basket-counter">{{cartCount}}</span>
+            </a>
+          </div>
+        </li>
       </ul>
     </li>
 
-    <li class="menu-item-my-kitchen__wrapper" data-toggle="cart-dropdown" id="cart-dropdown-trigger">
-      <a class="action-item basket-indicator" onclick={{action 'showCart'}}> <span class="icon-sub-basket"></span>
-        <span class="basket-counter">{{cartCount}}</span>
-      </a>
 
-      <div class="dropdown-pane bottom" id="cart-dropdown" data-dropdown data-hover="true" data-auto-focus="true" data-close-on-click="true">
-        <h5 class="uppercase font-bold text-center">your cart</h5>
-
-        {{#if hasData}}
-        <ul class="vertical menu">
-          {{#each cart.order.data.items as |item|}}
-          <li>
-            <div class="row collapse" >
-              <div class="small-8 columns text-left">
-                <div class="row collapse">
-                  <div class="small-12 columns ellipsis name">
-                    <small>{{item.name}}</small>
-                  </div>
-                </div>
-                <div class="row collapse">
-                  <div class="small-12 columns size">
-                    <small>QTY: {{item.quantity}} {{item.size}}</small>
-                  </div>
-                </div>
-              </div>
-              <div class="small-4 columns text-right">
-                <div class="row collapse">
-                  <div class="small-12 columns price">
-                    <small>{{format-number item.price style="currency" currency="USD" fallback=''}}</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          {{/each}}
-        </ul>
-        {{else}}
-        <div class="row items">
-          <div class="small-12 columns uppercase center">
-            is empty
-          </div>
-        </div>
-        {{/if}}
-
-        <div class="row total">
-          <div class="small-12 columns text-center">
-            <small><strong>Subtotal:</strong> {{format-number cart.order.data.subtotal style="currency" currency="USD" fallback=''}}</small>
-          </div>
-        </div>
-        <div class="row">
-          <div class="small-12 columns">
-            <div class="button blue" onclick={{action 'showCart'}}>Edit cart/Checkout</div>
-          </div>
-        </div>
-      </div>
-    </li>
 
   </ul>
   </div>
