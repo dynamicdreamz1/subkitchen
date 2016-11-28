@@ -476,7 +476,7 @@
 .search-form{position:relative;}
 .search-form input.search + span, .search-form input.search + span {position: absolute;z-index: 1;color: #737373;font-size: 14px;right: 15px;top: 9px;font-weight: normal;text-transform: capitalize;}
 .search-form input{border: 1px solid #e5e5e5!important; box-shadow: none; font-size: 14px;}
-.search-form span{border-left: 1px solid #e5e5e5 !important;top:0!important;line-height: 38px;padding-left: 13px;}
+.search-form span{border-left: 1px solid #e5e5e5 !important;top:0!important;line-height: 38px;padding-left: 13px;cursor: pointer;}
 
 a.action-item.basket-indicator{color: #737373;}
 .dropdown-pane{border: 1px solid #e5e5e5!important;}

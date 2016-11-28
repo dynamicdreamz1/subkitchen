@@ -1,3 +1,4 @@
+<div class="row">
 {{#if session.isAuthenticated}}
 <div class="top-sec clearfix">
 <div class="small-12 medium-6 columns"><div class="top-link"><a href="#"><i class="fa fa-pie-chart" aria-hidden="true"></i>
@@ -64,8 +65,8 @@
 </div>
 <div class="small-12 medium-7 columns">
   <div class="search-form hide-in-mobile">
-    {{input type="text" class="search" placeholder="SEARCH" value=queryString}}
-    <span>search</span>
+    {{input type="text" class="search" placeholder="SEARCH" enter="search" value=queryString }}
+    <span onclick={{action 'search'}}>search</span>
   </div>
 </div>
 <div class="small-12 medium-2 columns">
@@ -236,6 +237,6 @@
   </ul>
   </div>
 </nav>
-
 {{login-modal}}
 {{flash-messages}}
+</div>

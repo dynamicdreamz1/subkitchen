@@ -20,7 +20,7 @@ export default Ember.Component.extend({
     return order && order.items && order.items.length;
   }),
 
-  queryStringObserver: function(){
+  /*queryStringObserver: function(){
     if (this.get('queryStringObserverTimeout')){
       clearTimeout(this.get('queryStringObserverTimeout'));
     }
@@ -33,7 +33,7 @@ export default Ember.Component.extend({
     }, 800);
 
     this.set('queryStringObserverTimeout', queryStringObserverTimeout);
-  }.observes('queryString'),
+  }.observes('queryString'),*/
 
   didRender() {
     this.$().foundation();
@@ -41,6 +41,15 @@ export default Ember.Component.extend({
   },
 
   actions: {
+
+    search() {
+      // Search
+      // Track searches on your website (ex. product searches)
+      //if(this.get('queryString')) {
+        fbq('track', 'Search');
+        this.get('routing').transitionTo('products', [], { search_query: this.get('queryString') || "" });
+      //}
+    },
 
     showLogin(){
       this.$('#passwordReminderModal').foundation('close');
