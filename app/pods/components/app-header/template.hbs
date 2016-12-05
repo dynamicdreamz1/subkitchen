@@ -178,21 +178,6 @@
                                 </ul>
                             </li>
                             <li>
-                              {{#link-to 'cooking' (query-params product_id="" selected_template_id="")
-                                         class="menu-item"}} create {{/link-to}}
-                                <ul class="menu cook submenu">
-                                  {{#each templates.data as |template| }}
-                                      <li>
-                                        {{#link-to 'cooking'
-                                                   (query-params selected_template_id=template.id product_id="")
-                                                   class="menu-item"}}
-                                          {{capitalize template.product_type}}
-                                        {{/link-to}}
-                                      </li>
-                                  {{/each}}
-                                </ul>
-                            </li>
-                            <li>
                               {{#link-to 'artists' (query-params sorted_by='created_at_desc') class="menu-item"}}
                                   artists {{/link-to}}
                                 <ul class="menu featured submenu">
@@ -211,6 +196,38 @@
                                   {{/each}}
                                   {{#link-to 'artists' (query-params sorted_by='created_at_desc')
                                              class="button light uppercase"}}view all{{/link-to}}
+                                </ul>
+                            </li>
+                          {{!--
+                            <li>
+                                <a href='/products?product_type=%5B"Sweatshirt"%5D&search_query='
+                                   class="menu-item">themes</a>
+                                <ul class="menu submenu">
+                                  {{#each templates.data as |template| }}
+                                      <li>
+                                        {{#link-to 'products'
+                                                   (query-params product_type=template.productTypeAsArray search_query="")
+                                                   class="menu-item uppercase"}}
+                                          {{capitalize template.product_type}}
+                                        {{/link-to}}
+                                      </li>
+                                  {{/each}}
+                                </ul>
+                            </li>
+                            --}}
+                            <li>
+                              {{#link-to 'cooking' (query-params product_id="" selected_template_id="")
+                                         class="menu-item design-your-own"}} Design Your Own {{/link-to}}
+                                <ul class="menu cook submenu">
+                                  {{#each templates.data as |template| }}
+                                      <li>
+                                        {{#link-to 'cooking'
+                                                   (query-params selected_template_id=template.id product_id="")
+                                                   class="menu-item"}}
+                                          {{capitalize template.product_type}}
+                                        {{/link-to}}
+                                      </li>
+                                  {{/each}}
                                 </ul>
                             </li>
                         </ul>
