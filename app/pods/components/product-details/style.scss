@@ -301,41 +301,63 @@
     }
   }
 }
-
 .reveal { min-height: 350px !important; overflow-y: scroll !important; height: 540px; margin-top: 30px !important;}
+
+div#imageModal.reveal, div#sizingInfoModal.reveal {
+  overflow-y: auto !important;
+  background-color: transparent !important;
+  border: none !important;
+  margin: 0 !important;
+  position: fixed !important;
+  height: 100%;
+}
 .product { position: relative; }
 
 .product .sizes ul li label { width: 3rem; height: 3rem; padding: 0.5rem;  }
 .product .sizes ul li:last-child label { padding-left: 4px;  }
 
-body.is-reveal-open { overflow: scroll !important }
+//body.is-reveal-open { overflow: scroll !important }
 
 div#imageModal {
   width: 100%;
   max-width: 100%;
   left: 0px !important;
-  top: -150px !important;
+  top: 0 !important;
   max-height: inherit !important;
-  overflow: inherit !important;
-  margin: 0px;
-  box-sizing: border-box;
   min-height: inherit !important;
-  height: auto;
-  margin-top: 0px !important;
 }
 
-div#sizingInfoModal{
+.modal-main{
+  max-width: 1020px;
+  margin: 25px auto !important;
+  position: relative;
+}
+
+div#sizingInfoModal {
   width: 100%;
   max-width: 100%;
   left: 0px !important;
-  top: -150px !important;
+  top: 0 !important;
   max-height: inherit !important;
-  overflow: inherit !important;
-  margin: 0px;
-  box-sizing: border-box;
   min-height: inherit !important;
-  height: auto;
-  margin-top: 0px !important;
+}
+.sizing-main-modal {
+  max-width: 1136px;
+  position: fixed;
+  overflow-y: auto;
+  top: 35px;
+  left: 50%;
+  bottom: 35px;
+  transform: translate(-50%,0);
+  width: 100%;
+  .row {
+    margin: 0 !important;
+  }
+  .close-button {
+    font-size: 1.5rem;
+    top:5px;
+    right: 18px;
+  }
 }
 .reveal-overlay {
   overflow-y: auto !important;
@@ -354,6 +376,12 @@ div#sizingInfoModal{
         }
       }
     }
+  }
+}
+
+@media only screen and (max-width: 1136px) {
+  .sizing-main-modal {
+    padding: 0 15px;
   }
 }
 

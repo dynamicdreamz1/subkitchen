@@ -28,6 +28,12 @@ export default Ember.Component.extend({
         $('#imageModal').foundation('open');
       }
     },
+    sizingInfoImageClick(id){
+      $('#'+ id).foundation('close');
+    },
+    imageClick(id){
+      $('#'+ id).foundation('close');
+    },
 
     addComment(){
       let comment = this.get('store')

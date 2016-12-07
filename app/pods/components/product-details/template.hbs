@@ -65,22 +65,29 @@
         </div>
       </div>
 
-      <div class="reveal large" id="sizingInfoModal" data-reveal data-close-on-click="true">
+      <div class="reveal large" id="sizingInfoModal" data-reveal data-close-on-click="true"
+           onclick={{action "sizingInfoImageClick" 'sizingInfoModal'}}>
+          <div class="sizing-main-modal">
         <button class="close-button" data-close aria-label="Close modal" type="button">
           <span aria-hidden="true">&times;</span>
         </button>
         <div class="row">
           <img src="{{product.size_chart}}" alt="">
         </div>
+              </div>
       </div>
 
-      <div class="reveal large" id="imageModal" data-reveal data-close-on-click="true">
-        <button class="close-button" data-close aria-label="Close modal" type="button">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="row">
-          <img src="{{product.big_preview_url}}" alt="">
+      <div class="reveal large" id="imageModal" data-reveal data-close-on-click="true"
+           onclick={{action "imageClick" 'imageModal'}}>
+        <div class="modal-main">
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="row">
+                <img src="{{product.big_preview_url}}" alt="">
+            </div>
         </div>
+
       </div>
 
       <div class="row">
