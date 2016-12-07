@@ -144,15 +144,17 @@ export default Ember.Component.extend({
       data: params,
       dataType: 'json',
       success: function(response) {
-        fbq('track', 'Purchase', {value: this.get('cart.order.data.total_cost'), currency: 'USD'});
+        // fbq('track', 'Purchase', {value: this.get('cart.order.data.total_cost'), currency: 'USD'});
         // this.addObject(response);
         // alert(response.responseJSON.order);
+        console.log('response',response);
         alert(response.responseJSON);
         // alert(response);
         // alert(response.data);
       }
     })
     .then((result)=>{
+      console.log("result",result);
       this.get('cart').reload();
       if (result.url){
         window.top.location.href = result.url;
@@ -162,6 +164,7 @@ export default Ember.Component.extend({
       }
     }, (error)=>{
       this.hideSpinner();
+      console.log(error);
       if (error.responseJSON){
         this.set('errors', error.responseJSON.errors);
       } else {
