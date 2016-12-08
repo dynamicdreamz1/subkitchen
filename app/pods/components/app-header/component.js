@@ -47,7 +47,7 @@ export default Ember.Component.extend({
       // Track searches on your website (ex. product searches)
       //if(this.get('queryString')) {
         fbq('track', 'Search');
-        this.get('routing').transitionTo('products', [], { search_query: this.get('queryString') || "" });
+        this.get('routing').transitionTo('products', [], { product_type: "" ,search_query: this.get('queryString') || "" });
       //}
     },
 

@@ -80,7 +80,7 @@
             </div>
             <div class="small-12 medium-7 columns">
                 <div class="search-form hide-in-mobile">
-                  {{input type="text" class="search" placeholder="SEARCH" enter="search" value=queryString }}
+                  {{input type="text" class="search" placeholder="Search products, artwork and themes" enter="search" value=queryString }}
                     <span onclick={{action 'search'}}>search</span>
                 </div>
             </div>
@@ -164,7 +164,7 @@
                         <ul class="dropdown menu shop-menu" data-responsive-menu="medium-dropdown">
                             <li>
                                 <a href='/products?product_type=%5B"Sweatshirt"%5D&search_query='
-                                   class="menu-item">shop</a>
+                                   class="menu-item">Shop</a>
                                 <ul class="menu submenu">
                                   {{#each templates.data as |template| }}
                                       <li>
@@ -179,7 +179,7 @@
                             </li>
                             <li>
                               {{#link-to 'artists' (query-params sorted_by='created_at_desc') class="menu-item"}}
-                                  artists {{/link-to}}
+                                  Artists {{/link-to}}
                                 <ul class="menu featured submenu">
                                     <div class="featured-title">FEATURED</div>
                                   {{#each featuredArtists.data as |artist| }}
@@ -195,7 +195,7 @@
                                       </li>
                                   {{/each}}
                                   {{#link-to 'artists' (query-params sorted_by='created_at_desc')
-                                             class="button light uppercase"}}view all{{/link-to}}
+                                             class="button light"}}View All{{/link-to}}
                                 </ul>
                             </li>
                           {{!--
@@ -218,17 +218,6 @@
                             <li>
                               {{#link-to 'cooking' (query-params product_id="" selected_template_id="")
                                          class="menu-item design-your-own"}} Design Your Own {{/link-to}}
-                                <ul class="menu cook submenu">
-                                  {{#each templates.data as |template| }}
-                                      <li>
-                                        {{#link-to 'cooking'
-                                                   (query-params selected_template_id=template.id product_id="")
-                                                   class="menu-item"}}
-                                          {{capitalize template.product_type}}
-                                        {{/link-to}}
-                                      </li>
-                                  {{/each}}
-                                </ul>
                             </li>
                         </ul>
                     </li>
