@@ -1,4 +1,12 @@
 .banner{
+  background-size: cover !important;
+  background-position: 0 0!important;
+  text-align: center;
+  position: relative;
+  min-height: 34.0625vw;
+  @include breakpoint(small only) {
+    min-height: 80vw;
+  }
   img{
     width: 100%;
     object-fit: cover;
@@ -8,6 +16,30 @@
       height: 100vw;
     }
   }
+  .banner-top h1 {
+     font-size: 3rem;
+     color: #ffffff;
+    @include breakpoint(small only) {
+      font-size: 2rem;
+    }
+   }
+  .banner-top button {
+    font-size: 1.2rem;
+    padding: 1.5rem 3rem;
+    border-radius: 5px;
+  }
+  .banner-top{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    max-width: 1170px;
+    padding: 0 15px;}
   .cta-wrapper{
     position: relative;
     .cta{
