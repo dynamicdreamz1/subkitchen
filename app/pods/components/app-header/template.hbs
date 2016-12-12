@@ -170,7 +170,7 @@
                                       <li>
                                         {{#link-to 'products'
                                                    (query-params product_type=template.productTypeAsArray search_query="")
-                                                   class="menu-item uppercase"}}
+                                                   class="menu-item"}}
                                           {{capitalize template.product_type}}
                                         {{/link-to}}
                                       </li>
@@ -198,23 +198,18 @@
                                              class="button light"}}View All{{/link-to}}
                                 </ul>
                             </li>
-                          {{!--
-                            <li>
-                                <a href='/products?product_type=%5B"Sweatshirt"%5D&search_query='
-                                   class="menu-item">themes</a>
+
+                            <li class="theme-menu">
+                                <a href='/products?tags=%5B"3d"%5D&search_query='
+                                   class="menu-item">Themes</a>
                                 <ul class="menu submenu">
-                                  {{#each templates.data as |template| }}
+                                  {{#each themes.themes as |theme| }}
                                       <li>
-                                        {{#link-to 'products'
-                                                   (query-params product_type=template.productTypeAsArray search_query="")
-                                                   class="menu-item uppercase"}}
-                                          {{capitalize template.product_type}}
-                                        {{/link-to}}
+                                        <a href='/products?tags=%5B"{{theme}}"%5D'>{{theme}}</a>
                                       </li>
                                   {{/each}}
                                 </ul>
                             </li>
-                            --}}
                             <li>
                               {{#link-to 'cooking' (query-params product_id="" selected_template_id="")
                                          class="menu-item design-your-own"}} Design Your Own {{/link-to}}

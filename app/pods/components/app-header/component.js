@@ -10,6 +10,7 @@ export default Ember.Component.extend({
   featuredArtists: Ember.inject.service('featured-artists'),
   templates: Ember.inject.service(),
   queryString: null,
+  themes:{"themes":["3d","abstract","animal","black \u0026 white","cats","comic","digital","dogs","food","funny","galaxy","game","geometric","illustration","landscape","love","mixed media","movie \u0026 tv","music","nature","painting","pattern","people","pop culture","photo","scary","scifi","skulls","sports","typography","vector","vintage"]},
 
   cartCount: Ember.computed('cart.order.data.items.@each.quantity', function(){
     return this.get('cart').quantity();
@@ -38,6 +39,7 @@ export default Ember.Component.extend({
   didRender() {
     this.$().foundation();
     this.get('queryString'); // trigger observer
+    console.log(this.get('themes'));
   },
 
   actions: {

@@ -432,6 +432,21 @@
   }
 }
 
+li.theme-menu li.is-submenu-item.is-dropdown-submenu-item {
+  float: left;
+  display: inline-block;
+  width: 25%;
+  a{
+    text-transform: capitalize;
+  }
+}
+li.theme-menu ul {
+  min-width: 500px;
+}
+
+li.theme-menu ul:before {
+  left:3% !important;
+}
 
 
 
