@@ -39,7 +39,6 @@ export default Ember.Component.extend({
   didRender() {
     this.$().foundation();
     this.get('queryString'); // trigger observer
-    console.log(this.get('themes'));
   },
 
   actions: {

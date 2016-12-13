@@ -70,6 +70,9 @@ export default Ember.Component.extend({
         .add(this.get('product.id'), this.get('size'), this.get('product.variants.0.id'), this.get('quantity'));
       let button = this.$('.addToCart');
       button.text('added');
+      $('html,body').animate({
+          scrollTop: $(".menu-item-my-kitchen__wrapper").offset().top},
+        'slow');
       if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         this.get('cart').open();
       }

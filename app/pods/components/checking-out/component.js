@@ -143,7 +143,7 @@ export default Ember.Component.extend({
       type: 'POST',
       data: params,
       dataType: 'json',
-      success: function(response) {
+      success: function() {
         // fbq('track', 'Purchase', {value: this.get('cart.order.data.total_cost'), currency: 'USD'});
         // this.addObject(response);
         // alert(response.responseJSON.order);
@@ -161,6 +161,7 @@ export default Ember.Component.extend({
       }
     }, (error)=>{
       this.hideSpinner();
+      console.log(error.responseJSON);
       if (error.responseJSON){
         this.set('errors', error.responseJSON.errors);
       } else {

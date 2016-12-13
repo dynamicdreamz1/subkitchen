@@ -14,6 +14,10 @@ export default Ember.Component.extend({
       fbq('track', 'AddToCart');
       let button = this.$('.addToCart');
       button.text('added');
+      // this.$('.menu-item-my-kitchen__wrapper').
+      $('html,body').animate({
+          scrollTop: $(".menu-item-my-kitchen__wrapper").offset().top},
+        'slow');
       setTimeout(function(){
         button.text('add to cart');
       }, 3000);
