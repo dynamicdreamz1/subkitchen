@@ -177,6 +177,17 @@
                                   {{/each}}
                                 </ul>
                             </li>
+                            <li class="theme-menu">
+                                <a href='/products?tags=%5B"3d"%5D&search_query='
+                                   class="menu-item">Themes</a>
+                                <ul class="menu submenu">
+                                  {{#each themes.themes as |theme| }}
+                                      <li>
+                                        <a href='/products?tags=%5B"{{theme}}"%5D'>{{theme}}</a>
+                                      </li>
+                                  {{/each}}
+                                </ul>
+                            </li>
                             <li>
                               {{#link-to 'artists' (query-params sorted_by='created_at_desc') class="menu-item"}}
                                   Artists {{/link-to}}
@@ -196,18 +207,6 @@
                                   {{/each}}
                                   {{#link-to 'artists' (query-params sorted_by='created_at_desc')
                                              class="button light"}}View All{{/link-to}}
-                                </ul>
-                            </li>
-
-                            <li class="theme-menu">
-                                <a href='/products?tags=%5B"3d"%5D&search_query='
-                                   class="menu-item">Themes</a>
-                                <ul class="menu submenu">
-                                  {{#each themes.themes as |theme| }}
-                                      <li>
-                                        <a href='/products?tags=%5B"{{theme}}"%5D'>{{theme}}</a>
-                                      </li>
-                                  {{/each}}
                                 </ul>
                             </li>
                             <li>
