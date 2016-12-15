@@ -15,7 +15,7 @@
         </tr>
         </thead>
         {{#each model.orders as |order|}}
-          {{#unless (eq order.status 'creating')}}
+          {{#if (or (eq order.status 'processing') (eq order.status 'cooking') (eq order.status 'fulfilled'))  }}
             <tbody class="order-body">
               <tr>
                 <td>{{order.invoice_id}}</td>
@@ -32,7 +32,7 @@
                 </td>
               </tr>
             </tbody>
-          {{/unless}}
+          {{/if}}
         {{/each}}
       </table>
     {{/if}}
