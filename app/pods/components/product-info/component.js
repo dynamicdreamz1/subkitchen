@@ -15,8 +15,8 @@ export default Ember.Component.extend({
       let button = this.$('.addToCart');
       button.text('added');
       // this.$('.menu-item-my-kitchen__wrapper').
-      $('html,body').animate({
-          scrollTop: $(".menu-item-my-kitchen__wrapper").offset().top},
+      Ember.$('html,body').animate({
+          scrollTop: Ember.$(".menu-item-my-kitchen__wrapper").offset().top},
         'slow');
       setTimeout(function(){
         button.text('add to cart');

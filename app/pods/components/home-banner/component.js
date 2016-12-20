@@ -11,6 +11,9 @@ export default Ember.Component.extend({
   actions: {
     letsCook(){
       this.get("routing").transitionTo("cooking");
+    },
+    becomeCook(){
+      this.get("routing").transitionTo("become-cook");
     }
   }
 });

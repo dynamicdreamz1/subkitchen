@@ -8,6 +8,70 @@
                 </div>
                 <div class="small-12 medium-6 columns">
                     <div class="top-right-link hide-in-mobile" id="nav-menudd">
+
+                        <div class="menu-item-my-kitchen__wrapper hide-in-mobile" data-toggle="cart-dropdown"
+                             id="cart-dropdown-trigger">
+                            <a class="action-item basket-indicator" onclick={{action 'showCart'}}> <span
+                                    class="icon-sub-basket"></span>
+                                <span class="basket-counter">{{cartCount}}</span>
+                            </a>
+
+                            <div class="dropdown-pane bottom" id="cart-dropdown" data-dropdown data-hover="true"
+                                 data-auto-focus="true" data-close-on-click="true">
+                                <h5 class="uppercase font-bold text-center">your cart</h5>
+
+                              {{#if hasData}}
+                                  <ul class="vertical menu">
+                                    {{#each cart.order.data.items as |item|}}
+                                        <li>
+                                            <div class="row collapse">
+                                                <div class="small-8 columns text-left">
+                                                    <div class="row collapse">
+                                                        <div class="small-12 columns ellipsis name">
+                                                            <small>{{item.name}}</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row collapse">
+                                                        <div class="small-12 columns size">
+                                                            <small>QTY: {{item.quantity}} {{item.size}}</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="small-4 columns text-right">
+                                                    <div class="row collapse">
+                                                        <div class="small-12 columns price">
+                                                            <small>{{format-number item.price style="currency" currency="USD"
+                                                                                   fallback=''}}</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {{/each}}
+                                  </ul>
+                              {{else}}
+                                  <div class="row items">
+                                      <div class="small-12 columns uppercase center">
+                                          is empty
+                                      </div>
+                                  </div>
+                              {{/if}}
+
+                                <div class="row total">
+                                    <div class="small-12 columns text-center">
+                                        <small><strong>Subtotal:</strong> {{format-number cart.order.data.subtotal
+                                                                                          style="currency" currency="USD"
+                                                                                          fallback=''}}</small>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="small-12 columns">
+                                        <div class="button blue" onclick={{action 'showCart'}}>Edit cart/Checkout</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <ul class="dropdowndd menudd user-menu" data-dropdown-menu>
                             <li>
                               {{#link-to 'profile' class="join uppercase"}}
@@ -51,6 +115,70 @@
                         <!--<a href="#">Sell on Subkitchen</a>-->
                         <a class="join" onclick={{action 'showLogin'}}><i class="fa fa-user" aria-hidden="true"></i>
                             <span>join/login</span></a>
+
+
+                        <div class="menu-item-my-kitchen__wrapper hide-in-mobile" data-toggle="cart-dropdown"
+                             id="cart-dropdown-trigger">
+                            <a class="action-item basket-indicator" onclick={{action 'showCart'}}> <span
+                                    class="icon-sub-basket"></span>
+                                <span class="basket-counter">{{cartCount}}</span>
+                            </a>
+
+                            <div class="dropdown-pane bottom" id="cart-dropdown" data-dropdown data-hover="true"
+                                 data-auto-focus="true" data-close-on-click="true">
+                                <h5 class="uppercase font-bold text-center">your cart</h5>
+
+                              {{#if hasData}}
+                                  <ul class="vertical menu">
+                                    {{#each cart.order.data.items as |item|}}
+                                        <li>
+                                            <div class="row collapse">
+                                                <div class="small-8 columns text-left">
+                                                    <div class="row collapse">
+                                                        <div class="small-12 columns ellipsis name">
+                                                            <small>{{item.name}}</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row collapse">
+                                                        <div class="small-12 columns size">
+                                                            <small>QTY: {{item.quantity}} {{item.size}}</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="small-4 columns text-right">
+                                                    <div class="row collapse">
+                                                        <div class="small-12 columns price">
+                                                            <small>{{format-number item.price style="currency" currency="USD"
+                                                                                   fallback=''}}</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {{/each}}
+                                  </ul>
+                              {{else}}
+                                  <div class="row items">
+                                      <div class="small-12 columns uppercase center">
+                                          is empty
+                                      </div>
+                                  </div>
+                              {{/if}}
+
+                                <div class="row total">
+                                    <div class="small-12 columns text-center">
+                                        <small><strong>Subtotal:</strong> {{format-number cart.order.data.subtotal
+                                                                                          style="currency" currency="USD"
+                                                                                          fallback=''}}</small>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="small-12 columns">
+                                        <div class="button blue" onclick={{action 'showCart'}}>Edit cart/Checkout</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,193 +206,130 @@
                     <button class="menu-icon" type="button" data-toggle></button>
                 </div>
             </div>
-            <div class="small-12 medium-7 columns">
-                <div class="search-form hide-in-mobile">
-                  {{input type="text" class="search" placeholder="Search products, artwork and themes" enter="search" value=queryString }}
-                    <span onclick={{action 'search'}}>search</span>
-                </div>
-            </div>
-            <div class="small-12 medium-2 columns">
-                <div class="menu-item-my-kitchen__wrapper hide-in-mobile" data-toggle="cart-dropdown"
-                     id="cart-dropdown-trigger">
-                    <a class="action-item basket-indicator" onclick={{action 'showCart'}}> <span
-                            class="icon-sub-basket"></span>
-                        <span class="basket-counter">{{cartCount}}</span>
-                    </a>
 
-                    <div class="dropdown-pane bottom" id="cart-dropdown" data-dropdown data-hover="true"
-                         data-auto-focus="true" data-close-on-click="true">
-                        <h5 class="uppercase font-bold text-center">your cart</h5>
-
-                      {{#if hasData}}
-                          <ul class="vertical menu">
-                            {{#each cart.order.data.items as |item|}}
+                    <nav class="top-bar small-12 medium-5 large-5 columns" id="nav-menu" data-closable>
+                        <div class="top-bar-left">
+                            <ul class="vertical medium-horizontal menu">
+                                <button class="close-button" data-close>&times;</button>
                                 <li>
-                                    <div class="row collapse">
-                                        <div class="small-8 columns text-left">
-                                            <div class="row collapse">
-                                                <div class="small-12 columns ellipsis name">
-                                                    <small>{{item.name}}</small>
-                                                </div>
-                                            </div>
-                                            <div class="row collapse">
-                                                <div class="small-12 columns size">
-                                                    <small>QTY: {{item.quantity}} {{item.size}}</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="small-4 columns text-right">
-                                            <div class="row collapse">
-                                                <div class="small-12 columns price">
-                                                    <small>{{format-number item.price style="currency" currency="USD"
-                                                                           fallback=''}}</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <ul class="dropdown menu shop-menu" data-responsive-menu="medium-dropdown">
+                                        <li>
+                                            <a href='/products?product_type=%5B"Sweatshirt"%5D&search_query='
+                                               class="menu-item">Shop</a>
+                                            <ul class="menu submenu">
+                                              {{#each templates.data as |template| }}
+                                                  <li>
+                                                    {{#link-to 'products'
+                                                               (query-params product_type=template.productTypeAsArray search_query="")
+                                                               class="menu-item"}}
+                                                      {{capitalize template.product_type}}
+                                                    {{/link-to}}
+                                                  </li>
+                                              {{/each}}
+                                            </ul>
+                                        </li>
+                                        <li class="theme-menu">
+                                            <a href='/products?tags=%5B"3d"%5D&search_query='
+                                               class="menu-item">Themes</a>
+                                            <ul class="menu submenu">
+                                              {{#each themes.themes as |theme| }}
+                                                  <li>
+                                                      <a href='/products?tags=%5B"{{theme}}"%5D'>{{theme}}</a>
+                                                  </li>
+                                              {{/each}}
+                                            </ul>
+                                        </li>
+                                        <li>
+                                          {{#link-to 'artists' (query-params sorted_by='created_at_desc') class="menu-item"}}
+                                              Artists {{/link-to}}
+                                            <ul class="menu featured submenu">
+                                                <div class="featured-title">FEATURED</div>
+                                              {{#each featuredArtists.data as |artist| }}
+                                                  <li class="featured-artist">
+                                                    {{#link-to 'public-profile' [artist.handle] class="menu-item"}}
+                                                      {{#if artist.imageUrl}}
+                                                          <img src={{artist.imageUrl}}>
+                                                      {{else}}
+                                                          <img src="assets/images/default.png" alt="">
+                                                      {{/if}}
+                                                        <div class="name">{{capitalize artist.name}}</div>
+                                                    {{/link-to}}
+                                                  </li>
+                                              {{/each}}
+                                              {{#link-to 'artists' (query-params sorted_by='created_at_desc')
+                                                         class="button light"}}View All{{/link-to}}
+                                            </ul>
+                                        </li>
+                                        <li>
+                                          {{#link-to 'cooking' (query-params product_id="" selected_template_id="")
+                                                     class="menu-item design-your-own"}} Design Your Own {{/link-to}}
+                                        </li>
+                                    </ul>
                                 </li>
-                            {{/each}}
-                          </ul>
-                      {{else}}
-                          <div class="row items">
-                              <div class="small-12 columns uppercase center">
-                                  is empty
-                              </div>
-                          </div>
-                      {{/if}}
 
-                        <div class="row total">
-                            <div class="small-12 columns text-center">
-                                <small><strong>Subtotal:</strong> {{format-number cart.order.data.subtotal
-                                                                                  style="currency" currency="USD"
-                                                                                  fallback=''}}</small>
-                            </div>
+                                <!-- <li><a class="menu-item" href="#">sell</a></li> -->
+                                <!-- <li><a class="menu-item" href="#">artists</a></li> -->
+                            </ul>
                         </div>
-                        <div class="row">
-                            <div class="small-12 columns">
-                                <div class="button blue" onclick={{action 'showCart'}}>Edit cart/Checkout</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-
-<!-- Medium-Up Navigation -->
-<div class="fullwidth">
-    <div class="row">
-        <nav class="top-bar small-12 column" id="nav-menu" data-closable>
-            <div class="top-bar-left">
-                <ul class="vertical medium-horizontal menu">
-                    <button class="close-button" data-close>&times;</button>
-                    <li>
-                        <ul class="dropdown menu shop-menu" data-responsive-menu="medium-dropdown">
-                            <li>
-                                <a href='/products?product_type=%5B"Sweatshirt"%5D&search_query='
-                                   class="menu-item">Shop</a>
-                                <ul class="menu submenu">
-                                  {{#each templates.data as |template| }}
-                                      <li>
-                                        {{#link-to 'products'
-                                                   (query-params product_type=template.productTypeAsArray search_query="")
-                                                   class="menu-item"}}
-                                          {{capitalize template.product_type}}
-                                        {{/link-to}}
-                                      </li>
-                                  {{/each}}
-                                </ul>
-                            </li>
-                            <li class="theme-menu">
-                                <a href='/products?tags=%5B"3d"%5D&search_query='
-                                   class="menu-item">Themes</a>
-                                <ul class="menu submenu">
-                                  {{#each themes.themes as |theme| }}
-                                      <li>
-                                        <a href='/products?tags=%5B"{{theme}}"%5D'>{{theme}}</a>
-                                      </li>
-                                  {{/each}}
-                                </ul>
-                            </li>
-                            <li>
-                              {{#link-to 'artists' (query-params sorted_by='created_at_desc') class="menu-item"}}
-                                  Artists {{/link-to}}
-                                <ul class="menu featured submenu">
-                                    <div class="featured-title">FEATURED</div>
-                                  {{#each featuredArtists.data as |artist| }}
-                                      <li class="featured-artist">
-                                        {{#link-to 'public-profile' [artist.handle] class="menu-item"}}
-                                          {{#if artist.imageUrl}}
-                                              <img src={{artist.imageUrl}}>
-                                          {{else}}
-                                              <img src="assets/images/default.png" alt="">
-                                          {{/if}}
-                                            <div class="name">{{capitalize artist.name}}</div>
-                                        {{/link-to}}
-                                      </li>
-                                  {{/each}}
-                                  {{#link-to 'artists' (query-params sorted_by='created_at_desc')
-                                             class="button light"}}View All{{/link-to}}
-                                </ul>
-                            </li>
-                            <li>
-                              {{#link-to 'cooking' (query-params product_id="" selected_template_id="")
-                                         class="menu-item design-your-own"}} Design Your Own {{/link-to}}
-                            </li>
-                        </ul>
-                    </li>
-
-                    <!-- <li><a class="menu-item" href="#">sell</a></li> -->
-                    <!-- <li><a class="menu-item" href="#">artists</a></li> -->
-                </ul>
-            </div>
-
-            <div class="top-bar-right">
-                <ul class="vertical medium-horizontal menu">
-                    <!-- <li class="divider"></li> -->
-                    <!-- <li>
+                        <div class="top-bar-right">
+                            <ul class="vertical medium-horizontal menu">
+                                <!-- <li class="divider"></li> -->
+                                <!-- <li>
       {{#if session.isAuthenticated}}
-      {{else}}
+                                {{else}}
       <a class="join" onclick={{action 'showLogin'}}>
         <span>join/login</span>
       </a>
       {{/if}}
     </li> -->
-                    <!-- <li class="menu-item-wishlist__wrapper"> <a class="action-item"> <span class="icon-sub-heart"></span> </a> </li> -->
+                                <!-- <li class="menu-item-wishlist__wrapper"> <a class="action-item"> <span class="icon-sub-heart"></span> </a> </li> -->
 
-                    <li class="menu-item-footer__wrapper">
-                        <ul class="menu" onclick={{action 'linkClicked'}}>
-                            <li>{{#link-to "information.delivery-and-returns" class="menu-item"}}
-                                Delivery and Returns{{/link-to}}</li>
-                            <li>{{#link-to "information.payment" class="menu-item"}}Payment{{/link-to}}</li>
-                            <li>{{#link-to "information.about-artist" class="menu-item"}}
-                                About Artist Accounts{{/link-to}}</li>
-                            <li>{{#link-to "information.artist-terms" class="menu-item"}}Artist Terms{{/link-to}}</li>
-                            <li>{{#link-to "information.terms-and-conditions" class="menu-item"}}
-                                Terms and Conditions{{/link-to}}</li>
-                            <li>{{#link-to "information.custom-clothing" class="menu-item"}}
-                                Custom Clothing{{/link-to}}</li>
-                            <li>{{#link-to "information.wholesale" class="menu-item"}}Wholesale{{/link-to}}</li>
-                            <li>{{#link-to "information.privacy-policy" class="menu-item"}}
-                                Privacy Policy{{/link-to}}</li>
-                            <li>{{#link-to "information.contact" class="menu-item"}}Contact{{/link-to}}</li>
-                            <li>
-                                <div class="menu-item-my-kitchen__wrapper hide-in-desktop show-in-mobile"
-                                     data-toggle="cart-dropdown" id="cart-dropdown-trigger">
-                                    <a class="action-item basket-indicator" onclick={{action 'showCart'}}> <span
-                                            class="icon-sub-basket"></span>
-                                        <span class="basket-counter">{{cartCount}}</span>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                                <li class="menu-item-footer__wrapper">
+                                    <ul class="menu" onclick={{action 'linkClicked'}}>
+                                        <li>{{#link-to "information.delivery-and-returns" class="menu-item"}}
+                                            Delivery and Returns{{/link-to}}</li>
+                                        <li>{{#link-to "information.payment" class="menu-item"}}Payment{{/link-to}}</li>
+                                        <li>{{#link-to "information.about-artist" class="menu-item"}}
+                                            About Artist Accounts{{/link-to}}</li>
+                                        <li>{{#link-to "information.artist-terms" class="menu-item"}}Artist Terms{{/link-to}}</li>
+                                        <li>{{#link-to "information.terms-and-conditions" class="menu-item"}}
+                                            Terms and Conditions{{/link-to}}</li>
+                                        <li>{{#link-to "information.custom-clothing" class="menu-item"}}
+                                            Custom Clothing{{/link-to}}</li>
+                                        <li>{{#link-to "information.wholesale" class="menu-item"}}Wholesale{{/link-to}}</li>
+                                        <li>{{#link-to "information.privacy-policy" class="menu-item"}}
+                                            Privacy Policy{{/link-to}}</li>
+                                        <li>{{#link-to "information.contact" class="menu-item"}}Contact{{/link-to}}</li>
+                                        <li>
+                                            <div class="menu-item-my-kitchen__wrapper hide-in-desktop show-in-mobile"
+                                                 data-toggle="cart-dropdown" id="cart-dropdown-trigger">
+                                                <a class="action-item basket-indicator" onclick={{action 'showCart'}}> <span
+                                                        class="icon-sub-basket"></span>
+                                                    <span class="basket-counter">{{cartCount}}</span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                      {{login-modal}}
+                      {{flash-messages}}
+                    </nav>
+
+
+            <div class="small-12 medium-4 columns">
+                <div class="search-form hide-in-mobile">
+                  {{input type="text" class="search" placeholder="Search products, artwork and themes" enter="search" value=queryString }}
+                    <!--<span onclick={{action 'search'}}>search</span>-->
+
+                    <button class="search-but" type="button">search</button>
+                </div>
             </div>
-        </nav>
-      {{login-modal}}
-      {{flash-messages}}
+
+        </div>
     </div>
 </div>
+
+

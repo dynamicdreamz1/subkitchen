@@ -24,7 +24,7 @@
 #cart-dropdown-trigger{
   position: relative !important;
   text-align: right;
-  margin-top:8px;
+  margin-left:10px;
   float: right;
 
   #cart-dropdown.dropdown-pane{
@@ -83,7 +83,7 @@
     &:before{
       content: '';
       position: absolute;
-      right: 3%;
+      right: 1%;
       top: -11px;
       width: 0;
       height: 0;
@@ -449,6 +449,9 @@ li ul:before {
 }
 
 
+#loginModal input{
+  width:100%;
+}
 
 
 
@@ -520,7 +523,47 @@ a.action-item.basket-indicator{color: #737373;}
 
 .show-in-mobile{display: none;}
 .hide-in-desktop{display: none;}
-@media (max-width:639px) {
+
+
+.search-form input {
+  width: 77%;
+  float: left;
+}
+button.search-but {
+  padding: 12px 0px 11px;
+  color: #737373;
+  float: right;
+  font-size: 14px;
+  text-transform: capitalize;
+  width: 23%;
+  border-right: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+#nav-menu .top-bar-left > ul li > ul li a {
+  padding: 13px 15px 15px;
+}
+
+#nav-menu, #nav-menu > ul{
+  margin-left: -70px;
+}
+#loginModal {
+  overflow-y: auto !important;
+}
+@media (max-width:1200px){
+  #nav-menu, #nav-menu > ul{
+    margin-left: 0px;
+  }
+}
+@media (max-width:971px){
+  #nav-menu .top-bar-left > ul li > ul li a{
+    font-size: 12px;
+    padding: 17px 7px 17px;
+  }
+
+}
+@media (max-width:767px) {
   .hide-in-mobile{display:none;}
   .show-in-mobile{display:inline-block;}
 

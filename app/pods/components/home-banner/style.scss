@@ -12,21 +12,45 @@
     object-fit: cover;
     height: 39.0625vw;
     background: $light-gray;
-    @include breakpoint(small only) {
+    @include breakpoint(medium only) {
       height: 100vw;
     }
   }
   .banner-top h1 {
      font-size: 3rem;
-     color: #ffffff;
-    @include breakpoint(small only) {
+     color: #000;
+    letter-spacing: 2px;
+    margin: 0;
+    @include breakpoint(medium only) {
       font-size: 2rem;
     }
    }
+
+.banner-top h3{
+margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+  button.button.blue.uppercase.font-bold {
+    display: block;
+    margin: 0 auto;
+    background-color: #009DFA;
+  }
+
+  a.selling {
+    font-size: 17px;
+    margin-top: 5px;
+    display: inline-block;
+    font-weight: bolder;
+    color: #2c2c2c;
+    letter-spacing: 0.5px;
+  }
   .banner-top button {
     font-size: 1.2rem;
     padding: 1.5rem 3rem;
-    border-radius: 5px;
+    border-radius: 4px;
   }
   .banner-top{
     position: absolute;
@@ -65,4 +89,21 @@
       }
     }
   }
+}
+
+@media (max-width:639px) {
+  .index-banner .banner-top h1 {
+    font-size: 30px;
+    line-height: 27px;
+  }
+
+  .index-banner .banner-top h3{
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  .index-banner .banner-top button {
+    padding: 1rem 3rem;
+
+  }
+
 }
