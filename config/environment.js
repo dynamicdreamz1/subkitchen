@@ -53,14 +53,14 @@ module.exports = function(environment) {
 
   ENV['ember-simple-auth'] = {
     authorizer: 'authorizer:custom',
-    crossOriginWhitelist: ['http://subkitchen-backend.herokuapp.com'],
+    crossOriginWhitelist: ['https://subkitchen-backend.herokuapp.com'],
     authenticationRoute: 'signin',
     routeAfterAuthentication: 'profile.info'
   };
 
   if (environment === 'development') {
     // ENV.host = 'http://localhost:3000';
-    ENV.host = 'http://subkitchen-backend.herokuapp.com';
+    ENV.host = 'https://subkitchen-backend.herokuapp.com';
     ENV.FB.appId = '563205840504659';
     ENV.stripe.publishableKey = 'pk_test_h5Aqwd3kEZvC3496unFZclWC';
   }
