@@ -5,13 +5,14 @@ module.exports = function(environment) {
     LOG_STRIPE_SERVICE: false,
     host: 'https://subkitchen-backend.herokuapp.com',
     apiEndpoint: '/api/v1',
-    modulePrefix: 'subkitchen-front',
-    podModulePrefix: 'subkitchen-front/pods',
+    modulePrefix: 'subkitchen',
+    podModulePrefix: 'subkitchen/pods',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
     rollbar: {
-      accessToken: '4cb8da362bad4db68daf4beca144bd29'
+      accessToken: '5400a056041743f4851251fe50935a97',
+      // accessToken: '4cb8da362bad4db68daf4beca144bd29'
     },
     intl: {
       baseLocale: 'en-us',
@@ -58,7 +59,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    //ENV.host = 'http://localhost:3000';
+    // ENV.host = 'http://localhost:3000';
     ENV.host = 'http://subkitchen-backend.herokuapp.com';
     ENV.FB.appId = '563205840504659';
     ENV.stripe.publishableKey = 'pk_test_h5Aqwd3kEZvC3496unFZclWC';
